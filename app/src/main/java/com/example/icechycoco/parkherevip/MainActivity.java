@@ -25,7 +25,6 @@ public class MainActivity extends AppCompatActivity {
     String getUsername;
     String getPassword;
     
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
