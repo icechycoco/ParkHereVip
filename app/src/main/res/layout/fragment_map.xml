@@ -1,0 +1,24 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.icechycoco.parkherevip.MapFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <Button
+        android:id="@+id/btn_park"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="PARK" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="20dp"
+        android:text="LOGIN SUCCESS\nTHIS IS MAP"
+        android:textSize="30sp" />
+
+</FrameLayout>
