@@ -20,7 +20,7 @@ public class LoginActivity extends AppCompatActivity {
     Button btLogin, btLogin2, btLogin3;
     EditText etUsername, etPassword;
     String response = null;
-    getHttp http = new getHttp();
+    //getHttp http = new getHttp();
 
     String getUsername;
     String getPassword;
