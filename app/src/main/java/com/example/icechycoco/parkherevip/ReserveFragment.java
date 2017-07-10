@@ -14,6 +14,8 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -37,9 +39,11 @@ public class ReserveFragment extends Fragment {
 
     String setName,setSur,setLicen,setEmail,setPhone;
     //String setuId,setpId,setgId;
-    String setDate,setQR;
+    String setDate,setQR,setTimeRes;
+            //setTimeRes;
     //String setInterval,setTimeRes,setStatus;
-    int setuId,setpId,setgId,setInterval,setTimeRes,setStatus;
+    int setuId,setpId,setgId,setInterval,setStatus;
+
 
     //setpId ต้องรับค่าจากปุ่มที่กดเลือกแอเรีย
     // setuId ต้องรับค่ามาจากหน้าลอกอิน
@@ -119,8 +123,6 @@ public class ReserveFragment extends Fragment {
         radioButton2 = (RadioButton) v.findViewById(R.id.radioButton2);
         radioButton3 = (RadioButton) v.findViewById(R.id.radioButton3);
 
-
-
         btn.setOnClickListener(new View.OnClickListener() {
 
 
@@ -135,10 +137,14 @@ public class ReserveFragment extends Fragment {
                 setPhone = etPhone.getText().toString();
 
                 setDate = "20170710";
-                setTimeRes = 180000;
+                //current time
+                Calendar cal = Calendar.getInstance();
+                SimpleDateFormat sdf2 = new SimpleDateFormat("HH:mm:ss");
+                setTimeRes = sdf2.format(cal.getTime());
+                //setTimeRes = 180000;
                 setuId = 10000;
                 setpId = 1;
-                setgId = 60;
+                setgId = 63;
                 setQR = "0000";
                 setStatus = 0; // 0 = จองอยู่ 1=จอด อาจจะไม่ต้องมีก็ได้
 
@@ -149,14 +155,12 @@ public class ReserveFragment extends Fragment {
 
 
                 try {
-//                    response = http.run("http://parkhere.sit.kmutt.ac.th/reserve.php?uId="+setuId+"&pId="+setpId+"&gId="+setgId+"&date="+setDate+
-//                            "&timeInterval="+setInterval+"&timeRes="+setTimeRes+"&code="+setQR+"&status=" +setStatus+
-//                           "&gFirstN="+setName+"&gLastN="+setSur+"&gEmail="+setEmail+"&gLicense="+setLicen+"&gPhone="+setPhone);
-//                    response = http.run("http://parkhere.sit.kmutt.ac.th/reserve.php?uId="+setuId+"&pId="+setpId+"&gId="+setgId+
-//                            "&date="+setDate+ "&timeInterval="+setInterval+"&timeRes="+setTimeRes+"&code="+setQR+"&status=" +setStatus);
+//
+                    response = http.run("http://parkhere.sit.kmutt.ac.th/newguest.php?gFirstN="+setName+"&gLastN="+setSur+"&gEmail="+setEmail+"&gLicense="+setLicen+"&gPhone="+setPhone);
+                    //response = http.run("http://parkhere.sit.kmutt.ac.th/newguest.php?gFirstN="+setName+"&gLastN="+setSur+"&gEmail="+setEmail+"&gLicense="+setLicen+"&gPhone="+setPhone);
                     response = http.run("http://parkhere.sit.kmutt.ac.th/reserve.php?uId="+setuId+"&pId="+setpId+"&gId="+setgId+"&date="+setDate+"&timeInterval="+setInterval+"&timeRes="+setTimeRes+"&code="+setQR+"&status="+setStatus);
                     //response = http.run("http://parkhere.sit.kmutt.ac.th/reserve.php?uId="+setuId+"&pId="+setpId+"&gId="+setgId+"&date="+setDate+"&timeInterval="+setInterval+"&timeRes="+setTimeRes+"&code="+setQR+"&status="+setStatus);
-                    response = http.run("http://parkhere.sit.kmutt.ac.th/newguest.php?gFirstN="+setName+"&gLastN="+setSur+"&gEmail="+setEmail+"&gLicense="+setLicen+"&gPhone="+setPhone);
+
                 } catch (IOException e) {
 
                     // TODO Auto-generat-ed catch block
@@ -260,5 +264,6 @@ public class ReserveFragment extends Fragment {
                     break;
         }
     }
+
 
 }

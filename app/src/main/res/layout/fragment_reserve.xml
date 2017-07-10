@@ -113,4 +113,6 @@
         android:layout_alignStart="@+id/btn_reserve"
         android:text="full day" />
 
+
+
 </RelativeLayout>

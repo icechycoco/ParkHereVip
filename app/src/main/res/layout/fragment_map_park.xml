@@ -1,4 +1,4 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -10,13 +10,42 @@
         android:layout_height="match_parent"
         android:layout_margin="20dp"
         android:text="PARK\nTHIS IS YOUR CAR"
-        android:textSize="30sp" />
+        android:textSize="30sp"
+        android:id="@+id/textView5" />
 
     <Button
         android:id="@+id/btn_detail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="DETAIL" />
+        android:text="DETAIL"
+        android:layout_alignBottom="@+id/textView5"
+        android:layout_alignEnd="@+id/textView5"
+        android:layout_marginEnd="74dp"
+        android:layout_marginBottom="62dp" />
 
-</FrameLayout>
+    <!--<TextView-->
+        <!--android:id="@+id/tv1"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="timeIn" />-->
+
+    <!--<TextView-->
+        <!--android:id="@+id/tv2"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_alignParentTop="true"-->
+        <!--android:layout_marginEnd="34dp"-->
+        <!--android:layout_toStartOf="@+id/btn_detail"-->
+        <!--android:text="current time" />-->
+
+    <!--<TextView-->
+        <!--android:id="@+id/tv3"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_alignParentTop="true"-->
+        <!--android:layout_alignStart="@+id/btn_detail"-->
+        <!--android:layout_marginStart="41dp"-->
+        <!--android:text="fee" />-->
+
+</RelativeLayout>
