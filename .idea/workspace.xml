@@ -2651,6 +2651,14 @@
       <option name="presentableId" value="Default" />
       <updated>1498493101263</updated>
     </task>
+    <task id="LOCAL-00001" summary="Stucture Application with no DB">
+      <created>1500104282496</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1500104282496</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TodoView">
