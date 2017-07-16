@@ -1,6 +1,5 @@
 package com.example.icechycoco.parkherevip;
 
-import android.app.Activity;
 import android.content.Context;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -14,15 +13,6 @@ import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
@@ -31,6 +21,15 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class HistoryFragment extends Fragment {
 
@@ -99,7 +98,7 @@ public class HistoryFragment extends Fragment {
 
             catch (IOException e) {
                 // e.printStackTrace();
-                Toast.makeText(getApplicationContext(),
+                Toast.makeText(getContext(),
                         "Error..." + e.toString(), Toast.LENGTH_LONG).show();
             }
             return answer;
@@ -135,11 +134,12 @@ public class HistoryFragment extends Fragment {
                 employeeList.add(createEmployee("employees", outPut));
             }
         } catch (JSONException e) {
-            Toast.makeText(getApplicationContext(), "Error" + e.toString(),
+            Toast.makeText(getContext(), "Error" + e.toString(),
                     Toast.LENGTH_SHORT).show();
         }
 
-        SimpleAdapter simpleAdapter = new SimpleAdapter(this, employeeList,
+
+        SimpleAdapter simpleAdapter = new SimpleAdapter(getActivity(), employeeList,
                 android.R.layout.simple_list_item_1,
                 new String[] { "employees" }, new int[] { android.R.id.text1 });
         listView.setAdapter(simpleAdapter);
