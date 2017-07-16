@@ -13,6 +13,12 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
+import java.io.IOException;
+
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -25,7 +31,14 @@ import android.widget.Toast;
 public class QRScanFragment extends Fragment {
 
     Button btn;
-    CharSequence[] array = {"06:00 - 12:00", "13:00 - 18:00"};
+    String response = null;
+    getHttp http = new getHttp();
+
+    String[] getInfo;
+    String fN,lN,licen,date,parkN,gName,pId,resId;
+    int timeInter;
+    //CharSequence[] timeSeq = {"06:00 - 12:00", "13:00 - 18:00", "06:00-18:00"};
+    String timeSeq = "";
 
 
     // TODO: Rename parameter arguments, choose names that match
@@ -78,6 +91,36 @@ public class QRScanFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_qrscan, container, false);
         btn = (Button) v.findViewById(R.id.btn_scan);
 
+        try {
+            response = http.run("http://parkhere.sit.kmutt.ac.th/resCon.php?code=111111");
+
+        } catch (IOException e) {
+
+            // TODO Auto-generat-ed catch block
+
+            e.printStackTrace();
+        }
+
+        getInfo = response.split(" ");
+        fN = getInfo[0];
+        lN = getInfo[1];
+        gName = fN +"  " +lN;
+        licen = getInfo[2];
+        date = getInfo[3];
+        timeInter = Integer.parseInt(getInfo[4]);
+        parkN = getInfo[5];
+        resId = getInfo[6];
+        pId = getInfo[7];
+
+        if(timeInter==01){
+            timeSeq = "06:00 - 12:00";
+        }else if(timeInter==10){
+            timeSeq = "13:00 - 18:00";
+        }else if(timeInter==11){
+            timeSeq = "06:00 - 18:00";
+        }else{
+            timeSeq = "wrong time";
+        }
 
         btn.setOnClickListener(new View.OnClickListener() {
 
@@ -85,13 +128,25 @@ public class QRScanFragment extends Fragment {
             public void onClick(View view) {
                 final AlertDialog.Builder builder =
                         new AlertDialog.Builder(getActivity());
-                builder.setMessage("\nคุณ ณัฐวฒิ\n\nCB2\n\nกง 6000\n\n06 Apr 2017");
+                builder.setMessage("\nคุณ "+gName+"\n\n"+parkN+"\n\n"+licen+"\n\n"+date+"\n\n"+timeSeq);
 //                builder.setSingleChoiceItems(array, 2, new DialogInterface.OnClickListener(){
 //                    @Override
 //                    public void onClick(DialogInterface dialogInterface, int i) {
 //
 //                    }
 //                } );
+
+                try {
+                    //response = http.run("http://parkhere.sit.kmutt.ac.th/confirmRes.php?reserveId="+resId+"&pId="+pId);
+                    response = http.run("http://parkhere.sit.kmutt.ac.th/confirmRes.php?reserveId="+resId+"&pId="+pId);
+
+                } catch (IOException e) {
+
+                    // TODO Auto-generat-ed catch block
+
+                    e.printStackTrace();
+                }
+
                 builder.setPositiveButton("CONFIRM", new DialogInterface.OnClickListener(){
                     public void onClick(DialogInterface dialog, int id){
                         Toast.makeText(getActivity().getApplicationContext(), "COMPLETED RESERVATION",
@@ -103,6 +158,7 @@ public class QRScanFragment extends Fragment {
                     }
                 });
                 builder.show();
+
             }
         });
 
@@ -148,4 +204,20 @@ public class QRScanFragment extends Fragment {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
+
+
+    public class getHttp {
+        OkHttpClient client = new OkHttpClient();
+
+        String run(String url) throws IOException {
+            Request request = new Request.Builder()
+                    .url(url)
+                    .build();
+            Response response = client.newCall(request).execute();
+            return response.body().string();
+
+        }
+
+    }
+
 }

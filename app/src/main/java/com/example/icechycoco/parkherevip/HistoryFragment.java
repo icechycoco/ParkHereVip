@@ -1,25 +1,46 @@
 package com.example.icechycoco.parkherevip;
 
+import android.app.Activity;
 import android.content.Context;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
+import android.widget.SimpleAdapter;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link HistoryFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link HistoryFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import org.apache.http.HttpResponse;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class HistoryFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+
+    private String jsonResult;
+    private String url = "http://parkhere.sit.kmutt.ac.th/history.php?uId=10001";
+    private ListView listView;
+    private TextView textv1;
+
+//     TODO: Rename parameter arguments, choose names that match
+//     the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
@@ -31,6 +52,103 @@ public class HistoryFragment extends Fragment {
 
     public HistoryFragment() {
         // Required empty public constructor
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        //        super.onCreate(savedInstanceState);
+        if (getArguments() != null) {
+            mParam1 = getArguments().getString(ARG_PARAM1);
+            mParam2 = getArguments().getString(ARG_PARAM2);
+        }
+
+        accessWebService();
+    }
+//
+
+    private class JsonReadTask extends AsyncTask<String, Void, String> {
+        @Override
+        protected String doInBackground(String... params) {
+            HttpClient httpclient = new DefaultHttpClient();
+            HttpPost httppost = new HttpPost(params[0]);
+            try {
+                HttpResponse response = httpclient.execute(httppost);
+                jsonResult = inputStreamToString(
+                        response.getEntity().getContent()).toString();
+            }
+
+            catch (ClientProtocolException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        private StringBuilder inputStreamToString(InputStream is) {
+            String rLine = "";
+            StringBuilder answer = new StringBuilder();
+            BufferedReader rd = new BufferedReader(new InputStreamReader(is));
+
+            try {
+                while ((rLine = rd.readLine()) != null) {
+                    answer.append(rLine);
+                }
+            }
+
+            catch (IOException e) {
+                // e.printStackTrace();
+                Toast.makeText(getApplicationContext(),
+                        "Error..." + e.toString(), Toast.LENGTH_LONG).show();
+            }
+            return answer;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            ListDrwaer();
+        }
+    }// end async task
+
+    public void accessWebService() {
+        JsonReadTask task = new JsonReadTask();
+        // passes values for the urls string array
+        task.execute(new String[] { url });
+    }
+
+    public void ListDrwaer() {
+        List<Map<String, String>> employeeList = new ArrayList<Map<String, String>>();
+
+        try {
+            JSONObject jsonResponse = new JSONObject(jsonResult);
+            JSONArray jsonMainNode = jsonResponse.optJSONArray("parkId");
+            for (int i = 0; i < jsonMainNode.length(); i++) {
+                JSONObject jsonChildNode = jsonMainNode.getJSONObject(i);
+                String name = jsonChildNode.optString("pName");
+                String timeIn = jsonChildNode.optString("timeIn");
+                String timeOut = jsonChildNode.optString("timeOut");
+                String date = jsonChildNode.optString("date");
+                String outPut = name + "-" + timeIn + "-" + timeOut + "-" + date;
+                textv1.setText(name);
+                //textv1.setText(jsonResult);
+                employeeList.add(createEmployee("employees", outPut));
+            }
+        } catch (JSONException e) {
+            Toast.makeText(getApplicationContext(), "Error" + e.toString(),
+                    Toast.LENGTH_SHORT).show();
+        }
+
+        SimpleAdapter simpleAdapter = new SimpleAdapter(this, employeeList,
+                android.R.layout.simple_list_item_1,
+                new String[] { "employees" }, new int[] { android.R.id.text1 });
+        listView.setAdapter(simpleAdapter);
+    }
+
+    private HashMap<String, String> createEmployee(String name, String number) {
+        HashMap<String, String> employeeNameNo = new HashMap<String, String>();
+        employeeNameNo.put(name, number);
+        return employeeNameNo;
     }
 
     /**
@@ -52,19 +170,16 @@ public class HistoryFragment extends Fragment {
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
-
-    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_history, container, false);
+
+        View v = inflater.inflate(R.layout.fragment_map, container, false);
+        //setContentView(R.layout.fragment_history);
+        listView = (ListView) v.findViewById(R.id.listView1);
+        textv1=(TextView) v.findViewById(R.id.textView1);
+
+        return v;
     }
 
     // TODO: Rename method, update argument and hook method into UI event

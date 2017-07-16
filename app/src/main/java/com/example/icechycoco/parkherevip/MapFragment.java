@@ -11,6 +11,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
+
+import java.io.IOException;
+
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+
 
 
 /**
@@ -24,6 +32,15 @@ import android.widget.Button;
 public class MapFragment extends Fragment {
 
     Button btn;
+    TextView tv1,tv2;
+
+    String response = null;
+    getHttp http = new getHttp();
+
+    String[] getInfo;
+    String p1,p2,p3,p4,p5; //park in each park area
+    String r1,r2,r3,r4; //reserve in each park area
+
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -66,6 +83,7 @@ public class MapFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
     }
 
 //    @Override
@@ -85,6 +103,32 @@ public class MapFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_map, container, false);
         btn = (Button) v.findViewById(R.id.btn_park);
 
+        tv1 = (TextView) v.findViewById(R.id.tv1);
+        tv2 = (TextView) v.findViewById(R.id.tv2);
+
+        try {
+            //ดึงค่าได้แล้ว แต่จะเกทมาโชว์แต่ละเอเรียยังไง
+            response = http.run("http://parkhere.sit.kmutt.ac.th/getAvailable.php");
+        } catch (IOException e) {
+            // TODO Auto-generat-ed catch block
+            e.printStackTrace();
+        }
+
+        // get remain in each park into each variables
+        // มันจะ real time ไหม แบบตัวเลขเปลี่ยนในแอพทันทีเลยถ้ามีเพิ่มลด
+        getInfo = response.split("[A-Z]");
+        p1 = getInfo[1];
+        r1 = getInfo[2];
+        p2 = getInfo[3];
+        r2 = getInfo[4];
+        System.out.println(p1);
+        System.out.println(r1);
+        System.out.println(p2);
+        System.out.println(r2);
+        //p3 = getInfo[2];
+        tv1.setText("P "+p1+"\nR "+r1);
+        tv2.setText("P "+p2+"\nR "+r2);
+
         btn.setOnClickListener(new View.OnClickListener() {
 
 
@@ -98,10 +142,9 @@ public class MapFragment extends Fragment {
             }
         });
 
-
         return v;
-    }
 
+    }
 
 //    @Override
 //    public void onClick(View view) {
@@ -140,8 +183,6 @@ public class MapFragment extends Fragment {
         return supportFragmentManager;
     }
 
-
-
     /**
      * This interface must be implemented by activities that contain this
      * fragment to allow an interaction in this fragment to be communicated
@@ -157,5 +198,17 @@ public class MapFragment extends Fragment {
         void onFragmentInteraction(Uri uri);
     }
 
+    public class getHttp {
+        OkHttpClient client = new OkHttpClient();
+
+        String run(String url) throws IOException {
+            Request request = new Request.Builder()
+                    .url(url)
+                    .build();
+            Response response = client.newCall(request).execute();
+            return response.body().string();
+
+        }
+    }
 
 }

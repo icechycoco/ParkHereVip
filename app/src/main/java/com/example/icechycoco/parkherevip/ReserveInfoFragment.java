@@ -9,7 +9,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.Toast;
+
+import java.io.IOException;
+
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 
 /**
@@ -23,6 +31,21 @@ import android.widget.Toast;
 public class ReserveInfoFragment extends Fragment {
 
     Button btn;
+    EditText etGuestN,etGuestS,etLicen, etEmail,etPhone,etDate;
+    RadioButton radioButton1,radioButton2,radioButton3;
+
+    String setName,setSur,setLicen,setEmail,setPhone;
+    //String setuId,setpId,setgId;
+    String setDate,setQR;
+    //String setInterval,setTimeRes,setStatus;
+    int setuId,setpId,setgId,setInterval,setTimeRes,setStatus;
+
+    //setpId ต้องรับค่าจากปุ่มที่กดเลือกแอเรีย
+    // setuId ต้องรับค่ามาจากหน้าลอกอิน
+    // setQR รับค่ามาจากตัว generate
+
+    String response = null;
+    getHttp http = new getHttp();
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -83,12 +106,58 @@ public class ReserveInfoFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_reserve_info, container, false);
         btn = (Button) v.findViewById(R.id.btn_reserve_ok);
 
+        etGuestN = (EditText) v.findViewById(R.id.etGuestN);
+        etGuestS = (EditText) v.findViewById(R.id.etGuestS);
+        etLicen = (EditText) v.findViewById(R.id.etLicen);
+        etEmail = (EditText) v.findViewById(R.id.etEmail);
+        etPhone = (EditText) v.findViewById(R.id.etPhone);
+        etDate = (EditText) v.findViewById(R.id.etDate);
+
+        radioButton1 = (RadioButton) v.findViewById(R.id.radioButton1);
+        radioButton2 = (RadioButton) v.findViewById(R.id.radioButton2);
+        radioButton3 = (RadioButton) v.findViewById(R.id.radioButton3);
+
         btn.setOnClickListener(new View.OnClickListener() {
 
 
             @Override
             public void onClick(View view) {
                 //Fragment
+                setName = etGuestN.getText().toString();
+                setSur = etGuestS.getText().toString();
+                setLicen = etLicen.getText().toString();
+                setEmail = etEmail.getText().toString();
+                //setDate = etDate.getText().toString();
+                setPhone = etPhone.getText().toString();
+
+                setDate = "20170710";
+                setTimeRes = 180000;
+                setuId = 10000;
+                setpId = 1;
+                setgId = 63;
+                setQR = "0000";
+                setStatus = 0; // 0 = จองอยู่ 1=จอด อาจจะไม่ต้องมีก็ได้
+
+
+                //ทำไมมันไม่ insert ข้อมูลในตาราง reserve , guest ก็ไม่ขึ้นละสาส
+                //แก้ php เรื่องหักลบ amount บางทีมันเป็น -1
+                //ให้มันคืนค่าamountทุกๆเที่ยงคืน
+
+
+                try {
+
+                    response = http.run("http://parkhere.sit.kmutt.ac.th/newguest.php?gFirstN="+setName+"&gLastN="+setSur+"&gEmail="+setEmail+"&gLicense="+setLicen+"&gPhone="+setPhone);
+                    //response = http.run("http://parkhere.sit.kmutt.ac.th/newguest.php?gFirstN="+setName+"&gLastN="+setSur+"&gEmail="+setEmail+"&gLicense="+setLicen+"&gPhone="+setPhone);
+                    response = http.run("http://parkhere.sit.kmutt.ac.th/reserve.php?uId="+setuId+"&pId="+setpId+"&gId="+setgId+"&date="+setDate+"&timeInterval="+setInterval+"&timeRes="+setTimeRes+"&code="+setQR+"&status="+setStatus);
+                    //response = http.run("http://parkhere.sit.kmutt.ac.th/reserve.php?uId="+setuId+"&pId="+setpId+"&gId="+setgId+"&date="+setDate+"&timeInterval="+setInterval+"&timeRes="+setTimeRes+"&code="+setQR+"&status="+setStatus);
+
+                } catch (IOException e) {
+
+                    // TODO Auto-generat-ed catch block
+
+                    e.printStackTrace();
+                }
+
 //                HistoryFragment historyFragment = new HistoryFragment();
                 Toast.makeText(getActivity().getApplicationContext(), "COMPLETED RESERVATION",
                         Toast.LENGTH_SHORT).show();
@@ -140,5 +209,35 @@ public class ReserveInfoFragment extends Fragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
+    }
+
+    public class getHttp {
+        OkHttpClient client = new OkHttpClient();
+
+        String run(String url) throws IOException {
+            Request request = new Request.Builder()
+                    .url(url)
+                    .build();
+            Response response = client.newCall(request).execute();
+            return response.body().string();
+
+        }
+    }
+
+    public void onRadioButtonClicked(View view) {
+        // Is the button now checked?
+        boolean checked = ((RadioButton) view).isChecked();
+        // Check which radio button was clicked
+        switch(view.getId()) {
+            case R.id.radioButton1:
+                setInterval = 101;
+                break;
+            case R.id.radioButton2:
+                setInterval = 10;
+                break;
+            case R.id.radioButton3:
+                setInterval = 11;
+                break;
+        }
     }
 }
