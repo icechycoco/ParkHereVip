@@ -12,10 +12,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 public class HomeStuActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, MapFragment.OnFragmentInteractionListener,
         HistoryFragment.OnFragmentInteractionListener , MapParkFragment.OnFragmentInteractionListener {
+
+    String uId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,9 +35,12 @@ public class HomeStuActivity extends AppCompatActivity
 //                        .setAction("Action", null).show();
 //            }
 //        });
-
-
         //Fragment
+        Bundle bundle = getIntent().getExtras();
+        if (bundle != null) {
+            uId = bundle.getString("uId");
+            Toast.makeText(this, "uId : " + uId, Toast.LENGTH_SHORT).show();
+        }
 
         MapFragment mapFragment = new MapFragment();
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();

@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import java.io.IOException;
@@ -31,11 +32,12 @@ import okhttp3.Response;
 public class QRScanFragment extends Fragment {
 
     Button btn;
+    EditText etCode;
     String response = null;
     getHttp http = new getHttp();
 
     String[] getInfo;
-    String fN,lN,licen,date,parkN,gName,pId,resId;
+    String fN,lN,licen,date,parkN,gName,pId,resId,getCode;
     int timeInter;
     //CharSequence[] timeSeq = {"06:00 - 12:00", "13:00 - 18:00", "06:00-18:00"};
     String timeSeq = "";
@@ -90,54 +92,46 @@ public class QRScanFragment extends Fragment {
 
         View v = inflater.inflate(R.layout.fragment_qrscan, container, false);
         btn = (Button) v.findViewById(R.id.btn_scan);
-
-        try {
-            response = http.run("http://parkhere.sit.kmutt.ac.th/resCon.php?code=111111");
-
-        } catch (IOException e) {
-
-            // TODO Auto-generat-ed catch block
-
-            e.printStackTrace();
-        }
-
-        getInfo = response.split(" ");
-        fN = getInfo[0];
-        lN = getInfo[1];
-        gName = fN +"  " +lN;
-        licen = getInfo[2];
-        date = getInfo[3];
-        timeInter = Integer.parseInt(getInfo[4]);
-        parkN = getInfo[5];
-        resId = getInfo[6];
-        pId = getInfo[7];
-
-        if(timeInter==01){
-            timeSeq = "06:00 - 12:00";
-        }else if(timeInter==10){
-            timeSeq = "13:00 - 18:00";
-        }else if(timeInter==11){
-            timeSeq = "06:00 - 18:00";
-        }else{
-            timeSeq = "wrong time";
-        }
+        etCode = (EditText) v.findViewById(R.id.et_code);
 
         btn.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
-                final AlertDialog.Builder builder =
-                        new AlertDialog.Builder(getActivity());
-                builder.setMessage("\nคุณ "+gName+"\n\n"+parkN+"\n\n"+licen+"\n\n"+date+"\n\n"+timeSeq);
-//                builder.setSingleChoiceItems(array, 2, new DialogInterface.OnClickListener(){
-//                    @Override
-//                    public void onClick(DialogInterface dialogInterface, int i) {
-//
-//                    }
-//                } );
+                getCode = etCode.getText().toString();
 
                 try {
-                    //response = http.run("http://parkhere.sit.kmutt.ac.th/confirmRes.php?reserveId="+resId+"&pId="+pId);
+                    response = http.run("http://parkhere.sit.kmutt.ac.th/resCon.php?code="+getCode);
+
+                } catch (IOException e) {
+
+                    // TODO Auto-generat-ed catch block
+
+                    e.printStackTrace();
+                }
+                getInfo = response.split(" ");
+                fN = getInfo[0];
+                lN = getInfo[1];
+                gName = fN +"  " +lN;
+                licen = getInfo[2];
+                date = getInfo[3];
+                timeInter = Integer.parseInt(getInfo[4]);
+                parkN = getInfo[5];
+                resId = getInfo[6];
+                pId = getInfo[7];
+
+                if(timeInter==01){
+                    timeSeq = "06:00 - 12:00";
+                }else if(timeInter==10){
+                    timeSeq = "13:00 - 18:00";
+                }else if(timeInter==11){
+                    timeSeq = "06:00 - 18:00";
+                }else{
+                    timeSeq = "wrong time";
+                }
+
+                try {
+
                     response = http.run("http://parkhere.sit.kmutt.ac.th/confirmRes.php?reserveId="+resId+"&pId="+pId);
 
                 } catch (IOException e) {
@@ -147,8 +141,14 @@ public class QRScanFragment extends Fragment {
                     e.printStackTrace();
                 }
 
+                final AlertDialog.Builder builder =
+                        new AlertDialog.Builder(getActivity());
+                builder.setMessage("\nคุณ "+gName+"\n\n"+parkN+"\n\n"+licen+"\n\n"+date+"\n\n"+timeSeq);
+
                 builder.setPositiveButton("CONFIRM", new DialogInterface.OnClickListener(){
+
                     public void onClick(DialogInterface dialog, int id){
+
                         Toast.makeText(getActivity().getApplicationContext(), "COMPLETED RESERVATION",
                                 Toast.LENGTH_SHORT).show();
                         RequestFragment requestFragment = new RequestFragment();

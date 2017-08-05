@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="false"
+        jar="/Users/icechycoco/Desktop/ParkHereVip/app/libs/mail.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="428e267abff0d10802ccde86b915da2c20471160">
+        <dex dex="/Users/icechycoco/Desktop/ParkHereVip/app/build/intermediates/pre-dexed/debug/mail_f1fff89a33f21a6d40a54eb1afa6b52a1cb1cb66.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/icechycoco/Desktop/ParkHereVip/app/libs/activation.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="d1257cbff6faa44c1f325ae0d9413522d4644383">
+        <dex dex="/Users/icechycoco/Desktop/ParkHereVip/app/build/intermediates/pre-dexed/debug/activation_56d7b278576c81e1e180c29f44bb89a361e0b606.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/icechycoco/Desktop/ParkHereVip/app/libs/additionnal.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="bd9e8dc422bb8c8405359947fe9f4282b49f57f4">
+        <dex dex="/Users/icechycoco/Desktop/ParkHereVip/app/build/intermediates/pre-dexed/debug/additionnal_18c2c5e11fc172b7eb221e76813b3a39aaff815c.jar" />
+    </item>
+
+</items>

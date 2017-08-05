@@ -1,23 +1,32 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.icechycoco.parkherevip.QRScanFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="20dp"
-        android:text="THIS IS QR SCANNER"
-        android:textSize="30sp" />
 
     <Button
         android:id="@+id/btn_scan"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/et_code"
+        android:layout_centerHorizontal="true"
         android:layout_gravity="center"
-        android:layout_margin="100dp"
-        android:text="Scan" />
+        android:layout_marginLeft="100dp"
+        android:layout_marginRight="100dp"
+        android:layout_marginTop="56dp"
+        android:text="CHECK" />
 
-</FrameLayout>
+    <EditText
+        android:id="@+id/et_code"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="CODE"
+        android:inputType="textPersonName"
+        android:layout_marginTop="219dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+</RelativeLayout>

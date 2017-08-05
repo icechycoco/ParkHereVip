@@ -4,6 +4,7 @@ package com.example.icechycoco.parkherevip;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
@@ -12,10 +13,12 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
+import android.widget.TextView;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Random;
 
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -32,17 +35,20 @@ import okhttp3.Response;
  */
 public class ReserveFragment extends Fragment {
 
-    Button btn;
+    Button btn,btnC;
 
     EditText etGuestN,etGuestS,etLicen, etEmail,etPhone,etDate;
     RadioButton radioButton1,radioButton2,radioButton3;
+    TextView textView;
 
-    String setName,setSur,setLicen,setEmail,setPhone;
-    //String setuId,setpId,setgId;
+    String setName,setSur,setLicen,setEmail,setPhone,setgId;
     String setDate,setQR,setTimeRes;
+    String getCode;
+    String[] getGInfo;
+    String gId,gEmail,gLicen,gPhone;
             //setTimeRes;
     //String setInterval,setTimeRes,setStatus;
-    int setuId,setpId,setgId,setInterval,setStatus;
+    int setuId,setpId,setInterval,setStatus;
 
 
     //setpId ต้องรับค่าจากปุ่มที่กดเลือกแอเรีย
@@ -111,6 +117,7 @@ public class ReserveFragment extends Fragment {
 
         View v = inflater.inflate(R.layout.fragment_reserve, container, false);
         btn = (Button) v.findViewById(R.id.btn_reserve);
+        btnC = (Button) v.findViewById(R.id.btn_check);
 
         etGuestN = (EditText) v.findViewById(R.id.etGuestN);
         etGuestS = (EditText) v.findViewById(R.id.etGuestS);
@@ -123,55 +130,100 @@ public class ReserveFragment extends Fragment {
         radioButton2 = (RadioButton) v.findViewById(R.id.radioButton2);
         radioButton3 = (RadioButton) v.findViewById(R.id.radioButton3);
 
-        btn.setOnClickListener(new View.OnClickListener() {
+        textView = (TextView) v.findViewById(R.id.tv_result);
 
-
+        btnC.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Fragment
                 setName = etGuestN.getText().toString();
                 setSur = etGuestS.getText().toString();
-                setLicen = etLicen.getText().toString();
-                setEmail = etEmail.getText().toString();
-                //setDate = etDate.getText().toString();
-                setPhone = etPhone.getText().toString();
-
-                setDate = "20170710";
-                //current time
-                Calendar cal = Calendar.getInstance();
-                SimpleDateFormat sdf2 = new SimpleDateFormat("HH:mm:ss");
-                setTimeRes = sdf2.format(cal.getTime());
-                //setTimeRes = 180000;
-                setuId = 10000;
-                setpId = 1;
-                setgId = 63;
-                setQR = "0000";
-                setStatus = 0; // 0 = จองอยู่ 1=จอด อาจจะไม่ต้องมีก็ได้
-
-
-                //ทำไมมันไม่ insert ข้อมูลในตาราง reserve , guest ก็ไม่ขึ้นละสาส
-                //แก้ php เรื่องหักลบ amount บางทีมันเป็น -1
-                //ให้มันคืนค่าamountทุกๆเที่ยงคืน
-
-
                 try {
-//
-                    response = http.run("http://parkhere.sit.kmutt.ac.th/newguest.php?gFirstN="+setName+"&gLastN="+setSur+"&gEmail="+setEmail+"&gLicense="+setLicen+"&gPhone="+setPhone);
-                    //response = http.run("http://parkhere.sit.kmutt.ac.th/newguest.php?gFirstN="+setName+"&gLastN="+setSur+"&gEmail="+setEmail+"&gLicense="+setLicen+"&gPhone="+setPhone);
-                    response = http.run("http://parkhere.sit.kmutt.ac.th/reserve.php?uId="+setuId+"&pId="+setpId+"&gId="+setgId+"&date="+setDate+"&timeInterval="+setInterval+"&timeRes="+setTimeRes+"&code="+setQR+"&status="+setStatus);
-                    //response = http.run("http://parkhere.sit.kmutt.ac.th/reserve.php?uId="+setuId+"&pId="+setpId+"&gId="+setgId+"&date="+setDate+"&timeInterval="+setInterval+"&timeRes="+setTimeRes+"&code="+setQR+"&status="+setStatus);
-
+                    response = http.run("http://parkhere.sit.kmutt.ac.th/checkG.php?gFirstN="+setName+"&gLastN="+setSur);
                 } catch (IOException e) {
-
                     // TODO Auto-generat-ed catch block
-
                     e.printStackTrace();
                 }
 
+                if(response.equals("0")){
+                    textView.setText("please fill in a guest infomation");
+                    btn.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            setLicen = etLicen.getText().toString();
+                            setEmail = etEmail.getText().toString();
+                            //setDate = etDate.getText().toString();
+                            setPhone = etPhone.getText().toString();
+                            setDate = "20170710"; // เปลี่ยนมารับค่าวันที่
+                            //current time
+                            Calendar cal = Calendar.getInstance();
+                            SimpleDateFormat sdf2 = new SimpleDateFormat("HH:mm:ss");
+                            setTimeRes = sdf2.format(cal.getTime());
+                            setuId = 10000; //รับค่ามาจากหน้าลอคอิน
+                            setpId = 1; //รับค่าจากการเลือกแอเรีย
+                            setgId = "73"; // ตารางต้องเหมือนกันอะ reserve and guest ถึงจะสร้างได้ ยัง bug อยุ่
+                            setQR = randCode();
+                            setStatus = 0; // 0 = จองอยู่ 1=จอด อาจจะไม่ต้องมีก็ได้
+                            //ทำไมมันไม่ insert ข้อมูลในตาราง reserve , guest ก็ไม่ขึ้นละสาส
+                            //แก้ php เรื่องหักลบ amount บางทีมันเป็น -1
+                            //ให้มันคืนค่าamountทุกๆเที่ยงคืน
 
+                            sendEmail(setEmail);
+
+                            try {
+                                response = http.run("http://parkhere.sit.kmutt.ac.th/newguest.php?gFirstN="+setName+"&gLastN="+setSur+"&gEmail="+setEmail+"&gLicense="+setLicen+"&gPhone="+setPhone);
+                                //response = http.run("http://parkhere.sit.kmutt.ac.th/newguest.php?gFirstN="+setName+"&gLastN="+setSur+"&gEmail="+setEmail+"&gLicense="+setLicen+"&gPhone="+setPhone);
+                                response = http.run("http://parkhere.sit.kmutt.ac.th/reserve.php?uId="+setuId+"&pId="+setpId+"&gId="+setgId+"&date="+setDate+"&timeInterval="+setInterval+"&timeRes="+setTimeRes+"&code="+setQR+"&status="+setStatus);
+                                //response = http.run("http://parkhere.sit.kmutt.ac.th/reserve.php?uId="+setuId+"&pId="+setpId+"&gId="+setgId+"&date="+setDate+"&timeInterval="+setInterval+"&timeRes="+setTimeRes+"&code="+setQR+"&status="+setStatus);
+                            } catch (IOException e) {
+                                // TODO Auto-generat-ed catch block
+                                e.printStackTrace();
+                            }
+                        }
+                    });
+                }else{
+                    textView.setText("Existed Guest Infomation");
+
+                    getGInfo = response.split(" ");
+                    gId = getGInfo[0];
+                    gEmail = getGInfo[1];
+                    gLicen = getGInfo[2];
+                    gPhone = getGInfo[3];
+
+                    etEmail.setText(gEmail);
+                    etLicen.setText(gLicen);
+                    etPhone.setText(gPhone);
+
+                    btn.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+
+                            setDate = "20170710"; // เปลี่ยนมารับค่าวันที่
+                            //current time
+                            Calendar cal = Calendar.getInstance();
+                            SimpleDateFormat sdf2 = new SimpleDateFormat("HH:mm:ss");
+                            setTimeRes = sdf2.format(cal.getTime());
+                            setuId = 10000; //รับค่ามาจากหน้าลอคอิน
+                            setpId = 1; //รับค่าจากการเลือกแอเรีย
+                            setQR = randCode();
+                            setStatus = 0; // 0 = จองอยู่ 1=จอด อาจจะไม่ต้องมีก็ได้
+                            setgId = gId;
+                            //ทำไมมันไม่ insert ข้อมูลในตาราง reserve , guest ก็ไม่ขึ้นละสาส
+                            //แก้ php เรื่องหักลบ amount บางทีมันเป็น -1
+                            //ให้มันคืนค่าamountทุกๆเที่ยงคืน
+
+                            sendEmail(gEmail);
+
+                            try {
+                                response = http.run("http://parkhere.sit.kmutt.ac.th/reserve.php?uId="+setuId+"&pId="+setpId+"&gId="+setgId+"&date="+setDate+"&timeInterval="+setInterval+"&timeRes="+setTimeRes+"&code="+setQR+"&status="+setStatus);
+                            } catch (IOException e) {
+                                // TODO Auto-generat-ed catch block
+                                e.printStackTrace();
+                            }
+                        }
+                    });
+                }
             }
         });
-
 
         return v;
     }
@@ -265,5 +317,54 @@ public class ReserveFragment extends Fragment {
         }
     }
 
+    public String randCode(){
+        int min = 10000;
+        int max = 99999;
+
+        Random r = new Random();
+        int i1 = r.nextInt(max - min + 1) + min;
+
+        try {
+            response = http.run("http://parkhere.sit.kmutt.ac.th/checkCode.php?code="+i1);
+
+        } catch (IOException e) {
+
+            // TODO Auto-generat-ed catch block
+
+            e.printStackTrace();
+        }
+
+        getCode = response;
+
+        if(getCode.equals("n")) {
+
+            return "" + i1;
+        }
+            return randCode();
+
+    }
+
+    public void sendEmail(final String email){
+        // TODO Auto-generated method stub
+        new Thread(new Runnable() {
+            public void run() {
+                try {
+                    GMailSender sender = new GMailSender(
+                            "vipsmartpark@gmail.com",
+                            "villicepark");
+                    //sender.addAttachment(Environment.getExternalStorageDirectory().getPath()+"/image.jpg");
+                    sender.sendMail("Confirm Park Reservation at KMUTT",
+                            "To: " + setName + setSur + "\n\n" +
+                            "this is your code : "+ setQR + "\n\n" +
+                            "This mail has been sent from ParkHere application.",
+                            "vipsmartpark@gmail.com",
+                            email);
+                } catch (Exception e) {
+
+                }
+            }
+        }).start();
+
+    }
 
 }

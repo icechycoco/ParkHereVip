@@ -12,12 +12,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 public class HomeStaActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, ReserveFragment.OnFragmentInteractionListener,
         HistoryFragment.OnFragmentInteractionListener, ReserveInfoFragment.OnFragmentInteractionListener,
         MapFragment.OnFragmentInteractionListener, MapParkFragment.OnFragmentInteractionListener {
 
+    String uId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,7 +28,11 @@ public class HomeStaActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-
+        Bundle bundle = getIntent().getExtras();
+        if (bundle != null) {
+            uId = bundle.getString("uId");
+            Toast.makeText(this, "uId : " + uId, Toast.LENGTH_SHORT).show();
+        }
 //        //ปุ่มมุมขวาล่าง
 //        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
 //        fab.setOnClickListener(new View.OnClickListener() {

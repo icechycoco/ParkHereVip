@@ -61,24 +61,4 @@
         android:layout_below="@+id/etPassword"
         android:layout_centerHorizontal="true" />
 
-    <Button
-        android:id="@+id/btLogin2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Login"
-        tools:layout_editor_absoluteX="147dp"
-        tools:layout_editor_absoluteY="342dp"
-        android:layout_below="@+id/btLogin"
-        android:layout_toEndOf="@+id/tvUsername" />
-
-    <Button
-        android:id="@+id/btLogin3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Login"
-        tools:layout_editor_absoluteX="147dp"
-        tools:layout_editor_absoluteY="342dp"
-        android:layout_below="@+id/btLogin2"
-        android:layout_alignStart="@+id/btLogin2" />
-
 </RelativeLayout>

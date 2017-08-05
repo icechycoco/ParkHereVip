@@ -12,13 +12,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 public class HomeSecActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, MapFragment.OnFragmentInteractionListener,
         HistoryFragment.OnFragmentInteractionListener, RequestFragment.OnFragmentInteractionListener,
         MapParkFragment.OnFragmentInteractionListener, QRScanFragment.OnFragmentInteractionListener{
 
-
+    String uId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +37,11 @@ public class HomeSecActivity extends AppCompatActivity
 //            }
 //        });
 
-
+        Bundle bundle = getIntent().getExtras();
+        if (bundle != null) {
+            uId = bundle.getString("uId");
+            Toast.makeText(this, "uId : " + uId, Toast.LENGTH_SHORT).show();
+        }
 
         //Fragment
         MapFragment mapFragment = new MapFragment();

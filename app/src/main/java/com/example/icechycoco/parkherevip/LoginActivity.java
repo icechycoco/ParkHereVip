@@ -17,13 +17,16 @@ import okhttp3.Response;
 
 public class LoginActivity extends AppCompatActivity {
 
-    Button btLogin, btLogin2, btLogin3;
+    Button btLogin;
     EditText etUsername, etPassword;
-    String response = null;
-    //getHttp http = new getHttp();
 
     String getUsername;
     String getPassword;
+    String[] getInfo;
+    String position,uId;
+
+    String response = null;
+    getHttp http = new getHttp();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,8 +36,6 @@ public class LoginActivity extends AppCompatActivity {
         etUsername = (EditText) findViewById(R.id.etUsername);
         etPassword = (EditText) findViewById(R.id.etPassword);
         btLogin = (Button) findViewById(R.id.btLogin);
-        btLogin2 = (Button) findViewById(R.id.btLogin2);
-        btLogin3 = (Button) findViewById(R.id.btLogin3);
 
 
         //getPassword = etPassword.getText().toString();
@@ -56,52 +57,41 @@ public class LoginActivity extends AppCompatActivity {
                 getUsername = etUsername.getText().toString();
                 getPassword = etPassword.getText().toString();
 
+                try {
+                    response = http.run("http://parkhere.sit.kmutt.ac.th/Login.php?username="+getUsername+"&password="+getPassword);
 
-                Intent intent = new Intent(LoginActivity.this, HomeStuActivity.class);
-                startActivity(intent);
+                } catch (IOException e) {
 
-//
-//                try {
-//                    response = http.run("http://parkhere.sit.kmutt.ac.th/Login.php?username=rodrin&password=123456");
-//
-//                    //เชื่อมหน้าต่อไป
-//                    Intent intent = new Intent(LoginActivity.this, HomeStaActivity.class);
-//                    startActivity(intent);
-//
-//                    //response = http.run("http://parkhere.sit.kmutt.ac.th/Login.php?username="+getUsername+"&password="+getPassword);
-//                } catch (IOException e) {
-//
-//                    // TODO Auto-generat-ed catch block
-//
-//                    e.printStackTrace();
-//                }
+                    // TODO Auto-generat-ed catch block
+
+                    e.printStackTrace();
+                }
+
+                getInfo = response.split(" ");
+                position = getInfo[0];
+                uId = getInfo[1];
+
+                if(position.equals("1")){ // user: rodrin pass: 123456
+                    Intent intent = new Intent(LoginActivity.this, HomeStuActivity.class);
+                    intent.putExtra("uId", uId);
+                    startActivity(intent);
+                }else if(position.equals("2")){ //user : icechy pass :123456
+                    Intent intent = new Intent(LoginActivity.this, HomeStaActivity.class);
+                    intent.putExtra("uId", uId);
+                    startActivity(intent);
+                }else if(position.equals("3")){ // user:park13 pass:123456
+                    Intent intent = new Intent(LoginActivity.this, HomeSecActivity.class);
+                    intent.putExtra("uId", uId);
+                    startActivity(intent);
+                }else{
+                    //show error
+                }
 
 
             }
 
         });
-        btLogin2.setOnClickListener(new View.OnClickListener() {
 
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(LoginActivity.this, HomeStaActivity.class);
-                startActivity(intent);
-            }
-
-        });
-
-        btLogin3.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-
-                Intent intent = new Intent(LoginActivity.this, HomeSecActivity.class);
-                startActivity(intent);
-            }
-
-        });
-
-        //ConnectDB conn = new ConnectDB();
 
     }
 
