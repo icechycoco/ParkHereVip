@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.IOException;
 import java.text.ParseException;
@@ -33,29 +34,23 @@ import okhttp3.Response;
  */
 public class MapParkFragment extends Fragment {
 
+    // gui
     Button btn;
-    TextView tv1,tv2,tv3;
-
+    // connect db
     String response = null;
     getHttp http = new getHttp();
-
+    //variable
     String[] getInfo;
-    String time;
+    String getTime;
+    int getCost,getMCost;
     String timeIn,currentTime;
-    int cost,mCost;
-
     Date date1,date2;
     long realFee;
     long diffHours = 0;
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    private static final String KEY_ID = "uId";
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private String uId;
 
     private OnFragmentInteractionListener mListener;
 
@@ -63,20 +58,10 @@ public class MapParkFragment extends Fragment {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment HistoryFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static MapParkFragment newInstance(String param1, String param2) {
+    public static MapParkFragment newInstance(String uId) {
         MapParkFragment fragment = new MapParkFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
+        args.putString(KEY_ID, uId);
         fragment.setArguments(args);
         return fragment;
     }
@@ -84,19 +69,12 @@ public class MapParkFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+        Bundle bundle = getArguments();
+        if (bundle != null) {
+            uId = bundle.getString(KEY_ID);
         }
+        Toast.makeText(getContext(), "uId : " + uId, Toast.LENGTH_SHORT).show();
     }
-
-//    @Override
-//    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-//                             Bundle savedInstanceState) {
-//        // Inflate the layout for this fragment
-//        return inflater.inflate(R.layout.fragment_map_park, container, false);
-//    }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -106,30 +84,22 @@ public class MapParkFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_map_park, container, false);
         btn = (Button) v.findViewById(R.id.btn_detail);
 
-//        tv1 = (TextView) v.findViewById(R.id.tv1);
-//        tv2 = (TextView) v.findViewById(R.id.tv2);
-//        tv3 = (TextView) v.findViewById(R.id.tv3);
-
         try {
-            response = http.run("http://parkhere.sit.kmutt.ac.th/estimate.php?uId=10001");
-
+            response = http.run("http://parkhere.sit.kmutt.ac.th/estimate.php?uId="+uId);
         } catch (IOException e) {
-
-            // TODO Auto-generat-ed catch block
-
             e.printStackTrace();
         }
 
         getInfo = response.split(" ");
-        time = getInfo[0];
-        cost = Integer.parseInt(getInfo[1]);
-        mCost = Integer.parseInt(getInfo[2]);
+        getTime = getInfo[0];
+        getCost = Integer.parseInt(getInfo[1]);
+        getMCost = Integer.parseInt(getInfo[2]);
 
         // convert string time in database to time
         SimpleDateFormat sdf = new SimpleDateFormat("hh:mm:ss");
         Date date = null;
         try {
-            date = sdf.parse(time);
+            date = sdf.parse(getTime);
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -155,18 +125,14 @@ public class MapParkFragment extends Fragment {
         }
 
         //calculate fee
-        long fee = diffHours*cost;
-        if(fee>mCost){
-            realFee = mCost;
-            System.out.println(mCost);
+        long fee = diffHours*getCost;
+        if(fee>getMCost){
+            realFee = getMCost;
+            System.out.println(getMCost);
         }else{
             realFee = fee;
             System.out.println(fee);
         }
-
-//        tv1.setText(timeIn);
-//        tv2.setText(Long.toString(realFee));
-//        tv3.setText(currentTime);
 
         btn.setOnClickListener(new View.OnClickListener() {
 
@@ -187,9 +153,6 @@ public class MapParkFragment extends Fragment {
 
         return v;
     }
-
-
-
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {

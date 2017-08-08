@@ -34,7 +34,7 @@
         <activity
             android:name=".HomeSecActivity"
             android:label="@string/title_activity_home_sec"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>

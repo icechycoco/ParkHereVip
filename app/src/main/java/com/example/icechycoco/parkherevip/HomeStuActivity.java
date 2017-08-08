@@ -1,6 +1,8 @@
 package com.example.icechycoco.parkherevip;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -19,6 +21,7 @@ public class HomeStuActivity extends AppCompatActivity
         HistoryFragment.OnFragmentInteractionListener , MapParkFragment.OnFragmentInteractionListener {
 
     String uId;
+    SharedPreferences sp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,12 +38,9 @@ public class HomeStuActivity extends AppCompatActivity
 //                        .setAction("Action", null).show();
 //            }
 //        });
-        //Fragment
-        Bundle bundle = getIntent().getExtras();
-        if (bundle != null) {
-            uId = bundle.getString("uId");
-            Toast.makeText(this, "uId : " + uId, Toast.LENGTH_SHORT).show();
-        }
+        sp = getSharedPreferences("PREF_NAME", Context.MODE_PRIVATE);
+        uId = sp.getString("UID", "0");
+        Toast.makeText(this, "uId : " + uId, Toast.LENGTH_SHORT).show();
 
         MapFragment mapFragment = new MapFragment();
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
@@ -98,13 +98,13 @@ public class HomeStuActivity extends AppCompatActivity
 
         if (id == R.id.nav_home) {
             //Fragment
-            MapFragment mapFragment = new MapFragment();
+            MapFragment mapFragment = new MapFragment().newInstance(uId);
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
             transaction.replace(R.id.fragment_container, mapFragment);
             transaction.commit();
         } else if (id == R.id.nav_history) {
             //Fragment
-            HistoryFragment historyFragment = new HistoryFragment();
+            HistoryFragment historyFragment = new HistoryFragment().newInstance(uId);
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
             transaction.replace(R.id.fragment_container, historyFragment);
             transaction.commit();

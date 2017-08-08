@@ -1,6 +1,8 @@
 package com.example.icechycoco.parkherevip;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -18,8 +20,9 @@ public class HomeSecActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, MapFragment.OnFragmentInteractionListener,
         HistoryFragment.OnFragmentInteractionListener, RequestFragment.OnFragmentInteractionListener,
         MapParkFragment.OnFragmentInteractionListener, QRScanFragment.OnFragmentInteractionListener{
-
+    // shared variables
     String uId;
+    SharedPreferences sp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,19 +40,16 @@ public class HomeSecActivity extends AppCompatActivity
 //            }
 //        });
 
-        Bundle bundle = getIntent().getExtras();
-        if (bundle != null) {
-            uId = bundle.getString("uId");
-            Toast.makeText(this, "uId : " + uId, Toast.LENGTH_SHORT).show();
-        }
+        // send variable
+        sp = getSharedPreferences("PREF_NAME", Context.MODE_PRIVATE);
+        uId = sp.getString("UID", "0");
+        Toast.makeText(this, "uId : " + uId, Toast.LENGTH_SHORT).show();
 
         //Fragment
         MapFragment mapFragment = new MapFragment();
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.fragment_container, mapFragment);
         transaction.commit();
-
-
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -101,19 +101,19 @@ public class HomeSecActivity extends AppCompatActivity
 
         if (id == R.id.nav_home) {
             //Fragment
-            MapFragment mapFragment = new MapFragment();
+            MapFragment mapFragment = new MapFragment().newInstance(uId);
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
             transaction.replace(R.id.fragment_container, mapFragment);
             transaction.commit();
         } else if (id == R.id.nav_history) {
             //Fragment
-            HistoryFragment historyFragment = new HistoryFragment();
+            HistoryFragment historyFragment = new HistoryFragment().newInstance(uId);
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
             transaction.replace(R.id.fragment_container, historyFragment);
             transaction.commit();
         } else if (id == R.id.nav_request){
             //Fragment
-            RequestFragment requestFragment = new RequestFragment();
+            RequestFragment requestFragment = new RequestFragment().newInstance(uId);
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
             transaction.replace(R.id.fragment_container, requestFragment);
             transaction.commit();

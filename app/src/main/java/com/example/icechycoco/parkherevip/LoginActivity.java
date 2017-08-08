@@ -1,13 +1,18 @@
 package com.example.icechycoco.parkherevip;
 
 
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.StrictMode;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import java.io.IOException;
 
@@ -17,16 +22,20 @@ import okhttp3.Response;
 
 public class LoginActivity extends AppCompatActivity {
 
+    // gui
     Button btLogin;
     EditText etUsername, etPassword;
-
+    // connect db
+    String response = null;
+    getHttp http = new getHttp();
+    // variables
     String getUsername;
     String getPassword;
     String[] getInfo;
     String position,uId;
 
-    String response = null;
-    getHttp http = new getHttp();
+    SharedPreferences sp;
+    SharedPreferences.Editor editor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,17 +46,11 @@ public class LoginActivity extends AppCompatActivity {
         etPassword = (EditText) findViewById(R.id.etPassword);
         btLogin = (Button) findViewById(R.id.btLogin);
 
-
-        //getPassword = etPassword.getText().toString();
-        //getUsername = etUsername.getText().toString();
-
-
         // Permission StrictMode
         if (android.os.Build.VERSION.SDK_INT > 9) {
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
             StrictMode.setThreadPolicy(policy);
         }
-
 
         btLogin.setOnClickListener(new View.OnClickListener() {
 
@@ -67,34 +70,43 @@ public class LoginActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
 
-                getInfo = response.split(" ");
-                position = getInfo[0];
-                uId = getInfo[1];
+                if(response.equals("0")){
+                    AlertDialog.Builder builder =
+                            new AlertDialog.Builder(LoginActivity.this);
+                    builder.setMessage("Wrong Username or Password");
+                    builder.setPositiveButton("Try Again", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
 
-                if(position.equals("1")){ // user: rodrin pass: 123456
-                    Intent intent = new Intent(LoginActivity.this, HomeStuActivity.class);
-                    intent.putExtra("uId", uId);
-                    startActivity(intent);
-                }else if(position.equals("2")){ //user : icechy pass :123456
-                    Intent intent = new Intent(LoginActivity.this, HomeStaActivity.class);
-                    intent.putExtra("uId", uId);
-                    startActivity(intent);
-                }else if(position.equals("3")){ // user:park13 pass:123456
-                    Intent intent = new Intent(LoginActivity.this, HomeSecActivity.class);
-                    intent.putExtra("uId", uId);
-                    startActivity(intent);
-                }else{
-                    //show error
+                        }
+                    });
+                    builder.show();
+                }else {
+                    getInfo = response.split(" ");
+                    position = getInfo[0];
+                    uId = getInfo[1];
+
+                    sp = getSharedPreferences("PREF_NAME", Context.MODE_PRIVATE);
+                    editor = sp.edit();
+                    editor.putString("UID", uId);
+                    editor.commit();
+
+                    if (position.equals("1")) { // user: rodrin pass: 123456
+                        Intent intent = new Intent(LoginActivity.this, HomeStuActivity.class);
+                        startActivity(intent);
+                    } else if (position.equals("2")) { //user : icechy pass :123456
+                        Intent intent = new Intent(LoginActivity.this, HomeStaActivity.class);
+                        startActivity(intent);
+                    } else if (position.equals("3")) { // user:park13 pass:123456
+                        Intent intent = new Intent(LoginActivity.this, HomeSecActivity.class);
+                        startActivity(intent);
+                    } else {
+
+                    }
                 }
-
-
             }
 
         });
-
-
     }
-
 
     public class getHttp {
         OkHttpClient client = new OkHttpClient();
@@ -106,7 +118,5 @@ public class LoginActivity extends AppCompatActivity {
             Response response = client.newCall(request).execute();
             return response.body().string();
         }
-
     }
-
 }

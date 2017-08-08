@@ -31,26 +31,20 @@ import okhttp3.Response;
  */
 public class QRScanFragment extends Fragment {
 
+    // gui
     Button btn;
     EditText etCode;
+    // connect db
     String response = null;
     getHttp http = new getHttp();
-
+    // variables
     String[] getInfo;
-    String fN,lN,licen,date,parkN,gName,pId,resId,getCode;
+    String fN,lN,licen,date,parkN,gName,pId,resId,getCode,checkCode;
     int timeInter;
-    //CharSequence[] timeSeq = {"06:00 - 12:00", "13:00 - 18:00", "06:00-18:00"};
     String timeSeq = "";
 
-
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private static final String KEY_ID = "uId";
+    private String uId;
 
     private OnFragmentInteractionListener mListener;
 
@@ -58,20 +52,11 @@ public class QRScanFragment extends Fragment {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment QRScanFragment.
-     */
     // TODO: Rename and change types and number of parameters
-    public static QRScanFragment newInstance(String param1, String param2) {
+    public static QRScanFragment newInstance(String uId) {
         QRScanFragment fragment = new QRScanFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
+        args.putString(KEY_ID, uId);
         fragment.setArguments(args);
         return fragment;
     }
@@ -79,10 +64,11 @@ public class QRScanFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+        Bundle bundle = getArguments();
+        if (bundle != null) {
+            uId = bundle.getString(KEY_ID);
         }
+        Toast.makeText(getContext(), "uId : " + uId, Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -93,75 +79,97 @@ public class QRScanFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_qrscan, container, false);
         btn = (Button) v.findViewById(R.id.btn_scan);
         etCode = (EditText) v.findViewById(R.id.et_code);
+        checkCode = "22074";
 
         btn.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
+
                 getCode = etCode.getText().toString();
 
-                try {
-                    response = http.run("http://parkhere.sit.kmutt.ac.th/resCon.php?code="+getCode);
+                if(getCode.equals(checkCode)) {
 
-                } catch (IOException e) {
+                    try {
+                        response = http.run("http://parkhere.sit.kmutt.ac.th/resCon.php?code=" + getCode);
 
-                    // TODO Auto-generat-ed catch block
+                    } catch (IOException e) {
 
-                    e.printStackTrace();
-                }
-                getInfo = response.split(" ");
-                fN = getInfo[0];
-                lN = getInfo[1];
-                gName = fN +"  " +lN;
-                licen = getInfo[2];
-                date = getInfo[3];
-                timeInter = Integer.parseInt(getInfo[4]);
-                parkN = getInfo[5];
-                resId = getInfo[6];
-                pId = getInfo[7];
+                        // TODO Auto-generat-ed catch block
 
-                if(timeInter==01){
-                    timeSeq = "06:00 - 12:00";
-                }else if(timeInter==10){
-                    timeSeq = "13:00 - 18:00";
-                }else if(timeInter==11){
-                    timeSeq = "06:00 - 18:00";
-                }else{
-                    timeSeq = "wrong time";
-                }
-
-                try {
-
-                    response = http.run("http://parkhere.sit.kmutt.ac.th/confirmRes.php?reserveId="+resId+"&pId="+pId);
-
-                } catch (IOException e) {
-
-                    // TODO Auto-generat-ed catch block
-
-                    e.printStackTrace();
-                }
-
-                final AlertDialog.Builder builder =
-                        new AlertDialog.Builder(getActivity());
-                builder.setMessage("\nคุณ "+gName+"\n\n"+parkN+"\n\n"+licen+"\n\n"+date+"\n\n"+timeSeq);
-
-                builder.setPositiveButton("CONFIRM", new DialogInterface.OnClickListener(){
-
-                    public void onClick(DialogInterface dialog, int id){
-
-                        Toast.makeText(getActivity().getApplicationContext(), "COMPLETED RESERVATION",
-                                Toast.LENGTH_SHORT).show();
-                        RequestFragment requestFragment = new RequestFragment();
-                        FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                        transaction.replace(R.id.fragment_container, requestFragment);
-                        transaction.commit();
+                        e.printStackTrace();
                     }
-                });
-                builder.show();
+                    getInfo = response.split(" ");
+                    fN = getInfo[0];
+                    lN = getInfo[1];
+                    gName = fN + "  " + lN;
+                    licen = getInfo[2];
+                    date = getInfo[3];
+                    timeInter = Integer.parseInt(getInfo[4]);
+                    parkN = getInfo[5];
+                    resId = getInfo[6];
+                    pId = getInfo[7];
+
+                    if (timeInter == 01) {
+                        timeSeq = "06:00 - 12:00";
+                    } else if (timeInter == 10) {
+                        timeSeq = "13:00 - 18:00";
+                    } else if (timeInter == 11) {
+                        timeSeq = "06:00 - 18:00";
+                    } else {
+                        timeSeq = "wrong time";
+                    }
+
+                    try {
+
+                        response = http.run("http://parkhere.sit.kmutt.ac.th/confirmRes.php?reserveId=" + resId + "&pId=" + pId);
+
+                    } catch (IOException e) {
+
+                        // TODO Auto-generat-ed catch block
+
+                        e.printStackTrace();
+                    }
+
+                    final AlertDialog.Builder builder =
+                            new AlertDialog.Builder(getActivity());
+                    builder.setMessage("\nคุณ " + gName + "\n\n" + parkN + "\n\n" + licen + "\n\n" + date + "\n\n" + timeSeq);
+
+                    builder.setPositiveButton("CONFIRM", new DialogInterface.OnClickListener() {
+
+                        public void onClick(DialogInterface dialog, int id) {
+
+                            Toast.makeText(getActivity().getApplicationContext(), "COMPLETED RESERVATION",
+                                    Toast.LENGTH_SHORT).show();
+                            RequestFragment requestFragment = new RequestFragment();
+                            FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                            transaction.replace(R.id.fragment_container, requestFragment);
+                            transaction.commit();
+                        }
+                    });
+
+                    builder.show();
+
+                }else{
+                    final AlertDialog.Builder builder =
+                            new AlertDialog.Builder(getActivity());
+                    builder.setMessage("INVALID CODE");
+
+                    builder.setPositiveButton("TRY AGAIN", new DialogInterface.OnClickListener() {
+
+                        public void onClick(DialogInterface dialog, int id) {
+                            RequestFragment requestFragment = new RequestFragment();
+                            FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                            transaction.replace(R.id.fragment_container, requestFragment);
+                            transaction.commit();
+                        }
+                    });
+                    builder.show();
+                }
+
 
             }
         });
-
 
         return v;
     }

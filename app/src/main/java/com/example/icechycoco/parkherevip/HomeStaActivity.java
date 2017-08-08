@@ -1,10 +1,16 @@
 package com.example.icechycoco.parkherevip;
 
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.app.NotificationCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -12,6 +18,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 public class HomeStaActivity extends AppCompatActivity
@@ -20,6 +27,7 @@ public class HomeStaActivity extends AppCompatActivity
         MapFragment.OnFragmentInteractionListener, MapParkFragment.OnFragmentInteractionListener {
 
     String uId;
+    SharedPreferences sp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,27 +36,10 @@ public class HomeStaActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        Bundle bundle = getIntent().getExtras();
-        if (bundle != null) {
-            uId = bundle.getString("uId");
-            Toast.makeText(this, "uId : " + uId, Toast.LENGTH_SHORT).show();
-        }
-//        //ปุ่มมุมขวาล่าง
-//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-//        fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
-//            }
-//        });
-        //Fragment
         MapFragment mapFragment = new MapFragment();
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.fragment_container, mapFragment);
         transaction.commit();
-
-
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -59,7 +50,24 @@ public class HomeStaActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        sp = getSharedPreferences("PREF_NAME", Context.MODE_PRIVATE);
+        uId = sp.getString("UID", "0");
+        Toast.makeText(this, "uId : " + uId, Toast.LENGTH_SHORT).show();
+    }
 
+    public void showNotification(View view) {
+
+        Notification notification =
+                new NotificationCompat.Builder(this)
+                        .setSmallIcon(R.mipmap.ic_launcher)
+                        .setContentTitle("Confirm Parking")
+                        .setContentText("Guest already park at the reserved parking area")
+                        .setAutoCancel(true)
+                        .build();
+
+        NotificationManager notificationManager =
+                (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+        notificationManager.notify(1000, notification);
     }
 
     @Override
@@ -100,34 +108,25 @@ public class HomeStaActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-//        if (id == R.id.nav_camera) {
-//            // Handle the camera action
-//        } else if (id == R.id.nav_gallery) {
-//            Log.wtf("11"," eieiei");
-//        } else if (id == R.id.nav_slideshow) {
-//            Log.wtf("22"," eieiei");
-//        } else if (id == R.id.nav_manage) {
-//            Log.wtf("33"," eieiei");
-//        } else
-
         if (id == R.id.nav_home) {
             //Fragment
-            MapFragment mapFragment = new MapFragment();
+            MapFragment mapFragment = new MapFragment().newInstance(uId);
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
             transaction.replace(R.id.fragment_container, mapFragment);
             transaction.commit();
         } else if (id == R.id.nav_history) {
             //Fragment
-            HistoryFragment historyFragment = new HistoryFragment();
+            HistoryFragment historyFragment = new HistoryFragment().newInstance(uId);
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
             transaction.replace(R.id.fragment_container, historyFragment);
             transaction.commit();
         } else if (id == R.id.nav_reserve) {
             //Fragment
-            ReserveFragment reserveFragmentt = new ReserveFragment();
+            ReserveFragment reserveFragmentt = new ReserveFragment().newInstance(uId);
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
             transaction.replace(R.id.fragment_container, reserveFragmentt);
             transaction.commit();
+
         } else if (id == R.id.nav_logout) {
             Intent intent = new Intent(this, LoginActivity.class);
             startActivity(intent);

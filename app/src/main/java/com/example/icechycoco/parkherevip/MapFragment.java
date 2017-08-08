@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.IOException;
 
@@ -31,25 +32,19 @@ import okhttp3.Response;
  */
 public class MapFragment extends Fragment {
 
+    // gui
     Button btn;
     TextView tv1,tv2;
-
+    // connect db
     String response = null;
     getHttp http = new getHttp();
-
+    // variables
     String[] getInfo;
     String p1,p2,p3,p4,p5; //park in each park area
     String r1,r2,r3,r4; //reserve in each park area
 
-
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private static final String KEY_ID = "uId";
+    private String uId;
 
     private OnFragmentInteractionListener mListener;
     private FragmentManager supportFragmentManager;
@@ -58,20 +53,11 @@ public class MapFragment extends Fragment {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment MapStaFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static MapFragment newInstance(String param1, String param2) {
+    // constuctor to get variable
+    public static MapFragment newInstance(String uId) {
         MapFragment fragment = new MapFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
+        args.putString(KEY_ID, uId);
         fragment.setArguments(args);
         return fragment;
     }
@@ -79,10 +65,12 @@ public class MapFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+        // get variable
+        Bundle bundle = getArguments();
+        if (bundle != null) {
+            uId = bundle.getString(KEY_ID);
         }
+        Toast.makeText(getContext(), "uId : " + uId, Toast.LENGTH_SHORT).show();
 
     }
 
@@ -99,10 +87,9 @@ public class MapFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-
         View v = inflater.inflate(R.layout.fragment_map, container, false);
-        btn = (Button) v.findViewById(R.id.btn_park);
 
+        btn = (Button) v.findViewById(R.id.btn_park);
         tv1 = (TextView) v.findViewById(R.id.tv1);
         tv2 = (TextView) v.findViewById(R.id.tv2);
 
@@ -121,11 +108,6 @@ public class MapFragment extends Fragment {
         r1 = getInfo[2];
         p2 = getInfo[3];
         r2 = getInfo[4];
-        System.out.println(p1);
-        System.out.println(r1);
-        System.out.println(p2);
-        System.out.println(r2);
-        //p3 = getInfo[2];
         tv1.setText("P "+p1+"\nR "+r1);
         tv2.setText("P "+p2+"\nR "+r2);
 
@@ -135,7 +117,7 @@ public class MapFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 //Fragment
-                MapParkFragment mapParkFragment = new MapParkFragment();
+                MapParkFragment mapParkFragment = new MapParkFragment().newInstance(uId);
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
                 transaction.replace(R.id.fragment_container, mapParkFragment);
                 transaction.commit();
@@ -145,15 +127,6 @@ public class MapFragment extends Fragment {
         return v;
 
     }
-
-//    @Override
-//    public void onClick(View view) {
-//        //Fragment
-//        HistoryFragment historyFragment = new HistoryFragment();
-//        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-//        transaction.replace(R.id.fragment_container, historyFragment);
-//        transaction.commit();
-//    }
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {

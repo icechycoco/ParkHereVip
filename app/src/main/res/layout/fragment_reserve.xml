@@ -6,7 +6,6 @@
 
     <!-- TODO: Update blank fragment layout -->
 
-
     <Button
         android:id="@+id/btn_reserve"
         android:layout_width="wrap_content"
@@ -118,18 +117,20 @@
         android:id="@+id/btn_check"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/etGuestN"
+        android:layout_marginTop="20dp"
+        android:text="Check"
         android:layout_below="@+id/etGuestN"
-        android:layout_marginTop="13dp"
-        android:text="Check" />
+        android:layout_alignStart="@+id/radioButton2"
+        android:layout_marginStart="33dp" />
 
     <TextView
         android:id="@+id/tv_result"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/btn_check"
         android:layout_below="@+id/btn_check"
         android:layout_marginTop="18dp"
-        android:layout_alignStart="@+id/btn_check" />
+        android:text="result" />
 
 
 </RelativeLayout>
