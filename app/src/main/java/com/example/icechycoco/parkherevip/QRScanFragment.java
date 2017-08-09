@@ -110,7 +110,7 @@ public class QRScanFragment extends Fragment {
                     resId = getInfo[6];
                     pId = getInfo[7];
 
-                    if (timeInter == 01) {
+                    if (timeInter == 0) {
                         timeSeq = "06:00 - 12:00";
                     } else if (timeInter == 10) {
                         timeSeq = "13:00 - 18:00";
@@ -212,7 +212,6 @@ public class QRScanFragment extends Fragment {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
-
 
     public class getHttp {
         OkHttpClient client = new OkHttpClient();

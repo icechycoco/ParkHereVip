@@ -1,23 +1,33 @@
 package com.example.icechycoco.parkherevip;
 
+import android.app.DatePickerDialog;
+import android.app.Dialog;
+import android.app.DialogFragment;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.IdRes;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.text.InputType;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Locale;
 import java.util.Random;
+import java.util.TimeZone;
 
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -35,16 +45,19 @@ import okhttp3.Response;
 public class ReserveFragment extends Fragment {
 
     // gui
-    Button btn, btnC;
+    Button btn, btnC, btnS;
     EditText etGuestN, etGuestS, etLicen, etEmail, etPhone, etDate;
-    RadioButton radioButton1, radioButton2, radioButton3;
     TextView textView;
+    RadioGroup radioGroup;
 
     String setName, setSur, setLicen, setEmail, setPhone, setgId;
     String setDate, setQR, setTimeRes, setuId;
     String getCode, setpId, setInterval, setStatus;
+    int getDate;
     String[] getGInfo;
     String gId, gEmail, gLicen, gPhone;
+    private int mYear,mMonth,mDay;
+    static final int DATE_DIALOG_ID = 0;
 
     //setpId ต้องรับค่าจากปุ่มที่กดเลือกแอเรีย
     // setuId ต้องรับค่ามาจากหน้าลอกอิน
@@ -53,13 +66,10 @@ public class ReserveFragment extends Fragment {
     String response = null;
     getHttp http = new getHttp();
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String KEY_ID = "uId";
-
-    // TODO: Rename and change types of parameters
     private String uId;
 
+    Calendar myCalendar = Calendar.getInstance();
 
     private OnFragmentInteractionListener mListener;
     private FragmentManager supportFragmentManager;
@@ -88,13 +98,14 @@ public class ReserveFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(final LayoutInflater inflater, final ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
-        View v = inflater.inflate(R.layout.fragment_reserve, container, false);
+        final View v = inflater.inflate(R.layout.fragment_reserve, container, false);
         btn = (Button) v.findViewById(R.id.btn_reserve);
         btnC = (Button) v.findViewById(R.id.btn_check);
+        btnS = (Button) v.findViewById(R.id.btn_select);
 
         etGuestN = (EditText) v.findViewById(R.id.etGuestN);
         etGuestS = (EditText) v.findViewById(R.id.etGuestS);
@@ -103,11 +114,37 @@ public class ReserveFragment extends Fragment {
         etPhone = (EditText) v.findViewById(R.id.etPhone);
         etDate = (EditText) v.findViewById(R.id.etDate);
 
-        radioButton1 = (RadioButton) v.findViewById(R.id.radioButton1);
-        radioButton2 = (RadioButton) v.findViewById(R.id.radioButton2);
-        radioButton3 = (RadioButton) v.findViewById(R.id.radioButton3);
-
         textView = (TextView) v.findViewById(R.id.tv_result);
+
+        btnS.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new DatePickerDialog(getActivity(), Mydate,
+                        myCalendar.get(Calendar.YEAR),
+                        myCalendar.get(Calendar.MONTH),
+                        myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+
+            }
+        });
+
+        radioGroup = (RadioGroup) v.findViewById(R.id.radioGroup);
+        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener(){
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, @IdRes int checkedId) {
+               RadioButton radioButton = (RadioButton) v.findViewById(checkedId);
+                switch(radioButton.getText().toString()) {
+                    case "06:00 - 12:00":
+                        setInterval = "00";
+                        break;
+                    case "13:00 - 18:00":
+                        setInterval = "10";
+                        break;
+                    case "6:00 - 18:00":
+                        setInterval = "11";
+                        break;
+                }
+            }
+        });
 
         btnC.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -128,14 +165,13 @@ public class ReserveFragment extends Fragment {
                         public void onClick(View view) {
                             setLicen = etLicen.getText().toString();
                             setEmail = etEmail.getText().toString();
-                            //setDate = etDate.getText().toString();
+                            setDate = etDate.getText().toString();
                             setPhone = etPhone.getText().toString();
-                            setDate = "20170710"; // เปลี่ยนมารับค่าวันที่
                             //current time
                             Calendar cal = Calendar.getInstance();
                             SimpleDateFormat sdf2 = new SimpleDateFormat("HH:mm:ss");
                             setTimeRes = sdf2.format(cal.getTime());
-                            setuId = uId; //รับค่ามาจากหน้าลอคอิน
+                            setuId = uId;
                             setpId = "1"; //รับค่าจากการเลือกแอเรีย
                             //setgId = "73"; // ตารางต้องเหมือนกันอะ reserve and guest ถึงจะสร้างได้ ยัง bug อยุ่
                             setQR = randCode();
@@ -152,7 +188,7 @@ public class ReserveFragment extends Fragment {
                                 // TODO Auto-generat-ed catch block
                                 e.printStackTrace();
                             }
-                            reserve(setuId, setpId, setgId, setDate, setInterval, setTimeRes, setQR, setQR);
+                            reserve(setuId, setpId, setgId, setDate, setInterval, setTimeRes, setQR, setStatus);
                         }
                     });
                 } else {
@@ -172,7 +208,7 @@ public class ReserveFragment extends Fragment {
                         @Override
                         public void onClick(View view) {
 
-                            setDate = "20170710"; // เปลี่ยนมารับค่าวันที่
+                            setDate = etDate.getText().toString();
                             //current time
                             Calendar cal = Calendar.getInstance();
                             SimpleDateFormat sdf2 = new SimpleDateFormat("HH:mm:ss");
@@ -186,7 +222,7 @@ public class ReserveFragment extends Fragment {
                             //แก้ php เรื่องหักลบ amount บางทีมันเป็น -1
                             //ให้มันคืนค่าamountทุกๆเที่ยงคืน
 
-                            reserve(setuId, setpId, setgId, setDate, setInterval, setTimeRes, setQR, setQR);
+                            reserve(setuId, setpId, setgId, setDate, setInterval, setTimeRes, setQR, setStatus);
                             sendEmail(gEmail);
 
                         }
@@ -198,11 +234,31 @@ public class ReserveFragment extends Fragment {
         return v;
     }
 
+
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
             mListener.onFragmentInteraction(uri);
         }
+    }
+
+    DatePickerDialog.OnDateSetListener Mydate = new DatePickerDialog.OnDateSetListener() {
+        @Override
+        public void onDateSet(DatePicker view, int year, int monthOfYear,
+                              int dayOfMonth) {
+            myCalendar.set(Calendar.YEAR, year);
+            myCalendar.set(Calendar.MONTH, monthOfYear);
+            myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+
+            updateDisplay(dayOfMonth,monthOfYear,year);
+        }
+    };
+
+    private  void updateDisplay(int year,int month,int day){
+        etDate.setText(new StringBuilder()
+                .append(day).append("-")
+                .append(month+1).append("-")
+                .append(year).append(" "));
     }
 
     @Override
@@ -256,24 +312,6 @@ public class ReserveFragment extends Fragment {
 
         }
 
-    }
-
-    // รับค่ายังไง?
-    public void onRadioButtonClicked(View view) {
-        // Is the button now checked?
-        boolean checked = ((RadioButton) view).isChecked();
-        // Check which radio button was clicked
-        switch(view.getId()) {
-            case R.id.radioButton1:
-                setInterval = "00";
-                break;
-            case R.id.radioButton2:
-                setInterval = "10";
-                break;
-            case R.id.radioButton3:
-                setInterval = "11";
-                break;
-        }
     }
 
     public void reserve(String uId,String pId, String gId, String date, String interval, String time, String code,String status){
