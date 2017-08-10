@@ -2,7 +2,6 @@ package com.example.icechycoco.parkherevip;
 
 import android.app.Notification;
 import android.app.NotificationManager;
-import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -120,9 +119,10 @@ public class HomeStaActivity extends AppCompatActivity
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
             transaction.replace(R.id.fragment_container, historyFragment);
             transaction.commit();
+
         } else if (id == R.id.nav_reserve) {
             //Fragment
-            ReserveFragment reserveFragmentt = new ReserveFragment().newInstance(uId);
+            ReserveFragment reserveFragmentt = new ReserveFragment();
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
             transaction.replace(R.id.fragment_container, reserveFragmentt);
             transaction.commit();
