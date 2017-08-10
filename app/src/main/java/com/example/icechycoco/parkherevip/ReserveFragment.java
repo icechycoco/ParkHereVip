@@ -1,63 +1,40 @@
 package com.example.icechycoco.parkherevip;
 
-import android.app.DatePickerDialog;
-import android.app.Dialog;
-import android.app.DialogFragment;
+
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.IdRes;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.text.InputType;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RadioButton;
-import android.widget.RadioGroup;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Locale;
-import java.util.Random;
-import java.util.TimeZone;
 
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link ReserveFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link ReserveFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class ReserveFragment extends Fragment {
 
-    // gui
-    Button btn, btnC, btnS;
-    EditText etGuestN, etGuestS, etLicen, etEmail, etPhone, etDate;
-    TextView textView;
-    RadioGroup radioGroup;
+    Button btn;
 
-    String setName, setSur, setLicen, setEmail, setPhone, setgId;
-    String setDate, setQR, setTimeRes, setuId;
-    String getCode, setpId, setInterval, setStatus;
-    int getDate;
-    String[] getGInfo;
-    String gId, gEmail, gLicen, gPhone;
-    private int mYear,mMonth,mDay;
-    static final int DATE_DIALOG_ID = 0;
+    EditText etGuestN,etGuestS,etLicen, etEmail,etPhone,etDate;
+    RadioButton radioButton1,radioButton2,radioButton3;
+
+    String setName,setSur,setLicen,setEmail,setPhone;
+    //String setuId,setpId,setgId;
+    String setDate,setQR,setTimeRes;
+    //setTimeRes;
+    //String setInterval,setTimeRes,setStatus;
+    int setuId,setpId,setgId,setInterval,setStatus;
 
     //setpId ต้องรับค่าจากปุ่มที่กดเลือกแอเรีย
     // setuId ต้องรับค่ามาจากหน้าลอกอิน
@@ -68,8 +45,6 @@ public class ReserveFragment extends Fragment {
 
     private static final String KEY_ID = "uId";
     private String uId;
-
-    Calendar myCalendar = Calendar.getInstance();
 
     private OnFragmentInteractionListener mListener;
     private FragmentManager supportFragmentManager;
@@ -98,167 +73,34 @@ public class ReserveFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(final LayoutInflater inflater, final ViewGroup container,
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
-        final View v = inflater.inflate(R.layout.fragment_reserve, container, false);
-        btn = (Button) v.findViewById(R.id.btn_reserve);
-        btnC = (Button) v.findViewById(R.id.btn_check);
-        btnS = (Button) v.findViewById(R.id.btn_select);
+        View v = inflater.inflate(R.layout.fragment_reserve_info, container, false);
+        btn = (Button) v.findViewById(R.id.btn_reserve_cb1);
 
-        etGuestN = (EditText) v.findViewById(R.id.etGuestN);
-        etGuestS = (EditText) v.findViewById(R.id.etGuestS);
-        etLicen = (EditText) v.findViewById(R.id.etLicen);
-        etEmail = (EditText) v.findViewById(R.id.etEmail);
-        etPhone = (EditText) v.findViewById(R.id.etPhone);
-        etDate = (EditText) v.findViewById(R.id.etDate);
+        btn.setOnClickListener(new View.OnClickListener() {
 
-        textView = (TextView) v.findViewById(R.id.tv_result);
-
-        btnS.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                new DatePickerDialog(getActivity(), Mydate,
-                        myCalendar.get(Calendar.YEAR),
-                        myCalendar.get(Calendar.MONTH),
-                        myCalendar.get(Calendar.DAY_OF_MONTH)).show();
-
-            }
-        });
-
-        radioGroup = (RadioGroup) v.findViewById(R.id.radioGroup);
-        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener(){
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, @IdRes int checkedId) {
-               RadioButton radioButton = (RadioButton) v.findViewById(checkedId);
-                switch(radioButton.getText().toString()) {
-                    case "06:00 - 12:00":
-                        setInterval = "00";
-                        break;
-                    case "13:00 - 18:00":
-                        setInterval = "10";
-                        break;
-                    case "6:00 - 18:00":
-                        setInterval = "11";
-                        break;
-                }
-            }
-        });
-
-        btnC.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                setName = etGuestN.getText().toString();
-                setSur = etGuestS.getText().toString();
-                try {
-                    response = http.run("http://parkhere.sit.kmutt.ac.th/checkG.php?gFirstN=" + setName + "&gLastN=" + setSur);
-                } catch (IOException e) {
-                    // TODO Auto-generat-ed catch block
-                    e.printStackTrace();
-                }
+                //Fragment
 
-                if (response.equals("0")) {
-                    textView.setText("please fill in a guest infomation");
-                    btn.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            setLicen = etLicen.getText().toString();
-                            setEmail = etEmail.getText().toString();
-                            setDate = etDate.getText().toString();
-                            setPhone = etPhone.getText().toString();
-                            //current time
-                            Calendar cal = Calendar.getInstance();
-                            SimpleDateFormat sdf2 = new SimpleDateFormat("HH:mm:ss");
-                            setTimeRes = sdf2.format(cal.getTime());
-                            setuId = uId;
-                            setpId = "1"; //รับค่าจากการเลือกแอเรีย
-                            //setgId = "73"; // ตารางต้องเหมือนกันอะ reserve and guest ถึงจะสร้างได้ ยัง bug อยุ่
-                            setQR = randCode();
-                            setStatus = "0"; // 0 = จองอยู่ 1=จอด อาจจะไม่ต้องมีก็ได้
-                            //ทำไมมันไม่ insert ข้อมูลในตาราง reserve , guest ก็ไม่ขึ้นละสาส
-                            //แก้ php เรื่องหักลบ amount บางทีมันเป็น -1
-                            //ให้มันคืนค่าamountทุกๆเที่ยงคืน
-
-                            sendEmail(setEmail);
-
-                            try {
-                                response = http.run("http://parkhere.sit.kmutt.ac.th/newguest.php?gFirstN=" + setName + "&gLastN=" + setSur + "&gEmail=" + setEmail + "&gLicense=" + setLicen + "&gPhone=" + setPhone);
-                            } catch (IOException e) {
-                                // TODO Auto-generat-ed catch block
-                                e.printStackTrace();
-                            }
-                            reserve(setuId, setpId, setgId, setDate, setInterval, setTimeRes, setQR, setStatus);
-                        }
-                    });
-                } else {
-                    textView.setText("Existed Guest Infomation");
-
-                    getGInfo = response.split(" ");
-                    gId = getGInfo[0];
-                    gEmail = getGInfo[1];
-                    gLicen = getGInfo[2];
-                    gPhone = getGInfo[3];
-
-                    etEmail.setText(gEmail);
-                    etLicen.setText(gLicen);
-                    etPhone.setText(gPhone);
-
-                    btn.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-
-                            setDate = etDate.getText().toString();
-                            //current time
-                            Calendar cal = Calendar.getInstance();
-                            SimpleDateFormat sdf2 = new SimpleDateFormat("HH:mm:ss");
-                            setTimeRes = sdf2.format(cal.getTime());
-                            setuId = uId; //รับค่ามาจากหน้าลอคอิน
-                            setpId = "1"; //รับค่าจากการเลือกแอเรีย
-                            setQR = randCode();
-                            setStatus = "0"; // 0 = จองอยู่ 1=จอด อาจจะไม่ต้องมีก็ได้
-                            setgId = gId;
-                            //ทำไมมันไม่ insert ข้อมูลในตาราง reserve , guest ก็ไม่ขึ้นละสาส
-                            //แก้ php เรื่องหักลบ amount บางทีมันเป็น -1
-                            //ให้มันคืนค่าamountทุกๆเที่ยงคืน
-
-                            reserve(setuId, setpId, setgId, setDate, setInterval, setTimeRes, setQR, setStatus);
-                            sendEmail(gEmail);
-
-                        }
-                    });
-                }
+                ReserveinfoFragment reserveFragment = new ReserveinfoFragment().newInstance(uId);
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                transaction.replace(R.id.fragment_container, reserveFragment);
+                transaction.commit();
             }
         });
 
         return v;
     }
 
-
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
             mListener.onFragmentInteraction(uri);
         }
-    }
-
-    DatePickerDialog.OnDateSetListener Mydate = new DatePickerDialog.OnDateSetListener() {
-        @Override
-        public void onDateSet(DatePicker view, int year, int monthOfYear,
-                              int dayOfMonth) {
-            myCalendar.set(Calendar.YEAR, year);
-            myCalendar.set(Calendar.MONTH, monthOfYear);
-            myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-
-            updateDisplay(dayOfMonth,monthOfYear,year);
-        }
-    };
-
-    private  void updateDisplay(int year,int month,int day){
-        etDate.setText(new StringBuilder()
-                .append(day).append("-")
-                .append(month+1).append("-")
-                .append(year).append(" "));
     }
 
     @Override
@@ -311,68 +153,25 @@ public class ReserveFragment extends Fragment {
             return response.body().string();
 
         }
-
     }
 
-    public void reserve(String uId,String pId, String gId, String date, String interval, String time, String code,String status){
-        try {
-            response = http.run("http://parkhere.sit.kmutt.ac.th/reserve.php?uId=" + uId + "&pId=" + pId + "&gId=" + gId + "&date=" + date + "&timeInterval=" + interval + "&timeRes=" + time + "&code=" + code + "&status=" + status);
-        } catch (IOException e) {
-            // TODO Auto-generat-ed catch block
-            e.printStackTrace();
+    // รับค่ายังไง?
+    public void onRadioButtonClicked(View view) {
+        // Is the button now checked?
+        boolean checked = ((RadioButton) view).isChecked();
+        // Check which radio button was clicked
+        switch(view.getId()) {
+            case R.id.radioButton1:
+                setInterval = 101;
+                break;
+            case R.id.radioButton2:
+                setInterval = 10;
+                break;
+            case R.id.radioButton3:
+                setInterval = 11;
+                break;
         }
     }
-
-    public String randCode(){
-        int min = 10000;
-        int max = 99999;
-
-        Random r = new Random();
-        int i1 = r.nextInt(max - min + 1) + min;
-
-        try {
-            response = http.run("http://parkhere.sit.kmutt.ac.th/checkCode.php?code="+i1);
-
-        } catch (IOException e) {
-
-            // TODO Auto-generat-ed catch block
-
-            e.printStackTrace();
-        }
-
-        getCode = response;
-
-        if(getCode.equals("n")) {
-
-            return "" + i1;
-        }
-        return randCode();
-
-    }
-
-    public void sendEmail(final String email){
-        // TODO Auto-generated method stub
-        new Thread(new Runnable() {
-            public void run() {
-                try {
-                    GMailSender sender = new GMailSender(
-                            "vipsmartpark@gmail.com",
-                            "villicepark");
-                    //sender.addAttachment(Environment.getExternalStorageDirectory().getPath()+"/image.jpg");
-                    sender.sendMail("Confirm Park Reservation at KMUTT",
-                            "To: " + setName + setSur + "\n\n" +
-                                    "this is your code : " + setQR + "\n\n" +
-                                    "This mail has been sent from ParkHere application.",
-                            "vipsmartpark@gmail.com",
-                            email);
-                } catch (Exception e) {
-
-                }
-            }
-
-        }).start();
-    }
-
 
 
 }

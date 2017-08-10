@@ -25,9 +25,9 @@ import okhttp3.Response;
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link ReserveFragment.OnFragmentInteractionListener} interface
+ * {@link ReserveinfoFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link ReserveFragment#newInstance} factory method to
+ * Use the {@link ReserveinfoFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
 public class MapFragment extends Fragment {
