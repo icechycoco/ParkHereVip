@@ -2,17 +2,32 @@ package com.example.icechycoco.parkherevip;
 
 
 import android.content.Context;
+import android.location.Location;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.location.LocationListener;
+import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
+import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.io.IOException;
 
@@ -30,7 +45,7 @@ import okhttp3.Response;
  * Use the {@link ReserveinfoFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class MapFragment extends Fragment {
+public class MapFragment extends Fragment implements LocationListener, OnMapReadyCallback {
 
     // gui
     Button btn;
@@ -48,6 +63,27 @@ public class MapFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
     private FragmentManager supportFragmentManager;
+
+
+
+    //para
+    private GoogleMap mMap;
+    public static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
+    GoogleApiClient mGoogleApiClient;
+    Location mLastLocation;
+    Marker mCurrLocationMarker;
+    LocationRequest mLocationRequest;
+    TextView txt,txt2,txt3,txt4;
+    public ActivityRecognizedService activityRecognition = new ActivityRecognizedService();
+    boolean inside;
+    static int vehicle;
+    boolean park = false;
+    static String parktxt = "not park";
+    static int status = 999;
+
+
+
+
 
     public MapFragment() {
         // Required empty public constructor
@@ -88,10 +124,25 @@ public class MapFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_map, container, false);
+        FragmentManager manager = getFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+        SupportMapFragment fragment = new SupportMapFragment();
+        transaction.add(R.id.map, fragment);
+        transaction.commit();
+
+        fragment.getMapAsync(this);
 
         btn = (Button) v.findViewById(R.id.btn_park);
         tv1 = (TextView) v.findViewById(R.id.tv1);
         tv2 = (TextView) v.findViewById(R.id.tv2);
+
+
+
+        txt = (TextView) v.findViewById(R.id.textView);
+        txt2 = (TextView) v.findViewById(R.id.textView2);
+        txt3 = (TextView) v.findViewById(R.id.textView3);
+        txt4 = (TextView) v.findViewById(R.id.textView4);
+
 
         try {
             //ดึงค่าได้แล้ว แต่จะเกทมาโชว์แต่ละเอเรียยังไง
@@ -123,7 +174,6 @@ public class MapFragment extends Fragment {
                 transaction.commit();
             }
         });
-
         return v;
 
     }
@@ -156,6 +206,11 @@ public class MapFragment extends Fragment {
         return supportFragmentManager;
     }
 
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+
+    }
+
     /**
      * This interface must be implemented by activities that contain this
      * fragment to allow an interaction in this fragment to be communicated
@@ -183,5 +238,134 @@ public class MapFragment extends Fragment {
 
         }
     }
+
+
+
+    public boolean checkActivity(){
+        if(vehicle==0 ){
+            return true;
+        }
+        return false;
+    }
+
+    public void showStatus(){
+        if(checkActivity() && !inside && !park){
+            status=1;
+            txt3.setText(parktxt);
+        }
+        if(status==1 && inside && !park){
+            status=2;
+            txt3.setText(parktxt);
+        }
+        if(status==2){
+            if(!checkActivity() && inside && !park){
+                status=3;
+                txt3.setText(parktxt);
+            }else if(checkActivity() && !inside && park){
+                status=1;
+                park=false;
+                parktxt="Not Park";
+                txt3.setText(parktxt);
+            }
+        }
+        if(status==3){
+            if(!checkActivity() && !inside && !park){
+                status=4;
+                park=true;
+                parktxt="Park";
+                txt3.setText(parktxt);
+            }else if(checkActivity() && inside && park){
+                status=2;
+                txt3.setText(parktxt);
+            }
+        }
+
+        if(status==4){
+            if (inside && park){
+                status=3;
+                txt3.setText(parktxt);
+            }
+        }
+
+        txt3.setText(parktxt);
+        txt4.setText("Status = "+status);
+    }
+
+    public void showActivity(){
+
+        txt2.setText(activityRecognition.getActivity()+"");
+        vehicle=activityRecognition.getActivity();
+
+        if(vehicle==0){
+            txt2.setText("In Vehicle"+vehicle);
+        }else{
+            txt2.setText("Not in vehicle"+vehicle);
+        }
+    }
+
+    public void showResult(String t){
+        txt.setText(t);
+    }
+
+    @Override
+    public void onLocationChanged(Location location) {
+
+        mLastLocation = location;
+
+        float[] distance = new float[2];
+
+                        /*
+                        Location.distanceBetween( mMarker.getPosition().latitude, mMarker.getPosition().longitude,
+                                mCircle.getCenter().latitude, mCircle.getCenter().longitude, distance);
+                                */
+
+        Location.distanceBetween( location.getLatitude(), location.getLongitude(),
+                13.650529, 100.495745, distance);
+
+        String txt = "eieiza55plus";
+        if( distance[0] > 30 ){
+            Log.e("Outside "+location.getLatitude(),location.getLongitude()+"");
+            Toast.makeText(getContext(), "Outside, distance from center: " + distance[0] + " radius: " + 20, Toast.LENGTH_LONG).show();
+            showResult("Outside");
+            inside=false;
+            txt="Outside"+distance[0];
+
+        } else {
+            Log.e("Inside "+location.getLatitude()+"",location.getLongitude()+"");
+            Toast.makeText(getContext(), "Inside, distance from center: " + distance[0] + " radius: " + 20 , Toast.LENGTH_LONG).show();
+            showResult("Inside");
+            inside=true;
+            txt="Inside";
+        }
+
+        if (mCurrLocationMarker != null) {
+            mCurrLocationMarker.remove();
+        }
+
+        //Place current location marker
+        LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
+        MarkerOptions markerOptions = new MarkerOptions();
+        markerOptions.position(latLng);
+        markerOptions.title("Current Position");
+        markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
+
+        markerOptions.snippet(txt);
+        markerOptions.draggable(true);
+        mCurrLocationMarker = mMap.addMarker(markerOptions);
+
+
+        //move map camera
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
+        mMap.animateCamera(CameraUpdateFactory.zoomTo(11));
+
+        showActivity();
+        showStatus();
+
+        //stop location updates
+        if (mGoogleApiClient != null) {
+            LocationServices.FusedLocationApi.removeLocationUpdates(mGoogleApiClient, this);
+        }
+    }
+
 
 }

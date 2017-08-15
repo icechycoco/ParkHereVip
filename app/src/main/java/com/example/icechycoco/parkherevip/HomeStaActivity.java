@@ -109,10 +109,14 @@ public class HomeStaActivity extends AppCompatActivity
 
         if (id == R.id.nav_home) {
             //Fragment
-            MapFragment mapFragment = new MapFragment().newInstance(uId);
-            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-            transaction.replace(R.id.fragment_container, mapFragment);
-            transaction.commit();
+//            MapFragment mapFragment = new MapFragment().newInstance(uId);
+//            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+//            transaction.replace(R.id.fragment_container, mapFragment);
+//            transaction.commit();
+
+            Intent intent = new Intent(HomeStaActivity.this, MapsActivity.class);
+            startActivity(intent);
+
         } else if (id == R.id.nav_history) {
             //Fragment
             HistoryFragment historyFragment = new HistoryFragment().newInstance(uId);
