@@ -49,8 +49,7 @@ package="com.example.icechycoco.parkherevip">
         android:theme="@style/AppTheme.NoActionBar" />
     <activity android:name=".HomeSecActivity" android:label="@string/title_activity_home_sec"
         android:theme="@style/AppTheme.NoActionBar" />
-    <activity android:name=".MapsActivity" android:label="@string/title_activity_maps"
-    android:theme="@style/AppTheme.NoActionBar" />
+
     <service android:name=".ActivityRecognizedService" />
 </application>
 

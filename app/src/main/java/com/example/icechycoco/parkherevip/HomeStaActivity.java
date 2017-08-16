@@ -23,7 +23,8 @@ import android.widget.Toast;
 public class HomeStaActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, ReserveinfoFragment.OnFragmentInteractionListener,
         HistoryFragment.OnFragmentInteractionListener, ReserveFragment.OnFragmentInteractionListener,
-        MapFragment.OnFragmentInteractionListener, MapParkFragment.OnFragmentInteractionListener {
+        MapFragment.OnFragmentInteractionListener, MapParkFragment.OnFragmentInteractionListener,
+        BlankFragment.OnFragmentInteractionListener{
 
     String uId;
     SharedPreferences sp;
@@ -35,9 +36,14 @@ public class HomeStaActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        MapFragment mapFragment = new MapFragment();
+//        MapFragment mapFragment = new MapFragment();
+//        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+//        transaction.replace(R.id.fragment_container, mapFragment);
+//        transaction.commit();
+
+        BlankFragment blankFragment = new BlankFragment();
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.fragment_container, mapFragment);
+        transaction.replace(R.id.fragment_container, blankFragment);
         transaction.commit();
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -114,8 +120,12 @@ public class HomeStaActivity extends AppCompatActivity
 //            transaction.replace(R.id.fragment_container, mapFragment);
 //            transaction.commit();
 
-            Intent intent = new Intent(HomeStaActivity.this, MapsActivity.class);
-            startActivity(intent);
+
+
+            BlankFragment blankFragment = new BlankFragment();
+            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+            transaction.replace(R.id.fragment_container, blankFragment);
+            transaction.commit();
 
         } else if (id == R.id.nav_history) {
             //Fragment

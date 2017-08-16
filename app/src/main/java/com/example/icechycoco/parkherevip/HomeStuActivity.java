@@ -42,9 +42,9 @@ public class HomeStuActivity extends AppCompatActivity
         uId = sp.getString("UID", "0");
         Toast.makeText(this, "uId : " + uId, Toast.LENGTH_SHORT).show();
 
-        MapFragment mapFragment = new MapFragment();
+        BlankFragment blankFragment = new BlankFragment();
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.fragment_container, mapFragment);
+        transaction.replace(R.id.fragment_container, blankFragment);
         transaction.commit();
 
 
@@ -98,9 +98,9 @@ public class HomeStuActivity extends AppCompatActivity
 
         if (id == R.id.nav_home) {
             //Fragment
-            MapFragment mapFragment = new MapFragment().newInstance(uId);
+            BlankFragment blankFragment = new BlankFragment();
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-            transaction.replace(R.id.fragment_container, mapFragment);
+            transaction.replace(R.id.fragment_container, blankFragment);
             transaction.commit();
         } else if (id == R.id.nav_history) {
             //Fragment

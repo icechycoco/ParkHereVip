@@ -46,9 +46,9 @@ public class HomeSecActivity extends AppCompatActivity
         Toast.makeText(this, "uId : " + uId, Toast.LENGTH_SHORT).show();
 
         //Fragment
-        MapFragment mapFragment = new MapFragment();
+        BlankFragment blankFragment = new BlankFragment();
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.fragment_container, mapFragment);
+        transaction.replace(R.id.fragment_container, blankFragment);
         transaction.commit();
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -101,9 +101,9 @@ public class HomeSecActivity extends AppCompatActivity
 
         if (id == R.id.nav_home) {
             //Fragment
-            MapFragment mapFragment = new MapFragment().newInstance(uId);
+            BlankFragment blankFragment = new BlankFragment();
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-            transaction.replace(R.id.fragment_container, mapFragment);
+            transaction.replace(R.id.fragment_container, blankFragment);
             transaction.commit();
         } else if (id == R.id.nav_history) {
             //Fragment
