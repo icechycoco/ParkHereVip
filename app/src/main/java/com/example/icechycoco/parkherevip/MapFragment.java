@@ -81,10 +81,6 @@ public class MapFragment extends Fragment implements LocationListener, OnMapRead
     static String parktxt = "not park";
     static int status = 999;
 
-
-
-
-
     public MapFragment() {
         // Required empty public constructor
     }

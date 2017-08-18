@@ -35,6 +35,14 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -69,12 +77,11 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
     boolean park = false;
     static String parktxt = "not park";
     static int status = 999;
+    // connect db
+    String response = null;
+    getHttp http = new getHttp();
 
-
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    String parkId,timeIn,timeOut;
 
     private OnFragmentInteractionListener mListener;
 
@@ -82,20 +89,15 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment BlankFragment.
-     */
+    private static final String KEY_ID = "uId";
+
+    private String uId;
+
     // TODO: Rename and change types and number of parameters
-    public static BlankFragment newInstance(String param1, String param2) {
+    public static BlankFragment newInstance(String uId) {
         BlankFragment fragment = new BlankFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
+        args.putString(KEY_ID, uId);
         fragment.setArguments(args);
         return fragment;
     }
@@ -103,10 +105,11 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+        Bundle bundle = getArguments();
+        if (bundle != null) {
+            uId = bundle.getString(KEY_ID);
         }
+        Toast.makeText(getContext(), "uId : " + uId, Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -152,17 +155,17 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
 //        btn = (Button) v.findViewById(R.id.btn_park);
 
 
-        txt.setOnClickListener((new View.OnClickListener() {
-
-            @Override
-            public void onClick(View view) {
-                //Fragment
-                MapParkFragment mapParkFragment = new MapParkFragment();
-                FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                transaction.replace(R.id.fragment_container, mapParkFragment);
-                transaction.commit();
-            }
-        }));
+//        txt.setOnClickListener((new View.OnClickListener() {
+//
+//            @Override
+//            public void onClick(View view) {
+//                //Fragment
+//                MapParkFragment mapParkFragment = new MapParkFragment().newInstance(uId);
+//                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+//                transaction.replace(R.id.fragment_container, mapParkFragment);
+//                transaction.commit();
+//            }
+//        }));
         return v;
     }
 
@@ -205,11 +208,6 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
         void onFragmentInteraction(Uri uri);
     }
 
-
-
-
-
-
     public boolean checkActivity(){
         if(vehicle==0 ){
             return true;
@@ -218,22 +216,41 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
     }
 
     public void showStatus(){
+
+        try {
+            response = http.run("http://parkhere.sit.kmutt.ac.th/Level.php?uId="+uId);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        int lev = Integer.parseInt(response);
+
         if(checkActivity() && !inside && !park){
             status=1;
+            String output = updateLev("1","10002");
             txt3.setText(parktxt);
+            Log.wtf("test","im here");
+            Log.wtf("test",uId);
+            Toast.makeText(getContext(),output, Toast.LENGTH_SHORT).show();
         }
         if(status==1 && inside && !park){
             status=2;
+            updateLev("2",uId);
             txt3.setText(parktxt);
         }
         if(status==2){
             if(!checkActivity() && inside && !park){
                 status=3;
+                updateLev("3","10002");
                 txt3.setText(parktxt);
             }else if(checkActivity() && !inside && park){
                 status=1;
                 park=false;
                 parktxt="Not Park";
+                updateLev("1","10002");
+                parkId = getParkId(uId);
+                timeOut = getCurrentTime();
+                updateStatusNotPark("10002","1",timeOut,parkId);
                 txt3.setText(parktxt);
             }
         }
@@ -242,9 +259,13 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
                 status=4;
                 park=true;
                 parktxt="Park";
+                updateLev("4","10002");
+                timeIn = getCurrentTime();
+                updateStatusPark("10002","1",timeIn,"2017-08-18");
                 txt3.setText(parktxt);
             }else if(checkActivity() && inside && park){
                 status=2;
+                updateLev("2","10002");
                 txt3.setText(parktxt);
             }
         }
@@ -258,6 +279,47 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
 
         txt3.setText(parktxt);
         txt4.setText("Status = "+status);
+    }
+
+    public String getCurrentTime(){
+        //current time
+        Calendar cal = Calendar.getInstance();
+        SimpleDateFormat sdf2 = new SimpleDateFormat("HH:mm:ss");
+        return sdf2.format(cal.getTime());
+    }
+
+    public String updateLev(String lev,String uId){
+        try {
+            response = http.run("http://parkhere.sit.kmutt.ac.th/UpdateLevelUser.php?level="+lev+"&uId="+uId);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return response;
+    }
+
+    public void updateStatusPark(String uId,String pId,String time,String date){
+        try {
+            response = http.run("http://parkhere.sit.kmutt.ac.th/UpdateParkStatus.php?status="+1+"&pId="+pId+"&timeIn="+time+"&date="+date+"&uId="+uId);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public String getParkId(String uId){
+        try {
+            response = http.run("http://parkhere.sit.kmutt.ac.th/getParkId.php?uId="+uId);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return response;
+    }
+
+    public void updateStatusNotPark(String uId,String pId,String time,String parkId){
+        try {
+            response = http.run("http://parkhere.sit.kmutt.ac.th/UpdateNotParkStatus.php?status="+0+"&pId="+pId+"&timeOut="+time+"&uId="+uId+"&parkId="+parkId);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void showActivity(){
@@ -476,6 +538,18 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
         }
     }
 
+    public class getHttp {
+        OkHttpClient client = new OkHttpClient();
 
+        String run(String url) throws IOException {
+            Request request = new Request.Builder()
+                    .url(url)
+                    .build();
+            Response response = client.newCall(request).execute();
+            return response.body().string();
+
+        }
+
+    }
 
 }

@@ -41,7 +41,7 @@ public class HomeStaActivity extends AppCompatActivity
 //        transaction.replace(R.id.fragment_container, mapFragment);
 //        transaction.commit();
 
-        BlankFragment blankFragment = new BlankFragment();
+        BlankFragment blankFragment = new BlankFragment().newInstance(uId);
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.fragment_container, blankFragment);
         transaction.commit();
@@ -122,7 +122,7 @@ public class HomeStaActivity extends AppCompatActivity
 
 
 
-            BlankFragment blankFragment = new BlankFragment();
+            BlankFragment blankFragment = new BlankFragment().newInstance(uId);
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
             transaction.replace(R.id.fragment_container, blankFragment);
             transaction.commit();
@@ -138,7 +138,7 @@ public class HomeStaActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_reserve) {
             //Fragment
-            ReserveFragment reserveFragmentt = new ReserveFragment();
+            ReserveFragment reserveFragmentt = new ReserveFragment().newInstance(uId);
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
             transaction.replace(R.id.fragment_container, reserveFragmentt);
             transaction.commit();
