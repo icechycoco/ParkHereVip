@@ -7,7 +7,14 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Scanner;
 
 public class HistoryFragment extends Fragment {
 
@@ -51,6 +58,54 @@ public class HistoryFragment extends Fragment {
         // Inflate the layout for this fragment
 
         View v = inflater.inflate(R.layout.fragment_history, container, false);
+
+//        String[] list = { "Aerith Gainsborough", "Barret Wallace", "Cait Sith"
+//                , "Cid Highwind", "Cloud Strife", "RedXIII", "Sephiroth"
+//                , "Tifa Lockhart", "Vincent Valentine", "Yuffie Kisaragi"
+//                , "ZackFair" };
+
+        String str =    "CB2,09:00:00,14:00:00,2017-07-03\n" +
+                "CB2,10:00:00,13:00:00,2017-07-02\n" +
+                "14Floor Building,10:29:00,00:00:19,2017-07-01";
+
+        String[] getInfo;
+        String parkName,timeI,timeO,date;
+        ArrayList<HashMap<String, String>> history = null;
+
+        history = new ArrayList<HashMap<String, String>>();
+        HashMap<String, String> map;
+
+        Scanner scanner = new Scanner(str);
+
+        for(int i = 0; scanner.hasNext(); i++){
+            String data = scanner.nextLine();
+            System.out.println(data);
+
+            getInfo = data.split(",");
+            parkName = getInfo[0];
+            timeI = getInfo[1];
+            timeO = getInfo[2];
+            date = getInfo[3];
+
+            map = new HashMap<String, String>();
+            map.put("pName", parkName);
+            map.put("timeIn", timeI);
+            map.put("timeO", timeO);
+            map.put("date", date);
+            history.add(map);
+        }
+
+        CustomAdapter adapter = new CustomAdapter(getContext(), history);
+
+        ListView listView = (ListView) v.findViewById(R.id.listView1);
+        listView.setAdapter(adapter);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+
+            }
+        });
+        TextView textView10 = (TextView) v.findViewById(R.id.textView10);
+        textView10.setText(""+history.size());
 
         return v;
     }

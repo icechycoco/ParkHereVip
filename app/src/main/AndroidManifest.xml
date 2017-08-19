@@ -50,6 +50,7 @@ package="com.example.icechycoco.parkherevip">
     <activity android:name=".HomeSecActivity" android:label="@string/title_activity_home_sec"
         android:theme="@style/AppTheme.NoActionBar" />
 
+
     <service android:name=".ActivityRecognizedService" />
 </application>
 

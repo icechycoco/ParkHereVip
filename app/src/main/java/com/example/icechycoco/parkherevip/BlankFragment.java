@@ -224,33 +224,34 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
         }
 
         int lev = Integer.parseInt(response);
+        txt3.setText(lev);
 
         if(checkActivity() && !inside && !park){
             status=1;
             String output = updateLev("1","10002");
             txt3.setText(parktxt);
-            Log.wtf("test","im here");
-            Log.wtf("test",uId);
-            Toast.makeText(getContext(),output, Toast.LENGTH_SHORT).show();
+            //Log.wtf("test","im here");
+            //Log.wtf("test",uId);
+            //Toast.makeText(getContext(),output, Toast.LENGTH_SHORT).show();
         }
         if(status==1 && inside && !park){
             status=2;
-            updateLev("2",uId);
+            //updateLev("2",uId);
             txt3.setText(parktxt);
         }
         if(status==2){
             if(!checkActivity() && inside && !park){
                 status=3;
-                updateLev("3","10002");
+                //updateLev("3","10002");
                 txt3.setText(parktxt);
             }else if(checkActivity() && !inside && park){
                 status=1;
                 park=false;
                 parktxt="Not Park";
-                updateLev("1","10002");
+                //updateLev("1","10002");
                 parkId = getParkId(uId);
                 timeOut = getCurrentTime();
-                updateStatusNotPark("10002","1",timeOut,parkId);
+                //updateStatusNotPark("10002","1",timeOut,parkId);
                 txt3.setText(parktxt);
             }
         }
@@ -259,13 +260,13 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
                 status=4;
                 park=true;
                 parktxt="Park";
-                updateLev("4","10002");
+                //updateLev("4","10002");
                 timeIn = getCurrentTime();
-                updateStatusPark("10002","1",timeIn,"2017-08-18");
+                //updateStatusPark("10002","1",timeIn,"2017-08-18");
                 txt3.setText(parktxt);
             }else if(checkActivity() && inside && park){
                 status=2;
-                updateLev("2","10002");
+                //updateLev("2","10002");
                 txt3.setText(parktxt);
             }
         }
@@ -273,6 +274,7 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
         if(status==4){
             if (inside && park){
                 status=3;
+                //updateLev("3","10002");
                 txt3.setText(parktxt);
             }
         }

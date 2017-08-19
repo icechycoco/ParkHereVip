@@ -129,7 +129,7 @@ public class MapFragment extends Fragment implements LocationListener, OnMapRead
         fragment.getMapAsync(this);
 
         btn = (Button) v.findViewById(R.id.btn_park);
-        tv1 = (TextView) v.findViewById(R.id.tv1);
+        tv1 = (TextView) v.findViewById(R.id.textview6);
         tv2 = (TextView) v.findViewById(R.id.tv2);
 
 

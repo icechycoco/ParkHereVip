@@ -30,7 +30,7 @@
         android:layout_alignParentEnd="true" />
 
     <TextView
-        android:id="@+id/tv1"
+        android:id="@+id/textview6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -43,9 +43,9 @@
         android:id="@+id/tv2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/tv1"
+        android:layout_below="@+id/textview6"
         android:layout_marginTop="71dp"
-        android:layout_toEndOf="@+id/tv1"
+        android:layout_toEndOf="@+id/textview6"
         android:text="CB2" />
 
 
