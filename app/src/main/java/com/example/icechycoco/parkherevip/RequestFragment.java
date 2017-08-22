@@ -8,8 +8,19 @@ import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.Toast;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Scanner;
+
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 
 /**
@@ -27,6 +38,9 @@ public class RequestFragment extends Fragment {
     private static final String KEY_ID = "uId";
     private String uId;
 
+    // connect db
+    String response = null;
+    getHttp http = new getHttp();
     private OnFragmentInteractionListener mListener;
 
     public RequestFragment() {
@@ -60,6 +74,49 @@ public class RequestFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_request, container, false);
         btn = (Button) v.findViewById(R.id.btn_req);
 
+        String str = getReq();
+//                "CB2,09:00:00,14:00:00,2017-07-03\n" +
+//                "CB2,10:00:00,13:00:00,2017-07-02\n" +
+//                "14Floor Building,10:29:00,00:00:19,2017-07-01";
+
+        String[] getInfo;
+        String parkName,interval,licen,date;
+        String timeInt = null;
+        ArrayList<HashMap<String, String>> history = null;
+
+        history = new ArrayList<HashMap<String, String>>();
+        HashMap<String, String> map;
+
+        Scanner scanner = new Scanner(str);
+
+        for(int i = 0; scanner.hasNext(); i++){
+            String data = scanner.nextLine();
+            System.out.println(data);
+
+            getInfo = data.split(",");
+            parkName = getInfo[0];
+            date = getInfo[1];
+            interval = getInfo[2];
+            licen = getInfo[3];
+
+            map = new HashMap<String, String>();
+            map.put("pName", parkName);
+            map.put("date", date);
+            map.put("timeInt", interval);
+            map.put("licen", licen);
+            history.add(map);
+        }
+
+        CustomAdapterReq adapter = new CustomAdapterReq(getContext(), history);
+
+        ListView listView = (ListView) v.findViewById(R.id.listView1);
+        listView.setAdapter(adapter);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+
+            }
+        });
+
         btn.setOnClickListener(new View.OnClickListener() {
 
 
@@ -75,6 +132,15 @@ public class RequestFragment extends Fragment {
 
 
         return v;
+    }
+
+    public String getReq(){
+        try {
+            response = http.run("http://parkhere.sit.kmutt.ac.th/req.php");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return response;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -114,5 +180,18 @@ public class RequestFragment extends Fragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
+    }
+
+    public class getHttp {
+        OkHttpClient client = new OkHttpClient();
+
+        String run(String url) throws IOException {
+            Request request = new Request.Builder()
+                    .url(url)
+                    .build();
+            Response response = client.newCall(request).execute();
+            return response.body().string();
+
+        }
     }
 }

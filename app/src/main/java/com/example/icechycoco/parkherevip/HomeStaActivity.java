@@ -40,6 +40,9 @@ public class HomeStaActivity extends AppCompatActivity
 //        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
 //        transaction.replace(R.id.fragment_container, mapFragment);
 //        transaction.commit();
+        sp = getSharedPreferences("PREF_NAME", Context.MODE_PRIVATE);
+        uId = sp.getString("UID", "0");
+        Toast.makeText(this, "uId : " + uId, Toast.LENGTH_SHORT).show();
 
         BlankFragment blankFragment = new BlankFragment().newInstance(uId);
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
@@ -55,9 +58,7 @@ public class HomeStaActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        sp = getSharedPreferences("PREF_NAME", Context.MODE_PRIVATE);
-        uId = sp.getString("UID", "0");
-        Toast.makeText(this, "uId : " + uId, Toast.LENGTH_SHORT).show();
+
     }
 
     public void showNotification(View view) {

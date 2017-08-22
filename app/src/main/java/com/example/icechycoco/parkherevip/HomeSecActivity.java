@@ -19,7 +19,7 @@ import android.widget.Toast;
 public class HomeSecActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, MapFragment.OnFragmentInteractionListener,
         HistoryFragment.OnFragmentInteractionListener, RequestFragment.OnFragmentInteractionListener,
-        MapParkFragment.OnFragmentInteractionListener, QRScanFragment.OnFragmentInteractionListener{
+        MapParkFragment.OnFragmentInteractionListener, QRScanFragment.OnFragmentInteractionListener, BlankFragment.OnFragmentInteractionListener{
     // shared variables
     String uId;
     SharedPreferences sp;

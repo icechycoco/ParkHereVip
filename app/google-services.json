@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "111746572187",
+    "firebase_url": "https://parkherevip.firebaseio.com",
+    "project_id": "parkherevip",
+    "storage_bucket": "parkherevip.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:111746572187:android:ce89bb44806838ab",
+        "android_client_info": {
+          "package_name": "com.example.icechycoco.parkherevip"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "111746572187-m29u58ebhdqkdk4bap8bea3ds913bshd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDgaFhh1oQIB2Ov4WkSqtd1ttJL0oq025M"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

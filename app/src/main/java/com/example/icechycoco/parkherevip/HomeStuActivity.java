@@ -18,7 +18,7 @@ import android.widget.Toast;
 
 public class HomeStuActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, MapFragment.OnFragmentInteractionListener,
-        HistoryFragment.OnFragmentInteractionListener , MapParkFragment.OnFragmentInteractionListener {
+        HistoryFragment.OnFragmentInteractionListener , MapParkFragment.OnFragmentInteractionListener, BlankFragment.OnFragmentInteractionListener {
 
     String uId;
     SharedPreferences sp;

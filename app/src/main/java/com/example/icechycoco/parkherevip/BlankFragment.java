@@ -58,8 +58,8 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
         com.google.android.gms.location.LocationListener{
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    private static final String KEY_ID = "uId";
+    private String uId;
 
 
     //para
@@ -89,10 +89,6 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
         // Required empty public constructor
     }
 
-    private static final String KEY_ID = "uId";
-
-    private String uId;
-
     // TODO: Rename and change types and number of parameters
     public static BlankFragment newInstance(String uId) {
         BlankFragment fragment = new BlankFragment();
@@ -105,6 +101,7 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // get variable
         Bundle bundle = getArguments();
         if (bundle != null) {
             uId = bundle.getString(KEY_ID);
@@ -112,7 +109,7 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
         Toast.makeText(getContext(), "uId : " + uId, Toast.LENGTH_SHORT).show();
     }
 
-    @Override
+        @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
@@ -230,25 +227,25 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
             status=1;
             String output = updateLev("1","10002");
             txt3.setText(parktxt);
-            //Log.wtf("test","im here");
-            //Log.wtf("test",uId);
-            //Toast.makeText(getContext(),output, Toast.LENGTH_SHORT).show();
+            Log.wtf("test","im here");
+            Log.wtf("test",uId);
+            Toast.makeText(getContext(),output, Toast.LENGTH_SHORT).show();
         }
         if(status==1 && inside && !park){
             status=2;
-            //updateLev("2",uId);
+            updateLev("2","10002");
             txt3.setText(parktxt);
         }
         if(status==2){
             if(!checkActivity() && inside && !park){
                 status=3;
-                //updateLev("3","10002");
+                updateLev("3","10002");
                 txt3.setText(parktxt);
             }else if(checkActivity() && !inside && park){
                 status=1;
                 park=false;
                 parktxt="Not Park";
-                //updateLev("1","10002");
+                updateLev("1","10002");
                 parkId = getParkId(uId);
                 timeOut = getCurrentTime();
                 //updateStatusNotPark("10002","1",timeOut,parkId);
@@ -260,13 +257,13 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
                 status=4;
                 park=true;
                 parktxt="Park";
-                //updateLev("4","10002");
+                updateLev("4","10002");
                 timeIn = getCurrentTime();
-                //updateStatusPark("10002","1",timeIn,"2017-08-18");
+                updateStatusPark("10002","1",timeIn,"2017-08-18");
                 txt3.setText(parktxt);
             }else if(checkActivity() && inside && park){
                 status=2;
-                //updateLev("2","10002");
+                updateLev("2","10002");
                 txt3.setText(parktxt);
             }
         }
@@ -274,7 +271,7 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
         if(status==4){
             if (inside && park){
                 status=3;
-                //updateLev("3","10002");
+                updateLev("3","10002");
                 txt3.setText(parktxt);
             }
         }

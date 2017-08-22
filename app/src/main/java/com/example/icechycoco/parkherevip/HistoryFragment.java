@@ -12,20 +12,24 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
+
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 public class HistoryFragment extends Fragment {
 
 
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String KEY_ID = "uId";
-
-    // TODO: Rename and change types of parameters
     private String uId;
+    // connect db
+    String response = null;
+    getHttp http = new getHttp();
 
     private OnFragmentInteractionListener mListener;
 
@@ -45,6 +49,7 @@ public class HistoryFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // get variable
         Bundle bundle = getArguments();
         if (bundle != null) {
             uId = bundle.getString(KEY_ID);
@@ -64,9 +69,10 @@ public class HistoryFragment extends Fragment {
 //                , "Tifa Lockhart", "Vincent Valentine", "Yuffie Kisaragi"
 //                , "ZackFair" };
 
-        String str =    "CB2,09:00:00,14:00:00,2017-07-03\n" +
-                "CB2,10:00:00,13:00:00,2017-07-02\n" +
-                "14Floor Building,10:29:00,00:00:19,2017-07-01";
+        String str =  getHis(uId);
+//                "CB2,09:00:00,14:00:00,2017-07-03\n" +
+//                "CB2,10:00:00,13:00:00,2017-07-02\n" +
+//                "14Floor Building,10:29:00,00:00:19,2017-07-01";
 
         String[] getInfo;
         String parkName,timeI,timeO,date;
@@ -105,9 +111,18 @@ public class HistoryFragment extends Fragment {
             }
         });
         TextView textView10 = (TextView) v.findViewById(R.id.textView10);
-        textView10.setText(""+history.size());
+        textView10.setText(str);
 
         return v;
+    }
+
+    public String getHis(String uId){
+        try {
+            response = http.run("http://parkhere.sit.kmutt.ac.th/history.php?uId=" + uId);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return response;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -147,5 +162,19 @@ public class HistoryFragment extends Fragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
+    }
+
+    public class getHttp {
+        OkHttpClient client = new OkHttpClient();
+
+        String run(String url) throws IOException {
+            Request request = new Request.Builder()
+                    .url(url)
+                    .build();
+            Response response = client.newCall(request).execute();
+            return response.body().string();
+
+        }
+
     }
 }
