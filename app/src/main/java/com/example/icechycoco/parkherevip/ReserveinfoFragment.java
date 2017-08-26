@@ -2,8 +2,10 @@ package com.example.icechycoco.parkherevip;
 
 import android.app.DatePickerDialog;
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.annotation.IdRes;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -19,6 +21,13 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.MultiFormatWriter;
+import com.google.zxing.WriterException;
+import com.google.zxing.common.BitMatrix;
+
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -28,6 +37,8 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
+import static android.R.attr.width;
+import static android.graphics.Color.*;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -38,6 +49,10 @@ import okhttp3.Response;
  * create an instance of this fragment.
  */
 public class ReserveinfoFragment extends Fragment {
+
+
+    String root;
+
 
     // gui
     Button btn, btnC, btnS;
@@ -220,7 +235,15 @@ public class ReserveinfoFragment extends Fragment {
                             //ให้มันคืนค่าamountทุกๆเที่ยงคืน
 
                             reserve(setuId, setpId, setgId, setDate, setInterval, setTimeRes, setQR, setStatus);
+                            try {
+                                Bitmap bitmap = TextToImageEncode(setQR);
+                                saveImage(bitmap);
+                            } catch (WriterException e) {
+                                e.printStackTrace();
+                            }
+
                             sendEmail(gEmail);
+//                            delImage("Image-500.jpg");
 
                         }
                     });
@@ -350,7 +373,72 @@ public class ReserveinfoFragment extends Fragment {
 
     }
 
+    private Bitmap TextToImageEncode(String Value) throws WriterException {
+        BitMatrix bitMatrix;
+        try {
+            bitMatrix = new MultiFormatWriter().encode(
+                    Value,
+                    BarcodeFormat.DATA_MATRIX.QR_CODE,
+                    500, 500, null
+            );
+
+        } catch (IllegalArgumentException Illegalargumentexception) {
+
+            return null;
+        }
+        int bitMatrixWidth = bitMatrix.getWidth();
+
+        int bitMatrixHeight = bitMatrix.getHeight();
+
+        int[] pixels = new int[bitMatrixWidth * bitMatrixHeight];
+
+        for (int y = 0; y < bitMatrixHeight; y++) {
+            int offset = y * bitMatrixWidth;
+
+            for (int x = 0; x < bitMatrixWidth; x++) {
+
+                pixels[offset + x] = bitMatrix.get(x, y) ?
+                        getResources().getColor(android.R.color.black):getResources().getColor(android.R.color.white);
+            }
+        }
+        Bitmap bitmap = Bitmap.createBitmap(bitMatrixWidth, bitMatrixHeight, Bitmap.Config.ARGB_4444);
+
+        bitmap.setPixels(pixels, 0, 500, 0, 0, bitMatrixWidth, bitMatrixHeight);
+        return bitmap;
+    }
+
+    private void saveImage(Bitmap bitmap) {
+
+
+        root = Environment.getExternalStorageDirectory().toString();
+        File myDir=new File(root+"/saved_images");
+        myDir.mkdirs();
+        Random generator = new Random();
+        String fname = "Image-500.jpg";
+        File file = new File (myDir, fname);
+        if (file.exists ()) file.delete ();
+        try {
+            FileOutputStream out = new FileOutputStream(file);
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 90, out);
+            out.flush();
+            out.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void delImage(String name){
+
+        String root = Environment.getExternalStorageDirectory().toString();
+
+        File file = new File(root+"/saved_images/"+name);
+        file.delete();
+
+    }
+
     public void sendEmail(final String email){
+
         // TODO Auto-generated method stub
         new Thread(new Runnable() {
             public void run() {
@@ -358,7 +446,10 @@ public class ReserveinfoFragment extends Fragment {
                     GMailSender sender = new GMailSender(
                             "vipsmartpark@gmail.com",
                             "villicepark");
-                    //sender.addAttachment(Environment.getExternalStorageDirectory().getPath()+"/image.jpg");
+
+
+                    sender.addAttachment(Environment.getExternalStorageDirectory().getPath()+"/saved_imaged/Image-500.jpg");
+                    Log.wtf("mail",root);
                     sender.sendMail("Confirm Park Reservation at KMUTT",
                             "To: " + setName + setSur + "\n\n" +
                                     "this is your code : " + setQR + "\n\n" +
@@ -371,7 +462,9 @@ public class ReserveinfoFragment extends Fragment {
             }
 
         }).start();
+
     }
+
 
 
 

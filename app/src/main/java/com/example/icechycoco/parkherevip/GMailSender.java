@@ -123,6 +123,7 @@ public class GMailSender extends javax.mail.Authenticator {
 
             message.setDataHandler(handler);
 
+
             BodyPart messageBodyPart = new MimeBodyPart();
 
             messageBodyPart.setText(body);

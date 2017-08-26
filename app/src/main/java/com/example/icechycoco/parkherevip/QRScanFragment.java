@@ -2,6 +2,7 @@ package com.example.icechycoco.parkherevip;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -32,8 +33,8 @@ import okhttp3.Response;
 public class QRScanFragment extends Fragment {
 
     // gui
-    Button btn;
-    EditText etCode;
+    Button btn,btnScan;
+    public static EditText etCode;
     // connect db
     String response = null;
     getHttp http = new getHttp();
@@ -76,10 +77,21 @@ public class QRScanFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
+
         View v = inflater.inflate(R.layout.fragment_qrscan, container, false);
-        btn = (Button) v.findViewById(R.id.btn_scan);
+        btn = (Button) v.findViewById(R.id.btncheck);
         etCode = (EditText) v.findViewById(R.id.et_code);
         checkCode = "22074";
+
+        btnScan = (Button) v.findViewById(R.id.btnscan);
+
+        btnScan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), ScanActivity.class);
+                startActivity(intent);
+            }
+        });
 
         btn.setOnClickListener(new View.OnClickListener() {
 
@@ -141,7 +153,7 @@ public class QRScanFragment extends Fragment {
 
                             Toast.makeText(getActivity().getApplicationContext(), "COMPLETED RESERVATION",
                                     Toast.LENGTH_SHORT).show();
-                            RequestFragment requestFragment = new RequestFragment();
+                            RequestFragment requestFragment = new RequestFragment().newInstance(uId);
                             FragmentTransaction transaction = getFragmentManager().beginTransaction();
                             transaction.replace(R.id.fragment_container, requestFragment);
                             transaction.commit();

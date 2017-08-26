@@ -22,8 +22,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.ActivityRecognition;
+import com.google.android.gms.location.Geofence;
+import com.google.android.gms.location.GeofencingRequest;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -37,11 +40,18 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Scanner;
+import java.util.UUID;
 
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
+
+import static android.content.ContentValues.TAG;
 
 
 /**
@@ -81,6 +91,7 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
     getHttp http = new getHttp();
 
     String parkId,timeIn,timeOut;
+    String pName,available,reserved;
 
     private OnFragmentInteractionListener mListener;
 
@@ -199,6 +210,7 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.
      */
+
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
@@ -428,6 +440,51 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
         if (mGoogleApiClient != null) {
             LocationServices.FusedLocationApi.removeLocationUpdates(mGoogleApiClient, this);
         }
+    }
+
+    // จำนวน available and reserved
+    public void getNumParkinglot(){
+
+        try {
+            response = http.run("http://parkhere.sit.kmutt.ac.th/getAvailable.php");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        String str = response;
+        String[] getInfo;
+        String parkName,a,r;
+        ArrayList<HashMap<String, String>> parkinglot = null;
+
+        parkinglot = new ArrayList<HashMap<String, String>>();
+        HashMap<String, String> map;
+
+        Scanner scanner = new Scanner(str);
+
+        for(int i = 0; scanner.hasNext(); i++){
+            String data = scanner.nextLine();
+            System.out.println(data);
+
+            getInfo = data.split(",");
+            parkName = getInfo[0];
+            a = getInfo[1];
+            r = getInfo[2];
+
+
+            map = new HashMap<String, String>();
+            map.put("pName", parkName);
+            map.put("available", a);
+            map.put("reserved", r);
+            parkinglot.add(map);
+        }
+
+        // วิธีเรียกใช้
+        for (int i = 0; i < parkinglot.size(); i++) {
+            pName = parkinglot.get(i).get("pName").toString();
+            available = parkinglot.get(i).get("available").toString();
+            reserved = parkinglot.get(i).get("reserved").toString();
+        }
+
     }
 
     /**
