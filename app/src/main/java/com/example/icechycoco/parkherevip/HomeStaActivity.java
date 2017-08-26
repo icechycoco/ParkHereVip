@@ -23,7 +23,7 @@ import android.widget.Toast;
 public class HomeStaActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, ReserveinfoFragment.OnFragmentInteractionListener,
         HistoryFragment.OnFragmentInteractionListener, ReserveFragment.OnFragmentInteractionListener,
-        MapFragment.OnFragmentInteractionListener, MapParkFragment.OnFragmentInteractionListener,
+         MapParkFragment.OnFragmentInteractionListener,
         BlankFragment.OnFragmentInteractionListener{
 
     String uId;

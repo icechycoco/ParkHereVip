@@ -61,7 +61,6 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
     private static final String KEY_ID = "uId";
     private String uId;
 
-
     //para
     private GoogleMap mMap;
     public static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
@@ -214,68 +213,71 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
 
     public void showStatus(){
 
-        try {
-            response = http.run("http://parkhere.sit.kmutt.ac.th/Level.php?uId="+uId);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        int lev = getLev(uId);
 
-        int lev = Integer.parseInt(response);
-        txt3.setText(lev);
-
-        if(checkActivity() && !inside && !park){
+        //if(checkActivity() && !inside && !park){
+        if(true){
             status=1;
-            String output = updateLev("1","10002");
-            txt3.setText(parktxt);
+            //String output = updateLev(1,"10003");
+            try {
+                response = http.run("http://parkhere.sit.kmutt.ac.th/uplevel.php?uId="+uId+"&level="+status);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            txt4.setText(status+"");
             Log.wtf("test","im here");
             Log.wtf("test",uId);
-            Toast.makeText(getContext(),output, Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(),response, Toast.LENGTH_SHORT).show();
         }
-        if(status==1 && inside && !park){
+        if(lev==1 && inside && !park){
             status=2;
-            updateLev("2","10002");
+            //updateLev(2,"10002");
+            try {
+                response = http.run("http://parkhere.sit.kmutt.ac.th/uplevel.php?uId="+uId+"&level="+status);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             txt3.setText(parktxt);
         }
-        if(status==2){
+        if(lev==2){
             if(!checkActivity() && inside && !park){
                 status=3;
-                updateLev("3","10002");
+                updateLev(3,"10002");
                 txt3.setText(parktxt);
             }else if(checkActivity() && !inside && park){
                 status=1;
                 park=false;
                 parktxt="Not Park";
-                updateLev("1","10002");
+                updateLev(1,"10002");
                 parkId = getParkId(uId);
                 timeOut = getCurrentTime();
-                //updateStatusNotPark("10002","1",timeOut,parkId);
+                updateStatusNotPark("10002","1",timeOut,parkId);
                 txt3.setText(parktxt);
             }
         }
-        if(status==3){
+        if(lev==3){
             if(!checkActivity() && !inside && !park){
                 status=4;
                 park=true;
                 parktxt="Park";
-                updateLev("4","10002");
+                updateLev(4,"10002");
                 timeIn = getCurrentTime();
                 updateStatusPark("10002","1",timeIn,"2017-08-18");
                 txt3.setText(parktxt);
             }else if(checkActivity() && inside && park){
                 status=2;
-                updateLev("2","10002");
+                updateLev(2,uId);
                 txt3.setText(parktxt);
             }
         }
 
-        if(status==4){
+        if(lev==4){
             if (inside && park){
                 status=3;
-                updateLev("3","10002");
+                updateLev(3,"10002");
                 txt3.setText(parktxt);
             }
         }
-
         txt3.setText(parktxt);
         txt4.setText("Status = "+status);
     }
@@ -287,15 +289,29 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
         return sdf2.format(cal.getTime());
     }
 
-    public String updateLev(String lev,String uId){
+    // get level มาเชคว่าอยู่ขั้นไหนแล้ว
+    public int getLev(String uId){
         try {
-            response = http.run("http://parkhere.sit.kmutt.ac.th/UpdateLevelUser.php?level="+lev+"&uId="+uId);
+            response = http.run("http://parkhere.sit.kmutt.ac.th/Level.php?uId="+uId);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Log.wtf("555",response);
+        return Integer.parseInt(response);
+    }
+
+
+    // update level
+    public String updateLev(int lev,String uId){
+        try {
+            response = http.run("http://parkhere.sit.kmutt.ac.th/uplevel.php?uId="+uId+"&level="+lev);
         } catch (IOException e) {
             e.printStackTrace();
         }
         return response;
     }
 
+    // decrease available parking lot
     public void updateStatusPark(String uId,String pId,String time,String date){
         try {
             response = http.run("http://parkhere.sit.kmutt.ac.th/UpdateParkStatus.php?status="+1+"&pId="+pId+"&timeIn="+time+"&date="+date+"&uId="+uId);
@@ -304,6 +320,7 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
         }
     }
 
+    // ดึงค่า parkId ที่ user park ไปแล้วเพื่ออัพเดตสถานะออกจากที่จอดและก็ไว้เก็บประวัติ
     public String getParkId(String uId){
         try {
             response = http.run("http://parkhere.sit.kmutt.ac.th/getParkId.php?uId="+uId);
@@ -313,6 +330,7 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
         return response;
     }
 
+    // increase available parking lot
     public void updateStatusNotPark(String uId,String pId,String time,String parkId){
         try {
             response = http.run("http://parkhere.sit.kmutt.ac.th/UpdateNotParkStatus.php?status="+0+"&pId="+pId+"&timeOut="+time+"&uId="+uId+"&parkId="+parkId);

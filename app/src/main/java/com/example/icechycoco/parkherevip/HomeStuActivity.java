@@ -17,7 +17,7 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 public class HomeStuActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, MapFragment.OnFragmentInteractionListener,
+        implements NavigationView.OnNavigationItemSelectedListener,
         HistoryFragment.OnFragmentInteractionListener , MapParkFragment.OnFragmentInteractionListener, BlankFragment.OnFragmentInteractionListener {
 
     String uId;

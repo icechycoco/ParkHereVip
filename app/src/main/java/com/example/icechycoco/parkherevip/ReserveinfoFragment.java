@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -145,6 +146,7 @@ public class ReserveinfoFragment extends Fragment {
                 setSur = etGuestS.getText().toString();
                 try {
                     response = http.run("http://parkhere.sit.kmutt.ac.th/checkG.php?gFirstN=" + setName + "&gLastN=" + setSur);
+                    //Log.wtf("eie",response);
                 } catch (IOException e) {
                     // TODO Auto-generat-ed catch block
                     e.printStackTrace();
@@ -176,6 +178,9 @@ public class ReserveinfoFragment extends Fragment {
 
                             try {
                                 response = http.run("http://parkhere.sit.kmutt.ac.th/newguest.php?gFirstN=" + setName + "&gLastN=" + setSur + "&gEmail=" + setEmail + "&gLicense=" + setLicen + "&gPhone=" + setPhone);
+                                Log.wtf("eie",response);
+                                //response = http.run("http://parkhere.sit.kmutt.ac.th/UpdateLevelUser.php?level="+1+"&uId="+10002);
+                                //Log.wtf("eie",response);
                             } catch (IOException e) {
                                 // TODO Auto-generat-ed catch block
                                 e.printStackTrace();
@@ -299,6 +304,7 @@ public class ReserveinfoFragment extends Fragment {
             Request request = new Request.Builder()
                     .url(url)
                     .build();
+
             Response response = client.newCall(request).execute();
             return response.body().string();
 
@@ -309,6 +315,8 @@ public class ReserveinfoFragment extends Fragment {
     public void reserve(String uId,String pId, String gId, String date, String interval, String time, String code,String status){
         try {
             response = http.run("http://parkhere.sit.kmutt.ac.th/reserve.php?uId=" + uId + "&pId=" + pId + "&gId=" + gId + "&date=" + date + "&timeInterval=" + interval + "&timeRes=" + time + "&code=" + code + "&status=" + status);
+            //response = http.run("http://parkhere.sit.kmutt.ac.th/UpdateLevelUser.php?level="+1+"&uId="+10002);
+            //Log.wtf("eie",response);
         } catch (IOException e) {
             // TODO Auto-generat-ed catch block
             e.printStackTrace();

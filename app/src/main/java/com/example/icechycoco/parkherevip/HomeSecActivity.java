@@ -17,7 +17,7 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 public class HomeSecActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, MapFragment.OnFragmentInteractionListener,
+        implements NavigationView.OnNavigationItemSelectedListener,
         HistoryFragment.OnFragmentInteractionListener, RequestFragment.OnFragmentInteractionListener,
         MapParkFragment.OnFragmentInteractionListener, QRScanFragment.OnFragmentInteractionListener, BlankFragment.OnFragmentInteractionListener{
     // shared variables
