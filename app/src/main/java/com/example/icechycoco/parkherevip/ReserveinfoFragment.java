@@ -6,9 +6,11 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
 import android.support.annotation.IdRes;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -37,9 +39,6 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
-import static android.R.attr.width;
-import static android.graphics.Color.*;
-
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
@@ -52,6 +51,7 @@ public class ReserveinfoFragment extends Fragment {
 
 
     String root;
+    String fname;
 
 
     // gui
@@ -201,6 +201,10 @@ public class ReserveinfoFragment extends Fragment {
                                 e.printStackTrace();
                             }
                             reserve(setuId, setpId, setgId, setDate, setInterval, setTimeRes, setQR, setStatus);
+                            BlankFragment blankFragment = new BlankFragment().newInstance(uId);
+                            FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                            transaction.replace(R.id.fragment_container, blankFragment);
+                            transaction.commit();
                         }
                     });
                 } else {
@@ -243,7 +247,19 @@ public class ReserveinfoFragment extends Fragment {
                             }
 
                             sendEmail(gEmail);
-//                            delImage("Image-500.jpg");
+
+                            final Handler handler = new Handler();
+                            handler.postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    delImage(fname);
+                                }
+                            }, 5000);
+
+                            ReserveFragment reserveFragment = new ReserveFragment().newInstance(uId);
+                            FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                            transaction.replace(R.id.fragment_container, reserveFragment);
+                            transaction.commit();
 
                         }
                     });
@@ -411,11 +427,11 @@ public class ReserveinfoFragment extends Fragment {
 
 
         root = Environment.getExternalStorageDirectory().toString();
-        File myDir=new File(root+"/saved_images");
-        myDir.mkdirs();
-        Random generator = new Random();
-        String fname = "Image-500.jpg";
-        File file = new File (myDir, fname);
+//        File myDir=new File(root+"/saved_images");
+//        myDir.mkdirs();
+//        Random generator = new Random();
+        fname = "Image-500.jpg";
+        File file = new File (root, fname);
         if (file.exists ()) file.delete ();
         try {
             FileOutputStream out = new FileOutputStream(file);
@@ -430,9 +446,7 @@ public class ReserveinfoFragment extends Fragment {
 
     private void delImage(String name){
 
-        String root = Environment.getExternalStorageDirectory().toString();
-
-        File file = new File(root+"/saved_images/"+name);
+        File file = new File(root+"/"+name);
         file.delete();
 
     }
@@ -448,7 +462,9 @@ public class ReserveinfoFragment extends Fragment {
                             "villicepark");
 
 
-                    sender.addAttachment(Environment.getExternalStorageDirectory().getPath()+"/saved_imaged/Image-500.jpg");
+
+
+                    sender.addAttachment(root+"/"+fname);
                     Log.wtf("mail",root);
                     sender.sendMail("Confirm Park Reservation at KMUTT",
                             "To: " + setName + setSur + "\n\n" +
@@ -457,7 +473,7 @@ public class ReserveinfoFragment extends Fragment {
                             "vipsmartpark@gmail.com",
                             email);
                 } catch (Exception e) {
-
+                    e.printStackTrace();
                 }
             }
 

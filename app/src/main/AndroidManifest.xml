@@ -34,7 +34,7 @@ package="com.example.icechycoco.parkherevip">
     android:roundIcon="@mipmap/ic_launcher_round" android:supportsRtl="true" android:theme="@style/AppTheme">
 
     <!--Google MAP API key-->
-
+++
     <meta-data android:name="com.google.android.geo.API_KEY" android:value="AIzaSyAwOTDfYSbgIr61B5BrNyhka3wIkks0dkk" />
     <meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version" />
 
