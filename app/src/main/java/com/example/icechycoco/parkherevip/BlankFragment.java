@@ -76,15 +76,19 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
     public ActivityRecognizedService activityRecognition = new ActivityRecognizedService();
     boolean inside;
     static int vehicle;
-    boolean park = false;
+    static boolean park = false;
     static String parktxt = "not park";
-    static int status = 999;
     // connect db
     String response = null;
     getHttp http = new getHttp();
 
     String parkId,timeIn,timeOut;
-    String pName,available,reserved;
+    String pName,available,reserved,latitude,longitude;
+    long la,lo;
+    int level,sta;
+    String showsta = "NULL";
+
+    int i;
 
     private OnFragmentInteractionListener mListener;
 
@@ -155,17 +159,21 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
 //        btn = (Button) v.findViewById(R.id.btn_park);
 
 
-//        txt.setOnClickListener((new View.OnClickListener() {
-//
-//            @Override
-//            public void onClick(View view) {
-//                //Fragment
+        txt.setOnClickListener((new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                //Fragment
 //                MapParkFragment mapParkFragment = new MapParkFragment().newInstance(uId);
 //                FragmentTransaction transaction = getFragmentManager().beginTransaction();
 //                transaction.replace(R.id.fragment_container, mapParkFragment);
 //                transaction.commit();
-//            }
-//        }));
+
+//                onLocationChanged();
+                showActivity();
+                showStatus2();
+            }
+        }));
         return v;
     }
 
@@ -216,75 +224,219 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
         return false;
     }
 
-    public void showStatus(){
 
-        int lev = getLev(uId);
 
-        //if(checkActivity() && !inside && !park){
-        if(true){
-            status=1;
-            //String output = updateLev(1,"10003");
-            try {
-                response = http.run("http://parkhere.sit.kmutt.ac.th/uplevel.php?uId="+uId+"&level="+status);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            txt4.setText(status+"");
-            Log.wtf("test","im here");
-            Log.wtf("test",uId);
-            Toast.makeText(getContext(),response, Toast.LENGTH_SHORT).show();
+    public void showStatus2(){
+        String str = getLev(uId);
+
+
+
+        String[] getInfo;
+        getInfo = str.split(",");
+        level = Integer.parseInt(getInfo[0]);
+        sta = Integer.parseInt(getInfo[1]);
+
+
+        if(sta==0){
+            showsta = "not park ka";
+        }else if(sta==1){
+            showsta = "park ka";
         }
-        if(lev==1 && inside && !park){
-            status=2;
-            //updateLev(2,"10002");
-            try {
-                response = http.run("http://parkhere.sit.kmutt.ac.th/uplevel.php?uId="+uId+"&level="+status);
-            } catch (IOException e) {
-                e.printStackTrace();
+
+        if(sta==0) {
+            if (checkActivity() && inside) {
+                level = 10;
+
+                updateLev(level,uId);
+
+                Log.wtf("level is : ",getLev(uId));
+                Log.wtf("status is : ",sta+"");
+                Log.wtf("Not Park","1");
+                txt3.setText(showsta);
+                txt4.setText("Status = " +getLev(uId));
+
             }
-            txt3.setText(parktxt);
+            if (level == 10 && !checkActivity() && !inside) {
+                level = 20;
+                park = true;
+                updateLev(level, uId);
+
+                timeIn = getCurrentTime();
+
+                Log.wtf("why i = ",i+"");
+                i++;
+
+                updateStatusPark(uId, "2", timeIn, "2017-08-18");
+
+                Log.wtf("level is : ",getLev(uId));
+                Log.wtf("status is : ",sta+"");
+                Log.wtf("Not Park","2");
+                txt3.setText(showsta);
+                txt4.setText("Status = " +getLev(uId));
+
+            }
+
         }
-        if(lev==2){
-            if(!checkActivity() && inside && !park){
-                status=3;
-                updateLev(3,"10002");
-                txt3.setText(parktxt);
-            }else if(checkActivity() && !inside && park){
-                status=1;
+
+        if(sta==1){
+
+            if(!checkActivity() && inside) {
+
+                level = 10;
+
+                updateLev(level,uId);
+
+                Log.wtf("level is : ",getLev(uId));
+                Log.wtf("status is : ",sta+"");
+                Log.wtf("Park","1");
+                txt3.setText(showsta);
+                txt4.setText("Status = " +getLev(uId));
+
+            }
+            if(level==10 && checkActivity() && !inside){
+                level=20;
                 park=false;
-                parktxt="Not Park";
-                updateLev(1,"10002");
+
+                Log.wtf("why i = ","wow1");
+
+                updateLev(level,uId);
+
+                Log.wtf("why i = ","wow2");
+
                 parkId = getParkId(uId);
                 timeOut = getCurrentTime();
-                updateStatusNotPark("10002","1",timeOut,parkId);
-                txt3.setText(parktxt);
-            }
-        }
-        if(lev==3){
-            if(!checkActivity() && !inside && !park){
-                status=4;
-                park=true;
-                parktxt="Park";
-                updateLev(4,"10002");
-                timeIn = getCurrentTime();
-                updateStatusPark("10002","1",timeIn,"2017-08-18");
-                txt3.setText(parktxt);
-            }else if(checkActivity() && inside && park){
-                status=2;
-                updateLev(2,uId);
-                txt3.setText(parktxt);
+
+                Log.wtf("why i = ","wow3");
+
+                Log.wtf("uId before call db ::",uId);
+                Log.wtf("pId before call db::","2");
+                Log.wtf("time before call db ::",timeOut);
+                Log.wtf("get park id before call db :: ",parkId);
+
+                updateStatusNotPark(uId,"2",timeOut,parkId);
+
+                Log.wtf("why i = ","wow4");
+
+                Log.wtf("level is : ",getLev(uId));
+                Log.wtf("status is : ",sta+"");
+                Log.wtf("Park","2");
+                txt3.setText(showsta);
+                txt4.setText("Status = " +getLev(uId));
+                Log.wtf("why i = ","wow5");
+
             }
         }
 
-        if(lev==4){
-            if (inside && park){
-                status=3;
-                updateLev(3,"10002");
-                txt3.setText(parktxt);
+        Log.wtf("level is : ",getLev(uId)+"");
+        Log.wtf("status is : ",sta+"");
+        txt3.setText(showsta + sta);
+        txt4.setText("Status = " +getLev(uId));
+    }
+
+    public void showStatus(){
+
+        String str = getLev(uId);
+
+        String[] getInfo;
+        getInfo = str.split(",");
+        level = Integer.parseInt(getInfo[0]);
+        sta = Integer.parseInt(getInfo[1]);
+
+
+        if(sta==0){
+            showsta = "not park ka";
+        }else if(sta==1){
+            showsta = "park ka";
+        }
+
+        if(checkActivity() && !inside && !park){
+            //String output = updateLev(1,"10003");
+            level = 1;
+
+            updateLev(level,uId);
+
+            Log.wtf("level is : ",getLev(uId));
+            Log.wtf("status is : ",sta+"");
+            txt3.setText(showsta);
+            txt4.setText("Status = " +getLev(uId));
+        }
+        if(level==1 && inside && !park){
+            level=2;
+
+            updateLev(level,uId);
+
+            Log.wtf("level is : ",getLev(uId));
+            Log.wtf("status is : ",sta+"");
+            txt3.setText(showsta);
+            txt4.setText("Status = " +getLev(uId));
+        }
+        if(level==2){
+            if(!checkActivity() && inside && !park){
+                level=3;
+
+                updateLev(level,uId);
+
+                Log.wtf("level is : ",getLev(uId));
+                Log.wtf("status is : ",sta+"");
+                txt3.setText(showsta);
+                txt4.setText("Status = " +getLev(uId));
+            }else if(checkActivity() && !inside && park){
+                level=1;
+                park=false;
+
+                updateLev(level,uId);
+
+                parkId = getParkId(uId);
+                timeOut = getCurrentTime();
+                updateStatusNotPark(uId,"2",timeOut,parkId);
+
+
+                Log.wtf("level is : ",getLev(uId));
+                Log.wtf("status is : ",sta+"");
+                txt3.setText(showsta);
+                txt4.setText("Status = " +getLev(uId));
             }
         }
-        txt3.setText(parktxt);
-        txt4.setText("Status = "+status);
+        if(level==3){
+            if(!checkActivity() && !inside && !park){
+                level=4;
+                park=true;
+
+                updateLev(level, uId);
+
+                timeIn = getCurrentTime();
+                updateStatusPark(uId, "2", timeIn, "2017-08-18");
+
+                Log.wtf("level is : ",getLev(uId));
+                Log.wtf("status is : ",sta+"");
+                txt3.setText(showsta);
+                txt4.setText("Status = " +getLev(uId));
+            }else if(checkActivity() && inside && park){
+                level=2;
+
+                updateLev(level,uId);
+
+                Log.wtf("level is : ",getLev(uId));
+                Log.wtf("status is : ",sta+"");
+                txt3.setText(showsta);
+                txt4.setText("Status = " +getLev(uId));
+            }
+        }
+        if(level==4){
+            if (inside && park){
+                level=3;
+
+                updateLev(level,uId);
+
+
+                Log.wtf("level is : ",getLev(uId));
+                Log.wtf("status is : ",sta+"");
+                txt3.setText(showsta);
+                txt4.setText("Status = " +getLev(uId));
+            }
+        }
+        txt3.setText(showsta);
+        txt4.setText("Status = " +getLev(uId));
     }
 
     public String getCurrentTime(){
@@ -295,16 +447,15 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
     }
 
     // get level มาเชคว่าอยู่ขั้นไหนแล้ว
-    public int getLev(String uId){
+    public String getLev(String uId){
         try {
             response = http.run("http://parkhere.sit.kmutt.ac.th/Level.php?uId="+uId);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        Log.wtf("555",response);
-        return Integer.parseInt(response);
-    }
 
+        return response;
+    }
 
     // update level
     public String updateLev(int lev,String uId){
@@ -329,6 +480,7 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
     public String getParkId(String uId){
         try {
             response = http.run("http://parkhere.sit.kmutt.ac.th/getParkId.php?uId="+uId);
+            Log.wtf("show park id : " , response);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -337,8 +489,13 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
 
     // increase available parking lot
     public void updateStatusNotPark(String uId,String pId,String time,String parkId){
+        Log.wtf("uId ::",uId);
+        Log.wtf("pId ::",pId);
+        Log.wtf("time ::",time);
+        Log.wtf("get park id :: ",parkId);
         try {
             response = http.run("http://parkhere.sit.kmutt.ac.th/UpdateNotParkStatus.php?status="+0+"&pId="+pId+"&timeOut="+time+"&uId="+uId+"&parkId="+parkId);
+        Log.wtf("show update not park mai : " , response);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -388,19 +545,19 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
                                 */
 
         Location.distanceBetween( location.getLatitude(), location.getLongitude(),
-                13.650529, 100.495745, distance);
+                13.650080, 100.495712, distance);
 
         String txt = "eieiza55plus";
         if( distance[0] > 30 ){
             Log.e("Outside "+location.getLatitude(),location.getLongitude()+"");
-            Toast.makeText(getActivity(), "Outside, distance from center: " + distance[0] + " radius: " + 20, Toast.LENGTH_LONG).show();
+            Toast.makeText(getActivity(), "Outside, distance from center: " + distance[0] + " radius: " + 100, Toast.LENGTH_LONG).show();
             showResult("Outside");
             inside=false;
             txt="Outside"+distance[0];
 
         } else {
             Log.e("Inside "+location.getLatitude()+"",location.getLongitude()+"");
-            Toast.makeText(getActivity(), "Inside, distance from center: " + distance[0] + " radius: " + 20 , Toast.LENGTH_LONG).show();
+            Toast.makeText(getActivity(), "Inside, distance from center: " + distance[0] + " radius: " + 100 , Toast.LENGTH_LONG).show();
             showResult("Inside");
             inside=true;
             txt="Inside";
@@ -413,7 +570,7 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
         getNumParkinglot();
 
         //Place current location marker
-        LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
+        LatLng latLng = new LatLng(13.650080, 100.495712);
         MarkerOptions markerOptions = new MarkerOptions();
         markerOptions.position(latLng);
         markerOptions.title("N: "+pName+" A: "+available+" R: "+reserved);
@@ -425,13 +582,12 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
 
         mCurrLocationMarker.showInfoWindow();
 
-
         //move map camera
         mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
         mMap.animateCamera(CameraUpdateFactory.zoomTo(11));
 
         showActivity();
-        showStatus();
+        showStatus2();
 
         //stop location updates
         if (mGoogleApiClient != null) {
@@ -450,7 +606,7 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
 
         String str = response;
         String[] getInfo;
-        String parkName,a,r;
+        String parkName,a,r,la,lo;
         ArrayList<HashMap<String, String>> parkinglot = null;
 
         parkinglot = new ArrayList<HashMap<String, String>>();
@@ -466,12 +622,15 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
             parkName = getInfo[0];
             a = getInfo[1];
             r = getInfo[2];
-
+            la = getInfo[3];
+            lo = getInfo[4];
 
             map = new HashMap<String, String>();
             map.put("pName", parkName);
             map.put("available", a);
             map.put("reserved", r);
+            map.put("latitude", la);
+            map.put("longitude", lo);
             parkinglot.add(map);
         }
 
@@ -480,6 +639,15 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
             pName = parkinglot.get(i).get("pName").toString();
             available = parkinglot.get(i).get("available").toString();
             reserved = parkinglot.get(i).get("reserved").toString();
+            latitude = parkinglot.get(i).get("reserved").toString();
+            longitude = parkinglot.get(i).get("reserved").toString();
+
+//            LatLng latLng = new LatLng(Long.parseLong(latitude), Long.parseLong(longitude));
+//            MarkerOptions markerOptions = new MarkerOptions();
+//            markerOptions.position(latLng);
+//            markerOptions.title("N: "+pName+" A: "+available+" R: "+reserved);
+//            markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
+
         }
 
     }
@@ -530,8 +698,6 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
         Intent intent = new Intent( getActivity(), ActivityRecognizedService.class );
         PendingIntent pendingIntent = PendingIntent.getService( getActivity(), 0, intent, PendingIntent.FLAG_UPDATE_CURRENT );
         ActivityRecognition.ActivityRecognitionApi.requestActivityUpdates( mGoogleApiClient, 3000, pendingIntent );
-
-
 
     }
 

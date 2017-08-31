@@ -8,16 +8,12 @@
 
 
 
-    <Button
-        android:id="@+id/btn_reserve_cb1"
+    <ListView
+        android:id="@+id/listView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="CB1"
-        android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
-        android:layout_marginStart="72dp"
-        android:layout_marginTop="68dp" />
+        android:layout_marginBottom="61dp" />
 
 
     <!--<EditText-->

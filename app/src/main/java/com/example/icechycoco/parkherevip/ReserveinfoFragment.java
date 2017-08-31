@@ -76,6 +76,8 @@ public class ReserveinfoFragment extends Fragment {
 
     private static final String KEY_ID = "uId";
     private String uId;
+    private static final String KEY_PID = "pId";
+    String pId;
 
     Calendar myCalendar = Calendar.getInstance();
 
@@ -87,10 +89,11 @@ public class ReserveinfoFragment extends Fragment {
     }
 
     // TODO: Rename and change types and number of parameters
-    public static ReserveinfoFragment newInstance(String uId) {
+    public static ReserveinfoFragment newInstance(String uId,String pId) {
         ReserveinfoFragment fragment = new ReserveinfoFragment();
         Bundle args = new Bundle();
         args.putString(KEY_ID, uId);
+        args.putString(KEY_PID,pId);
         fragment.setArguments(args);
         return fragment;
     }
@@ -181,7 +184,8 @@ public class ReserveinfoFragment extends Fragment {
                             SimpleDateFormat sdf2 = new SimpleDateFormat("HH:mm:ss");
                             setTimeRes = sdf2.format(cal.getTime());
                             setuId = uId;
-                            setpId = "1"; //รับค่าจากการเลือกแอเรีย
+                            //setpId = "1"; //รับค่าจากการเลือกแอเรีย
+                            setpId = pId;
                             //setgId = "73"; // ตารางต้องเหมือนกันอะ reserve and guest ถึงจะสร้างได้ ยัง bug อยุ่
                             setQR = randCode();
                             setStatus = "0"; // 0 = จองอยู่ 1=จอด อาจจะไม่ต้องมีก็ได้
@@ -200,6 +204,7 @@ public class ReserveinfoFragment extends Fragment {
                                 // TODO Auto-generat-ed catch block
                                 e.printStackTrace();
                             }
+                            // ติดตรงดาต้าเบส gId
                             reserve(setuId, setpId, setgId, setDate, setInterval, setTimeRes, setQR, setStatus);
                             BlankFragment blankFragment = new BlankFragment().newInstance(uId);
                             FragmentTransaction transaction = getFragmentManager().beginTransaction();
@@ -230,7 +235,8 @@ public class ReserveinfoFragment extends Fragment {
                             SimpleDateFormat sdf2 = new SimpleDateFormat("HH:mm:ss");
                             setTimeRes = sdf2.format(cal.getTime());
                             setuId = uId; //รับค่ามาจากหน้าลอคอิน
-                            setpId = "1"; //รับค่าจากการเลือกแอเรีย
+                            //setpId = "1"; //รับค่าจากการเลือกแอเรีย
+                            setpId = pId;
                             setQR = randCode();
                             setStatus = "0"; // 0 = จองอยู่ 1=จอด อาจจะไม่ต้องมีก็ได้
                             setgId = gId;
@@ -317,8 +323,6 @@ public class ReserveinfoFragment extends Fragment {
     public FragmentManager getSupportFragmentManager() {
         return supportFragmentManager;
     }
-
-
 
     /**
      * This interface must be implemented by activities that contain this

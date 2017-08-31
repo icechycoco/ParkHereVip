@@ -7,15 +7,21 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Scanner;
 
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -34,7 +40,7 @@ public class ReserveFragment extends Fragment {
     String setDate,setQR,setTimeRes;
     //setTimeRes;
     //String setInterval,setTimeRes,setStatus;
-    int setuId,setpId,setgId,setInterval,setStatus;
+//    int setuId,setpId,setgId,setInterval,setStatus;
 
     //setpId ต้องรับค่าจากปุ่มที่กดเลือกแอเรีย
     // setuId ต้องรับค่ามาจากหน้าลอกอิน
@@ -44,7 +50,7 @@ public class ReserveFragment extends Fragment {
     getHttp http = new getHttp();
 
     private static final String KEY_ID = "uId";
-    private String uId;
+    private static String uId;
 
     private OnFragmentInteractionListener mListener;
     private FragmentManager supportFragmentManager;
@@ -60,6 +66,14 @@ public class ReserveFragment extends Fragment {
         args.putString(KEY_ID, uId);
         fragment.setArguments(args);
         return fragment;
+    }
+
+    public void setuId(String uId){
+        this.uId = uId;
+    }
+
+    public String getuId(){
+        return this.uId;
     }
 
     @Override
@@ -78,22 +92,66 @@ public class ReserveFragment extends Fragment {
         // Inflate the layout for this fragment
 
         View v = inflater.inflate(R.layout.fragment_reserve_info, container, false);
-        btn = (Button) v.findViewById(R.id.btn_reserve_cb1);
+//        int[] resId = { R.drawable.aerithgainsborough
+//                , R.drawable.barretwallace, R.drawable.caitsith
+//                , R.drawable.cidhighwind, R.drawable.cloudstrife
+//                , R.drawable.redxiii, R.drawable.sephiroth
+//                , R.drawable.tifalockhart, R.drawable.vincentvalentine
+//                , R.drawable.yuffiekisaragi, R.drawable.zackfair };
+//
+//        String[] list = { "Aerith Gainsborough", "Barret Wallace", "Cait Sith"
+//                , "Cid Highwind", "Cloud Strife", "RedXIII", "Sephiroth"
+//                , "Tifa Lockhart", "Vincent Valentine", "Yuffie Kisaragi"
+//                , "ZackFair" };
 
-        btn.setOnClickListener(new View.OnClickListener() {
+        String str = getParkName();
 
-            @Override
-            public void onClick(View view) {
-                //Fragment
+        ArrayList al = new ArrayList();
 
-                ReserveinfoFragment reserveFragment = new ReserveinfoFragment().newInstance(uId);
-                FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                transaction.replace(R.id.fragment_container, reserveFragment);
-                transaction.commit();
+        Scanner scanner = new Scanner(str);
+
+        for(int i = 0; scanner.hasNext(); i++){
+            String data = scanner.nextLine();
+            al.add(data);
+        }
+
+        final CustomAdapterRes adapter = new CustomAdapterRes(getContext(),al);
+
+        ListView listView = (ListView) v.findViewById(R.id.listView1);
+        listView.setAdapter(adapter);
+
+//        adapter.button.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Log.wtf("pid = ",adapter.getpId());
+//                ReserveinfoFragment reserveinfoFragment = new ReserveinfoFragment().newInstance(uId,adapter.getpId());
+//                Log.wtf("get pid : ",adapter.getpId());
+//                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+//                transaction.replace(R.id.fragment_container, reserveinfoFragment);
+//                transaction.commit();
+//            }
+//        });
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+
             }
         });
+        setuId(uId);
+        Log.wtf("check uId2 "+uId+"..."+this.uId , getuId());
+
 
         return v;
+
+    }
+
+    public String getParkName(){
+        try {
+            response = http.run("http://parkhere.sit.kmutt.ac.th/getParkName.php?");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return response;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -150,26 +208,10 @@ public class ReserveFragment extends Fragment {
                     .url(url)
                     .build();
             Response response = client.newCall(request).execute();
+
             return response.body().string();
 
-        }
-    }
 
-    // รับค่ายังไง?
-    public void onRadioButtonClicked(View view) {
-        // Is the button now checked?
-        boolean checked = ((RadioButton) view).isChecked();
-        // Check which radio button was clicked
-        switch(view.getId()) {
-            case R.id.radioButton1:
-                setInterval = 101;
-                break;
-            case R.id.radioButton2:
-                setInterval = 10;
-                break;
-            case R.id.radioButton3:
-                setInterval = 11;
-                break;
         }
     }
 

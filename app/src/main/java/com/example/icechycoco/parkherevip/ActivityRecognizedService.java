@@ -41,7 +41,6 @@ public class ActivityRecognizedService extends IntentService {
 
     public void setActivity(DetectedActivity activity){
         x=activity.getType();
-        Log.e("okokokoko",x+"");
     }
 
     public int getActivity(){
@@ -50,9 +49,6 @@ public class ActivityRecognizedService extends IntentService {
 
 
     private void handleDetectedActivities(List<DetectedActivity> probableActivities) {
-
-        Log.e("55","55");
-
 
 
         for( DetectedActivity activity : probableActivities ) {

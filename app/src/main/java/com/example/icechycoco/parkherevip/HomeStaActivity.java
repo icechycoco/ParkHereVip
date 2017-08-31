@@ -121,8 +121,6 @@ public class HomeStaActivity extends AppCompatActivity
 //            transaction.replace(R.id.fragment_container, mapFragment);
 //            transaction.commit();
 
-
-
             BlankFragment blankFragment = new BlankFragment().newInstance(uId);
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
             transaction.replace(R.id.fragment_container, blankFragment);
@@ -134,8 +132,6 @@ public class HomeStaActivity extends AppCompatActivity
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
             transaction.replace(R.id.fragment_container, historyFragment);
             transaction.commit();
-
-
 
         } else if (id == R.id.nav_reserve) {
             //Fragment

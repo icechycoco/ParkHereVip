@@ -64,15 +64,7 @@ public class HistoryFragment extends Fragment {
 
         View v = inflater.inflate(R.layout.fragment_history, container, false);
 
-//        String[] list = { "Aerith Gainsborough", "Barret Wallace", "Cait Sith"
-//                , "Cid Highwind", "Cloud Strife", "RedXIII", "Sephiroth"
-//                , "Tifa Lockhart", "Vincent Valentine", "Yuffie Kisaragi"
-//                , "ZackFair" };
-
         String str =  getHis(uId);
-//                "CB2,09:00:00,14:00:00,2017-07-03\n" +
-//                "CB2,10:00:00,13:00:00,2017-07-02\n" +
-//                "14Floor Building,10:29:00,00:00:19,2017-07-01";
 
         String[] getInfo;
         String parkName,timeI,timeO,date;
