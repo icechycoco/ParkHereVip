@@ -116,7 +116,7 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
         Toast.makeText(getContext(), "uId : " + uId, Toast.LENGTH_SHORT).show();
     }
 
-        @Override
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
@@ -495,7 +495,7 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
         Log.wtf("get park id :: ",parkId);
         try {
             response = http.run("http://parkhere.sit.kmutt.ac.th/UpdateNotParkStatus.php?status="+0+"&pId="+pId+"&timeOut="+time+"&uId="+uId+"&parkId="+parkId);
-        Log.wtf("show update not park mai : " , response);
+            Log.wtf("show update not park mai : " , response);
         } catch (IOException e) {
             e.printStackTrace();
         }
