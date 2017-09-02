@@ -34,7 +34,7 @@
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e0e0a3fc-341a-4402-91e2-8d939ae3068f" name="Default" comment="">
+    <list default="true" id="e0e0a3fc-341a-4402-91e2-8d939ae3068f" name="Default" comment=".">
       <change type="DELETED" beforePath="$PROJECT_DIR$/build/android-profile/profile-2017-08-09-23-41-16-452.rawproto" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/build/android-profile/profile-2017-08-09-23-54-49-009.rawproto" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/build/android-profile/profile-2017-08-10-00-05-12-200.rawproto" afterPath="" />
@@ -228,6 +228,7 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/taskArtifacts.lock" afterPath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/taskArtifacts.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.bin" afterPath="$PROJECT_DIR$/.gradle/3.3/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" afterPath="$PROJECT_DIR$/.gradle/3.3/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/tasks/_app_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.bin" afterPath="$PROJECT_DIR$/.gradle/3.3/tasks/_app_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/tasks/_app_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" afterPath="$PROJECT_DIR$/.gradle/3.3/tasks/_app_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/generated/mockable-android-25.jar" afterPath="$PROJECT_DIR$/build/generated/mockable-android-25.jar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/animated_vector_drawable_25_3_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/animated_vector_drawable_25_3_1.xml" />
@@ -309,11 +310,9 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/support_vector_drawable_25_3_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/support_vector_drawable_25_3_1.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/transition_25_3_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/transition_25_3_1.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/zxing_1_9_8.xml" afterPath="$PROJECT_DIR$/.idea/libraries/zxing_1_9_8.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/app.iml" afterPath="$PROJECT_DIR$/app/app.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/icechycoco/parkherevip/BlankFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/icechycoco/parkherevip/BlankFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/local.properties" afterPath="$PROJECT_DIR$/local.properties" />
     </list>
     <ignored path="ParkHereVip.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -348,13 +347,66 @@
       <file leaf-file-name="BlankFragment.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/icechycoco/parkherevip/BlankFragment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4182">
-              <caret line="290" column="27" selection-start-line="290" selection-start-column="27" selection-end-line="290" selection-end-column="27" />
+            <state relative-caret-position="366">
+              <caret line="671" column="70" selection-start-line="671" selection-start-column="70" selection-end-line="671" selection-end-column="70" />
               <folding>
-                <element signature="e#5898#6454#0" expanded="true" />
-                <element signature="e#6453#6454#0" expanded="true" />
-                <element signature="e#16405#16406#0" expanded="true" />
-                <element signature="e#16435#16436#0" expanded="true" />
+                <element signature="imports" expanded="true" />
+                <element signature="method#onCreate#0;class#BlankFragment#0" expanded="false" />
+                <element signature="e#6698#6879#0" expanded="true" />
+                <element signature="e#6878#6879#0" expanded="true" />
+                <element signature="method#onCreateView#0;class#BlankFragment#0" expanded="false" />
+                <element signature="method#onButtonPressed#0;class#BlankFragment#0" expanded="false" />
+                <element signature="method#onAttach#0;class#BlankFragment#0" expanded="false" />
+                <element signature="method#onDetach#0;class#BlankFragment#0" expanded="false" />
+                <element signature="docComment;class#OnFragmentInteractionListener#0;class#BlankFragment#0" expanded="false" />
+                <element signature="class#OnFragmentInteractionListener#0;class#BlankFragment#0" expanded="false" />
+                <element signature="method#checkActivity#0;class#BlankFragment#0" expanded="false" />
+                <element signature="method#showActivity#0;class#BlankFragment#0" expanded="false" />
+                <element signature="method#onClick#0;class#BlankFragment#0" expanded="false" />
+                <element signature="method#buildGoogleApiClient#0;class#BlankFragment#0" expanded="false" />
+                <element signature="e#22290#22487#0" expanded="true" />
+                <element signature="e#22486#22487#0" expanded="true" />
+                <element signature="docComment;method#onMapReady#0;class#BlankFragment#0" expanded="false" />
+                <element signature="method#onMapReady#0;class#BlankFragment#0" expanded="false" />
+                <element signature="method#onConnectionSuspended#0;class#BlankFragment#0" expanded="false" />
+                <element signature="method#onConnectionFailed#0;class#BlankFragment#0" expanded="false" />
+                <element signature="method#checkLocationPermission#0;class#BlankFragment#0" expanded="false" />
+                <element signature="method#onRequestPermissionsResult#0;class#BlankFragment#0" expanded="false" />
+                <marker date="1504340509418" expanded="false" signature="1845:2152" ph="/**...*/" />
+                <marker date="1504340509418" expanded="false" signature="3572:3624" ph="{...}" />
+                <marker date="1504340509418" expanded="false" signature="3744:3940" ph="{...}" />
+                <marker date="1504340509418" expanded="false" signature="10871:13744" ph="{...}" />
+                <marker date="1504340509418" expanded="false" signature="13774:16819" ph="{...}" />
+                <marker date="1504340509418" expanded="false" signature="16855:17041" ph="{...}" />
+                <marker date="1504340509418" expanded="false" signature="17120:17331" ph="{...}" />
+                <marker date="1504340509418" expanded="false" signature="17400:17626" ph="{...}" />
+                <marker date="1504340509418" expanded="false" signature="17745:17996" ph="{...}" />
+                <marker date="1504340509418" expanded="false" signature="18126:18391" ph="{...}" />
+                <marker date="1504340509418" expanded="false" signature="18515:18975" ph="{...}" />
+                <marker date="1504340509418" expanded="false" signature="23000:24915" ph="{...}" />
+                <marker date="1504340509418" expanded="false" signature="26177:27054" ph="{...}" />
+                <marker date="1504340509418" expanded="false" signature="30028:30374" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MapParkFragment.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/icechycoco/parkherevip/MapParkFragment.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="340">
+              <caret line="149" column="31" selection-start-line="141" selection-start-column="16" selection-end-line="149" selection-end-column="31" />
+              <folding>
+                <element signature="docComment;class#MapParkFragment#0" expanded="false" />
+                <element signature="method#MapParkFragment#0;class#MapParkFragment#0" expanded="false" />
+                <element signature="method#newInstance#0;class#MapParkFragment#0" expanded="false" />
+                <element signature="method#onCreate#0;class#MapParkFragment#0" expanded="false" />
+                <element signature="method#onButtonPressed#0;class#MapParkFragment#0" expanded="false" />
+                <element signature="method#onAttach#0;class#MapParkFragment#0" expanded="false" />
+                <element signature="method#onDetach#0;class#MapParkFragment#0" expanded="false" />
+                <element signature="docComment;class#OnFragmentInteractionListener#0;class#MapParkFragment#0" expanded="false" />
+                <element signature="class#OnFragmentInteractionListener#0;class#MapParkFragment#0" expanded="false" />
+                <element signature="class#getHttp#0;class#MapParkFragment#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -2939,10 +2991,10 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-8" />
+    <option name="x" value="1358" />
     <option name="y" value="-8" />
-    <option name="width" value="1382" />
-    <option name="height" value="744" />
+    <option name="width" value="1616" />
+    <option name="height" value="876" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -3870,7 +3922,14 @@
       <option name="project" value="LOCAL" />
       <updated>1503896226746</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary=".">
+      <created>1504289008512</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1504289008512</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TodoView">
@@ -3883,23 +3942,23 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <frame x="1358" y="-8" width="1616" height="876" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32692307" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32692307" sideWeight="0.49167928" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3266129" sideWeight="0.49167928" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5833333" sideWeight="0.51857835" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1127451" sideWeight="0.48142165" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16666667" sideWeight="0.48142165" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32692307" sideWeight="0.4969743" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21732026" sideWeight="0.49353796" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32843137" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5833333" sideWeight="0.51534736" order="11" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18683812" sideWeight="0.49358973" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15874036" sideWeight="0.49358973" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980332" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
@@ -3984,17 +4043,17 @@
     <MESSAGE value="แก้แล้วเย้" />
     <MESSAGE value="add Reserve Page" />
     <MESSAGE value="Show Name,Available,Reserve of Park&#10;Can send email with QR" />
-    <option name="LAST_COMMIT_MESSAGE" value="Show Name,Available,Reserve of Park&#10;Can send email with QR" />
+    <MESSAGE value="." />
+    <option name="LAST_COMMIT_MESSAGE" value="." />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="12" />
+      <option name="time" value="16" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/icechycoco/parkherevip/HistoryBlock.java" />
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/listview_row.xml">
       <provider selected="true" editor-type-id="android-designer2">
         <state />
@@ -4302,32 +4361,12 @@
         <state relative-caret-position="85">
           <caret line="5" column="25" selection-start-line="5" selection-start-column="25" selection-end-line="5" selection-end-column="25" />
           <folding>
-            <element signature="e#2013#2014#0" expanded="true" />
-            <element signature="e#2043#2044#0" expanded="true" />
-            <element signature="e#2072#2073#0" expanded="true" />
-            <element signature="e#2103#2104#0" expanded="true" />
-            <element signature="e#5750#5751#0" expanded="true" />
-            <element signature="e#5795#5796#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/icechycoco/parkherevip/MapParkFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="35" column="0" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
-          <folding>
-            <element signature="docComment;class#MapParkFragment#0" expanded="false" />
-            <element signature="method#MapParkFragment#0;class#MapParkFragment#0" expanded="false" />
-            <element signature="method#newInstance#0;class#MapParkFragment#0" expanded="false" />
-            <element signature="method#onCreate#0;class#MapParkFragment#0" expanded="false" />
-            <element signature="method#onCreateView#0;class#MapParkFragment#0" expanded="false" />
-            <element signature="method#onButtonPressed#0;class#MapParkFragment#0" expanded="false" />
-            <element signature="method#onAttach#0;class#MapParkFragment#0" expanded="false" />
-            <element signature="method#onDetach#0;class#MapParkFragment#0" expanded="false" />
-            <element signature="docComment;class#OnFragmentInteractionListener#0;class#MapParkFragment#0" expanded="false" />
-            <element signature="class#OnFragmentInteractionListener#0;class#MapParkFragment#0" expanded="false" />
-            <element signature="class#getHttp#0;class#MapParkFragment#0" expanded="false" />
+            <element signature="e#2013#2014#0" expanded="false" />
+            <element signature="e#2043#2044#0" expanded="false" />
+            <element signature="e#2072#2073#0" expanded="false" />
+            <element signature="e#2103#2104#0" expanded="false" />
+            <element signature="e#5750#5751#0" expanded="false" />
+            <element signature="e#5795#5796#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -4375,15 +4414,74 @@
         </state>
       </provider>
     </entry>
+    <entry file="jar://$USER_HOME$/.android/build-cache/ae745f4add0dadf49e6543a7b714d251fdc34131/output/jars/classes.jar!/android/support/v7/app/AlertDialog.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="194">
+          <caret line="349" column="35" selection-start-line="349" selection-start-column="35" selection-end-line="349" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/icechycoco/parkherevip/MapParkFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="149" column="31" selection-start-line="141" selection-start-column="16" selection-end-line="149" selection-end-column="31" />
+          <folding>
+            <element signature="docComment;class#MapParkFragment#0" expanded="false" />
+            <element signature="method#MapParkFragment#0;class#MapParkFragment#0" expanded="false" />
+            <element signature="method#newInstance#0;class#MapParkFragment#0" expanded="false" />
+            <element signature="method#onCreate#0;class#MapParkFragment#0" expanded="false" />
+            <element signature="method#onButtonPressed#0;class#MapParkFragment#0" expanded="false" />
+            <element signature="method#onAttach#0;class#MapParkFragment#0" expanded="false" />
+            <element signature="method#onDetach#0;class#MapParkFragment#0" expanded="false" />
+            <element signature="docComment;class#OnFragmentInteractionListener#0;class#MapParkFragment#0" expanded="false" />
+            <element signature="class#OnFragmentInteractionListener#0;class#MapParkFragment#0" expanded="false" />
+            <element signature="class#getHttp#0;class#MapParkFragment#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/icechycoco/parkherevip/BlankFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4182">
-          <caret line="290" column="27" selection-start-line="290" selection-start-column="27" selection-end-line="290" selection-end-column="27" />
+        <state relative-caret-position="366">
+          <caret line="671" column="70" selection-start-line="671" selection-start-column="70" selection-end-line="671" selection-end-column="70" />
           <folding>
-            <element signature="e#5898#6454#0" expanded="true" />
-            <element signature="e#6453#6454#0" expanded="true" />
-            <element signature="e#16405#16406#0" expanded="true" />
-            <element signature="e#16435#16436#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+            <element signature="method#onCreate#0;class#BlankFragment#0" expanded="false" />
+            <element signature="e#6698#6879#0" expanded="true" />
+            <element signature="e#6878#6879#0" expanded="true" />
+            <element signature="method#onCreateView#0;class#BlankFragment#0" expanded="false" />
+            <element signature="method#onButtonPressed#0;class#BlankFragment#0" expanded="false" />
+            <element signature="method#onAttach#0;class#BlankFragment#0" expanded="false" />
+            <element signature="method#onDetach#0;class#BlankFragment#0" expanded="false" />
+            <element signature="docComment;class#OnFragmentInteractionListener#0;class#BlankFragment#0" expanded="false" />
+            <element signature="class#OnFragmentInteractionListener#0;class#BlankFragment#0" expanded="false" />
+            <element signature="method#checkActivity#0;class#BlankFragment#0" expanded="false" />
+            <element signature="method#showActivity#0;class#BlankFragment#0" expanded="false" />
+            <element signature="method#onClick#0;class#BlankFragment#0" expanded="false" />
+            <element signature="method#buildGoogleApiClient#0;class#BlankFragment#0" expanded="false" />
+            <element signature="e#22290#22487#0" expanded="true" />
+            <element signature="e#22486#22487#0" expanded="true" />
+            <element signature="docComment;method#onMapReady#0;class#BlankFragment#0" expanded="false" />
+            <element signature="method#onMapReady#0;class#BlankFragment#0" expanded="false" />
+            <element signature="method#onConnectionSuspended#0;class#BlankFragment#0" expanded="false" />
+            <element signature="method#onConnectionFailed#0;class#BlankFragment#0" expanded="false" />
+            <element signature="method#checkLocationPermission#0;class#BlankFragment#0" expanded="false" />
+            <element signature="method#onRequestPermissionsResult#0;class#BlankFragment#0" expanded="false" />
+            <marker date="1504340509418" expanded="false" signature="1845:2152" ph="/**...*/" />
+            <marker date="1504340509418" expanded="false" signature="3572:3624" ph="{...}" />
+            <marker date="1504340509418" expanded="false" signature="3744:3940" ph="{...}" />
+            <marker date="1504340509418" expanded="false" signature="10871:13744" ph="{...}" />
+            <marker date="1504340509418" expanded="false" signature="13774:16819" ph="{...}" />
+            <marker date="1504340509418" expanded="false" signature="16855:17041" ph="{...}" />
+            <marker date="1504340509418" expanded="false" signature="17120:17331" ph="{...}" />
+            <marker date="1504340509418" expanded="false" signature="17400:17626" ph="{...}" />
+            <marker date="1504340509418" expanded="false" signature="17745:17996" ph="{...}" />
+            <marker date="1504340509418" expanded="false" signature="18126:18391" ph="{...}" />
+            <marker date="1504340509418" expanded="false" signature="18515:18975" ph="{...}" />
+            <marker date="1504340509418" expanded="false" signature="23000:24915" ph="{...}" />
+            <marker date="1504340509418" expanded="false" signature="26177:27054" ph="{...}" />
+            <marker date="1504340509418" expanded="false" signature="30028:30374" ph="{...}" />
           </folding>
         </state>
       </provider>

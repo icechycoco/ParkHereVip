@@ -2,6 +2,7 @@ package com.example.icechycoco.parkherevip;
 
 import android.app.PendingIntent;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
@@ -13,6 +14,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -39,6 +41,7 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Scanner;
 
@@ -77,7 +80,6 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
     boolean inside;
     static int vehicle;
     static boolean park = false;
-    static String parktxt = "not park";
     // connect db
     String response = null;
     getHttp http = new getHttp();
@@ -89,6 +91,16 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
     String showsta = "NULL";
 
     int i;
+
+    //variable
+    String[] getInfo;
+    String getTime;
+    int getCost,getMCost;
+    String currentTime;
+    Date date1,date2;
+    long realFee;
+    long diffHours = 0;
+
 
     private OnFragmentInteractionListener mListener;
 
@@ -114,6 +126,78 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
             uId = bundle.getString(KEY_ID);
         }
         Toast.makeText(getContext(), "uId : " + uId, Toast.LENGTH_SHORT).show();
+        String str = getLev(uId);
+
+
+        String[] getInfo;
+        getInfo = str.split(",");
+        sta = Integer.parseInt(getInfo[1]);
+        if(sta==0){
+
+
+//            try {
+//                response = http.run("http://parkhere.sit.kmutt.ac.th/estimate.php?uId="+uId);
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+//
+//            getInfo = response.split(" ");
+//            getTime = getInfo[0];
+//            getCost = Integer.parseInt(getInfo[1]);
+//            getMCost = Integer.parseInt(getInfo[2]);
+//
+//            // convert string time in database to time
+//            SimpleDateFormat sdf = new SimpleDateFormat("hh:mm:ss");
+//            Date date = null;
+//            try {
+//                date = sdf.parse(getTime);
+//            } catch (ParseException e) {
+//                e.printStackTrace();
+//            }
+//            timeIn = sdf.format(date);
+//
+//            //current time
+//            Calendar cal = Calendar.getInstance();
+//            SimpleDateFormat sdf2 = new SimpleDateFormat("HH:mm:ss");
+//            currentTime = sdf2.format(cal.getTime());
+//
+//            //calculate diff time
+//            SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss");
+//            try {
+//                date1 = format.parse(timeIn);
+//                date2 = format.parse(currentTime);
+//                long diff = date2.getTime() - date1.getTime();
+//                System.out.println(diff);
+//                diffHours = diff / (60 * 60 * 1000);
+//                System.out.println("current time " + date2);
+//                System.out.print(diffHours + " hours, ");
+//            } catch (ParseException e) {
+//                e.printStackTrace();
+//            }
+//
+//            //calculate fee
+//            long fee = diffHours*getCost;
+//            if(fee>getMCost){
+//                realFee = getMCost;
+//                System.out.println(getMCost);
+//            }else{
+//                realFee = fee;
+//                System.out.println(fee);
+//            }
+
+
+            final AlertDialog.Builder builder =
+                    new AlertDialog.Builder(getActivity());
+            builder.setMessage("\nTime in : \t\t\t\t\t\t\t\t\t\t\t\t\t\t"+timeIn+"\n\nCurrent time : \t\t\t\t\t\t\t\t\t"+currentTime+"\n\nReal-Time fee : \t\t\t\t\t\t\t"+realFee+" BAHT");
+            builder.setPositiveButton("ok", new DialogInterface.OnClickListener(){
+                public void onClick(DialogInterface dialog, int id){
+                    builder.getContext();
+                }
+            });
+            builder.show();
+        }
+
+
     }
 
     @Override
@@ -223,8 +307,6 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
         }
         return false;
     }
-
-
 
     public void showStatus2(){
         String str = getLev(uId);
@@ -581,6 +663,20 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
         mCurrLocationMarker = mMap.addMarker(markerOptions);
 
         mCurrLocationMarker.showInfoWindow();
+        mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
+            @Override
+            public void onInfoWindowClick(Marker marker) {
+                final AlertDialog.Builder builder =
+                        new AlertDialog.Builder(getActivity());
+                builder.setMessage("Name: \t\t\t\t\t\t\t\t\t\t\t\t\t\t"+pName+"\n\nAvailable: \t\t\t\t\t\t\t\t\t\t\t"+available+"\n\nReserve: \t\t\t\t\t\t\t\t\t\t\t\t"+reserved);
+                builder.setPositiveButton("ok", new DialogInterface.OnClickListener(){
+                    public void onClick(DialogInterface dialog, int id){
+                        builder.getContext();
+                    }
+                });
+                builder.show();
+            }
+        });
 
         //move map camera
         mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
