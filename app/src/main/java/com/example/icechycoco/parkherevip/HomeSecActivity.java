@@ -16,13 +16,17 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+
 public class HomeSecActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,
         HistoryFragment.OnFragmentInteractionListener, RequestFragment.OnFragmentInteractionListener,
-        MapParkFragment.OnFragmentInteractionListener, QRScanFragment.OnFragmentInteractionListener, BlankFragment.OnFragmentInteractionListener{
+        MapParkFragment.OnFragmentInteractionListener, QRScanFragment.OnFragmentInteractionListener,
+        BlankFragment.OnFragmentInteractionListener{
     // shared variables
     String uId;
     SharedPreferences sp;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +63,9 @@ public class HomeSecActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+
+
     }
 
     @Override
@@ -75,6 +82,18 @@ public class HomeSecActivity extends AppCompatActivity
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.home_sec, menu);
+
+//
+//        // Inflate the options menu from XML
+//        getMenuInflater().inflate(R.menu.home_sec, menu);
+//
+//        // Get the SearchView and set the searchable configuration
+//        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+//        SearchView searchView = (SearchView) menu.findItem(R.id.action_search).getActionView();
+//        // Assumes current activity is the searchable activity
+//        searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+//        searchView.setIconifiedByDefault(false); // Do not iconify the widget; expand it by default
+
         return true;
     }
 

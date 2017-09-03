@@ -10,7 +10,7 @@
 
     <include
         android:id="@+id/app_bar"
-        layout="@layout/app_bar_home"
+        layout="@layout/app_bar_sec"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
@@ -22,5 +22,7 @@
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/nav_header_home"
         app:menu="@menu/activity_home_sec_drawer" />
+
+
 
 </android.support.v4.widget.DrawerLayout>
