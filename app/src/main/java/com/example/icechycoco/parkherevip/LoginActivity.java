@@ -12,7 +12,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import java.io.IOException;
 
@@ -36,6 +35,9 @@ public class LoginActivity extends AppCompatActivity {
 
     SharedPreferences sp;
     SharedPreferences.Editor editor;
+
+    public static final String PREF_NAME = "PREF_NAME";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,20 +87,26 @@ public class LoginActivity extends AppCompatActivity {
                     position = getInfo[0];
                     uId = getInfo[1];
 
-                    sp = getSharedPreferences("PREF_NAME", Context.MODE_PRIVATE);
+                    sp = getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
                     editor = sp.edit();
                     editor.putString("UID", uId);
+                    editor.putBoolean("hasLoggedIn", true);
                     editor.commit();
+                    boolean hasLoggedIn = sp.getBoolean("hasLoggedIn", false);
+
 
                     if (position.equals("1")) { // user: rodrin pass: 123456
                         Intent intent = new Intent(LoginActivity.this, HomeStuActivity.class);
                         startActivity(intent);
+                        finish();
                     } else if (position.equals("2")) { //user : icechy pass :123456
                         Intent intent = new Intent(LoginActivity.this, HomeStaActivity.class);
                         startActivity(intent);
+                        finish();
                     } else if (position.equals("3")) { // user:park13 pass:123456
                         Intent intent = new Intent(LoginActivity.this, HomeSecActivity.class);
                         startActivity(intent);
+                        finish();
                     } else {
 
                     }
