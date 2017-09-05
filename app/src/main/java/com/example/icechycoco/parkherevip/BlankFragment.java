@@ -38,6 +38,7 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.io.IOException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -126,78 +127,72 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
             uId = bundle.getString(KEY_ID);
         }
         Toast.makeText(getContext(), "uId : " + uId, Toast.LENGTH_SHORT).show();
-        String str = getLev(uId);
-
-
-        String[] getInfo;
-        getInfo = str.split(",");
-        sta = Integer.parseInt(getInfo[1]);
         if(sta==0){
 
+            try {
+                response = http.run("http://parkhere.sit.kmutt.ac.th/estimate.php?uId="+uId);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 
-//            try {
-//                response = http.run("http://parkhere.sit.kmutt.ac.th/estimate.php?uId="+uId);
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
-//
-//            getInfo = response.split(" ");
-//            getTime = getInfo[0];
-//            getCost = Integer.parseInt(getInfo[1]);
-//            getMCost = Integer.parseInt(getInfo[2]);
-//
-//            // convert string time in database to time
-//            SimpleDateFormat sdf = new SimpleDateFormat("hh:mm:ss");
-//            Date date = null;
-//            try {
-//                date = sdf.parse(getTime);
-//            } catch (ParseException e) {
-//                e.printStackTrace();
-//            }
-//            timeIn = sdf.format(date);
-//
-//            //current time
-//            Calendar cal = Calendar.getInstance();
-//            SimpleDateFormat sdf2 = new SimpleDateFormat("HH:mm:ss");
-//            currentTime = sdf2.format(cal.getTime());
-//
-//            //calculate diff time
-//            SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss");
-//            try {
-//                date1 = format.parse(timeIn);
-//                date2 = format.parse(currentTime);
-//                long diff = date2.getTime() - date1.getTime();
-//                System.out.println(diff);
-//                diffHours = diff / (60 * 60 * 1000);
-//                System.out.println("current time " + date2);
-//                System.out.print(diffHours + " hours, ");
-//            } catch (ParseException e) {
-//                e.printStackTrace();
-//            }
-//
-//            //calculate fee
-//            long fee = diffHours*getCost;
-//            if(fee>getMCost){
-//                realFee = getMCost;
-//                System.out.println(getMCost);
-//            }else{
-//                realFee = fee;
-//                System.out.println(fee);
-//            }
+            if(response.equals("0")){
 
+            }else{
+                getInfo = response.split(" ");
+                getTime = getInfo[0];
+                getCost = Integer.parseInt(getInfo[1]);
+                getMCost = Integer.parseInt(getInfo[2]);
 
-            final AlertDialog.Builder builder =
-                    new AlertDialog.Builder(getActivity());
-            builder.setMessage("\nTime in : \t\t\t\t\t\t\t\t\t\t\t\t\t\t"+timeIn+"\n\nCurrent time : \t\t\t\t\t\t\t\t\t"+currentTime+"\n\nReal-Time fee : \t\t\t\t\t\t\t"+realFee+" BAHT");
-            builder.setPositiveButton("ok", new DialogInterface.OnClickListener(){
-                public void onClick(DialogInterface dialog, int id){
-                    builder.getContext();
+                // convert string time in database to time
+                SimpleDateFormat sdf = new SimpleDateFormat("hh:mm:ss");
+                Date date = null;
+                try {
+                    date = sdf.parse(getTime);
+                } catch (ParseException e) {
+                    e.printStackTrace();
                 }
-            });
-            builder.show();
+                timeIn = sdf.format(date);
+
+                //current time
+                Calendar cal = Calendar.getInstance();
+                SimpleDateFormat sdf2 = new SimpleDateFormat("HH:mm:ss");
+                currentTime = sdf2.format(cal.getTime());
+
+                //calculate diff time
+                SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss");
+                try {
+                    date1 = format.parse(timeIn);
+                    date2 = format.parse(currentTime);
+                    long diff = date2.getTime() - date1.getTime();
+                    System.out.println(diff);
+                    diffHours = diff / (60 * 60 * 1000);
+                    System.out.println("current time " + date2);
+                    System.out.print(diffHours + " hours, ");
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+
+                //calculate fee
+                long fee = diffHours*getCost;
+                if(fee>getMCost){
+                    realFee = getMCost;
+                    System.out.println(getMCost);
+                }else{
+                    realFee = fee;
+                    System.out.println(fee);
+                }
+
+                final AlertDialog.Builder builder =
+                        new AlertDialog.Builder(getActivity());
+                builder.setMessage("\nTime in : \t\t\t\t\t\t\t\t\t\t\t\t\t\t"+timeIn+"\n\nCurrent time : \t\t\t\t\t\t\t\t\t"+currentTime+"\n\nReal-Time fee : \t\t\t\t\t\t\t"+realFee+" BAHT");
+                builder.setPositiveButton("ok", new DialogInterface.OnClickListener(){
+                    public void onClick(DialogInterface dialog, int id){
+                        builder.getContext();
+                    }
+                });
+                builder.show();
+            }
         }
-
-
     }
 
     @Override
@@ -210,11 +205,6 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             checkLocationPermission();
         }
-        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
-//        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-//                .findFragmentById(R.id.map);
-//        mapFragment.getMapAsync(this);
-
 
         FragmentManager manager = getFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
@@ -224,36 +214,15 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
 
         fragment.getMapAsync(this);
 
-//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-//        setSupportActionBar(toolbar);
-//        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-//        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-//                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-//        drawer.setDrawerListener(toggle);
-//        toggle.syncState();
-//
-//        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-//        navigationView.setNavigationItemSelectedListener(this);
-
         txt = (TextView) v.findViewById(R.id.textView);
         txt2 = (TextView) v.findViewById(R.id.textView2);
         txt3 = (TextView) v.findViewById(R.id.textView3);
         txt4 = (TextView) v.findViewById(R.id.textView4);
 
-//        btn = (Button) v.findViewById(R.id.btn_park);
-
-
         txt.setOnClickListener((new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
-                //Fragment
-//                MapParkFragment mapParkFragment = new MapParkFragment().newInstance(uId);
-//                FragmentTransaction transaction = getFragmentManager().beginTransaction();
-//                transaction.replace(R.id.fragment_container, mapParkFragment);
-//                transaction.commit();
-
-//                onLocationChanged();
                 showActivity();
                 showStatus2();
             }
@@ -310,9 +279,6 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
 
     public void showStatus2(){
         String str = getLev(uId);
-
-
-
         String[] getInfo;
         getInfo = str.split(",");
         level = Integer.parseInt(getInfo[0]);
@@ -423,7 +389,6 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
         getInfo = str.split(",");
         level = Integer.parseInt(getInfo[0]);
         sta = Integer.parseInt(getInfo[1]);
-
 
         if(sta==0){
             showsta = "not park ka";
@@ -737,12 +702,6 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
             reserved = parkinglot.get(i).get("reserved").toString();
             latitude = parkinglot.get(i).get("reserved").toString();
             longitude = parkinglot.get(i).get("reserved").toString();
-
-//            LatLng latLng = new LatLng(Long.parseLong(latitude), Long.parseLong(longitude));
-//            MarkerOptions markerOptions = new MarkerOptions();
-//            markerOptions.position(latLng);
-//            markerOptions.title("N: "+pName+" A: "+available+" R: "+reserved);
-//            markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
 
         }
 

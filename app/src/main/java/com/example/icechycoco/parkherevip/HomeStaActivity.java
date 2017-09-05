@@ -128,7 +128,7 @@ public class HomeStaActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_history) {
             //Fragment
-            HistoryFragment historyFragment = new HistoryFragment().newInstance(uId);
+            HistoryFragment historyFragment = new HistoryFragment().newInstance(uId,"2");
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
             transaction.replace(R.id.fragment_container, historyFragment);
             transaction.commit();

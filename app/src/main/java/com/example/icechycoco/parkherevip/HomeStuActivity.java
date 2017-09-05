@@ -104,7 +104,7 @@ public class HomeStuActivity extends AppCompatActivity
             transaction.commit();
         } else if (id == R.id.nav_history) {
             //Fragment
-            HistoryFragment historyFragment = new HistoryFragment().newInstance(uId);
+            HistoryFragment historyFragment = new HistoryFragment().newInstance(uId,"1");
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
             transaction.replace(R.id.fragment_container, historyFragment);
             transaction.commit();

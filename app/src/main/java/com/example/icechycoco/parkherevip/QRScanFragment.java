@@ -16,6 +16,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -40,7 +42,7 @@ public class QRScanFragment extends Fragment {
     getHttp http = new getHttp();
     // variables
     String[] getInfo;
-    String fN,lN,licen,date,parkN,gName,pId,resId,getCode,checkCode;
+    String fN,lN,licen,date,parkN,gName,pId,resId,getCode,checkCode,setTimeScan;
     int timeInter;
     String timeSeq = "";
 
@@ -132,17 +134,6 @@ public class QRScanFragment extends Fragment {
                         timeSeq = "wrong time";
                     }
 
-                    try {
-
-                        response = http.run("http://parkhere.sit.kmutt.ac.th/confirmRes.php?reserveId=" + resId + "&pId=" + pId);
-
-                    } catch (IOException e) {
-
-                        // TODO Auto-generat-ed catch block
-
-                        e.printStackTrace();
-                    }
-
                     final AlertDialog.Builder builder =
                             new AlertDialog.Builder(getActivity());
                     builder.setMessage("\nคุณ " + gName + "\n\n" + parkN + "\n\n" + licen + "\n\n" + date + "\n\n" + timeSeq);
@@ -161,6 +152,18 @@ public class QRScanFragment extends Fragment {
                     });
 
                     builder.show();
+
+                    //current time
+                    Calendar cal = Calendar.getInstance();
+                    SimpleDateFormat sdf2 = new SimpleDateFormat("HH:mm:ss");
+                    setTimeScan = sdf2.format(cal.getTime());
+
+                    try {
+                        response = http.run("http://parkhere.sit.kmutt.ac.th/confirmRes.php?reserveId=" + resId + "&pId=" + pId + "&timeScan=" + setTimeScan+ "&secId=" + uId);
+                    } catch (IOException e) {
+                        // TODO Auto-generat-ed catch block
+                        e.printStackTrace();
+                    }
 
                 }else{
                     final AlertDialog.Builder builder =

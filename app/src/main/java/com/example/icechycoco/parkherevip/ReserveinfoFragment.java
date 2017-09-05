@@ -33,6 +33,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Random;
 
 import okhttp3.OkHttpClient;
@@ -61,7 +62,7 @@ public class ReserveinfoFragment extends Fragment {
     RadioGroup radioGroup;
 
     String setName, setSur, setLicen, setEmail, setPhone, setgId;
-    String setDate, setQR, setTimeRes, setuId;
+    String setDate, setQR, setTimeRes, setuId, setDateRes;
     String getCode, setpId, setInterval, setStatus;
     int getDate;
     String[] getGInfo;
@@ -183,6 +184,8 @@ public class ReserveinfoFragment extends Fragment {
                             Calendar cal = Calendar.getInstance();
                             SimpleDateFormat sdf2 = new SimpleDateFormat("HH:mm:ss");
                             setTimeRes = sdf2.format(cal.getTime());
+                            SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+                            setDateRes = sdf.format(new Date());
                             setuId = uId;
                             //setpId = "1"; //รับค่าจากการเลือกแอเรีย
                             setpId = pId;
@@ -205,7 +208,7 @@ public class ReserveinfoFragment extends Fragment {
                                 e.printStackTrace();
                             }
                             // ติดตรงดาต้าเบส gId
-                            reserve(setuId, setpId, setgId, setDate, setInterval, setTimeRes, setQR, setStatus);
+                            reserve(setuId, setpId, setgId, setDate, setInterval, setTimeRes, setQR, setStatus,setDateRes);
                             BlankFragment blankFragment = new BlankFragment().newInstance(uId);
                             FragmentTransaction transaction = getFragmentManager().beginTransaction();
                             transaction.replace(R.id.fragment_container, blankFragment);
@@ -234,6 +237,8 @@ public class ReserveinfoFragment extends Fragment {
                             Calendar cal = Calendar.getInstance();
                             SimpleDateFormat sdf2 = new SimpleDateFormat("HH:mm:ss");
                             setTimeRes = sdf2.format(cal.getTime());
+                            SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+                            setDateRes = sdf.format(new Date());
                             setuId = uId; //รับค่ามาจากหน้าลอคอิน
                             //setpId = "1"; //รับค่าจากการเลือกแอเรีย
                             setpId = pId;
@@ -244,7 +249,7 @@ public class ReserveinfoFragment extends Fragment {
                             //แก้ php เรื่องหักลบ amount บางทีมันเป็น -1
                             //ให้มันคืนค่าamountทุกๆเที่ยงคืน
 
-                            reserve(setuId, setpId, setgId, setDate, setInterval, setTimeRes, setQR, setStatus);
+                            reserve(setuId, setpId, setgId, setDate, setInterval, setTimeRes, setQR, setStatus,setDateRes);
                             try {
                                 Bitmap bitmap = TextToImageEncode(setQR);
                                 saveImage(bitmap);
@@ -355,9 +360,9 @@ public class ReserveinfoFragment extends Fragment {
 
     }
 
-    public void reserve(String uId,String pId, String gId, String date, String interval, String time, String code,String status){
+    public void reserve(String uId,String pId, String gId, String date, String interval, String time, String code,String status,String dateRes){
         try {
-            response = http.run("http://parkhere.sit.kmutt.ac.th/reserve.php?uId=" + uId + "&pId=" + pId + "&gId=" + gId + "&date=" + date + "&timeInterval=" + interval + "&timeRes=" + time + "&code=" + code + "&status=" + status);
+            response = http.run("http://parkhere.sit.kmutt.ac.th/reserve.php?uId=" + uId + "&pId=" + pId + "&gId=" + gId + "&date=" + date + "&timeInterval=" + interval + "&timeRes=" + time + "&code=" + code + "&status=" + status + "&dateRes="+ dateRes);
             //response = http.run("http://parkhere.sit.kmutt.ac.th/UpdateLevelUser.php?level="+1+"&uId="+10002);
             //Log.wtf("eie",response);
         } catch (IOException e) {
