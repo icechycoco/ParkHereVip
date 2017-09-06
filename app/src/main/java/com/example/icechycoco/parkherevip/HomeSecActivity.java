@@ -11,6 +11,7 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -26,6 +27,7 @@ public class HomeSecActivity extends AppCompatActivity
     String uId;
     SharedPreferences sp;
 
+    String[] name = new String[]{"View","Ice","Park"};
 
 
 
@@ -64,6 +66,34 @@ public class HomeSecActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+
+        final SearchView searchView = (SearchView)findViewById(R.id.search_view);
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener()
+        {
+            @Override
+            public boolean onQueryTextSubmit(String query)
+            {
+                for (int i = 0; i <name.length; i++) {
+                    if (query.equalsIgnoreCase(name[i])) {
+                        Toast.makeText(HomeSecActivity.this, "Match", Toast.LENGTH_SHORT).show();
+                        searchView.clearFocus();
+                        return true;
+                    }
+                }
+                Toast.makeText(HomeSecActivity.this, "Not Match", Toast.LENGTH_SHORT).show();
+                searchView.clearFocus();
+                return true;
+
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText)
+            {
+                return false;
+            }
+        });
 
     }
 
