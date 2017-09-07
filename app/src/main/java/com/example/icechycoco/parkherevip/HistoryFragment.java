@@ -397,6 +397,5 @@ public class HistoryFragment extends Fragment {
             return response.body().string();
 
         }
-
     }
 }
