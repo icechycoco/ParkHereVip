@@ -1,6 +1,11 @@
 package com.example.icechycoco.parkherevip;
 
 import android.content.Context;
+import android.net.Uri;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,14 +15,25 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class CustomAdapterReq extends BaseAdapter {
+public class CustomAdapterReq extends BaseAdapter implements RequestFragment.OnFragmentInteractionListener {
     Context mContext;
+    String code;
+
+    RequestFragment requestFragment = new RequestFragment();
     //String[] strName;
     ArrayList<HashMap<String, String>> strHis;
 
     public CustomAdapterReq(Context context, ArrayList<HashMap<String, String>> strHis) {
         this.mContext= context;
         this.strHis = strHis;
+    }
+
+    public void setCode(String code){
+        this.code = code;
+    }
+
+    public String getCode(){
+        return code;
     }
 
     public int getCount() {
@@ -32,7 +48,7 @@ public class CustomAdapterReq extends BaseAdapter {
         return 0;
     }
 
-    public View getView(int position, View view, ViewGroup parent) {
+    public View getView(final int position, View view, ViewGroup parent) {
         LayoutInflater mInflater =
                 (LayoutInflater)mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
@@ -57,6 +73,33 @@ public class CustomAdapterReq extends BaseAdapter {
         }
         textView4.setText("Interval : " + timeInt);
 
+        textView2.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Log.wtf("position",strHis.get(position).get("code").toString());
+                code = strHis.get(position).get("code").toString();
+                setCode(code);
+
+                Log.wtf("get licen : ",getCode());
+                Log.wtf("get uId : ",requestFragment.getuId());
+
+                QRScanFragment qrScanFragment = new QRScanFragment().newInstance(requestFragment.getuId(),getCode());
+
+                FragmentManager manager = ((FragmentActivity) mContext).getSupportFragmentManager();
+                FragmentTransaction transaction = manager.beginTransaction();
+                transaction.replace(R.id.fragment_container, qrScanFragment);
+                transaction.commit();
+
+            }
+
+        });
+
         return view;
+    }
+
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+
     }
 }

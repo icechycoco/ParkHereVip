@@ -68,6 +68,8 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
     private static final String KEY_ID = "uId";
     private String uId;
 
+
+    String text = "eieiza55plus";
     //para
     private GoogleMap mMap;
     public static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
@@ -223,6 +225,7 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
 
             @Override
             public void onClick(View view) {
+                showResult(text);
                 showActivity();
                 showStatus2();
             }
@@ -592,32 +595,32 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
                                 */
 
         Location.distanceBetween( location.getLatitude(), location.getLongitude(),
-                13.650080, 100.495712, distance);
+                13.7009459, 100.5357529, distance);
 
-        String txt = "eieiza55plus";
         if( distance[0] > 30 ){
             Log.e("Outside "+location.getLatitude(),location.getLongitude()+"");
-            Toast.makeText(getActivity(), "Outside, distance from center: " + distance[0] + " radius: " + 100, Toast.LENGTH_LONG).show();
+            Toast.makeText(getActivity(), "Outside, distance from center: " + distance[0] + " radius: " + 80, Toast.LENGTH_LONG).show();
             showResult("Outside");
             inside=false;
-            txt="Outside"+distance[0];
+            text="Outside"+distance[0];
+            txt.setText("Outside ja");
 
         } else {
             Log.e("Inside "+location.getLatitude()+"",location.getLongitude()+"");
-            Toast.makeText(getActivity(), "Inside, distance from center: " + distance[0] + " radius: " + 100 , Toast.LENGTH_LONG).show();
+            Toast.makeText(getActivity(), "Inside, distance from center: " + distance[0] + " radius: " + 80 , Toast.LENGTH_LONG).show();
             showResult("Inside");
             inside=true;
-            txt="Inside";
+            text="Inside"+distance[0];
+            txt.setText("Inside ja");
         }
 
         if (mCurrLocationMarker != null) {
             mCurrLocationMarker.remove();
         }
-
         getNumParkinglot();
 
         //Place current location marker
-        LatLng latLng = new LatLng(13.650080, 100.495712);
+        LatLng latLng = new LatLng(13.7009459, 100.5357529);
         MarkerOptions markerOptions = new MarkerOptions();
         markerOptions.position(latLng);
         markerOptions.title("N: "+pName+" A: "+available+" R: "+reserved);
@@ -645,7 +648,11 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
 
         //move map camera
         mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
-        mMap.animateCamera(CameraUpdateFactory.zoomTo(11));
+//        mMap.animateCamera(CameraUpdateFactory.zoomTo(15));
+
+
+        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 16));
+
 
         showActivity();
         showStatus2();

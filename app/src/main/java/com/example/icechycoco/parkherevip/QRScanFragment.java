@@ -47,7 +47,9 @@ public class QRScanFragment extends Fragment {
     String timeSeq = "";
 
     private static final String KEY_ID = "uId";
+    private static final String KEY_CODE = "code";
     private String uId;
+    private String code;
 
     private OnFragmentInteractionListener mListener;
 
@@ -56,10 +58,11 @@ public class QRScanFragment extends Fragment {
     }
 
     // TODO: Rename and change types and number of parameters
-    public static QRScanFragment newInstance(String uId) {
+    public static QRScanFragment newInstance(String uId,String code) {
         QRScanFragment fragment = new QRScanFragment();
         Bundle args = new Bundle();
         args.putString(KEY_ID, uId);
+        args.putString(KEY_CODE, code);
         fragment.setArguments(args);
         return fragment;
     }
@@ -70,6 +73,7 @@ public class QRScanFragment extends Fragment {
         Bundle bundle = getArguments();
         if (bundle != null) {
             uId = bundle.getString(KEY_ID);
+            code = bundle.getString(KEY_CODE);
         }
         Toast.makeText(getContext(), "uId : " + uId, Toast.LENGTH_SHORT).show();
     }
@@ -83,7 +87,7 @@ public class QRScanFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_qrscan, container, false);
         btn = (Button) v.findViewById(R.id.btncheck);
         etCode = (EditText) v.findViewById(R.id.et_code);
-        checkCode = "22074";
+        //checkCode = "23519";
 
         btnScan = (Button) v.findViewById(R.id.btnscan);
 
@@ -102,7 +106,7 @@ public class QRScanFragment extends Fragment {
 
                 getCode = etCode.getText().toString();
 
-                if(getCode.equals(checkCode)) {
+                if(getCode.equals(code)) {
 
                     try {
                         response = http.run("http://parkhere.sit.kmutt.ac.th/resCon.php?code=" + getCode);
@@ -113,7 +117,7 @@ public class QRScanFragment extends Fragment {
 
                         e.printStackTrace();
                     }
-                    getInfo = response.split(" ");
+                    getInfo = response.split(",");
                     fN = getInfo[0];
                     lN = getInfo[1];
                     gName = fN + "  " + lN;

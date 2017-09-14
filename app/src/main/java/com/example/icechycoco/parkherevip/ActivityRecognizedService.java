@@ -55,7 +55,7 @@ public class ActivityRecognizedService extends IntentService {
             switch( activity.getType() ) {
                 case DetectedActivity.IN_VEHICLE: {
                     Log.e( "ActivityRecogition", "In Vehicle: " + activity.getConfidence() );
-                    if( activity.getConfidence() >= 50 ) {
+                    if( activity.getConfidence() >= 30 ) {
                         NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
                         builder.setContentText( "Are you Vehicle?"+activity.getConfidence() );
                         builder.setSmallIcon( R.mipmap.ic_launcher );
@@ -66,7 +66,7 @@ public class ActivityRecognizedService extends IntentService {
                 }
                 case DetectedActivity.ON_BICYCLE: {
                     Log.e( "ActivityRecogition", "On Bicycle: " + activity.getConfidence() );
-                    if( activity.getConfidence() >= 50 ) {
+                    if( activity.getConfidence() >= 70 ) {
                         NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
                         builder.setContentText( "Are you Bicycle?"+activity.getConfidence() );
                         builder.setSmallIcon( R.mipmap.ic_launcher );
@@ -77,7 +77,7 @@ public class ActivityRecognizedService extends IntentService {
                 }
                 case DetectedActivity.WALKING: {
                     Log.e( "ActivityRecogition", "Walking: " + activity.getConfidence() );
-                    if( activity.getConfidence() >= 50 ) {
+                    if( activity.getConfidence() >= 70 ) {
                         NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
                         builder.setContentText( "Are you walking?"+activity.getConfidence() );
                         builder.setSmallIcon( R.mipmap.ic_launcher );
@@ -99,7 +99,7 @@ public class ActivityRecognizedService extends IntentService {
                 }
                 case DetectedActivity.RUNNING: {
                     Log.e( "ActivityRecogition", "Running: " + activity.getConfidence() );
-                    if( activity.getConfidence() >= 50 ) {
+                    if( activity.getConfidence() >= 70 ) {
                         NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
                         builder.setContentText( "Are you running?"+activity.getConfidence() );
                         builder.setSmallIcon( R.mipmap.ic_launcher );

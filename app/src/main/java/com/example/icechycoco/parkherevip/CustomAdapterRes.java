@@ -93,16 +93,9 @@ public class CustomAdapterRes extends BaseAdapter implements ReserveFragment.OnF
                 transaction.replace(R.id.fragment_container, reserveinfoFragment);
                 transaction.commit();
 
-
-//                FragmentManager manager = ((Acitivity) mContext).get
-//                FragmentTransaction transaction =
             }
 
-
-
-
         });
-
 
         return view ;
     }

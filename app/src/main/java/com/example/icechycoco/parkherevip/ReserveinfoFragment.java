@@ -78,7 +78,7 @@ public class ReserveinfoFragment extends Fragment {
     private static final String KEY_ID = "uId";
     private String uId;
     private static final String KEY_PID = "pId";
-    String pId;
+    private String pId;
 
     Calendar myCalendar = Calendar.getInstance();
 
@@ -105,8 +105,10 @@ public class ReserveinfoFragment extends Fragment {
         Bundle bundle = getArguments();
         if (bundle != null) {
             uId = bundle.getString(KEY_ID);
+            pId = bundle.getString(KEY_PID);
         }
         Toast.makeText(getContext(), "uId : " + uId, Toast.LENGTH_SHORT).show();
+        Toast.makeText(getContext(), "pId : " + pId, Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -195,8 +197,9 @@ public class ReserveinfoFragment extends Fragment {
                             //ทำไมมันไม่ insert ข้อมูลในตาราง reserve , guest ก็ไม่ขึ้นละสาส
                             //แก้ php เรื่องหักลบ amount บางทีมันเป็น -1
                             //ให้มันคืนค่าamountทุกๆเที่ยงคืน
+                            Log.wtf("date res : ",setDateRes +" "+setpId );
 
-                            sendEmail(setEmail);
+//                            sendEmail(setEmail);
 
                             try {
                                 response = http.run("http://parkhere.sit.kmutt.ac.th/newguest.php?gFirstN=" + setName + "&gLastN=" + setSur + "&gEmail=" + setEmail + "&gLicense=" + setLicen + "&gPhone=" + setPhone);
@@ -207,73 +210,24 @@ public class ReserveinfoFragment extends Fragment {
                                 // TODO Auto-generat-ed catch block
                                 e.printStackTrace();
                             }
-                            // ติดตรงดาต้าเบส gId
-                            reserve(setuId, setpId, setgId, setDate, setInterval, setTimeRes, setQR, setStatus,setDateRes);
-                            BlankFragment blankFragment = new BlankFragment().newInstance(uId);
-                            FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                            transaction.replace(R.id.fragment_container, blankFragment);
-                            transaction.commit();
+//                            Log.wtf("name and las : ",setName+"  "+setSur);
+//
+//                            setgId = getNewGid(setName,setSur);
+//
+//                            // ติดตรงดาต้าเบส gId
+//                            reserve(setuId, setpId, setgId, setDate, setInterval, setTimeRes, setQR, setStatus,setDateRes);
+//                            BlankFragment blankFragment = new BlankFragment().newInstance(uId);
+//                            FragmentTransaction transaction = getFragmentManager().beginTransaction();
+//                            transaction.replace(R.id.fragment_container, blankFragment);
+//                            transaction.commit();
+
+                            reserve();
                         }
                     });
                 } else {
                     textView.setText("Existed Guest Infomation");
+                    reserve();
 
-                    getGInfo = response.split(" ");
-                    gId = getGInfo[0];
-                    gEmail = getGInfo[1];
-                    gLicen = getGInfo[2];
-                    gPhone = getGInfo[3];
-
-                    etEmail.setText(gEmail);
-                    etLicen.setText(gLicen);
-                    etPhone.setText(gPhone);
-
-                    btn.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-
-                            setDate = etDate.getText().toString();
-                            //current time
-                            Calendar cal = Calendar.getInstance();
-                            SimpleDateFormat sdf2 = new SimpleDateFormat("HH:mm:ss");
-                            setTimeRes = sdf2.format(cal.getTime());
-                            SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
-                            setDateRes = sdf.format(new Date());
-                            setuId = uId; //รับค่ามาจากหน้าลอคอิน
-                            //setpId = "1"; //รับค่าจากการเลือกแอเรีย
-                            setpId = pId;
-                            setQR = randCode();
-                            setStatus = "0"; // 0 = จองอยู่ 1=จอด อาจจะไม่ต้องมีก็ได้
-                            setgId = gId;
-                            //ทำไมมันไม่ insert ข้อมูลในตาราง reserve , guest ก็ไม่ขึ้นละสาส
-                            //แก้ php เรื่องหักลบ amount บางทีมันเป็น -1
-                            //ให้มันคืนค่าamountทุกๆเที่ยงคืน
-
-                            reserve(setuId, setpId, setgId, setDate, setInterval, setTimeRes, setQR, setStatus,setDateRes);
-                            try {
-                                Bitmap bitmap = TextToImageEncode(setQR);
-                                saveImage(bitmap);
-                            } catch (WriterException e) {
-                                e.printStackTrace();
-                            }
-
-                            sendEmail(gEmail);
-
-                            final Handler handler = new Handler();
-                            handler.postDelayed(new Runnable() {
-                                @Override
-                                public void run() {
-                                    delImage(fname);
-                                }
-                            }, 5000);
-
-                            ReserveFragment reserveFragment = new ReserveFragment().newInstance(uId);
-                            FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                            transaction.replace(R.id.fragment_container, reserveFragment);
-                            transaction.commit();
-
-                        }
-                    });
                 }
             }
         });
@@ -281,6 +235,78 @@ public class ReserveinfoFragment extends Fragment {
         return v;
     }
 
+
+    public void reserve(){
+        setName = etGuestN.getText().toString();
+        setSur = etGuestS.getText().toString();
+        try {
+            response = http.run("http://parkhere.sit.kmutt.ac.th/checkG.php?gFirstN=" + setName + "&gLastN=" + setSur);
+            //Log.wtf("eie",response);
+        } catch (IOException e) {
+            // TODO Auto-generat-ed catch block
+            e.printStackTrace();
+        }
+        getGInfo = response.split(" ");
+        gId = getGInfo[0];
+        gEmail = getGInfo[1];
+        gLicen = getGInfo[2];
+        gPhone = getGInfo[3];
+
+        etEmail.setText(gEmail);
+        etLicen.setText(gLicen);
+        etPhone.setText(gPhone);
+
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                setDate = etDate.getText().toString();
+                //current time
+                Calendar cal = Calendar.getInstance();
+                SimpleDateFormat sdf2 = new SimpleDateFormat("HH:mm:ss");
+                setTimeRes = sdf2.format(cal.getTime());
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+                setDateRes = sdf.format(new Date());
+                setuId = uId; //รับค่ามาจากหน้าลอคอิน
+                //setpId = "1"; //รับค่าจากการเลือกแอเรีย
+                setpId = pId;
+                setQR = randCode();
+                setStatus = "0"; // 0 = จองอยู่ 1=จอด อาจจะไม่ต้องมีก็ได้
+                setgId = gId;
+                //ทำไมมันไม่ insert ข้อมูลในตาราง reserve , guest ก็ไม่ขึ้นละสาส
+                //แก้ php เรื่องหักลบ amount บางทีมันเป็น -1
+                //ให้มันคืนค่าamountทุกๆเที่ยงคืน
+                Log.wtf("date res : ",setDateRes +" "+setpId );
+                reserve(setuId, setpId, setgId, setDate, setInterval, setTimeRes, setQR, setStatus,setDateRes);
+                try {
+                    Bitmap bitmap = TextToImageEncode(setQR);
+                    //Bitmap bitmap = TextToImageEncode(setName+","+setSur+","+gLicen+","+setDate+","+setInterval+","+setpId+","+setInterval+","+setpId+","+gLicen+","+setDate);
+                    saveImage(bitmap);
+                } catch (WriterException e) {
+                    e.printStackTrace();
+                }
+
+                sendEmail(gEmail);
+
+                final Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        delImage(fname);
+                    }
+                }, 5000);
+
+
+
+                ReserveFragment reserveFragment = new ReserveFragment().newInstance(uId);
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                transaction.replace(R.id.fragment_container, reserveFragment);
+                transaction.commit();
+
+            }
+        });
+
+    }
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
@@ -358,6 +384,17 @@ public class ReserveinfoFragment extends Fragment {
 
         }
 
+    }
+
+    public String getNewGid(String gFi,String gLa){
+        try {
+            response = http.run("http://parkhere.sit.kmutt.ac.th/getGid.php?gFirstN="+gFi+"=&gLastN="+gLa);
+            Log.wtf("gId new guest ",response);
+        } catch (IOException e) {
+            // TODO Auto-generat-ed catch block
+            e.printStackTrace();
+        }
+        return response;
     }
 
     public void reserve(String uId,String pId, String gId, String date, String interval, String time, String code,String status,String dateRes){

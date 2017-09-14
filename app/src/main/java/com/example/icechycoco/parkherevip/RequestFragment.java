@@ -5,6 +5,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,7 +37,7 @@ public class RequestFragment extends Fragment {
     Button btn;
 
     private static final String KEY_ID = "uId";
-    private String uId;
+    private static String uId;
 
     // connect db
     String response = null;
@@ -66,21 +67,26 @@ public class RequestFragment extends Fragment {
         Toast.makeText(getContext(), "uId : " + uId, Toast.LENGTH_SHORT).show();
     }
 
+    public void setuId(String uId){
+        this.uId = uId;
+    }
+
+    public String getuId(){
+        return this.uId;
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
         View v = inflater.inflate(R.layout.fragment_request, container, false);
-        btn = (Button) v.findViewById(R.id.btn_req);
+        //btn = (Button) v.findViewById(R.id.btn_req);
 
         String str = getReq();
-//                "CB2,09:00:00,14:00:00,2017-07-03\n" +
-//                "CB2,10:00:00,13:00:00,2017-07-02\n" +
-//                "14Floor Building,10:29:00,00:00:19,2017-07-01";
 
         String[] getInfo;
-        String parkName,interval,licen,date;
+        String parkName,interval,licen,date,code;
         String timeInt = null;
         ArrayList<HashMap<String, String>> history = null;
 
@@ -98,12 +104,14 @@ public class RequestFragment extends Fragment {
             date = getInfo[1];
             interval = getInfo[2];
             licen = getInfo[3];
+            code = getInfo[4];
 
             map = new HashMap<String, String>();
             map.put("pName", parkName);
             map.put("date", date);
             map.put("timeInt", interval);
             map.put("licen", licen);
+            map.put("code", code);
             history.add(map);
         }
 
@@ -117,18 +125,21 @@ public class RequestFragment extends Fragment {
             }
         });
 
-        btn.setOnClickListener(new View.OnClickListener() {
+        setuId(uId);
+        Log.wtf("check uId "+uId+"..."+this.uId , getuId());
 
-
-            @Override
-            public void onClick(View view) {
-                //Fragment
-                QRScanFragment qrScanFragment = new QRScanFragment().newInstance(uId);
-                FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                transaction.replace(R.id.fragment_container, qrScanFragment);
-                transaction.commit();
-            }
-        });
+//        btn.setOnClickListener(new View.OnClickListener() {
+//
+//
+//            @Override
+//            public void onClick(View view) {
+//                //Fragment
+//                QRScanFragment qrScanFragment = new QRScanFragment().newInstance(uId);
+//                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+//                transaction.replace(R.id.fragment_container, qrScanFragment);
+//                transaction.commit();
+//            }
+//        });
 
 
         return v;
