@@ -10,13 +10,13 @@
         android:id="@+id/btncheck"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/et_code"
-        android:layout_centerHorizontal="true"
         android:layout_gravity="center"
         android:layout_marginLeft="100dp"
         android:layout_marginRight="100dp"
-        android:layout_marginTop="56dp"
-        android:text="CHECK" />
+        android:text="CHECK"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="72dp" />
 
     <EditText
         android:id="@+id/et_code"
@@ -25,17 +25,17 @@
         android:ems="10"
         android:hint="CODE"
         android:inputType="textPersonName"
-        android:layout_marginTop="219dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignBottom="@+id/btncheck"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="61dp" />
 
     <Button
         android:id="@+id/btnscan"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/btncheck"
+        android:layout_marginTop="93dp"
+        android:text="SCAN QR CODE"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="73dp"
-        android:text="SCAN" />
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

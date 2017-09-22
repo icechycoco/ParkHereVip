@@ -23,11 +23,11 @@
 
     <Button
         android:id="@+id/button"
-        style="@style/Widget.AppCompat.Button.Colored"
+        style="@style/Widget.AppCompat.Button.Small"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/imageView1"
         android:layout_toEndOf="@+id/imageView1"
-        android:text="Reserve" />
+        android:text="Reserve"
+        android:layout_alignBottom="@+id/imageView1" />
 
 </RelativeLayout>

@@ -9,12 +9,11 @@
     <ListView
         android:id="@+id/listView1"
         android:layout_width="wrap_content"
-        android:layout_height="401dp"
+        android:layout_height="513dp"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
         android:layout_below="@+id/textView10"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="19dp"
         android:layout_alignParentBottom="true" />
 
 </FrameLayout>

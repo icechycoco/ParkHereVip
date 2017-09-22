@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -67,13 +68,16 @@ public class HistoryFragment extends Fragment {
 
         final View v = inflater.inflate(R.layout.fragment_history, container, false);
         //final Button button = (Button) v.findViewById(R.id.button2);
-        final TextView textView7 = (TextView) v.findViewById(R.id.textView7);
-        final TextView textView8 = (TextView) v.findViewById(R.id.textView8);
+//        final TextView textView7 = (TextView) v.findViewById(R.id.textView7);
+//        final TextView textView8 = (TextView) v.findViewById(R.id.textView8);
         final TextView textView9 = (TextView) v.findViewById(R.id.textView9);
         final TextView textView10 = (TextView) v.findViewById(R.id.textView10);
-        final TextView textView11 = (TextView) v.findViewById(R.id.textView11);
+//        final TextView textView11 = (TextView) v.findViewById(R.id.textView11);
         final TextView textView12 = (TextView) v.findViewById(R.id.textView12);
         final ListView listView = (ListView) v.findViewById(R.id.listView1);
+        final Button btnRes = (Button) v.findViewById(R.id.btnRes);
+        final Button btnScan = (Button) v.findViewById(R.id.btnScan);
+        final Button btnPark = (Button) v.findViewById(R.id.btnpark);
 
         String str =  getHis(uId);
         //Log.wtf("checkcheck : " , str);
@@ -125,7 +129,7 @@ public class HistoryFragment extends Fragment {
             }
         }
 
-        textView7.setOnClickListener(new View.OnClickListener() {
+        btnPark.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String str =  getHis(uId);
@@ -178,7 +182,7 @@ public class HistoryFragment extends Fragment {
         if(po.equals("2")){
             String str2 = getHisRes(uId);
             final ArrayList<HashMap<String, String>> a = imStaff(str2);
-            textView8.setOnClickListener(new View.OnClickListener() {
+            btnRes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 CustomAdapterHisRes adapterHisRes = new CustomAdapterHisRes(getContext(), a);
@@ -197,7 +201,7 @@ public class HistoryFragment extends Fragment {
             String str3 = getHisScan(uId);
             Log.wtf("check in if : ", str3);
             final ArrayList<HashMap<String, String>> b = imSecurity(str3);
-            textView11.setOnClickListener(new View.OnClickListener() {
+            btnScan.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     CustomAdapterHisSca adapterHisSca = new CustomAdapterHisSca(getContext(), b);
