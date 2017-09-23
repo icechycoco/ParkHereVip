@@ -50,6 +50,8 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
+import static com.google.android.gms.internal.zzagz.runOnUiThread;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -129,6 +131,7 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
             uId = bundle.getString(KEY_ID);
         }
         Toast.makeText(getContext(), "uId : " + uId, Toast.LENGTH_SHORT).show();
+
         if(sta==0){
 
             try {
@@ -195,6 +198,28 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
                 builder.show();
             }
         }
+
+        Thread t = new Thread() {
+
+            @Override
+            public void run() {
+                try {
+                    while (!isInterrupted()) {
+                        Thread.sleep(1000);
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                showActivity();
+                                showStatus2();
+                            }
+                        });
+                    }
+                } catch (InterruptedException e) {
+                }
+            }
+        };
+
+        t.start();
     }
 
     @Override
@@ -583,7 +608,21 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
     }
 
     @Override
-    public void onLocationChanged(Location location) {
+    public void onLocationChanged(final Location location) {
+
+
+        final LatLng latLng = new LatLng(13.7009459, 100.5357529);
+        Thread t = new Thread() {
+
+            @Override
+            public void run() {
+                try {
+                    while (!isInterrupted()) {
+                        Thread.sleep(1000);
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+
 
         mLastLocation = location;
 
@@ -598,16 +637,16 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
                 13.7009459, 100.5357529, distance);
 
         if( distance[0] > 30 ){
-            Log.e("Outside "+location.getLatitude(),location.getLongitude()+"");
-            Toast.makeText(getActivity(), "Outside, distance from center: " + distance[0] + " radius: " + 80, Toast.LENGTH_LONG).show();
+//            Log.e("Outside "+location.getLatitude(),location.getLongitude()+"");
+//            Toast.makeText(getActivity(), "Outside, distance from center: " + distance[0] + " radius: " + 80, Toast.LENGTH_LONG).show();
             showResult("Outside");
             inside=false;
             text="Outside"+distance[0];
             txt.setText("Outside ja");
 
         } else {
-            Log.e("Inside "+location.getLatitude()+"",location.getLongitude()+"");
-            Toast.makeText(getActivity(), "Inside, distance from center: " + distance[0] + " radius: " + 80 , Toast.LENGTH_LONG).show();
+//            Log.e("Inside "+location.getLatitude()+"",location.getLongitude()+"");
+//            Toast.makeText(getActivity(), "Inside, distance from center: " + distance[0] + " radius: " + 80 , Toast.LENGTH_LONG).show();
             showResult("Inside");
             inside=true;
             text="Inside"+distance[0];
@@ -620,7 +659,6 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
         getNumParkinglot();
 
         //Place current location marker
-        LatLng latLng = new LatLng(13.7009459, 100.5357529);
         MarkerOptions markerOptions = new MarkerOptions();
         markerOptions.position(latLng);
         markerOptions.title("N: "+pName+" A: "+available+" R: "+reserved);
@@ -646,7 +684,18 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
             }
         });
 
+                            }
+                        });
+                    }
+                } catch (InterruptedException e) {
+                }
+            }
+        };
+
+        t.start();
+
         //move map camera
+
         mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
 //        mMap.animateCamera(CameraUpdateFactory.zoomTo(15));
 
@@ -661,6 +710,7 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
         if (mGoogleApiClient != null) {
             LocationServices.FusedLocationApi.removeLocationUpdates(mGoogleApiClient, this);
         }
+
     }
 
     // จำนวน available and reserved
