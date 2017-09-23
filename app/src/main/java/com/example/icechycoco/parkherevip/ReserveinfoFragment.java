@@ -362,7 +362,7 @@ public class ReserveinfoFragment extends Fragment {
                 setuId = uId; //รับค่ามาจากหน้าลอคอิน
                 //setpId = "1"; //รับค่าจากการเลือกแอเรีย
                 setpId = pId;
-                setQR = "55555";
+                setQR = randCode();
                 setStatus = "0"; // 0 = จองอยู่ 1=จอด อาจจะไม่ต้องมีก็ได้
                 setgId = gId;
                 //ทำไมมันไม่ insert ข้อมูลในตาราง reserve , guest ก็ไม่ขึ้นละสาส

@@ -30,110 +30,22 @@
     </layouts>
   </component>
   <component name="AndroidLogFilters">
+    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="getnumparkinglot:" />
     <option name="TOOL_WINDOW_LOG_LEVEL" value="error" />
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="No Filters" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e0e0a3fc-341a-4402-91e2-8d939ae3068f" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/android_android_25.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/android_maps_utils_0_4_4.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/fileHashes.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/fileSnapshots.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/taskArtifacts.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/taskArtifacts.lock" afterPath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/taskArtifacts.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.bin" afterPath="$PROJECT_DIR$/.gradle/3.3/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" afterPath="$PROJECT_DIR$/.gradle/3.3/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/tasks/_app_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.bin" afterPath="$PROJECT_DIR$/.gradle/3.3/tasks/_app_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/tasks/_app_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" afterPath="$PROJECT_DIR$/.gradle/3.3/tasks/_app_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/animated_vector_drawable_25_3_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/animated_vector_drawable_25_3_1.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/appcompat_v7_25_3_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/appcompat_v7_25_3_1.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/constraint_layout_1_0_2.xml" afterPath="$PROJECT_DIR$/.idea/libraries/constraint_layout_1_0_2.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/constraint_layout_solver_1_0_2.xml" afterPath="$PROJECT_DIR$/.idea/libraries/constraint_layout_solver_1_0_2.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/core_1_9_8.xml" afterPath="$PROJECT_DIR$/.idea/libraries/core_1_9_8.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/design_25_3_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/design_25_3_1.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/espresso_core_2_2_2.xml" afterPath="$PROJECT_DIR$/.idea/libraries/espresso_core_2_2_2.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/espresso_idling_resource_2_2_2.xml" afterPath="$PROJECT_DIR$/.idea/libraries/espresso_idling_resource_2_2_2.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/exposed_instrumentation_api_publish_0_5.xml" afterPath="$PROJECT_DIR$/.idea/libraries/exposed_instrumentation_api_publish_0_5.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/firebase_analytics_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/firebase_analytics_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/firebase_analytics_impl_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/firebase_analytics_impl_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/firebase_appindexing_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/firebase_appindexing_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/firebase_auth_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/firebase_auth_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/firebase_common_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/firebase_common_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/firebase_config_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/firebase_config_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/firebase_crash_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/firebase_crash_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/firebase_database_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/firebase_database_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/firebase_database_connection_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/firebase_database_connection_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/firebase_dynamic_links_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/firebase_dynamic_links_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/firebase_iid_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/firebase_iid_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/firebase_messaging_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/firebase_messaging_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/firebase_storage_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/firebase_storage_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/firebase_storage_common_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/firebase_storage_common_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/mediarouter_v7_25_2_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/mediarouter_v7_25_2_0.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/multidex_1_0_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/multidex_1_0_1.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/multidex_instrumentation_1_0_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/multidex_instrumentation_1_0_1.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/org_apache_http_legacy_android_25.xml" afterPath="$PROJECT_DIR$/.idea/libraries/org_apache_http_legacy_android_25.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/palette_v7_25_2_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/palette_v7_25_2_0.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_ads_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_ads_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_ads_lite_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_ads_lite_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_analytics_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_analytics_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_analytics_impl_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_analytics_impl_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_appinvite_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_appinvite_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_auth_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_auth_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_auth_api_phone_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_auth_api_phone_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_auth_base_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_auth_base_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_awareness_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_awareness_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_base_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_base_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_basement_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_basement_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_cast_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_cast_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_cast_framework_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_cast_framework_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_clearcut_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_clearcut_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_drive_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_drive_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_fitness_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_fitness_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_games_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_games_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_gass_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_gass_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_gcm_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_gcm_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_identity_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_identity_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_iid_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_iid_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_instantapps_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_instantapps_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_location_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_location_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_maps_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_maps_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_nearby_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_nearby_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_panorama_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_panorama_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_places_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_places_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_plus_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_plus_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_safetynet_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_safetynet_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_tagmanager_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_tagmanager_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_tagmanager_api_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_tagmanager_api_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_tagmanager_v4_impl_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_tagmanager_v4_impl_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_tasks_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_tasks_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_vision_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_vision_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_vision_common_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_vision_common_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_wallet_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_wallet_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_wearable_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_wearable_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/recyclerview_v7_25_3_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/recyclerview_v7_25_3_1.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/rules_0_5.xml" afterPath="$PROJECT_DIR$/.idea/libraries/rules_0_5.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/runner_0_5.xml" afterPath="$PROJECT_DIR$/.idea/libraries/runner_0_5.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/support_annotations_25_3_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/support_annotations_25_3_1.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/support_compat_25_3_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/support_compat_25_3_1.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/support_core_ui_25_3_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/support_core_ui_25_3_1.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/support_core_utils_25_3_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/support_core_utils_25_3_1.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/support_fragment_25_3_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/support_fragment_25_3_1.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/support_media_compat_25_3_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/support_media_compat_25_3_1.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/support_v4_25_3_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/support_v4_25_3_1.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/support_vector_drawable_25_3_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/support_vector_drawable_25_3_1.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/transition_25_3_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/transition_25_3_1.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/zxing_1_9_8.xml" afterPath="$PROJECT_DIR$/.idea/libraries/zxing_1_9_8.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/app.iml" afterPath="$PROJECT_DIR$/app/app.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build.gradle" afterPath="$PROJECT_DIR$/app/build.gradle" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/icechycoco/parkherevip/BlankFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/icechycoco/parkherevip/BlankFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/icechycoco/parkherevip/HomeSecActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/icechycoco/parkherevip/HomeSecActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_blank.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_blank.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/local.properties" afterPath="$PROJECT_DIR$/local.properties" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/icechycoco/parkherevip/ReserveinfoFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/icechycoco/parkherevip/ReserveinfoFragment.java" />
     </list>
     <ignored path="ParkHereVip.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -168,16 +80,12 @@
       <file leaf-file-name="BlankFragment.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/icechycoco/parkherevip/BlankFragment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="678" column="16" selection-start-line="678" selection-start-column="16" selection-end-line="678" selection-end-column="16" />
+            <state relative-caret-position="241">
+              <caret line="897" column="43" selection-start-line="897" selection-start-column="43" selection-end-line="897" selection-end-column="43" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#BlankFragment#0;class#BlankFragment#0" expanded="false" />
                 <element signature="method#newInstance#0;class#BlankFragment#0" expanded="false" />
-                <element signature="e#7328#7525#0" expanded="true" />
-                <element signature="e#7524#7525#0" expanded="true" />
-                <element signature="e#8395#8648#0" expanded="true" />
-                <element signature="e#8647#8648#0" expanded="true" />
                 <element signature="method#onCreateView#0;class#BlankFragment#0" expanded="false" />
                 <element signature="method#onButtonPressed#0;class#BlankFragment#0" expanded="false" />
                 <element signature="method#onAttach#0;class#BlankFragment#0" expanded="false" />
@@ -194,12 +102,7 @@
                 <element signature="method#getParkId#0;class#BlankFragment#0" expanded="false" />
                 <element signature="method#updateStatusNotPark#0;class#BlankFragment#0" expanded="false" />
                 <element signature="method#showActivity#0;class#BlankFragment#0" expanded="false" />
-                <element signature="method#onClick#0;class#BlankFragment#0" expanded="false" />
                 <element signature="method#buildGoogleApiClient#0;class#BlankFragment#0" expanded="false" />
-                <element signature="e#26632#27355#0" expanded="true" />
-                <element signature="e#27100#27297#0" expanded="true" />
-                <element signature="e#27296#27297#0" expanded="true" />
-                <element signature="e#27354#27355#0" expanded="true" />
                 <element signature="docComment;method#onMapReady#0;class#BlankFragment#0" expanded="false" />
                 <element signature="method#onMapReady#0;class#BlankFragment#0" expanded="false" />
                 <element signature="method#onConnectionSuspended#0;class#BlankFragment#0" expanded="false" />
@@ -212,51 +115,16 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="local.properties" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/local.properties">
+      <file leaf-file-name="ReserveinfoFragment.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/icechycoco/parkherevip/ReserveinfoFragment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="10" column="56" selection-start-line="10" selection-start-column="56" selection-end-line="10" selection-end-column="56" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AndroidManifest.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="146">
-              <caret line="58" column="42" selection-start-line="58" selection-start-column="42" selection-end-line="58" selection-end-column="42" />
+            <state relative-caret-position="110">
+              <caret line="364" column="34" selection-start-line="364" selection-start-column="34" selection-end-line="364" selection-end-column="34" />
               <folding>
-                <element signature="e#2635#2668#0" expanded="true" />
+                <element signature="docComment;class#ReserveinfoFragment#0" expanded="false" />
+                <element signature="e#2047#2089#0" expanded="false" />
               </folding>
             </state>
-          </provider>
-          <provider editor-type-id="android-manifest">
-            <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="strings.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="320">
-              <caret line="27" column="51" selection-start-line="27" selection-start-column="51" selection-end-line="27" selection-end-column="51" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="fragment_blank.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_blank.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="318">
-              <caret line="31" column="44" selection-start-line="31" selection-start-column="44" selection-end-line="31" selection-end-column="44" />
-              <folding />
-            </state>
-          </provider>
-          <provider editor-type-id="android-designer2">
-            <state />
           </provider>
         </entry>
       </file>
@@ -2827,13 +2695,13 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/icechycoco/parkherevip/RequestFragment.java" />
         <option value="$USER_HOME$/Library/Android/sdk/platforms/android-25/android.jar!/android/app/IntentService.class" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/icechycoco/parkherevip/ActivityRecognizedService.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/icechycoco/parkherevip/ReserveinfoFragment.java" />
         <option value="$PROJECT_DIR$/app/build.gradle" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/icechycoco/parkherevip/HomeSecActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_blank.xml" />
         <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/local.properties" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/icechycoco/parkherevip/ReserveinfoFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/icechycoco/parkherevip/BlankFragment.java" />
       </list>
     </option>
@@ -3781,7 +3649,14 @@
       <option name="project" value="LOCAL" />
       <updated>1506188728241</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="locationchange sucess">
+      <created>1506174267240</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1506174267240</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TodoView">
@@ -3795,15 +3670,15 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32692307" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3253205" sideWeight="0.49167928" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3251634" sideWeight="0.49167928" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2003231" sideWeight="0.52272725" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.15849674" sideWeight="0.5244275" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23039216" sideWeight="0.47557253" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.751634" sideWeight="0.47557253" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32692307" sideWeight="0.4969743" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2009804" sideWeight="0.49353796" order="9" side_tool="false" content_ui="tabs" />
@@ -3811,7 +3686,7 @@
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5833333" sideWeight="0.51534736" order="11" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21558245" sideWeight="0.48339483" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21558245" sideWeight="0.48339483" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980332" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
@@ -3898,7 +3773,8 @@
     <MESSAGE value="." />
     <MESSAGE value="เพิ่มหลายอย่างมากเลยจ้าาาาา" />
     <MESSAGE value="auto refresh" />
-    <option name="LAST_COMMIT_MESSAGE" value="auto refresh" />
+    <MESSAGE value="locationchange sucess" />
+    <option name="LAST_COMMIT_MESSAGE" value="locationchange sucess" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -4211,26 +4087,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/icechycoco/parkherevip/ReserveFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="748">
-          <caret line="68" column="5" selection-start-line="68" selection-start-column="5" selection-end-line="68" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/icechycoco/parkherevip/ReserveinfoFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1071">
-          <caret line="101" column="13" selection-start-line="101" selection-start-column="13" selection-end-line="101" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="docComment;class#ReserveinfoFragment#0" expanded="false" />
-            <element signature="e#2047#2089#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/build/generated/source/r/debug/com/example/icechycoco/parkherevip/R.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="33">
@@ -4319,18 +4175,33 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/icechycoco/parkherevip/ReserveFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2252">
+          <caret line="61" column="21" selection-start-line="61" selection-start-column="21" selection-end-line="61" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/icechycoco/parkherevip/ReserveinfoFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="110">
+          <caret line="364" column="34" selection-start-line="364" selection-start-column="34" selection-end-line="364" selection-end-column="34" />
+          <folding>
+            <element signature="docComment;class#ReserveinfoFragment#0" expanded="false" />
+            <element signature="e#2047#2089#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/icechycoco/parkherevip/BlankFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="678" column="16" selection-start-line="678" selection-start-column="16" selection-end-line="678" selection-end-column="16" />
+        <state relative-caret-position="241">
+          <caret line="897" column="43" selection-start-line="897" selection-start-column="43" selection-end-line="897" selection-end-column="43" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#BlankFragment#0;class#BlankFragment#0" expanded="false" />
             <element signature="method#newInstance#0;class#BlankFragment#0" expanded="false" />
-            <element signature="e#7328#7525#0" expanded="true" />
-            <element signature="e#7524#7525#0" expanded="true" />
-            <element signature="e#8395#8648#0" expanded="true" />
-            <element signature="e#8647#8648#0" expanded="true" />
             <element signature="method#onCreateView#0;class#BlankFragment#0" expanded="false" />
             <element signature="method#onButtonPressed#0;class#BlankFragment#0" expanded="false" />
             <element signature="method#onAttach#0;class#BlankFragment#0" expanded="false" />
@@ -4347,12 +4218,7 @@
             <element signature="method#getParkId#0;class#BlankFragment#0" expanded="false" />
             <element signature="method#updateStatusNotPark#0;class#BlankFragment#0" expanded="false" />
             <element signature="method#showActivity#0;class#BlankFragment#0" expanded="false" />
-            <element signature="method#onClick#0;class#BlankFragment#0" expanded="false" />
             <element signature="method#buildGoogleApiClient#0;class#BlankFragment#0" expanded="false" />
-            <element signature="e#26632#27355#0" expanded="true" />
-            <element signature="e#27100#27297#0" expanded="true" />
-            <element signature="e#27296#27297#0" expanded="true" />
-            <element signature="e#27354#27355#0" expanded="true" />
             <element signature="docComment;method#onMapReady#0;class#BlankFragment#0" expanded="false" />
             <element signature="method#onMapReady#0;class#BlankFragment#0" expanded="false" />
             <element signature="method#onConnectionSuspended#0;class#BlankFragment#0" expanded="false" />

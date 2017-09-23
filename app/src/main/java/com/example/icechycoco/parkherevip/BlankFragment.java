@@ -872,7 +872,7 @@ if(isAdded()) {
         //String str = "1,14Floor Building,100,0,13.650784,100.496006\n2,CB2,110,10,13.650784,100.496006";
         String str = response;
         String[] getInfo;
-        String parkName,a,r,la,lo,pId;
+        String parkName,a,amount,la,lo,pId;
 
         ArrayList<HashMap<String, String>> parkinglot = null;
 
@@ -888,22 +888,22 @@ if(isAdded()) {
             pId = getInfo[0];
             parkName = getInfo[1];
             a = getInfo[2];
-            r = getInfo[3];
+            amount = getInfo[3];
             la = getInfo[4];
             lo = getInfo[5];
-            Log.wtf("getNumParkinglot: ", a );
+            Log.wtf("getNumParkinglot: ", amount );
 
             for(int j = 0; j < reserve.size() ; j++){
                 if(reserve.get(j).get("pId2").toString().equals(pId)){
-                    a = (Integer.parseInt(a) - Integer.parseInt(reserve.get(j).get("res").toString()))+"";
+                    a = (Integer.parseInt(amount) - Integer.parseInt(reserve.get(j).get("res").toString()))+"";
                 }
             }
 
             map = new HashMap<String, String>();
             map.put("pId",pId);
             map.put("pName", parkName);
-            map.put("available", a+"");
-            map.put("reserved", r);
+            map.put("available", a);
+            map.put("amount", amount);
             map.put("latitude", la);
             map.put("longitude", lo);
             parkinglot.add(map);
@@ -917,7 +917,7 @@ if(isAdded()) {
             }
             pName = parkinglot.get(i).get("pName").toString();
             available = parkinglot.get(i).get("available").toString();
-            reserved = parkinglot.get(i).get("reserved").toString();
+            reserved = parkinglot.get(i).get("amount").toString();
 //            latitude = parkinglot.get(i).get("reserved").toString();
 //            longitude = parkinglot.get(i).get("reserved").toString();
         }
