@@ -144,6 +144,7 @@ public class HomeSecActivity extends AppCompatActivity
                 return true;
             }
 
+
             @Override
             public boolean onQueryTextChange(String newText)
             {

@@ -5,7 +5,9 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
 import android.location.Location;
+import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -26,9 +28,9 @@ import android.widget.Toast;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.ActivityRecognition;
+import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
@@ -36,6 +38,7 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.maps.android.ui.IconGenerator;
 
 import java.io.IOException;
 import java.text.ParseException;
@@ -52,6 +55,8 @@ import okhttp3.Response;
 
 import static com.google.android.gms.internal.zzagz.runOnUiThread;
 
+//import android.location.LocationListener;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -63,12 +68,16 @@ import static com.google.android.gms.internal.zzagz.runOnUiThread;
  */
 public class BlankFragment extends Fragment implements OnMapReadyCallback, View.OnClickListener,
         GoogleApiClient.ConnectionCallbacks,
-        GoogleApiClient.OnConnectionFailedListener,
-        com.google.android.gms.location.LocationListener{
+        GoogleApiClient.OnConnectionFailedListener,LocationListener{
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String KEY_ID = "uId";
-    private String uId;
+    private String uId,best;
+
+
+
+    LocationManager locationManager;
+    String locationProvider;
 
 
     String text = "eieiza55plus";
@@ -77,7 +86,7 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
     public static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
     GoogleApiClient mGoogleApiClient;
     Location mLastLocation;
-    Marker mCurrLocationMarker;
+    Marker mCurrLocationMarker1,mCurrLocationMarker2,mCurrLocationMarker3;
     LocationRequest mLocationRequest;
     TextView txt,txt2,txt3,txt4;
     Button btn;
@@ -90,13 +99,15 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
     getHttp http = new getHttp();
 
     String parkId,timeIn,timeOut;
-    String pName,available,reserved,latitude,longitude;
+    String pId,pName,available,reserved,latitude,longitude;
     long la,lo;
     int level,sta;
     String showsta = "NULL";
 
     int i;
 
+
+    LocationListener locationListener;
     //variable
     String[] getInfo;
     String getTime;
@@ -131,6 +142,7 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
             uId = bundle.getString(KEY_ID);
         }
         Toast.makeText(getContext(), "uId : " + uId, Toast.LENGTH_SHORT).show();
+
 
         if(sta==0){
 
@@ -198,7 +210,19 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
                 builder.show();
             }
         }
+//
 
+
+
+//        Criteria crit = new Criteria();
+//        crit.setAccuracy(Criteria.ACCURACY_FINE);
+//        best = locationManager.getBestProvider(crit, false);
+//        locationManager.requestLocationUpdates(best,0,1, (LocationListener) this);
+
+//        Criteria criteria = new Criteria();
+//        provider = locationManager.getBestProvider(criteria, false);
+//                locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
+//        location = locationManager.getLastKnownLocation(locationManager.NETWORK_PROVIDER);
         Thread t = new Thread() {
 
             @Override
@@ -220,7 +244,12 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
         };
 
         t.start();
+
+
+//        this.initializeLocationManager();
     }
+
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -255,6 +284,7 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
                 showStatus2();
             }
         }));
+//
         return v;
     }
 
@@ -263,6 +293,22 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
         if (mListener != null) {
             mListener.onFragmentInteraction(uri);
         }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        Log.wtf("","resume");
+
+//        locationListener
+
+
+//        locationManager = (LocationManager)getActivity().getSystemService(Context.LOCATION_SERVICE);
+//        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,1,1, (android.location.LocationListener) this);
+//        Location loc = locationManager.getLastKnownLocation(locationManager.GPS_PROVIDER);
+
+
+//        locationManager.requestLocationUpdates(mLocationRequest,mLocationCallback,null);
     }
 
     @Override
@@ -315,8 +361,11 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
 
         if(sta==0){
             showsta = "not park ka";
+
+//            Toast.makeText(getActivity(), "Not Park", Toast.LENGTH_LONG).cancel();
         }else if(sta==1){
             showsta = "park ka";
+//            Toast.makeText(getActivity(), "Parked", Toast.LENGTH_LONG).show();
         }
 
         if(sta==0) {
@@ -608,41 +657,97 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
     }
 
     @Override
-    public void onLocationChanged(final Location location) {
+    public void onLocationChanged(Location location) {
+
+        Log.wtf("","location cc");
+
+        final MarkerOptions markerOptions = new MarkerOptions();
+
+        final LatLng latLng = new LatLng(13.6546897, 100.4946202);
+        ArrayList<LatLng> latlngs = new ArrayList<>();
+        latlngs.add(new LatLng(13.6530663, 100.4942920));
+        latlngs.add(new LatLng(13.6494580, 100.4936801));
+
+        if (mCurrLocationMarker2 != null) {
+            mCurrLocationMarker2.remove();
+        }
+        int j=3;
+        for (LatLng point : latlngs) {
+            markerOptions.position(point);
+            markerOptions.title("N: CB"+j+" A: "+15+" R: "+5);
+            markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
+
+            markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
+//            markerOptions.snippet("someDesc");
+//            mCurrLocationMarker2 = mMap.addMarker(markerOptions);
+//            mCurrLocationMarker2.showInfoWindow();
+//
+
+            if(getActivity()!=null) {
+                IconGenerator generator = new IconGenerator(getActivity());
+                generator.setStyle(generator.STYLE_BLUE);
+
+//            generator.setBackground(getResources().getDrawable(R.drawable.amu_bubble_mask));
+//            Bitmap icon = generator.makeIcon("N: CB"+j+" A: "+15+" R: "+5);
+                Bitmap icon = generator.makeIcon(11 + j + "");
 
 
-        final LatLng latLng = new LatLng(13.7009459, 100.5357529);
-        Thread t = new Thread() {
+//            generator.setContentView(txt);
 
-            @Override
-            public void run() {
-                try {
-                    while (!isInterrupted()) {
-                        Thread.sleep(1000);
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
+                MarkerOptions tp = new MarkerOptions().position(point).icon(BitmapDescriptorFactory.fromBitmap(icon));
+                mCurrLocationMarker2 = mMap.addMarker(tp);
+
+            }
+//            mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
+//            @Override
+//            public void onInfoWindowClick(Marker marker) {
+//                final AlertDialog.Builder builder =
+//                        new AlertDialog.Builder(getActivity());
+//                builder.setMessage("Name: \t\t\t\t\t\t\t\t\t\t\t\t\t\t"+pName+"\n\nAvailable: \t\t\t\t\t\t\t\t\t\t\t"+available+"\n\nReserve: \t\t\t\t\t\t\t\t\t\t\t\t"+reserved);
+//                builder.setPositiveButton("ok", new DialogInterface.OnClickListener(){
+//                    public void onClick(DialogInterface dialog, int id){
+//                        builder.getContext();
+//                    }
+//                });
+//                builder.show();
+//            }
+//            });
+            j=j+3;
+        }
 
 
-        mLastLocation = location;
 
+
+
+
+//        Thread t = new Thread() {
+//
+//            @Override
+//            public void run() {
+//                try {
+//                    while (!isInterrupted()) {
+//                        Thread.sleep(1000);
+//                        runOnUiThread(new Runnable() {
+//                            @Override
+//                            public void run() {
         float[] distance = new float[2];
 
                         /*
                         Location.distanceBetween( mMarker.getPosition().latitude, mMarker.getPosition().longitude,
                                 mCircle.getCenter().latitude, mCircle.getCenter().longitude, distance);
                                 */
+//                        Location mylocation = locationManager.getLastKnownLocation(locationManager.PASSIVE_PROVIDER);
+        mLastLocation = location;
+        Location.distanceBetween( mLastLocation.getLatitude(), mLastLocation.getLongitude(),
+                13.6546897, 100.4946202, distance);
 
-        Location.distanceBetween( location.getLatitude(), location.getLongitude(),
-                13.7009459, 100.5357529, distance);
-
-        if( distance[0] > 30 ){
+        if( distance[0] > 50 ){
 //            Log.e("Outside "+location.getLatitude(),location.getLongitude()+"");
 //            Toast.makeText(getActivity(), "Outside, distance from center: " + distance[0] + " radius: " + 80, Toast.LENGTH_LONG).show();
             showResult("Outside");
             inside=false;
             text="Outside"+distance[0];
-            txt.setText("Outside ja");
+            txt.setText("Outside ja"+distance[0]);
 
         } else {
 //            Log.e("Inside "+location.getLatitude()+"",location.getLongitude()+"");
@@ -650,25 +755,40 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
             showResult("Inside");
             inside=true;
             text="Inside"+distance[0];
-            txt.setText("Inside ja");
+            txt.setText("Inside ja"+distance[0]);
         }
 
-        if (mCurrLocationMarker != null) {
-            mCurrLocationMarker.remove();
+        if (mCurrLocationMarker1 != null) {
+            mCurrLocationMarker1.remove();
         }
         getNumParkinglot();
 
         //Place current location marker
-        MarkerOptions markerOptions = new MarkerOptions();
+
         markerOptions.position(latLng);
-        markerOptions.title("N: "+pName+" A: "+available+" R: "+reserved);
-        markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
+        markerOptions.title("N: "+pName+" A: eiei"+available+" R: "+reserved);
+                                markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
 
 //        markerOptions.snippet(txt);
-        markerOptions.draggable(true);
-        mCurrLocationMarker = mMap.addMarker(markerOptions);
+//        markerOptions.draggable(true);
+//        mCurrLocationMarker1 = mMap.addMarker(markerOptions);
+//        mCurrLocationMarker1.showInfoWindow();
 
-        mCurrLocationMarker.showInfoWindow();
+
+if(isAdded()) {
+    IconGenerator generator = new IconGenerator(getActivity().getApplicationContext());
+
+    generator.setStyle(generator.STYLE_BLUE);
+//                                Bitmap icon = generator.makeIcon("N: "+pName+" A: "+available+" R: "+reserved);
+    Bitmap icon = generator.makeIcon(available);
+
+    MarkerOptions tp = new MarkerOptions().position(latLng).icon(BitmapDescriptorFactory.fromBitmap(icon));
+
+    mCurrLocationMarker1 = mMap.addMarker(tp);
+
+
+}
+
         mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
             @Override
             public void onInfoWindowClick(Marker marker) {
@@ -684,37 +804,64 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
             }
         });
 
-                            }
-                        });
-                    }
-                } catch (InterruptedException e) {
-                }
-            }
-        };
 
-        t.start();
+
+//                            }
+//                        }
+
+//                        );
+//                    }
+//                } catch (InterruptedException e) {
+//                }
+//            }
+//        };
+//
+//        t.start();
+
 
         //move map camera
 
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
+//        mMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(location.getLatitude(),location.getLongitude())));
 //        mMap.animateCamera(CameraUpdateFactory.zoomTo(15));
 
 
-        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 16));
+//        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(location.getLatitude(),location.getLongitude()), 16));
 
 
         showActivity();
         showStatus2();
 
         //stop location updates
-        if (mGoogleApiClient != null) {
-            LocationServices.FusedLocationApi.removeLocationUpdates(mGoogleApiClient, this);
-        }
+//        if (mGoogleApiClient != null) {
+//            LocationServices.FusedLocationApi.removeLocationUpdates(mGoogleApiClient, this);
+//        }
 
     }
 
     // จำนวน available and reserved
     public void getNumParkinglot(){
+
+        ArrayList<HashMap<String, String>> reserve = null;
+        reserve = new ArrayList<HashMap<String, String>>();
+        HashMap<String, String> map2;
+        String[] getInfo2;
+        String pId2,res;
+
+        //String str2 = "2,3";
+        //String str2 = "0,0";
+        String str2 = getCountRes();
+        Scanner scan = new Scanner(str2);
+        for(int j = 0; scan.hasNext(); j++){
+            String data = scan.nextLine();
+            System.out.println(data);
+            getInfo2 = data.split(",");
+            pId2 = getInfo2[0];
+            res = getInfo2[1];
+            map2 = new HashMap<String, String>();
+            map2.put("pId2", pId2);
+            map2.put("res", res);
+            reserve.add(map2);
+        }
 
         try {
             response = http.run("http://parkhere.sit.kmutt.ac.th/getAvailable.php");
@@ -722,30 +869,40 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
             e.printStackTrace();
         }
 
+        //String str = "1,14Floor Building,100,0,13.650784,100.496006\n2,CB2,110,10,13.650784,100.496006";
         String str = response;
         String[] getInfo;
-        String parkName,a,r,la,lo;
+        String parkName,a,r,la,lo,pId;
+
         ArrayList<HashMap<String, String>> parkinglot = null;
 
         parkinglot = new ArrayList<HashMap<String, String>>();
         HashMap<String, String> map;
 
         Scanner scanner = new Scanner(str);
-
         for(int i = 0; scanner.hasNext(); i++){
+            int aa=0;
             String data = scanner.nextLine();
             System.out.println(data);
-
             getInfo = data.split(",");
-            parkName = getInfo[0];
-            a = getInfo[1];
-            r = getInfo[2];
-            la = getInfo[3];
-            lo = getInfo[4];
+            pId = getInfo[0];
+            parkName = getInfo[1];
+            a = getInfo[2];
+            r = getInfo[3];
+            la = getInfo[4];
+            lo = getInfo[5];
+            Log.wtf("getNumParkinglot: ", a );
+
+            for(int j = 0; j < reserve.size() ; j++){
+                if(reserve.get(j).get("pId2").toString().equals(pId)){
+                    a = (Integer.parseInt(a) - Integer.parseInt(reserve.get(j).get("res").toString()))+"";
+                }
+            }
 
             map = new HashMap<String, String>();
+            map.put("pId",pId);
             map.put("pName", parkName);
-            map.put("available", a);
+            map.put("available", a+"");
             map.put("reserved", r);
             map.put("latitude", la);
             map.put("longitude", lo);
@@ -754,14 +911,25 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
 
         // วิธีเรียกใช้
         for (int i = 0; i < parkinglot.size(); i++) {
+            for (int j = 0; j < reserve.size(); j++){
+                if(reserve.get(j).get("pId2").toString().equals(parkinglot.get(i).get("pId").toString())){
+                }
+            }
             pName = parkinglot.get(i).get("pName").toString();
             available = parkinglot.get(i).get("available").toString();
             reserved = parkinglot.get(i).get("reserved").toString();
-            latitude = parkinglot.get(i).get("reserved").toString();
-            longitude = parkinglot.get(i).get("reserved").toString();
-
+//            latitude = parkinglot.get(i).get("reserved").toString();
+//            longitude = parkinglot.get(i).get("reserved").toString();
         }
+    }
 
+    public String getCountRes(){
+        try {
+            response = http.run("http://parkhere.sit.kmutt.ac.th/countRes.php");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return response;
     }
 
     /**
@@ -805,6 +973,7 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
                 == PackageManager.PERMISSION_GRANTED) {
             LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, mLocationRequest, this);
         }
+
 
 
         Intent intent = new Intent( getActivity(), ActivityRecognizedService.class );
