@@ -43,6 +43,16 @@ public class CustomAdapterHisRes extends BaseAdapter {
         if(view == null)
             view = mInflater.inflate(R.layout.listview_rowhisres, parent, false);
 
+        String interval = strHis.get(position).get("timeInter").toString();
+        String timeInt = null;
+        if(interval.equals("0")){
+            timeInt = "06:00 - 12:00";
+        }else if(interval.equals("10")){
+            timeInt = "13:00 - 18:00";
+        }else if(interval.equals("11")){
+            timeInt = "06:00 - 18:00";
+        }
+
         TextView textView1 = (TextView)view.findViewById(R.id.textView1);
         textView1.setText(strHis.get(position).get("parkName").toString());
         TextView textView2 = (TextView)view.findViewById(R.id.textView2);
@@ -50,7 +60,8 @@ public class CustomAdapterHisRes extends BaseAdapter {
         TextView textView3 = (TextView)view.findViewById(R.id.textView3);
         textView3.setText("License " + strHis.get(position).get("gLi").toString());
         TextView textView4 = (TextView)view.findViewById(R.id.textView4);
-        textView4.setText("Reserve For  : " + strHis.get(position).get("date").toString() + " at " + strHis.get(position).get("timeInter").toString());
+//        textView4.setText("Reserve For  : " + strHis.get(position).get("date").toString() + " at " + strHis.get(position).get("timeInter").toString());
+        textView4.setText("Reserve For  : " + strHis.get(position).get("date").toString() + " at " + timeInt);
         TextView textView6 = (TextView)view.findViewById(R.id.textView6);
         textView6.setText(strHis.get(position).get("dateRes").toString() + "  " + strHis.get(position).get("timeRes").toString());
 

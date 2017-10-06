@@ -249,8 +249,6 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
 //        this.initializeLocationManager();
     }
 
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -360,11 +358,11 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
 
 
         if(sta==0){
-            showsta = "not park ka";
+            showsta = "not park";
 
 //            Toast.makeText(getActivity(), "Not Park", Toast.LENGTH_LONG).cancel();
         }else if(sta==1){
-            showsta = "park ka";
+            showsta = "park";
 //            Toast.makeText(getActivity(), "Parked", Toast.LENGTH_LONG).show();
         }
 
@@ -378,7 +376,12 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
                 Log.wtf("status is : ",sta+"");
                 Log.wtf("Not Park","1");
                 txt3.setText(showsta);
-                txt4.setText("Status = " +getLev(uId));
+                String str2 = getLev(uId);
+                String[] getInfo2;
+                getInfo2 = str2.split(",");
+                level = Integer.parseInt(getInfo2[0]);
+                sta = Integer.parseInt(getInfo2[1]);
+                txt4.setText("Level = " +level);
 
             }
             if (level == 10 && !checkActivity() && !inside) {
@@ -397,7 +400,13 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
                 Log.wtf("status is : ",sta+"");
                 Log.wtf("Not Park","2");
                 txt3.setText(showsta);
-                txt4.setText("Status = " +getLev(uId));
+
+                String str2 = getLev(uId);
+                String[] getInfo2;
+                getInfo2 = str2.split(",");
+                level = Integer.parseInt(getInfo2[0]);
+                sta = Integer.parseInt(getInfo2[1]);
+                txt4.setText("Level = " +level);
 
             }
 
@@ -415,7 +424,12 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
                 Log.wtf("status is : ",sta+"");
                 Log.wtf("Park","1");
                 txt3.setText(showsta);
-                txt4.setText("Status = " +getLev(uId));
+                String str2 = getLev(uId);
+                String[] getInfo2;
+                getInfo2 = str2.split(",");
+                level = Integer.parseInt(getInfo2[0]);
+                sta = Integer.parseInt(getInfo2[1]);
+                txt4.setText("Level = " +level);
 
             }
             if(level==10 && checkActivity() && !inside){
@@ -446,7 +460,12 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
                 Log.wtf("status is : ",sta+"");
                 Log.wtf("Park","2");
                 txt3.setText(showsta);
-                txt4.setText("Status = " +getLev(uId));
+                String str2 = getLev(uId);
+                String[] getInfo2;
+                getInfo2 = str2.split(",");
+                level = Integer.parseInt(getInfo2[0]);
+                sta = Integer.parseInt(getInfo2[1]);
+                txt4.setText("Level = " +level);
                 Log.wtf("why i = ","wow5");
 
             }
@@ -455,113 +474,158 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
         Log.wtf("level is : ",getLev(uId)+"");
         Log.wtf("status is : ",sta+"");
         txt3.setText(showsta + sta);
-        txt4.setText("Status = " +getLev(uId));
+        String str2 = getLev(uId);
+        String[] getInfo2;
+        getInfo2 = str2.split(",");
+        level = Integer.parseInt(getInfo2[0]);
+        sta = Integer.parseInt(getInfo2[1]);
+        txt4.setText("Level = " +level);
     }
 
-    public void showStatus(){
-
-        String str = getLev(uId);
-
-        String[] getInfo;
-        getInfo = str.split(",");
-        level = Integer.parseInt(getInfo[0]);
-        sta = Integer.parseInt(getInfo[1]);
-
-        if(sta==0){
-            showsta = "not park ka";
-        }else if(sta==1){
-            showsta = "park ka";
-        }
-
-        if(checkActivity() && !inside && !park){
-            //String output = updateLev(1,"10003");
-            level = 1;
-
-            updateLev(level,uId);
-
-            Log.wtf("level is : ",getLev(uId));
-            Log.wtf("status is : ",sta+"");
-            txt3.setText(showsta);
-            txt4.setText("Status = " +getLev(uId));
-        }
-        if(level==1 && inside && !park){
-            level=2;
-
-            updateLev(level,uId);
-
-            Log.wtf("level is : ",getLev(uId));
-            Log.wtf("status is : ",sta+"");
-            txt3.setText(showsta);
-            txt4.setText("Status = " +getLev(uId));
-        }
-        if(level==2){
-            if(!checkActivity() && inside && !park){
-                level=3;
-
-                updateLev(level,uId);
-
-                Log.wtf("level is : ",getLev(uId));
-                Log.wtf("status is : ",sta+"");
-                txt3.setText(showsta);
-                txt4.setText("Status = " +getLev(uId));
-            }else if(checkActivity() && !inside && park){
-                level=1;
-                park=false;
-
-                updateLev(level,uId);
-
-                parkId = getParkId(uId);
-                timeOut = getCurrentTime();
-                updateStatusNotPark(uId,"2",timeOut,parkId);
-
-
-                Log.wtf("level is : ",getLev(uId));
-                Log.wtf("status is : ",sta+"");
-                txt3.setText(showsta);
-                txt4.setText("Status = " +getLev(uId));
-            }
-        }
-        if(level==3){
-            if(!checkActivity() && !inside && !park){
-                level=4;
-                park=true;
-
-                updateLev(level, uId);
-
-                timeIn = getCurrentTime();
-                updateStatusPark(uId, "2", timeIn, "2017-08-18");
-
-                Log.wtf("level is : ",getLev(uId));
-                Log.wtf("status is : ",sta+"");
-                txt3.setText(showsta);
-                txt4.setText("Status = " +getLev(uId));
-            }else if(checkActivity() && inside && park){
-                level=2;
-
-                updateLev(level,uId);
-
-                Log.wtf("level is : ",getLev(uId));
-                Log.wtf("status is : ",sta+"");
-                txt3.setText(showsta);
-                txt4.setText("Status = " +getLev(uId));
-            }
-        }
-        if(level==4){
-            if (inside && park){
-                level=3;
-
-                updateLev(level,uId);
-
-
-                Log.wtf("level is : ",getLev(uId));
-                Log.wtf("status is : ",sta+"");
-                txt3.setText(showsta);
-                txt4.setText("Status = " +getLev(uId));
-            }
-        }
-        txt3.setText(showsta);
-        txt4.setText("Status = " +getLev(uId));
-    }
+//    public void showStatus(){
+//
+//        String str = getLev(uId);
+//
+//        String[] getInfo;
+//        getInfo = str.split(",");
+//        level = Integer.parseInt(getInfo[0]);
+//        sta = Integer.parseInt(getInfo[1]);
+//
+//        if(sta==0){
+//            showsta = "not park";
+//        }else if(sta==1){
+//            showsta = "park";
+//        }
+//
+//        if(checkActivity() && !inside && !park){
+//            //String output = updateLev(1,"10003");
+//            level = 1;
+//
+//            updateLev(level,uId);
+//
+//            Log.wtf("level is : ",getLev(uId));
+//            Log.wtf("status is : ",sta+"");
+//            txt3.setText(showsta);
+//            String str2 = getLev(uId);
+//            String[] getInfo2;
+//            getInfo2 = str2.split(",");
+//            level = Integer.parseInt(getInfo2[0]);
+//            sta = Integer.parseInt(getInfo2[1]);
+//            txt4.setText("Level = " +level);
+//        }
+//        if(level==1 && inside && !park){
+//            level=2;
+//
+//            updateLev(level,uId);
+//
+//            Log.wtf("level is : ",getLev(uId));
+//            Log.wtf("status is : ",sta+"");
+//            txt3.setText(showsta);
+//            String str2 = getLev(uId);
+//            String[] getInfo2;
+//            getInfo2 = str2.split(",");
+//            level = Integer.parseInt(getInfo2[0]);
+//            sta = Integer.parseInt(getInfo2[1]);
+//            txt4.setText("Level = " +level);
+//        }
+//        if(level==2){
+//            if(!checkActivity() && inside && !park){
+//                level=3;
+//
+//                updateLev(level,uId);
+//
+//                Log.wtf("level is : ",getLev(uId));
+//                Log.wtf("status is : ",sta+"");
+//                txt3.setText(showsta);
+//                String str2 = getLev(uId);
+//                String[] getInfo2;
+//                getInfo2 = str2.split(",");
+//                level = Integer.parseInt(getInfo2[0]);
+//                sta = Integer.parseInt(getInfo2[1]);
+//                txt4.setText("Level = " +level);
+//            }else if(checkActivity() && !inside && park){
+//                level=1;
+//                park=false;
+//
+//                updateLev(level,uId);
+//
+//                parkId = getParkId(uId);
+//                timeOut = getCurrentTime();
+//                updateStatusNotPark(uId,"2",timeOut,parkId);
+//
+//
+//                Log.wtf("level is : ",getLev(uId));
+//                Log.wtf("status is : ",sta+"");
+//                txt3.setText(showsta);
+//                String str2 = getLev(uId);
+//                String[] getInfo2;
+//                getInfo2 = str2.split(",");
+//                level = Integer.parseInt(getInfo2[0]);
+//                sta = Integer.parseInt(getInfo2[1]);
+//                txt4.setText("Level = " +level);
+//            }
+//        }
+//        if(level==3){
+//            if(!checkActivity() && !inside && !park){
+//                level=4;
+//                park=true;
+//
+//                updateLev(level, uId);
+//
+//                timeIn = getCurrentTime();
+//                updateStatusPark(uId, "2", timeIn, "2017-08-18");
+//
+//                Log.wtf("level is : ",getLev(uId));
+//                Log.wtf("status is : ",sta+"");
+//                txt3.setText(showsta);
+//                String str2 = getLev(uId);
+//                String[] getInfo2;
+//                getInfo2 = str2.split(",");
+//                level = Integer.parseInt(getInfo2[0]);
+//                sta = Integer.parseInt(getInfo2[1]);
+//                txt4.setText("Level = " +level);
+//            }else if(checkActivity() && inside && park){
+//                level=2;
+//
+//                updateLev(level,uId);
+//
+//                Log.wtf("level is : ",getLev(uId));
+//                Log.wtf("status is : ",sta+"");
+//                txt3.setText(showsta);
+//                String str2 = getLev(uId);
+//                String[] getInfo2;
+//                getInfo2 = str2.split(",");
+//                level = Integer.parseInt(getInfo2[0]);
+//                sta = Integer.parseInt(getInfo2[1]);
+//                txt4.setText("Level = " +level);
+//            }
+//        }
+//        if(level==4){
+//            if (inside && park){
+//                level=3;
+//
+//                updateLev(level,uId);
+//
+//
+//                Log.wtf("level is : ",getLev(uId));
+//                Log.wtf("status is : ",sta+"");
+//                txt3.setText(showsta);
+//                String str2 = getLev(uId);
+//                String[] getInfo2;
+//                getInfo2 = str2.split(",");
+//                level = Integer.parseInt(getInfo2[0]);
+//                sta = Integer.parseInt(getInfo2[1]);
+//                txt4.setText("Level = " +level);
+//            }
+//        }
+//        txt3.setText(showsta);
+//        String str2 = getLev(uId);
+//        String[] getInfo2;
+//        getInfo2 = str2.split(",");
+//        level = Integer.parseInt(getInfo2[0]);
+//        sta = Integer.parseInt(getInfo2[1]);
+//        txt4.setText("Level = " +level);
+//    }
 
     public String getCurrentTime(){
         //current time
@@ -631,9 +695,10 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
         vehicle=activityRecognition.getActivity();
 
         if(vehicle==0){
-            txt2.setText("In Vehicle"+vehicle);
+//            txt2.setText("In Vehicle"+vehicle);
+            txt2.setText("In Vehicle");
         }else{
-            txt2.setText("Not in vehicle"+vehicle);
+            txt2.setText("Not in vehicle");
         }
     }
 
@@ -671,7 +736,7 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
         if (mCurrLocationMarker2 != null) {
             mCurrLocationMarker2.remove();
         }
-        int j=3;
+        int j=0;
         for (LatLng point : latlngs) {
             markerOptions.position(point);
             markerOptions.title("N: CB"+j+" A: "+15+" R: "+5);
@@ -689,7 +754,7 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
 
 //            generator.setBackground(getResources().getDrawable(R.drawable.amu_bubble_mask));
 //            Bitmap icon = generator.makeIcon("N: CB"+j+" A: "+15+" R: "+5);
-                Bitmap icon = generator.makeIcon(11 + j + "");
+                Bitmap icon = generator.makeIcon(100 + j + "");
 
 
 //            generator.setContentView(txt);
@@ -712,7 +777,7 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
 //                builder.show();
 //            }
 //            });
-            j=j+3;
+            j=j+150;
         }
 
 
@@ -747,7 +812,7 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
             showResult("Outside");
             inside=false;
             text="Outside"+distance[0];
-            txt.setText("Outside ja"+distance[0]);
+            txt.setText("Outside");
 
         } else {
 //            Log.e("Inside "+location.getLatitude()+"",location.getLongitude()+"");
@@ -755,7 +820,7 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
             showResult("Inside");
             inside=true;
             text="Inside"+distance[0];
-            txt.setText("Inside ja"+distance[0]);
+            txt.setText("Inside");
         }
 
         if (mCurrLocationMarker1 != null) {
@@ -872,7 +937,7 @@ if(isAdded()) {
         //String str = "1,14Floor Building,100,0,13.650784,100.496006\n2,CB2,110,10,13.650784,100.496006";
         String str = response;
         String[] getInfo;
-        String parkName,a,amount,la,lo,pId;
+        String parkName,a,amount,la,lo,pId,pa;
 
         ArrayList<HashMap<String, String>> parkinglot = null;
 
@@ -891,13 +956,20 @@ if(isAdded()) {
             amount = getInfo[3];
             la = getInfo[4];
             lo = getInfo[5];
+            pa = getInfo[6];
             Log.wtf("getNumParkinglot: ", amount );
 
-            for(int j = 0; j < reserve.size() ; j++){
-                if(reserve.get(j).get("pId2").toString().equals(pId)){
-                    a = (Integer.parseInt(amount) - Integer.parseInt(reserve.get(j).get("res").toString()))+"";
+
+//            for(int j = 0; j < reserve.size() ; j++){
+                a = Integer.parseInt(amount) - Integer.parseInt(pa) +"";
+                if(reserve.get(i).get("pId2").toString().equals(pId)){
+                    a = (Integer.parseInt(amount) - Integer.
+                            parseInt(reserve.get(i).get("res").toString()) - Integer.parseInt(pa))+"";
                 }
-            }
+
+                Log.wtf("sleepy",amount+" "+reserve.get(i).get("res").toString()+ " "+Integer.parseInt(pa));
+
+//            }
 
             map = new HashMap<String, String>();
             map.put("pId",pId);
@@ -910,7 +982,7 @@ if(isAdded()) {
         }
 
         // วิธีเรียกใช้
-        for (int i = 0; i < parkinglot.size(); i++) {
+        for (int i = 0; i < 2; i++) {
             for (int j = 0; j < reserve.size(); j++){
                 if(reserve.get(j).get("pId2").toString().equals(parkinglot.get(i).get("pId").toString())){
                 }

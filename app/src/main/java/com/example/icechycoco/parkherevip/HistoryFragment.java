@@ -282,8 +282,8 @@ public class HistoryFragment extends Fragment {
                 date = getInfo[2];
                 timeInter = getInfo[3];
                 timeRes = getInfo[4];
-                //dateRes = getInfo[5];
-                dateRes = "04:09:17";
+                dateRes = getInfo[5];
+//                dateRes = "04:09:17";
 
                 map = new HashMap<String, String>();
                 //map.put("gId", gId);
