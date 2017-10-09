@@ -123,11 +123,15 @@ public class ScanActivity extends AppCompatActivity implements ZXingScannerView.
                     e.printStackTrace();
                 }
 
-                Toast.makeText(getApplicationContext(), "PARKED HERE",
-                        Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(ScanActivity.this,RequestFragment.class);
-                intent.putExtra("uId", uId);
-                startActivity(intent);
+                Toast.makeText(getApplicationContext(), "PARKED HERE", Toast.LENGTH_SHORT).show();
+//                Intent intent = new Intent(ScanActivity.this,RequestFragment.class);
+//                intent.putExtra("uId", uId);
+//                startActivity(intent);
+//                RequestFragment requestFragmentt = new RequestFragment().newInstance(uId);
+//                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+//                transaction.replace(R.id.fragment_container, requestFragmentt);
+//                transaction.commit();
+                onBackPressed();
             }
         });
 
@@ -141,13 +145,14 @@ public class ScanActivity extends AppCompatActivity implements ZXingScannerView.
         builder.setPositiveButton("TRY AGAIN", new DialogInterface.OnClickListener() {
 
             public void onClick(DialogInterface dialog, int id) {
-                Intent intent = new Intent(ScanActivity.this,RequestFragment.class);
-                intent.putExtra("uId", uId);
-                startActivity(intent);
+//                Intent intent = new Intent(ScanActivity.this,RequestFragment.class);
+//                intent.putExtra("uId", uId);
+//                startActivity(intent);
 //                RequestFragment requestFragment = new RequestFragment().newInstance(uId);
 //                FragmentTransaction transaction = getFragmentManager().beginTransaction();
 //                transaction.replace(R.id.fragment_container, requestFragment);
 //                transaction.commit();
+                onBackPressed();
             }
         });
         builder.show();
