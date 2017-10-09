@@ -1,6 +1,8 @@
 package com.example.icechycoco.parkherevip;
 
 import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
@@ -10,10 +12,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+
+import static java.security.AccessController.getContext;
 
 public class CustomAdapterReq extends BaseAdapter implements RequestFragment.OnFragmentInteractionListener {
     Context mContext;
@@ -55,8 +60,8 @@ public class CustomAdapterReq extends BaseAdapter implements RequestFragment.OnF
         if(view == null)
             view = mInflater.inflate(R.layout.listview_rowreq, parent, false);
 
-        TextView textView1 = (TextView)view.findViewById(R.id.textView1);
-        textView1.setText(strHis.get(position).get("pName").toString());
+        TextView textView5 = (TextView)view.findViewById(R.id.textView5);
+        textView5.setText(strHis.get(position).get("pName").toString());
         TextView textView2 = (TextView)view.findViewById(R.id.textView2);
         textView2.setText(strHis.get(position).get("licen").toString());
         TextView textView3 = (TextView)view.findViewById(R.id.textView3);
@@ -65,15 +70,17 @@ public class CustomAdapterReq extends BaseAdapter implements RequestFragment.OnF
         String interval = strHis.get(position).get("timeInt").toString();
         String timeInt = null;
         if (interval.equals("0")){
-            timeInt = "06:00 - 12:00";
+            timeInt = "06:00-12:00";
         }else if (interval.equals("10")){
-            timeInt = "13:00 - 18:00";
+            timeInt = "13:00-18:00";
         }else if (interval.equals("11")){
-            timeInt = "06:00 - 18:00";
+            timeInt = "06:00-18:00";
         }
-        textView4.setText("Interval : " + timeInt);
+        textView4.setText("at " + timeInt);
 
-        textView2.setOnClickListener(new View.OnClickListener() {
+        ImageButton imageButton = (ImageButton)view.findViewById(R.id.imageButton);
+
+        imageButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
@@ -84,15 +91,18 @@ public class CustomAdapterReq extends BaseAdapter implements RequestFragment.OnF
                 Log.wtf("get licen : ",getCode());
                 Log.wtf("get uId : ",requestFragment.getuId());
 
-                QRScanFragment qrScanFragment = new QRScanFragment().newInstance(requestFragment.getuId(),getCode());
+                Intent intent = new Intent(mContext, ScanActivity.class);
+                intent.putExtra("uId", requestFragment.getuId());
+                intent.putExtra("code", getCode());
+                mContext.startActivity(intent);
 
-                FragmentManager manager = ((FragmentActivity) mContext).getSupportFragmentManager();
-                FragmentTransaction transaction = manager.beginTransaction();
-                transaction.replace(R.id.fragment_container, qrScanFragment);
-                transaction.commit();
-
+//                QRScanFragment qrScanFragment = new QRScanFragment().newInstance(requestFragment.getuId(),getCode());
+//
+//                FragmentManager manager = ((FragmentActivity) mContext).getSupportFragmentManager();
+//                FragmentTransaction transaction = manager.beginTransaction();
+//                transaction.replace(R.id.fragment_container, qrScanFragment);
+//                transaction.commit();
             }
-
         });
 
         return view;

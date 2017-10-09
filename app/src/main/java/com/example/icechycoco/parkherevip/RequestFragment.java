@@ -127,21 +127,6 @@ public class RequestFragment extends Fragment {
 
         setuId(uId);
         Log.wtf("check uId "+uId+"..."+this.uId , getuId());
-
-//        btn.setOnClickListener(new View.OnClickListener() {
-//
-//
-//            @Override
-//            public void onClick(View view) {
-//                //Fragment
-//                QRScanFragment qrScanFragment = new QRScanFragment().newInstance(uId);
-//                FragmentTransaction transaction = getFragmentManager().beginTransaction();
-//                transaction.replace(R.id.fragment_container, qrScanFragment);
-//                transaction.commit();
-//            }
-//        });
-
-
         return v;
     }
 

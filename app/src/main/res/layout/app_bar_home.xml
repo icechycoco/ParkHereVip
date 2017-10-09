@@ -19,16 +19,16 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
+            android:background="@android:color/holo_blue_light"
             app:popupTheme="@style/AppTheme.PopupOverlay">
             <!--<android.support.v7.widget.SearchView-->
-                <!--android:id="@+id/fab2"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_gravity="center_horizontal|right"-->
-                <!--android:layout_marginBottom="50dp"-->
-                <!--android:layout_margin="@dimen/fab_margin"-->
-                <!--android:src="@android:drawable/ic_dialog_email" />-->
+            <!--android:id="@+id/fab2"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_gravity="center_horizontal|right"-->
+            <!--android:layout_marginBottom="50dp"-->
+            <!--android:layout_margin="@dimen/fab_margin"-->
+            <!--android:src="@android:drawable/ic_dialog_email" />-->
 
         </android.support.v7.widget.Toolbar>
 

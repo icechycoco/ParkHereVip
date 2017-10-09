@@ -842,16 +842,12 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
 
 if(isAdded()) {
     IconGenerator generator = new IconGenerator(getActivity().getApplicationContext());
-
     generator.setStyle(generator.STYLE_BLUE);
 //                                Bitmap icon = generator.makeIcon("N: "+pName+" A: "+available+" R: "+reserved);
     Bitmap icon = generator.makeIcon(available);
-
     MarkerOptions tp = new MarkerOptions().position(latLng).icon(BitmapDescriptorFactory.fromBitmap(icon));
-
     mCurrLocationMarker1 = mMap.addMarker(tp);
-
-
+    
 }
 
         mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
@@ -959,17 +955,13 @@ if(isAdded()) {
             pa = getInfo[6];
             Log.wtf("getNumParkinglot: ", amount );
 
-
-//            for(int j = 0; j < reserve.size() ; j++){
-                a = Integer.parseInt(amount) - Integer.parseInt(pa) +"";
-                if(reserve.get(i).get("pId2").toString().equals(pId)){
-                    a = (Integer.parseInt(amount) - Integer.
-                            parseInt(reserve.get(i).get("res").toString()) - Integer.parseInt(pa))+"";
-                }
-
-                Log.wtf("sleepy",amount+" "+reserve.get(i).get("res").toString()+ " "+Integer.parseInt(pa));
-
-//            }
+            a = Integer.parseInt(amount) - Integer.parseInt(pa) + "";
+            if(str2.equals("0,0")) {
+                a = Integer.parseInt(amount) - Integer.parseInt(pa) + "";
+            }else if(reserve.get(i).get("pId2").toString().equals(pId)){
+                a = (Integer.parseInt(amount) -
+                        Integer.parseInt(reserve.get(i).get("res").toString()) - Integer.parseInt(pa))+"";
+            }
 
             map = new HashMap<String, String>();
             map.put("pId",pId);

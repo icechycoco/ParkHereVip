@@ -1,9 +1,12 @@
 package com.example.icechycoco.parkherevip;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.ActionBar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TabHost;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -67,12 +71,8 @@ public class HistoryFragment extends Fragment {
         // Inflate the layout for this fragment
 
         final View v = inflater.inflate(R.layout.fragment_history, container, false);
-        //final Button button = (Button) v.findViewById(R.id.button2);
-//        final TextView textView7 = (TextView) v.findViewById(R.id.textView7);
-//        final TextView textView8 = (TextView) v.findViewById(R.id.textView8);
         final TextView textView9 = (TextView) v.findViewById(R.id.textView9);
         final TextView textView10 = (TextView) v.findViewById(R.id.textView10);
-//        final TextView textView11 = (TextView) v.findViewById(R.id.textView11);
         final TextView textView12 = (TextView) v.findViewById(R.id.textView12);
         final ListView listView = (ListView) v.findViewById(R.id.listView1);
         final Button btnRes = (Button) v.findViewById(R.id.btnRes);
@@ -375,16 +375,6 @@ public class HistoryFragment extends Fragment {
         mListener = null;
     }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p/>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);

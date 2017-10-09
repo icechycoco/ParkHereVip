@@ -243,7 +243,6 @@ public class ReserveinfoFragment extends Fragment {
 //                            transaction.replace(R.id.fragment_container, blankFragment);
 //                            transaction.commit();
                             Log.wtf("mightt","5");
-
                             reserve1();
                         }
                     });
@@ -260,13 +259,11 @@ public class ReserveinfoFragment extends Fragment {
         return v;
     }
 
-
     public void reserve2(){
         setName = etGuestN.getText().toString();
         setSur = etGuestS.getText().toString();
         try {
             response = http.run("http://parkhere.sit.kmutt.ac.th/checkG.php?gFirstN=" + setName + "&gLastN=" + setSur);
-            //Log.wtf("eie",response);
         } catch (IOException e) {
             // TODO Auto-generat-ed catch block
             e.printStackTrace();
@@ -293,19 +290,14 @@ public class ReserveinfoFragment extends Fragment {
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
                 setDateRes = sdf.format(new Date());
                 setuId = uId; //รับค่ามาจากหน้าลอคอิน
-                //setpId = "1"; //รับค่าจากการเลือกแอเรีย
                 setpId = pId;
                 setQR = randCode();
                 setStatus = "0"; // 0 = จองอยู่ 1=จอด อาจจะไม่ต้องมีก็ได้
                 setgId = gId;
-                //ทำไมมันไม่ insert ข้อมูลในตาราง reserve , guest ก็ไม่ขึ้นละสาส
-                //แก้ php เรื่องหักลบ amount บางทีมันเป็น -1
-                //ให้มันคืนค่าamountทุกๆเที่ยงคืน
                 Log.wtf("date res : ",setDateRes +" "+setpId );
                 reserve(setuId, setpId, setgId, setDate, setInterval, setTimeRes, setQR, setStatus,setDateRes);
                 try {
                     Bitmap bitmap = TextToImageEncode(setQR);
-                    //Bitmap bitmap = TextToImageEncode(setName+","+setSur+","+gLicen+","+setDate+","+setInterval+","+setpId+","+setInterval+","+setpId+","+gLicen+","+setDate);
                     saveImage(bitmap);
                 } catch (WriterException e) {
                     e.printStackTrace();
@@ -320,8 +312,6 @@ public class ReserveinfoFragment extends Fragment {
                         delImage(fname);
                     }
                 }, 5000);
-
-
 
                 ReserveFragment reserveFragment = new ReserveFragment().newInstance(uId);
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
@@ -477,10 +467,17 @@ public class ReserveinfoFragment extends Fragment {
 
     }
 
-    public String getNewGid(String gFi,String gLa){
+    public String getNewGid(String pId){
+//        try {
+//            response = http.run("http://parkhere.sit.kmutt.ac.th/getGid.php?gFirstN="+gFi+"=&gLastN="+gLa);
+//            Log.wtf("gId new guest ",response);
+//        } catch (IOException e) {
+//            // TODO Auto-generat-ed catch block
+//            e.printStackTrace();
+//        }
         try {
-            response = http.run("http://parkhere.sit.kmutt.ac.th/getGid.php?gFirstN="+gFi+"=&gLastN="+gLa);
-            Log.wtf("gId new guest ",response);
+            response = http.run("http://parkhere.sit.kmutt.ac.th/getLink.php?pId="+ pId);
+            Log.wtf("pId location ",response);
         } catch (IOException e) {
             // TODO Auto-generat-ed catch block
             e.printStackTrace();
@@ -603,15 +600,12 @@ public class ReserveinfoFragment extends Fragment {
                     GMailSender sender = new GMailSender(
                             "vipsmartpark@gmail.com",
                             "villicepark");
-
-
-
-
                     sender.addAttachment(root+"/"+fname);
                     Log.wtf("mail",root);
                     sender.sendMail("Confirm Park Reservation at KMUTT",
-                            "To: " + setName + setSur + "\n\n" +
-                                    "this is your code : " + setQR + "\n\n" +
+                            "To: Khun  " + setName+ "   " + setSur + "\n\n" +
+                                    "We reserved a parking lot for you on " + setDate + "\n\n" +
+                                    "This is your parking area, click into this link  " + getNewGid(setpId) + "\n\n\n\n" +
                                     "This mail has been sent from ParkHere application.",
                             "vipsmartpark@gmail.com",
                             email);
@@ -623,8 +617,5 @@ public class ReserveinfoFragment extends Fragment {
         }).start();
 
     }
-
-
-
 
 }

@@ -83,11 +83,9 @@ public class QRScanFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
-
         View v = inflater.inflate(R.layout.fragment_qrscan, container, false);
         btn = (Button) v.findViewById(R.id.btncheck);
         etCode = (EditText) v.findViewById(R.id.et_code);
-        //checkCode = "23519";
 
         btnScan = (Button) v.findViewById(R.id.btnscan);
 

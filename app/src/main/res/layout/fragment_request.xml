@@ -14,6 +14,8 @@
         android:layout_marginRight="5dp"
         android:layout_below="@+id/textView10"
         android:layout_centerHorizontal="true"
-        android:layout_alignParentBottom="true" />
+        android:layout_alignParentBottom="true"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="10.0sp"/>/>
 
 </FrameLayout>
