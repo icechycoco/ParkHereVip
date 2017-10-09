@@ -109,6 +109,11 @@ public class HomeStuActivity extends AppCompatActivity
             transaction.replace(R.id.fragment_container, historyFragment);
             transaction.commit();
         } else if (id == R.id.nav_logout) {
+            SharedPreferences sp = getSharedPreferences("App_Config", Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = sp.edit();
+            editor.putString("Username", "");
+            editor.putString("Password", "");
+            editor.commit();
             Intent intent = new Intent(this, LoginActivity.class);
             startActivity(intent);
         }

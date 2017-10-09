@@ -37,12 +37,14 @@ public class LoginActivity extends AppCompatActivity {
     SharedPreferences.Editor editor;
 
     public static final String PREF_NAME = "PREF_NAME";
-
+    public static final String P_NAME = "App_Config";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+
 
         etUsername = (EditText) findViewById(R.id.etUsername);
         etPassword = (EditText) findViewById(R.id.etPassword);
@@ -54,66 +56,103 @@ public class LoginActivity extends AppCompatActivity {
             StrictMode.setThreadPolicy(policy);
         }
 
+
+        SharedPreferences sp2 = getSharedPreferences("App_Config", Context.MODE_PRIVATE);
+        String userId = sp2.getString("Username", "");
+        String password = sp2.getString("Password", "");
+        if(userId!=""){
+            login(userId,password);
+        }
         btLogin.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
 
+
+
                 getUsername = etUsername.getText().toString();
                 getPassword = etPassword.getText().toString();
 
-                try {
-                    response = http.run("http://parkhere.sit.kmutt.ac.th/Login.php?username="+getUsername+"&password="+getPassword);
-
-                } catch (IOException e) {
-
-                    // TODO Auto-generat-ed catch block
-
-                    e.printStackTrace();
-                }
-
-                if(response.equals("0")){
-                    AlertDialog.Builder builder =
-                            new AlertDialog.Builder(LoginActivity.this);
-                    builder.setMessage("Wrong Username or Password");
-                    builder.setPositiveButton("Try Again", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-
-                        }
-                    });
-                    builder.show();
-                }else {
-                    getInfo = response.split(" ");
-                    position = getInfo[0];
-                    uId = getInfo[1];
-
-                    sp = getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
-                    editor = sp.edit();
-                    editor.putString("UID", uId);
-                    editor.putBoolean("hasLoggedIn", true);
-                    editor.commit();
-                    boolean hasLoggedIn = sp.getBoolean("hasLoggedIn", false);
+                login(getUsername,getPassword);
 
 
-                    if (position.equals("1")) { // user: rodrin pass: 123456
-                        Intent intent = new Intent(LoginActivity.this, HomeStuActivity.class);
-                        startActivity(intent);
-                        finish();
-                    } else if (position.equals("2")) { //user : icechy pass :123456
-                        Intent intent = new Intent(LoginActivity.this, HomeStaActivity.class);
-                        startActivity(intent);
-                        finish();
-                    } else if (position.equals("3")) { // user:park13 pass:123456
-                        Intent intent = new Intent(LoginActivity.this, HomeSecActivity.class);
-                        startActivity(intent);
-                        finish();
-                    } else {
+//                SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+//                SharedPreferences.Editor editor = settings.edit();
+//                editor.putString("username", getUsername);
+//                editor.putString("password", getPassword);
 
-                    }
-                }
+//                SharedPreferences sp = getSharedPreferences(P_NAME, Context.MODE_PRIVATE);
+//                SharedPreferences.Editor editor = sp.edit();
+//                editor.putString("Username", etUsername.getText().toString());
+//                editor.putString("Password", etPassword.getText().toString());
+//                editor.commit();
+
+
+
+
             }
 
         });
+    }
+
+
+    public void login(String user, String pass) {
+
+        SharedPreferences sp = getSharedPreferences(P_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sp.edit();
+        editor.putString("Username", user);
+        editor.putString("Password", pass);
+        editor.commit();
+
+        try {
+            response = http.run("http://parkhere.sit.kmutt.ac.th/Login.php?username="+user+"&password="+pass);
+
+        } catch (IOException e) {
+
+            // TODO Auto-generat-ed catch block
+
+            e.printStackTrace();
+        }
+
+        if(response.equals("0")){
+            AlertDialog.Builder builder =
+                    new AlertDialog.Builder(LoginActivity.this);
+            builder.setMessage("Wrong Username or Password");
+            builder.setPositiveButton("Try Again", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+
+                }
+            });
+            builder.show();
+        }else {
+            getInfo = response.split(" ");
+            position = getInfo[0];
+            uId = getInfo[1];
+
+            sp = getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
+            editor = sp.edit();
+            editor.putString("UID", uId);
+            editor.putBoolean("hasLoggedIn", true);
+            editor.commit();
+            boolean hasLoggedIn = sp.getBoolean("hasLoggedIn", false);
+
+
+            if (position.equals("1")) { // user: student pass: 123456
+                Intent intent = new Intent(LoginActivity.this, HomeStuActivity.class);
+                startActivity(intent);
+                finish();
+            } else if (position.equals("2")) { //user : staff pass :123456
+                Intent intent = new Intent(LoginActivity.this, HomeStaActivity.class);
+                startActivity(intent);
+                finish();
+            } else if (position.equals("3")) { // user:guard pass:123456
+                Intent intent = new Intent(LoginActivity.this, HomeSecActivity.class);
+                startActivity(intent);
+                finish();
+            } else {
+
+            }
+        }
     }
 
     public class getHttp {
