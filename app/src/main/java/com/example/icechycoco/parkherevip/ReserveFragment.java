@@ -30,22 +30,6 @@ import okhttp3.Response;
 
 public class ReserveFragment extends Fragment {
 
-    Button btn;
-
-    EditText etGuestN,etGuestS,etLicen, etEmail,etPhone,etDate;
-    RadioButton radioButton1,radioButton2,radioButton3;
-
-    String setName,setSur,setLicen,setEmail,setPhone;
-    //String setuId,setpId,setgId;
-    String setDate,setQR,setTimeRes;
-    //setTimeRes;
-    //String setInterval,setTimeRes,setStatus;
-//    int setuId,setpId,setgId,setInterval,setStatus;
-
-    //setpId ต้องรับค่าจากปุ่มที่กดเลือกแอเรีย
-    // setuId ต้องรับค่ามาจากหน้าลอกอิน
-    // setQR รับค่ามาจากตัว generate
-
     String response = null;
     getHttp http = new getHttp();
 
@@ -119,18 +103,6 @@ public class ReserveFragment extends Fragment {
 
         ListView listView = (ListView) v.findViewById(R.id.listView1);
         listView.setAdapter(adapter);
-
-//        adapter.button.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Log.wtf("pid = ",adapter.getpId());
-//                ReserveinfoFragment reserveinfoFragment = new ReserveinfoFragment().newInstance(uId,adapter.getpId());
-//                Log.wtf("get pid : ",adapter.getpId());
-//                FragmentTransaction transaction = getFragmentManager().beginTransaction();
-//                transaction.replace(R.id.fragment_container, reserveinfoFragment);
-//                transaction.commit();
-//            }
-//        });
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {

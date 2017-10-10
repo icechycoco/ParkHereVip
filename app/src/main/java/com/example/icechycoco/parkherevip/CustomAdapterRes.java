@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -72,9 +73,9 @@ public class CustomAdapterRes extends BaseAdapter implements ReserveFragment.OnF
         TextView textView = (TextView)view.findViewById(R.id.textView1);
         textView.setText(strParkArea.get(position).toString());
 
-        button = (Button)view.findViewById(R.id.button) ;
+        LinearLayout linearLayout = (LinearLayout)view.findViewById(R.id.linearLayout);
 
-        button.setOnClickListener(new View.OnClickListener() {
+        linearLayout.setOnClickListener(new View.OnClickListener() {
 
 
             @Override

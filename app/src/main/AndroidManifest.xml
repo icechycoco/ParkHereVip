@@ -70,6 +70,10 @@
             android:label="ScanActivity"
             android:theme="@style/AppTheme.NoActionBar" />
 
+        <activity android:name=".Tab1" />
+        <activity android:name=".Tab2" />
+        <activity android:name=".Tab3" />
+
         <service android:name=".ActivityRecognizedService" />
 
     </application>

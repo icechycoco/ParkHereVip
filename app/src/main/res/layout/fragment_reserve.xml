@@ -1,4 +1,5 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -6,36 +7,34 @@
     tools:context="com.example.icechycoco.parkherevip.ReserveinfoFragment">
 
     <!-- TODO: Update blank fragment layout -->
-
-    <RelativeLayout
-        android:layout_width="match_parent"
+    <LinearLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp">
+        android:orientation="horizontal"
+        android:layout_marginTop="15dp">
 
-        <EditText
-            android:id="@+id/etGuestN"
-            android:layout_width="wrap_content"
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="15dp"
+            android:background="@drawable/placeholder5"
+            android:layout_gravity="center_vertical"/>
+
+        <TextView
+            android:id="@+id/textView11"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
+            android:text="RESERVE parking lot for guest"
+            android:textSize="20sp"
+            android:textColor="#000000"
             android:layout_marginStart="10dp"
-            android:layout_toStartOf="@+id/etGuestS"
-            android:ems="10"
-            android:hint="Guest Name"
-            android:inputType="textPersonName" />
+            android:layout_gravity="center_vertical"/>
 
-        <EditText
-            android:id="@+id/etGuestS"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/etGuestN"
-            android:layout_alignBottom="@+id/etGuestN"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="10dp"
-            android:ems="10"
-            android:hint="Guest Surname"
-            android:inputType="textPersonName" />
-    </RelativeLayout>
+
+
+    </LinearLayout>
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -43,140 +42,220 @@
         android:orientation="horizontal"
         android:layout_marginTop="10dp">
 
+        <ImageView
+            android:id="@+id/imageView5"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginStart="15dp"
+            android:background="@drawable/profile"
+            android:layout_gravity="center_vertical"/>
+
+        <EditText
+            android:id="@+id/etGuestN"
+            android:layout_width="145dp"
+            android:layout_height="wrap_content"
+            android:hint="Guest Name"
+            android:layout_marginStart="10dp"
+            android:inputType="textPersonName" />
+
+        <EditText
+            android:id="@+id/etGuestS"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="10dp"
+            android:hint="Guest Surname"
+            android:inputType="textPersonName"
+            android:layout_weight="5.56" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="8dp">
+
         <Button
             android:id="@+id/btn_check"
             style="@android:style/Widget.DeviceDefault.Light.Button.Small"
             android:layout_width="112dp"
             android:layout_height="35dp"
-            android:layout_marginStart="20dp"
+            android:layout_marginStart="40dp"
             android:text="Check" />
 
         <TextView
             android:id="@+id/tv_result"
-            android:layout_width="144dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
-            android:text="result" />
+            android:layout_marginEnd="10dp"/>
     </LinearLayout>
 
-    <EditText
-        android:id="@+id/etLicen"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="License Plate"
-        android:inputType="textPersonName"
-        android:layout_marginTop="15dp"
-        android:layout_marginStart="10dp"
-        android:layout_below="@+id/btn_check"
-        android:layout_alignStart="@+id/etGuestN" />
+        android:layout_marginTop="8dp"
+        android:orientation="horizontal">
 
-    <EditText
-        android:id="@+id/etPhone"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:layout_marginStart="10dp"
-        android:ems="10"
-        android:hint="Phone"
-        android:inputType="phone"
-        android:layout_below="@+id/etEmail"
-        android:layout_alignStart="@+id/etDate" />
+        <ImageView
+            android:id="@+id/imageView6"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginStart="15dp"
+            android:background="@drawable/target"
+            android:layout_gravity="center_vertical"/>
 
-    <EditText
-        android:id="@+id/etEmail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/etLicen"
-        android:layout_below="@+id/etLicen"
-        android:layout_marginTop="15dp"
-        android:layout_marginStart="10dp"
-        android:ems="10"
-        android:hint="Email"
-        android:inputType="textEmailAddress" />
+        <EditText
+            android:id="@+id/etLicen"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:hint="License Plate"
+            android:inputType="textPersonName" />
 
-    <RelativeLayout
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:layout_marginStart="10dp">
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp">
+
+        <ImageView
+            android:id="@+id/imageView7"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginStart="15dp"
+            android:background="@drawable/phonecall"
+            android:layout_gravity="center_vertical"/>
+
+        <EditText
+            android:id="@+id/etPhone"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:hint="Phone"
+            android:inputType="phone" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp">
+
+        <ImageView
+            android:id="@+id/imageView8"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginStart="15dp"
+            android:background="@drawable/envelope"
+            android:layout_gravity="center_vertical"/>
+
+        <EditText
+            android:id="@+id/etEmail"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:hint="Email"
+            android:inputType="textEmailAddress" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp">
+
+        <ImageView
+            android:id="@+id/imageView9"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginStart="15dp"
+            android:background="@drawable/calendar"
+            android:layout_gravity="center_vertical"/>
 
         <EditText
             android:id="@+id/etDate"
-            android:layout_width="wrap_content"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:ems="10"
+            android:layout_marginStart="10dp"
             android:hint="Date"
             android:inputType="date" />
 
-        <Button
-            android:id="@+id/btn_select"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/etDate"
-            android:layout_marginStart="30dp"
-            android:layout_toEndOf="@+id/etDate"
-            android:text="SELECT" />
-    </RelativeLayout>
+    </LinearLayout>
 
-    <TextView
-        android:id="@+id/textView7"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="15dp"
-        android:text="Choose time interval "
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:textSize="15dp" />
+        android:orientation="vertical"
+        android:layout_marginTop="10dp">
 
-    <RadioGroup
+        <TextView
+            android:id="@+id/textView7"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_marginStart="15dp"
+            android:text="Choose time interval "
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textSize="15dp" />
 
-        android:id="@+id/radioGroup"
-        android:orientation="horizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="15dp"
-        android:layout_alignBottom="@+id/btn_reserve"
-        android:layout_alignStart="@+id/etDate">
+        <RadioGroup
 
-        <RadioButton
-            android:id="@+id/radioButton1"
+            android:id="@+id/radioGroup"
+            android:orientation="horizontal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="06:00 - 12:00"
-            android:layout_alignBaseline="@+id/radioButton2"
-            android:layout_alignBottom="@+id/radioButton2"
-            android:layout_alignEnd="@+id/btn_check" />
+            android:layout_marginStart="10dp">
 
-        <RadioButton
-            android:id="@+id/radioButton2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="13:00 - 18:00"
-            android:layout_alignBaseline="@+id/radioButton3"
-            android:layout_alignBottom="@+id/radioButton3"
-            android:layout_toEndOf="@+id/radioButton1" />
+            <RadioButton
+                android:id="@+id/radioButton1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="06:00 - 12:00" />
 
-        <RadioButton
-            android:id="@+id/radioButton3"
-            android:layout_width="138dp"
-            android:layout_height="wrap_content"
-            android:text="06:00 - 18:00"
-            android:layout_above="@+id/btn_reserve"
-            android:layout_toEndOf="@+id/radioButton2" />
+            <RadioButton
+                android:id="@+id/radioButton2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="13:00 - 18:00" />
 
-    </RadioGroup>
+            <RadioButton
+                android:id="@+id/radioButton3"
+                android:layout_width="138dp"
+                android:layout_height="wrap_content"
+                android:text="06:00 - 18:00" />
 
-    <Button
-        android:id="@+id/btn_reserve"
+        </RadioGroup>
+
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_gravity="center"
-        android:layout_marginTop="20dp"
-        android:text="RESERVE" />
+        android:layout_marginTop="15dp"
+        android:layout_gravity="center_horizontal">
+
+        <Button
+            android:id="@+id/btn_reserve"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="RESERVE" />
+
+    </LinearLayout>
+
+        <!---->
+        <!--<Button-->
+            <!--android:id="@+id/btn_select"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_alignTop="@+id/etDate"-->
+            <!--android:layout_marginStart="30dp"-->
+            <!--android:layout_toEndOf="@+id/etDate"-->
+            <!--android:text="SELECT" />-->
 
 
 </LinearLayout>

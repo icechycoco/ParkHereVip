@@ -119,7 +119,7 @@ public class ReserveinfoFragment extends Fragment {
         final View v = inflater.inflate(R.layout.fragment_reserve, container, false);
         btn = (Button) v.findViewById(R.id.btn_reserve);
         btnC = (Button) v.findViewById(R.id.btn_check);
-        btnS = (Button) v.findViewById(R.id.btn_select);
+        //btnS = (Button) v.findViewById(R.id.btn_select);
 
         Log.wtf("mightt","1");
 
@@ -132,7 +132,7 @@ public class ReserveinfoFragment extends Fragment {
 
         textView = (TextView) v.findViewById(R.id.tv_result);
 
-        btnS.setOnClickListener(new View.OnClickListener() {
+        etDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 new DatePickerDialog(getActivity(), Mydate,

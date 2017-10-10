@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -27,10 +28,29 @@ public class CustomAdapterReq extends BaseAdapter implements RequestFragment.OnF
     RequestFragment requestFragment = new RequestFragment();
     //String[] strName;
     ArrayList<HashMap<String, String>> strHis;
+    String[] getInfo1;
+    String str1;
+    String[] month = {"Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"};
+    String d,m,mm,y,newDate;
 
     public CustomAdapterReq(Context context, ArrayList<HashMap<String, String>> strHis) {
         this.mContext= context;
         this.strHis = strHis;
+    }
+
+    public String changeDateFormat(String str){
+        getInfo1 = str.split("-");
+        y = getInfo1[0];
+        m = getInfo1[1];
+        d = getInfo1[2];
+        for(int i=0;i<month.length;i++){
+            if(i==Integer.parseInt(m)){
+                mm = month[i];
+                break;
+            }
+        }
+        newDate = d + " " + mm + " " + y;
+        return newDate;
     }
 
     public void setCode(String code){
@@ -64,9 +84,7 @@ public class CustomAdapterReq extends BaseAdapter implements RequestFragment.OnF
         textView5.setText(strHis.get(position).get("pName").toString());
         TextView textView2 = (TextView)view.findViewById(R.id.textView2);
         textView2.setText(strHis.get(position).get("licen").toString());
-        TextView textView3 = (TextView)view.findViewById(R.id.textView3);
-        textView3.setText(strHis.get(position).get("date").toString());
-        TextView textView4 = (TextView)view.findViewById(R.id.textView4);
+        str1 = strHis.get(position).get("date").toString();
         String interval = strHis.get(position).get("timeInt").toString();
         String timeInt = null;
         if (interval.equals("0")){
@@ -76,11 +94,12 @@ public class CustomAdapterReq extends BaseAdapter implements RequestFragment.OnF
         }else if (interval.equals("11")){
             timeInt = "06:00-18:00";
         }
-        textView4.setText("at " + timeInt);
 
-        ImageButton imageButton = (ImageButton)view.findViewById(R.id.imageButton);
+        TextView textView3 = (TextView)view.findViewById(R.id.textView3);
+        textView3.setText(changeDateFormat(str1) + " " + timeInt);
 
-        imageButton.setOnClickListener(new View.OnClickListener() {
+        LinearLayout linearLayout = (LinearLayout)view.findViewById(R.id.linearLayout);
+        linearLayout.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
@@ -95,13 +114,6 @@ public class CustomAdapterReq extends BaseAdapter implements RequestFragment.OnF
                 intent.putExtra("uId", requestFragment.getuId());
                 intent.putExtra("code", getCode());
                 mContext.startActivity(intent);
-
-//                QRScanFragment qrScanFragment = new QRScanFragment().newInstance(requestFragment.getuId(),getCode());
-//
-//                FragmentManager manager = ((FragmentActivity) mContext).getSupportFragmentManager();
-//                FragmentTransaction transaction = manager.beginTransaction();
-//                transaction.replace(R.id.fragment_container, qrScanFragment);
-//                transaction.commit();
             }
         });
 
