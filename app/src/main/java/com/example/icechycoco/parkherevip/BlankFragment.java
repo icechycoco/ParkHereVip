@@ -1,5 +1,6 @@
 package com.example.icechycoco.parkherevip;
 
+import android.app.Dialog;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -21,7 +22,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -143,7 +146,6 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
         }
         Toast.makeText(getContext(), "uId : " + uId, Toast.LENGTH_SHORT).show();
 
-
         if(sta==0){
 
             try {
@@ -199,15 +201,26 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
                     System.out.println(fee);
                 }
 
-                final AlertDialog.Builder builder =
-                        new AlertDialog.Builder(getActivity());
-                builder.setMessage("\nTime in : \t\t\t\t\t\t\t\t\t\t\t\t\t\t"+timeIn+"\n\nCurrent time : \t\t\t\t\t\t\t\t\t"+currentTime+"\n\nReal-Time fee : \t\t\t\t\t\t\t"+realFee+" BAHT");
-                builder.setPositiveButton("ok", new DialogInterface.OnClickListener(){
-                    public void onClick(DialogInterface dialog, int id){
-                        builder.getContext();
-                    }
-                });
-                builder.show();
+                final Dialog dialog = new Dialog(getContext());
+                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                dialog.setContentView(R.layout.dialog_fee);
+
+                final TextView tin = (TextView) dialog.findViewById(R.id.textView13);
+                final TextView tout = (TextView) dialog.findViewById(R.id.textView15);
+                final TextView estfee = (TextView) dialog.findViewById(R.id.textView17);
+                ImageView imageView = (ImageView) dialog.findViewById(R.id.imageView);
+                tin.setText(timeIn);
+                tout.setText(currentTime);
+                estfee.setText(realFee +" BAHT");
+
+//                imageView.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        dialog.dismiss();
+//                    }
+//                });
+
+                dialog.show();
             }
         }
 //
@@ -780,21 +793,6 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
             j=j+150;
         }
 
-
-
-
-
-
-//        Thread t = new Thread() {
-//
-//            @Override
-//            public void run() {
-//                try {
-//                    while (!isInterrupted()) {
-//                        Thread.sleep(1000);
-//                        runOnUiThread(new Runnable() {
-//                            @Override
-//                            public void run() {
         float[] distance = new float[2];
 
                         /*
@@ -865,37 +863,8 @@ if(isAdded()) {
             }
         });
 
-
-
-//                            }
-//                        }
-
-//                        );
-//                    }
-//                } catch (InterruptedException e) {
-//                }
-//            }
-//        };
-//
-//        t.start();
-
-
-        //move map camera
-
-//        mMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(location.getLatitude(),location.getLongitude())));
-//        mMap.animateCamera(CameraUpdateFactory.zoomTo(15));
-
-
-//        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(location.getLatitude(),location.getLongitude()), 16));
-
-
         showActivity();
         showStatus2();
-
-        //stop location updates
-//        if (mGoogleApiClient != null) {
-//            LocationServices.FusedLocationApi.removeLocationUpdates(mGoogleApiClient, this);
-//        }
 
     }
 
@@ -907,9 +876,6 @@ if(isAdded()) {
         HashMap<String, String> map2;
         String[] getInfo2;
         String pId2,res;
-
-        //String str2 = "2,3";
-        //String str2 = "0,0";
         String str2 = getCountRes();
         Scanner scan = new Scanner(str2);
         for(int j = 0; scan.hasNext(); j++){

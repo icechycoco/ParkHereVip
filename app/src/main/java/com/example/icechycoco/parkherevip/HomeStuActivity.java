@@ -14,7 +14,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import java.io.IOException;
+
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 public class HomeStuActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,
@@ -22,6 +31,9 @@ public class HomeStuActivity extends AppCompatActivity
 
     String uId;
     SharedPreferences sp;
+    // connect db
+    String response = null;
+    getHttp http = new getHttp();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,14 +42,6 @@ public class HomeStuActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-//        fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
-//            }
-//        });
         sp = getSharedPreferences("PREF_NAME", Context.MODE_PRIVATE);
         uId = sp.getString("UID", "0");
         Toast.makeText(this, "uId : " + uId, Toast.LENGTH_SHORT).show();
@@ -55,6 +59,11 @@ public class HomeStuActivity extends AppCompatActivity
         toggle.syncState();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        View hView =  navigationView.getHeaderView(0);
+        TextView nav_user = (TextView)hView.findViewById(R.id.tvname);
+        nav_user.setText(getName(uId));
+        ImageView img = (ImageView)hView.findViewById(R.id.imageView);
+        img.setBackgroundResource(R.drawable.stu);
         navigationView.setNavigationItemSelectedListener(this);
     }
 
@@ -118,7 +127,6 @@ public class HomeStuActivity extends AppCompatActivity
             startActivity(intent);
         }
 
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
@@ -127,5 +135,27 @@ public class HomeStuActivity extends AppCompatActivity
     @Override
     public void onFragmentInteraction(Uri uri) {
 
+    }
+
+    public String getName(String uId){
+        try {
+            response = http.run("http://parkhere.sit.kmutt.ac.th/getUname.php?uId="+uId);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return response;
+    }
+
+    public class getHttp {
+        OkHttpClient client = new OkHttpClient();
+
+        String run(String url) throws IOException {
+            Request request = new Request.Builder()
+                    .url(url)
+                    .build();
+            Response response = client.newCall(request).execute();
+            return response.body().string();
+
+        }
     }
 }

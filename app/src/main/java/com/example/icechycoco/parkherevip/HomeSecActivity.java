@@ -18,6 +18,10 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.IOException;
@@ -53,15 +57,6 @@ public class HomeSecActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-//        fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
-//            }
-//        });
-
         // send variable
         sp = getSharedPreferences("PREF_NAME", Context.MODE_PRIVATE);
         uId = sp.getString("UID", "0");
@@ -80,6 +75,11 @@ public class HomeSecActivity extends AppCompatActivity
         toggle.syncState();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        View hView =  navigationView.getHeaderView(0);
+        TextView nav_user = (TextView)hView.findViewById(R.id.tvname);
+        nav_user.setText(getName(uId));
+        ImageView img = (ImageView)hView.findViewById(R.id.imageView);
+        img.setBackgroundResource(R.drawable.sec);
         navigationView.setNavigationItemSelectedListener(this);
 
 
@@ -144,7 +144,6 @@ public class HomeSecActivity extends AppCompatActivity
                 return true;
             }
 
-
             @Override
             public boolean onQueryTextChange(String newText)
             {
@@ -188,17 +187,6 @@ public class HomeSecActivity extends AppCompatActivity
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.home_sec, menu);
 
-//
-//        // Inflate the options menu from XML
-//        getMenuInflater().inflate(R.menu.home_sec, menu);
-//
-//        // Get the SearchView and set the searchable configuration
-//        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-//        SearchView searchView = (SearchView) menu.findItem(R.id.action_search).getActionView();
-//        // Assumes current activity is the searchable activity
-//        searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
-//        searchView.setIconifiedByDefault(false); // Do not iconify the widget; expand it by default
-
         return true;
     }
 
@@ -208,11 +196,6 @@ public class HomeSecActivity extends AppCompatActivity
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-//        if (id == R.id.action_settings) {
-//            return true;
-//        }
 
         return super.onOptionsItemSelected(item);
     }
@@ -258,6 +241,15 @@ public class HomeSecActivity extends AppCompatActivity
     @Override
     public void onFragmentInteraction(Uri uri) {
 
+    }
+
+    public String getName(String uId){
+        try {
+            response = http.run("http://parkhere.sit.kmutt.ac.th/getUname.php?uId="+uId);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return response;
     }
 
     public class getHttp {

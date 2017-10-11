@@ -15,10 +15,20 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import java.io.IOException;
+
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 public class HomeStaActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, ReserveinfoFragment.OnFragmentInteractionListener,
@@ -29,6 +39,10 @@ public class HomeStaActivity extends AppCompatActivity
     String uId;
     SharedPreferences sp;
 
+    // connect db
+    String response = null;
+    getHttp http = new getHttp();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,10 +50,6 @@ public class HomeStaActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-//        MapFragment mapFragment = new MapFragment();
-//        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-//        transaction.replace(R.id.fragment_container, mapFragment);
-//        transaction.commit();
         sp = getSharedPreferences("PREF_NAME", Context.MODE_PRIVATE);
         uId = sp.getString("UID", "0");
         Toast.makeText(this, "uId : " + uId, Toast.LENGTH_SHORT).show();
@@ -56,11 +66,14 @@ public class HomeStaActivity extends AppCompatActivity
         toggle.syncState();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        View hView =  navigationView.getHeaderView(0);
+        TextView nav_user = (TextView)hView.findViewById(R.id.tvname);
+        nav_user.setText(getName(uId));
+        ImageView img = (ImageView)hView.findViewById(R.id.imageView);
+        img.setBackgroundResource(R.drawable.sta);
         navigationView.setNavigationItemSelectedListener(this);
 
-
     }
-
     public void showNotification(View view) {
 
         Notification notification =
@@ -158,6 +171,28 @@ public class HomeStaActivity extends AppCompatActivity
     @Override
     public void onFragmentInteraction(Uri uri) {
 
+    }
+
+    public String getName(String uId){
+        try {
+            response = http.run("http://parkhere.sit.kmutt.ac.th/getUname.php?uId="+uId);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return response;
+    }
+
+    public class getHttp {
+        OkHttpClient client = new OkHttpClient();
+
+        String run(String url) throws IOException {
+            Request request = new Request.Builder()
+                    .url(url)
+                    .build();
+            Response response = client.newCall(request).execute();
+            return response.body().string();
+
+        }
     }
 
 }
