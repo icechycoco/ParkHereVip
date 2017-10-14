@@ -16,8 +16,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.IOException;
@@ -30,8 +33,6 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 import static android.content.Context.NOTIFICATION_SERVICE;
-
-
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
@@ -42,8 +43,6 @@ import static android.content.Context.NOTIFICATION_SERVICE;
  */
 public class RequestFragment extends Fragment {
 
-    Button btn;
-
     private static final String KEY_ID = "uId";
     private static String uId;
 
@@ -51,6 +50,11 @@ public class RequestFragment extends Fragment {
     String response = null;
     getHttp http = new getHttp();
     private OnFragmentInteractionListener mListener;
+
+    private ArrayList<String> parkArea = new ArrayList<String>();
+    private Spinner spinner;
+    private String filterParkArea;
+    private String str;
 
     public RequestFragment() {
         // Required empty public constructor
@@ -88,11 +92,64 @@ public class RequestFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
-        View v = inflater.inflate(R.layout.fragment_request, container, false);
+        final View v = inflater.inflate(R.layout.fragment_request, container, false);
         //btn = (Button) v.findViewById(R.id.btn_req);
+        spinner = (Spinner) v.findViewById(R.id.spinner);
+        createThaiClubData();
+        ArrayAdapter<String> adapterThai = new ArrayAdapter<String>(getContext(),
+                android.R.layout.simple_dropdown_item_1line, parkArea);
+        spinner.setAdapter(adapterThai);
 
-        String str = getReq();
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if(position==0){
+                    str = getReq2();
+                    CustomAdapterReq adapter = new CustomAdapterReq(getContext(), showHis(str));
+                    ListView listView = (ListView) v.findViewById(R.id.listView1);
+                    TextView textView9 = (TextView) v.findViewById(R.id.textView9);
+                    listView.setAdapter(adapter);
+                    listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                        public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
 
+                        }
+                    });
+                    listView.setVisibility(View.VISIBLE);
+                    textView9.setVisibility(View.INVISIBLE);
+                }else {
+                    ListView listView = (ListView) v.findViewById(R.id.listView1);
+                    TextView textView9 = (TextView) v.findViewById(R.id.textView9);
+                    str = getReq(position + "");
+                    if(str.equals("0 ")){
+                        textView9.setText("No request(s) at this park area");
+                        listView.setVisibility(View.INVISIBLE);
+                        textView9.setVisibility(View.VISIBLE);
+                    }else {
+                        CustomAdapterReq adapter = new CustomAdapterReq(getContext(), showHis(str));
+                        listView.setAdapter(adapter);
+                        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                            public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+
+                            }
+                        });
+                        listView.setVisibility(View.VISIBLE);
+                        textView9.setVisibility(View.INVISIBLE);
+                    }
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        setuId(uId);
+        Log.wtf("check uId "+uId+"..."+this.uId , getuId());
+        return v;
+    }
+
+    public ArrayList showHis(String str){
         String[] getInfo;
         String parkName,interval,licen,date,code;
         String timeInt = null;
@@ -123,24 +180,29 @@ public class RequestFragment extends Fragment {
             history.add(map);
         }
 
-        CustomAdapterReq adapter = new CustomAdapterReq(getContext(), history);
-
-        ListView listView = (ListView) v.findViewById(R.id.listView1);
-        listView.setAdapter(adapter);
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-
-            }
-        });
-
-        setuId(uId);
-        Log.wtf("check uId "+uId+"..."+this.uId , getuId());
-        return v;
+        return history;
     }
 
-    public String getReq(){
+    private void createThaiClubData() {
+
+        parkArea.add("ALL");
+        parkArea.add("CB4");
+        parkArea.add("FIBO");
+        parkArea.add("14 Floors Building");
+    }
+
+    public String getReq(String str){
         try {
-            response = http.run("http://parkhere.sit.kmutt.ac.th/req.php");
+            response = http.run("http://parkhere.sit.kmutt.ac.th/req.php?pId="+str);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return response;
+    }
+
+    public String getReq2(){
+        try {
+            response = http.run("http://parkhere.sit.kmutt.ac.th/req2.php");
         } catch (IOException e) {
             e.printStackTrace();
         }
