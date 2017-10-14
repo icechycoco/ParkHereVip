@@ -24,6 +24,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -157,6 +158,72 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
             if(response.equals("0")){
 
             }else{
+
+//                final Dialog dialog = new Dialog(getContext());
+//                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+//                dialog.setContentView(R.layout.dialog_manage);
+//
+//                final TextView number = (TextView) dialog.findViewById(R.id.editText);
+//                final ImageButton in = (ImageButton) dialog.findViewById(R.id.buttonIn);
+//                final ImageButton de = (ImageButton) dialog.findViewById(R.id.buttonDe);
+//                final Button cncl = (Button) dialog.findViewById(R.id.button_cancel);
+//                final Button ok = (Button) dialog.findViewById(R.id.button_login);
+//
+//                ok.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        try {
+//                            // สร้าง php ใหม่เปลี่ยนจำนวน available
+//                            response = http.run("http://parkhere.sit.kmutt.ac.th/estimate.php?uId="+uId);
+//                        } catch (IOException e) {
+//                            e.printStackTrace();
+//                        }
+//                        dialog.dismiss();
+//                    }
+//                });
+//
+//                cncl.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        dialog.dismiss();
+//                    }
+//                });
+//
+//                //i = Integer.parseInt(_value.getText().toString());
+//                i = 20;
+//
+//                number.setText(i+"");
+//
+//                de.setOnClickListener(new View.OnClickListener() {
+//
+//                    public void onClick(View v) {
+//                        String _stringVal;
+//                        Log.d("src", "Decreasing value...");
+//                        if (i > 0) {
+//                            i = i - 1;
+//                            _stringVal = String.valueOf(i);
+//                            number.setText(_stringVal);
+//                        } else {
+//                            Log.d("src", "Value can't be less than 0");
+//                        }
+//
+//                    }
+//                });
+//
+//                in.setOnClickListener(new View.OnClickListener() {
+//
+//                    @Override
+//                    public void onClick(View v) {
+//                        String _stringVal;
+//                        Log.d("src", "Increasing value...");
+//                        i = i + 1;
+//                        _stringVal = String.valueOf(i);
+//                        number.setText(_stringVal);
+//                    }
+//                });
+//
+//                dialog.show();
+
                 getInfo = response.split(" ");
                 getTime = getInfo[0];
                 getCost = Integer.parseInt(getInfo[1]);
@@ -208,17 +275,9 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
                 final TextView tin = (TextView) dialog.findViewById(R.id.textView13);
                 final TextView tout = (TextView) dialog.findViewById(R.id.textView15);
                 final TextView estfee = (TextView) dialog.findViewById(R.id.textView17);
-                ImageView imageView = (ImageView) dialog.findViewById(R.id.imageView);
                 tin.setText(timeIn);
                 tout.setText(currentTime);
                 estfee.setText(realFee +" BAHT");
-
-//                imageView.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View v) {
-//                        dialog.dismiss();
-//                    }
-//                });
 
                 dialog.show();
             }
