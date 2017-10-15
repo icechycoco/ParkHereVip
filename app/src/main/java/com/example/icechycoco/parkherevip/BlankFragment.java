@@ -800,10 +800,16 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
 
         final MarkerOptions markerOptions = new MarkerOptions();
 
-        final LatLng latLng = new LatLng(13.6546897, 100.4946202);
-        ArrayList<LatLng> latlngs = getLocation();
-        latlngs.add(new LatLng(13.6530663, 100.4942920));
-        latlngs.add(new LatLng(13.6494580, 100.4936801));
+        final LatLng latLng = null;
+        ArrayList<HashMap<String, String>> lalo = getLocation();
+        ArrayList<LatLng> latlngs = new ArrayList<>();;
+        for (int i=0;i<lalo.size();i++){
+            latlngs.add(new LatLng(Double.parseDouble(lalo.get(i).get("la").toString()),
+                    Double.parseDouble(lalo.get(i).get("lo").toString())));
+
+        }
+//        latlngs.add(new LatLng(13.6530663, 100.4942920));
+//        latlngs.add(new LatLng(13.6494580, 100.4936801));
 
 
         if (mCurrLocationMarker2 != null) {
@@ -1017,7 +1023,6 @@ if(isAdded()) {
         String[] getInfo;
         String lat,lon;
         ArrayList<HashMap<String, String>> location = null;
-
         location = new ArrayList<HashMap<String, String>>();
         HashMap<String, String> latlong;
 
