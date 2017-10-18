@@ -6,7 +6,16 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Typeface;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.LayerDrawable;
+import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationManager;
 import android.net.Uri;
@@ -24,8 +33,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Button;
-import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,14 +42,15 @@ import com.google.android.gms.location.ActivityRecognition;
 import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.maps.android.ui.IconGenerator;
 
 import java.io.IOException;
 import java.text.ParseException;
@@ -83,6 +91,9 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
     LocationManager locationManager;
     String locationProvider;
 
+    Drawable image;
+    Resources res;
+    BitmapDrawable finalImage;
 
     String text = "eieiza55plus";
     //para
@@ -283,8 +294,6 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
             }
         }
 //
-
-
 
 //        Criteria crit = new Criteria();
 //        crit.setAccuracy(Criteria.ACCURACY_FINE);
@@ -796,68 +805,108 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
     @Override
     public void onLocationChanged(Location location) {
 
-        Log.wtf("","location cc");
-
         final MarkerOptions markerOptions = new MarkerOptions();
 
         final LatLng latLng = null;
         ArrayList<HashMap<String, String>> lalo = getLocation();
-        ArrayList<LatLng> latlngs = new ArrayList<>();;
-        for (int i=0;i<lalo.size();i++){
+        ArrayList<LatLng> latlngs = new ArrayList<>();
+        for (int i=0;i<lalo.size();i++) {
+
             latlngs.add(new LatLng(Double.parseDouble(lalo.get(i).get("la").toString()),
                     Double.parseDouble(lalo.get(i).get("lo").toString())));
 
+            Log.wtf("might narak",Double.parseDouble(lalo.get(i).get("la").toString())+" "+Double.parseDouble(lalo.get(i).get("lo").toString()));
+
         }
-//        latlngs.add(new LatLng(13.6530663, 100.4942920));
-//        latlngs.add(new LatLng(13.6494580, 100.4936801));
 
 
-        if (mCurrLocationMarker2 != null) {
-            mCurrLocationMarker2.remove();
-        }
         int j=0;
         for (LatLng point : latlngs) {
             markerOptions.position(point);
-            markerOptions.title("N: CB"+j+" A: "+15+" R: "+5);
             markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
+            if (getActivity() != null) {
 
-            markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
-//            markerOptions.snippet("someDesc");
-//            mCurrLocationMarker2 = mMap.addMarker(markerOptions);
-//            mCurrLocationMarker2.showInfoWindow();
-//
+                if (isAdded()) {
+                    image = ContextCompat.getDrawable(getActivity(), R.drawable.marker_01);
+                }
+                // Store our image size as a constant
+                final int IMAGE_WIDTH = image.getIntrinsicWidth();
+                final int IMAGE_HEIGHT = image.getIntrinsicHeight();
 
-            if(getActivity()!=null) {
-                IconGenerator generator = new IconGenerator(getActivity());
-                generator.setStyle(generator.STYLE_BLUE);
+                // You can also use Config.ARGB_4444 to conserve memory or ARGB_565 if
+                // you don't have any transparency.
+                Bitmap canvasBitmap = Bitmap.createBitmap(IMAGE_WIDTH,
+                        IMAGE_HEIGHT,
+                        Bitmap.Config.ARGB_8888);
 
-//            generator.setBackground(getResources().getDrawable(R.drawable.amu_bubble_mask));
-//            Bitmap icon = generator.makeIcon("N: CB"+j+" A: "+15+" R: "+5);
-                Bitmap icon = generator.makeIcon(100 + j + "");
+                if(isAdded()) {
+                    res = getActivity().getResources();
+                }
+                Bitmap canvasBitmap2 = BitmapFactory.decodeResource(res, R.drawable.marker_01);
+                Bitmap drawableBitmap = canvasBitmap2.copy(Bitmap.Config.ARGB_8888, true);
+
+                // Create a canvas, that will draw on to canvasBitmap. canvasBitmap is
+                // currently blank.
+                Canvas imageCanvas = new Canvas(canvasBitmap);
+
+                // Set up the paint for use with our Canvas
+                Paint imagePaint = new Paint();
+                imageCanvas.drawBitmap(drawableBitmap, 0.0f, 0.0f, null);
+                imagePaint.setTextAlign(Paint.Align.CENTER);
+                imagePaint.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
+                imagePaint.setTextSize(35f);
+
+                // Draw the image to our canvas
+                image.draw(imageCanvas);
+
+                // Draw the text on top of our image
+                imageCanvas.drawText("50",
+                        IMAGE_WIDTH / 2,
+                        IMAGE_HEIGHT / 2,
+                        imagePaint);
+
+                // This is the final image that you can use
+                if(isAdded()) {
+                    finalImage = new BitmapDrawable(getResources(), canvasBitmap);
+                }
+                Bitmap myLogo = finalImage.getBitmap();
+                markerOptions.icon(BitmapDescriptorFactory.fromBitmap(myLogo));
 
 
-//            generator.setContentView(txt);
+                mCurrLocationMarker1 = mMap.addMarker(markerOptions);
 
-                MarkerOptions tp = new MarkerOptions().position(point).icon(BitmapDescriptorFactory.fromBitmap(icon));
-                mCurrLocationMarker2 = mMap.addMarker(tp);
 
+
+//                IconGenerator generator = new IconGenerator(getActivity());
+//                generator.setStyle(generator.STYLE_BLUE);
+//                Bitmap icon = generator.makeIcon(100 + j + "");
+//                MarkerOptions tp = new MarkerOptions().position(point).icon(BitmapDescriptorFactory.fromBitmap(icon));
+//                mCurrLocationMarker2 = mMap.addMarker(tp);
             }
-//            mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
-//            @Override
-//            public void onInfoWindowClick(Marker marker) {
-//                final AlertDialog.Builder builder =
-//                        new AlertDialog.Builder(getActivity());
-//                builder.setMessage("Name: \t\t\t\t\t\t\t\t\t\t\t\t\t\t"+pName+"\n\nAvailable: \t\t\t\t\t\t\t\t\t\t\t"+available+"\n\nReserve: \t\t\t\t\t\t\t\t\t\t\t\t"+reserved);
-//                builder.setPositiveButton("ok", new DialogInterface.OnClickListener(){
-//                    public void onClick(DialogInterface dialog, int id){
-//                        builder.getContext();
-//                    }
-//                });
-//                builder.show();
-//            }
-//            });
-            j=j+150;
         }
+//        final LatLng latLng = new LatLng(13.6546897, 100.4946202);
+
+//        ArrayList<LatLng> latlngs = new ArrayList<>();
+//        latlngs.add(new LatLng(13.6530663, 100.4942920));
+//        latlngs.add(new LatLng(13.6494580, 100.4936801));
+        if (mCurrLocationMarker1 != null) {
+            mCurrLocationMarker1.remove();
+        }
+        if (mCurrLocationMarker2 != null) {
+            mCurrLocationMarker2.remove();
+        }
+
+
+//        Thread t = new Thread() {
+//
+//            @Override
+//            public void run() {
+//                try {
+//                    while (!isInterrupted()) {
+//                        Thread.sleep(1000);
+//                        runOnUiThread(new Runnable() {
+//                            @Override
+//                            public void run() {
 
         float[] distance = new float[2];
 
@@ -867,70 +916,153 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
                                 */
 //                        Location mylocation = locationManager.getLastKnownLocation(locationManager.PASSIVE_PROVIDER);
         mLastLocation = location;
-        Location.distanceBetween( mLastLocation.getLatitude(), mLastLocation.getLongitude(),
+        Location.distanceBetween(mLastLocation.getLatitude(), mLastLocation.getLongitude(),
                 13.6546897, 100.4946202, distance);
 
-        if( distance[0] > 50 ){
+        if (distance[0] > 50) {
 //            Log.e("Outside "+location.getLatitude(),location.getLongitude()+"");
 //            Toast.makeText(getActivity(), "Outside, distance from center: " + distance[0] + " radius: " + 80, Toast.LENGTH_LONG).show();
             showResult("Outside");
-            inside=false;
-            text="Outside"+distance[0];
+            inside = false;
+            text = "Outside" + distance[0];
             txt.setText("Outside");
 
         } else {
 //            Log.e("Inside "+location.getLatitude()+"",location.getLongitude()+"");
 //            Toast.makeText(getActivity(), "Inside, distance from center: " + distance[0] + " radius: " + 80 , Toast.LENGTH_LONG).show();
             showResult("Inside");
-            inside=true;
-            text="Inside"+distance[0];
+            inside = true;
+            text = "Inside" + distance[0];
             txt.setText("Inside");
         }
 
-        if (mCurrLocationMarker1 != null) {
-            mCurrLocationMarker1.remove();
-        }
+
         getNumParkinglot();
 
         //Place current location marker
+//        markerOptions.position(latLng);
 
-        markerOptions.position(latLng);
-        markerOptions.title("N: "+pName+" A: eiei"+available+" R: "+reserved);
-                                markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
-
+//        markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
 //        markerOptions.snippet(txt);
 //        markerOptions.draggable(true);
-//        mCurrLocationMarker1 = mMap.addMarker(markerOptions);
+//        Drawable drawable = getResources().getDrawable(R.drawable.marker_01);
+//        Drawable image = ResourcesCompat.getDrawable(getResources(), R.drawable.marker_01, null);
+
+
+        if (isAdded()) {
+            image = ContextCompat.getDrawable(getActivity(), R.drawable.marker_01);
+        }
+        // Store our image size as a constant
+        final int IMAGE_WIDTH = image.getIntrinsicWidth();
+        final int IMAGE_HEIGHT = image.getIntrinsicHeight();
+
+        // You can also use Config.ARGB_4444 to conserve memory or ARGB_565 if
+        // you don't have any transparency.
+        Bitmap canvasBitmap = Bitmap.createBitmap(IMAGE_WIDTH,
+                IMAGE_HEIGHT,
+                Bitmap.Config.ARGB_8888);
+
+        if(isAdded()) {
+            res = getActivity().getResources();
+        }
+        Bitmap canvasBitmap2 = BitmapFactory.decodeResource(res, R.drawable.marker_01);
+        Bitmap drawableBitmap = canvasBitmap2.copy(Bitmap.Config.ARGB_8888, true);
+
+        // Create a canvas, that will draw on to canvasBitmap. canvasBitmap is
+        // currently blank.
+        Canvas imageCanvas = new Canvas(canvasBitmap);
+
+        // Set up the paint for use with our Canvas
+        Paint imagePaint = new Paint();
+        imageCanvas.drawBitmap(drawableBitmap, 0.0f, 0.0f, null);
+        imagePaint.setTextAlign(Paint.Align.CENTER);
+        imagePaint.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
+        imagePaint.setTextSize(35f);
+
+        // Draw the image to our canvas
+        image.draw(imageCanvas);
+
+        // Draw the text on top of our image
+        imageCanvas.drawText(available,
+                IMAGE_WIDTH / 2,
+                IMAGE_HEIGHT / 2,
+                imagePaint);
+
+        // This is the final image that you can use
+        if(isAdded()) {
+            finalImage = new BitmapDrawable(getResources(), canvasBitmap);
+        }
+        Bitmap myLogo = finalImage.getBitmap();
+        markerOptions.icon(BitmapDescriptorFactory.fromBitmap(myLogo));
+
+
+        mCurrLocationMarker1 = mMap.addMarker(markerOptions);
 //        mCurrLocationMarker1.showInfoWindow();
 
 
-if(isAdded()) {
-    IconGenerator generator = new IconGenerator(getActivity().getApplicationContext());
-    generator.setStyle(generator.STYLE_BLUE);
-//                                Bitmap icon = generator.makeIcon("N: "+pName+" A: "+available+" R: "+reserved);
-    Bitmap icon = generator.makeIcon(available);
-    MarkerOptions tp = new MarkerOptions().position(latLng).icon(BitmapDescriptorFactory.fromBitmap(icon));
-    mCurrLocationMarker1 = mMap.addMarker(tp);
-    
-}
 
-        mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
+        mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
             @Override
-            public void onInfoWindowClick(Marker marker) {
+            public boolean onMarkerClick(Marker marker) {
                 final AlertDialog.Builder builder =
                         new AlertDialog.Builder(getActivity());
-                builder.setMessage("Name: \t\t\t\t\t\t\t\t\t\t\t\t\t\t"+pName+"\n\nAvailable: \t\t\t\t\t\t\t\t\t\t\t"+available+"\n\nReserve: \t\t\t\t\t\t\t\t\t\t\t\t"+reserved);
-                builder.setPositiveButton("ok", new DialogInterface.OnClickListener(){
-                    public void onClick(DialogInterface dialog, int id){
+                builder.setMessage("Name: \t\t\t\t\t\t\t\t\t\t\t\t\t\t" + pName + "\n\nAvailable: \t\t\t\t\t\t\t\t\t\t\t" + available + "\n\nReserve: \t\t\t\t\t\t\t\t\t\t\t\t" + reserved);
+                builder.setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
                         builder.getContext();
                     }
                 });
                 builder.show();
+                return false;
             }
         });
+//
+//        mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
+//            @Override
+//            public void onInfoWindowClick(Marker marker) {
+//                final AlertDialog.Builder builder =
+//                        new AlertDialog.Builder(getActivity());
+//                builder.setMessage("Name: \t\t\t\t\t\t\t\t\t\t\t\t\t\t" + pName + "\n\nAvailable: \t\t\t\t\t\t\t\t\t\t\t" + available + "\n\nReserve: \t\t\t\t\t\t\t\t\t\t\t\t" + reserved);
+//                builder.setPositiveButton("ok", new DialogInterface.OnClickListener() {
+//                    public void onClick(DialogInterface dialog, int id) {
+//                        builder.getContext();
+//                    }
+//                });
+//                builder.show();
+//            }
+//        });
+
+
+//                            }
+//                        }
+
+//                        );
+//                    }
+//                } catch (InterruptedException e) {
+//                }
+//            }
+//        };
+//
+//        t.start();
+
+
+        //move map camera
+
+//        mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
+//        mMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(location.getLatitude(),location.getLongitude())));
+//        mMap.animateCamera(CameraUpdateFactory.zoomTo(15));
+
+
+//        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(location.getLatitude(),location.getLongitude()), 16));
+
 
         showActivity();
         showStatus2();
+
+        //stop location updates
+//        if (mGoogleApiClient != null) {
+//            LocationServices.FusedLocationApi.removeLocationUpdates(mGoogleApiClient, this);
+//        }
 
     }
 
@@ -942,6 +1074,9 @@ if(isAdded()) {
         HashMap<String, String> map2;
         String[] getInfo2;
         String pId2,res;
+
+        //String str2 = "2,3";
+        //String str2 = "0,0";
         String str2 = getCountRes();
         Scanner scan = new Scanner(str2);
         for(int j = 0; scan.hasNext(); j++){
@@ -1019,31 +1154,6 @@ if(isAdded()) {
         }
     }
 
-    public ArrayList getLocation(){
-        String[] getInfo;
-        String lat,lon;
-        ArrayList<HashMap<String, String>> location = null;
-        location = new ArrayList<HashMap<String, String>>();
-        HashMap<String, String> latlong;
-
-        try {
-            response = http.run("http://parkhere.sit.kmutt.ac.th/getLocation.php");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        getInfo = response.split(",");
-        lat = getInfo[0];
-        lon = getInfo[1];
-
-        latlong = new HashMap<String, String>();
-        latlong.put("la", lat);
-        latlong.put("lo", lon);
-        location.add(latlong);
-
-        return location;
-    }
-
     public String getCountRes(){
         try {
             response = http.run("http://parkhere.sit.kmutt.ac.th/countRes.php");
@@ -1064,6 +1174,8 @@ if(isAdded()) {
      */
     @Override
     public void onMapReady(GoogleMap googleMap) {
+        image = ContextCompat.getDrawable(getActivity(), R.drawable.marker_01);
+
         mMap = googleMap;
         //mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
 
@@ -1080,6 +1192,24 @@ if(isAdded()) {
             buildGoogleApiClient();
             mMap.setMyLocationEnabled(true);
         }
+
+        LocationManager locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
+        Criteria criteria = new Criteria();
+
+        Location location = locationManager.getLastKnownLocation(locationManager.getBestProvider(criteria, false));
+        if (location != null)
+        {
+            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(100, 31), 10));
+
+            CameraPosition cameraPosition = new CameraPosition.Builder()
+                    .target(new LatLng(location.getLatitude(), location.getLongitude()))      // Sets the center of the map to location user
+                    .zoom(17)                   // Sets the zoom
+//                    .bearing(90)                // Sets the orientation of the camera to east
+//                    .tilt(40)                   // Sets the tilt of the camera to 30 degrees
+                    .build();                   // Creates a CameraPosition from the builder
+            mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+        }
+
     }
 
     @Override
@@ -1096,10 +1226,9 @@ if(isAdded()) {
         }
 
 
-
-        Intent intent = new Intent( getActivity(), ActivityRecognizedService.class );
-        PendingIntent pendingIntent = PendingIntent.getService( getActivity(), 0, intent, PendingIntent.FLAG_UPDATE_CURRENT );
-        ActivityRecognition.ActivityRecognitionApi.requestActivityUpdates( mGoogleApiClient, 3000, pendingIntent );
+        Intent intent = new Intent(getActivity(), ActivityRecognizedService.class);
+        PendingIntent pendingIntent = PendingIntent.getService(getActivity(), 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        ActivityRecognition.ActivityRecognitionApi.requestActivityUpdates(mGoogleApiClient, 3000, pendingIntent);
 
     }
 
@@ -1175,6 +1304,61 @@ if(isAdded()) {
             // other 'case' lines to check for other permissions this app might request.
             // You can add here other case statements according to your requirement.
         }
+    }
+
+    private Drawable createMarkerIcon(Drawable backgroundImage, String text,
+                                      int width, int height) {
+
+        Bitmap canvasBitmap = Bitmap.createBitmap(width, height,
+                Bitmap.Config.ARGB_8888);
+        // Create a canvas, that will draw on to canvasBitmap.
+        Canvas imageCanvas = new Canvas(canvasBitmap);
+
+        // Set up the paint for use with our Canvas
+        Paint imagePaint = new Paint();
+        imagePaint.setTextAlign(Paint.Align.CENTER);
+        imagePaint.setTextSize(16f);
+
+        // Draw the image to our canvas
+        backgroundImage.draw(imageCanvas);
+
+        // Draw the text on top of our image
+        imageCanvas.drawText(text, width / 2, height / 2, imagePaint);
+
+        // Combine background and text to a LayerDrawable
+        LayerDrawable layerDrawable = new LayerDrawable(
+                new Drawable[]{backgroundImage, new BitmapDrawable(canvasBitmap)});
+        return layerDrawable;
+    }
+
+
+    public ArrayList getLocation(){
+        String[] getInfo;
+        String lat,lon;
+        ArrayList<HashMap<String, String>> location = null;
+        location = new ArrayList<HashMap<String, String>>();
+        HashMap<String, String> latlong;
+
+        try {
+            response = http.run("http://parkhere.sit.kmutt.ac.th/getLocation.php");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Scanner scanner = new Scanner(response);
+        for(int i = 0; scanner.hasNext(); i++){
+            String data = scanner.nextLine();
+            getInfo = data.split(",");
+            lat = getInfo[0];
+            lon = getInfo[1];
+
+            latlong = new HashMap<String, String>();
+            latlong.put("la", lat);
+            latlong.put("lo", lon);
+            location.add(latlong);
+        }
+
+
+        return location;
     }
 
     public class getHttp {
