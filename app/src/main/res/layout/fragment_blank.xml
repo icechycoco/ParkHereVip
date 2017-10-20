@@ -67,5 +67,12 @@
         android:layout_alignParentEnd="true"/>
         <!--android:visibility="invisible"-->
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Large Text"
+        android:id="@+id/textView5"
+        android:textSize="10sp"/>
+
 
 </RelativeLayout>
