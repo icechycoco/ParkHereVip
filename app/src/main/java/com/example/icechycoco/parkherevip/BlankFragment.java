@@ -180,72 +180,72 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
 
             }else{
 
-                final Dialog dialog = new Dialog(getContext());
-                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-                dialog.setContentView(R.layout.dialog_manage);
-
-                final EditText number = (EditText) dialog.findViewById(R.id.editText);
-                final ImageButton in = (ImageButton) dialog.findViewById(R.id.buttonIn);
-                final ImageButton de = (ImageButton) dialog.findViewById(R.id.buttonDe);
-                final Button cncl = (Button) dialog.findViewById(R.id.button_cancel);
-                final Button ok = (Button) dialog.findViewById(R.id.button_login);
-
-                ok.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        try {
-                            // สร้าง php ใหม่เปลี่ยนจำนวน available
-                            response = http.run("http://parkhere.sit.kmutt.ac.th/setNumber.php?pId="+1+"&remain="+number.getText());
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                        dialog.dismiss();
-                    }
-                });
-
-                cncl.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        dialog.dismiss();
-                    }
-                });
-
-                //i = Integer.parseInt(_value.getText().toString());
-                i = 20;
-
-                number.setText(i+"");
-
-                de.setOnClickListener(new View.OnClickListener() {
-
-                    public void onClick(View v) {
-                        String _stringVal;
-                        Log.d("src", "Decreasing value...");
-                        if (i > 0) {
-                            i = i - 1;
-                            _stringVal = String.valueOf(i);
-                            number.setText(_stringVal);
-                            Log.wtf("number : ", number.getText() + "");
-                        } else {
-                            Log.d("src", "Value can't be less than 0");
-                        }
-
-                    }
-                });
-
-                in.setOnClickListener(new View.OnClickListener() {
-
-                    @Override
-                    public void onClick(View v) {
-                        String _stringVal;
-                        Log.d("src", "Increasing value...");
-                        i = i + 1;
-                        _stringVal = String.valueOf(i);
-                        number.setText(_stringVal);
-                        Log.wtf("number : ", number.getText() + "");
-                    }
-                });
-
-                dialog.show();
+//                final Dialog dialog = new Dialog(getContext());
+//                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+//                dialog.setContentView(R.layout.dialog_manage);
+//
+//                final EditText number = (EditText) dialog.findViewById(R.id.editText);
+//                final ImageButton in = (ImageButton) dialog.findViewById(R.id.buttonIn);
+//                final ImageButton de = (ImageButton) dialog.findViewById(R.id.buttonDe);
+//                final Button cncl = (Button) dialog.findViewById(R.id.button_cancel);
+//                final Button ok = (Button) dialog.findViewById(R.id.button_login);
+//
+//                ok.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        try {
+//                            // สร้าง php ใหม่เปลี่ยนจำนวน available
+//                            response = http.run("http://parkhere.sit.kmutt.ac.th/setNumber.php?pId="+1+"&remain="+number.getText());
+//                        } catch (IOException e) {
+//                            e.printStackTrace();
+//                        }
+//                        dialog.dismiss();
+//                    }
+//                });
+//
+//                cncl.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        dialog.dismiss();
+//                    }
+//                });
+//
+//                //i = Integer.parseInt(_value.getText().toString());
+//                i = 20;
+//
+//                number.setText(i+"");
+//
+//                de.setOnClickListener(new View.OnClickListener() {
+//
+//                    public void onClick(View v) {
+//                        String _stringVal;
+//                        Log.d("src", "Decreasing value...");
+//                        if (i > 0) {
+//                            i = i - 1;
+//                            _stringVal = String.valueOf(i);
+//                            number.setText(_stringVal);
+//                            Log.wtf("number : ", number.getText() + "");
+//                        } else {
+//                            Log.d("src", "Value can't be less than 0");
+//                        }
+//
+//                    }
+//                });
+//
+//                in.setOnClickListener(new View.OnClickListener() {
+//
+//                    @Override
+//                    public void onClick(View v) {
+//                        String _stringVal;
+//                        Log.d("src", "Increasing value...");
+//                        i = i + 1;
+//                        _stringVal = String.valueOf(i);
+//                        number.setText(_stringVal);
+//                        Log.wtf("number : ", number.getText() + "");
+//                    }
+//                });
+//
+//                dialog.show();
 
 //                getInfo = response.split(" ");
 //                getTime = getInfo[0];
@@ -857,6 +857,13 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
 
         }
 
+        ArrayList<HashMap<String, String>> getNum = getNumParkinglot();
+
+        // รับมาแต่ละตัว
+        pName = getNum.get(i).get("pName").toString();
+        pId = getNum.get(i).get("pId").toString();
+        available = getNum.get(i).get("available").toString();
+
         int j=0;
         for (LatLng point : latlngs) {
             markerOptions.position(point);
@@ -969,8 +976,6 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
             txt.setText("Inside");
         }
 
-        ArrayList<HashMap<String, String>> getNum = getNumParkinglot();
-
         //Place current location marker
 //        markerOptions.position(latLng);
 
@@ -1013,11 +1018,6 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
 
         // Draw the image to our canvas
         image.draw(imageCanvas);
-
-        // รับมาแต่ละตัว
-        pName = getNum.get(i).get("pName").toString();
-        pId = getNum.get(i).get("pId").toString();
-        available = getNum.get(i).get("available").toString();
 
         // Draw the text on top of our image
         imageCanvas.drawText(available,
