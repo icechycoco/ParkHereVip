@@ -532,7 +532,7 @@ public class ReserveinfoFragment extends Fragment {
             return "" + i1;
         }
 
-//        Log.wtf("mightt","9999");
+        Log.wtf("mightt","9999");
         return randCode();
 
     }
