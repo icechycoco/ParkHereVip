@@ -12,7 +12,7 @@
         android:layout_height="match_parent"
         tools:context="com.example.rodrin.parkhere.MapsActivity"
         android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"/>
 
     <TextView
         android:id="@+id/textView"
@@ -26,7 +26,6 @@
         android:layout_alignStart="@+id/textView2"
         android:layout_marginBottom="20dp"/>
         <!--android:visibility="invisible"-->
-        />
 
     <TextView
         android:id="@+id/textView2"
@@ -39,7 +38,6 @@
         android:layout_alignStart="@+id/textView3"
         android:layout_marginBottom="20dp"/>
         <!--android:visibility="invisible"-->
-        />
 
     <TextView
         android:layout_width="wrap_content"
@@ -52,7 +50,6 @@
         android:layout_alignStart="@+id/textView4"
         android:layout_marginBottom="20dp"/>
         <!--android:visibility="invisible"-->
-        />
 
     <TextView
         android:layout_width="wrap_content"
