@@ -51,7 +51,7 @@ public class HomeStuActivity extends AppCompatActivity
 //        transaction.replace(R.id.fragment_container, blankFragment);
 //        transaction.commit();
 
-        AvailableFragment availableFragment = new AvailableFragment().newInstance(uId);
+        AvailableFragment availableFragment = new AvailableFragment().newInstance(uId,"1");
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.fragment_container, availableFragment);
         transaction.commit();
@@ -116,7 +116,7 @@ public class HomeStuActivity extends AppCompatActivity
 //            transaction.replace(R.id.fragment_container, blankFragment);
 //            transaction.commit();
 
-            AvailableFragment availableFragment = new AvailableFragment().newInstance(uId);
+            AvailableFragment availableFragment = new AvailableFragment().newInstance(uId,"1");
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
             transaction.replace(R.id.fragment_container, availableFragment);
             transaction.commit();
