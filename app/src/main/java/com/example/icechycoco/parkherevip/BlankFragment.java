@@ -1,5 +1,6 @@
 package com.example.icechycoco.parkherevip;
 
+import android.app.Dialog;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -34,7 +35,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -54,7 +58,18 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.protocol.BasicHttpContext;
+import org.apache.http.protocol.HttpContext;
+
 import java.io.IOException;
+import java.io.InputStream;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -66,6 +81,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
+import static android.content.Context.SENSOR_SERVICE;
 import static com.google.android.gms.internal.zzagz.runOnUiThread;
 
 //import android.location.LocationListener;
@@ -79,15 +95,16 @@ import static com.google.android.gms.internal.zzagz.runOnUiThread;
  * Use the {@link BlankFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
+
 public class BlankFragment extends Fragment implements OnMapReadyCallback, View.OnClickListener,
         GoogleApiClient.ConnectionCallbacks,
-        GoogleApiClient.OnConnectionFailedListener,LocationListener, SensorEventListener{
+        GoogleApiClient.OnConnectionFailedListener,LocationListener, SensorEventListener, StepListener{
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String KEY_ID = "uId";
     private String uId,best;
-
-
+    private static final String KEY_PO = "po";
+    private String po;
 
     LocationManager locationManager;
     String locationProvider;
@@ -120,8 +137,14 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
     int level,sta;
     String showsta = "NULL";
 
-    SensorManager sensorManager;
+    //SensorManager sensorManager;
     boolean running = false;
+
+    private StepDetector simpleStepDetector;
+    private SensorManager sensorManager;
+    private Sensor accel;
+    private static final String TEXT_NUM_STEPS = "Number of Steps: ";
+    private int numSteps;
 
     int i;
 
@@ -131,7 +154,7 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
     String[] getInfo;
     String getTime;
     int getCost,getMCost;
-    String currentTime;
+    String currentTime,getFloor;
     Date date1,date2;
     long realFee;
     long diffHours = 0;
@@ -144,10 +167,11 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
     }
 
     // TODO: Rename and change types and number of parameters
-    public static BlankFragment newInstance(String uId) {
+    public static BlankFragment newInstance(String uId, String po) {
         BlankFragment fragment = new BlankFragment();
         Bundle args = new Bundle();
         args.putString(KEY_ID, uId);
+        args.putString(KEY_PO, po);
         fragment.setArguments(args);
         return fragment;
     }
@@ -159,6 +183,7 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
         Bundle bundle = getArguments();
         if (bundle != null) {
             uId = bundle.getString(KEY_ID);
+            po = bundle.getString(KEY_PO);
         }
         Toast.makeText(getContext(), "uId : " + uId, Toast.LENGTH_SHORT).show();
 
@@ -174,142 +199,69 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
 
             }else{
 
-//                final Dialog dialog = new Dialog(getContext());
-//                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-//                dialog.setContentView(R.layout.dialog_manage);
-//
-//                final EditText number = (EditText) dialog.findViewById(R.id.editText);
-//                final ImageButton in = (ImageButton) dialog.findViewById(R.id.buttonIn);
-//                final ImageButton de = (ImageButton) dialog.findViewById(R.id.buttonDe);
-//                final Button cncl = (Button) dialog.findViewById(R.id.button_cancel);
-//                final Button ok = (Button) dialog.findViewById(R.id.button_login);
-//
-//                ok.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View v) {
-//                        try {
-//                            // สร้าง php ใหม่เปลี่ยนจำนวน available
-//                            response = http.run("http://parkhere.sit.kmutt.ac.th/setNumber.php?pId="+1+"&remain="+number.getText());
-//                        } catch (IOException e) {
-//                            e.printStackTrace();
-//                        }
-//                        dialog.dismiss();
-//                    }
-//                });
-//
-//                cncl.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View v) {
-//                        dialog.dismiss();
-//                    }
-//                });
-//
-//                //i = Integer.parseInt(_value.getText().toString());
-//                i = 20;
-//
-//                number.setText(i+"");
-//
-//                de.setOnClickListener(new View.OnClickListener() {
-//
-//                    public void onClick(View v) {
-//                        String _stringVal;
-//                        Log.d("src", "Decreasing value...");
-//                        if (i > 0) {
-//                            i = i - 1;
-//                            _stringVal = String.valueOf(i);
-//                            number.setText(_stringVal);
-//                            Log.wtf("number : ", number.getText() + "");
-//                        } else {
-//                            Log.d("src", "Value can't be less than 0");
-//                        }
-//
-//                    }
-//                });
-//
-//                in.setOnClickListener(new View.OnClickListener() {
-//
-//                    @Override
-//                    public void onClick(View v) {
-//                        String _stringVal;
-//                        Log.d("src", "Increasing value...");
-//                        i = i + 1;
-//                        _stringVal = String.valueOf(i);
-//                        number.setText(_stringVal);
-//                        Log.wtf("number : ", number.getText() + "");
-//                    }
-//                });
-//
-//                dialog.show();
+                getInfo = response.split(" ");
+                getTime = getInfo[0];
+                getCost = Integer.parseInt(getInfo[1]);
+                getMCost = Integer.parseInt(getInfo[2]);
+                getFloor = getInfo[3];
 
-//                getInfo = response.split(" ");
-//                getTime = getInfo[0];
-//                getCost = Integer.parseInt(getInfo[1]);
-//                getMCost = Integer.parseInt(getInfo[2]);
-//
-//                // convert string time in database to time
-//                SimpleDateFormat sdf = new SimpleDateFormat("hh:mm:ss");
-//                Date date = null;
-//                try {
-//                    date = sdf.parse(getTime);
-//                } catch (ParseException e) {
-//                    e.printStackTrace();
-//                }
-//                timeIn = sdf.format(date);
-//
-//                //current time
-//                Calendar cal = Calendar.getInstance();
-//                SimpleDateFormat sdf2 = new SimpleDateFormat("HH:mm:ss");
-//                currentTime = sdf2.format(cal.getTime());
-//
-//                //calculate diff time
-//                SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss");
-//                try {
-//                    date1 = format.parse(timeIn);
-//                    date2 = format.parse(currentTime);
-//                    long diff = date2.getTime() - date1.getTime();
-//                    System.out.println(diff);
-//                    diffHours = diff / (60 * 60 * 1000);
-//                    System.out.println("current time " + date2);
-//                    System.out.print(diffHours + " hours, ");
-//                } catch (ParseException e) {
-//                    e.printStackTrace();
-//                }
-//
-//                //calculate fee
-//                long fee = diffHours*getCost;
-//                if(fee>getMCost){
-//                    realFee = getMCost;
-//                    System.out.println(getMCost);
-//                }else{
-//                    realFee = fee;
-//                    System.out.println(fee);
-//                }
-//
-//                final Dialog dialog = new Dialog(getContext());
-//                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-//                dialog.setContentView(R.layout.dialog_fee);
-//
-//                final TextView tin = (TextView) dialog.findViewById(R.id.textView13);
-//                final TextView tout = (TextView) dialog.findViewById(R.id.textView15);
-//                final TextView estfee = (TextView) dialog.findViewById(R.id.textView17);
-//                tin.setText(timeIn);
-//                tout.setText(currentTime);
-//                estfee.setText(realFee +" BAHT");
-//
-//                dialog.show();
+                // convert string time in database to time
+                SimpleDateFormat sdf = new SimpleDateFormat("hh:mm:ss");
+                Date date = null;
+                try {
+                    date = sdf.parse(getTime);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                timeIn = sdf.format(date);
+
+                //current time
+                Calendar cal = Calendar.getInstance();
+                SimpleDateFormat sdf2 = new SimpleDateFormat("HH:mm:ss");
+                currentTime = sdf2.format(cal.getTime());
+
+                //calculate diff time
+                SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss");
+                try {
+                    date1 = format.parse(timeIn);
+                    date2 = format.parse(currentTime);
+                    long diff = date2.getTime() - date1.getTime();
+                    System.out.println(diff);
+                    diffHours = diff / (60 * 60 * 1000);
+                    System.out.println("current time " + date2);
+                    System.out.print(diffHours + " hours, ");
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+
+                //calculate fee
+                long fee = diffHours*getCost;
+                if(fee>getMCost){
+                    realFee = getMCost;
+                    System.out.println(getMCost);
+                }else{
+                    realFee = fee;
+                    System.out.println(fee);
+                }
+
+                final Dialog dialog = new Dialog(getContext());
+                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                dialog.setContentView(R.layout.dialog_fee);
+
+                final TextView tin = (TextView) dialog.findViewById(R.id.textView13);
+                final TextView tout = (TextView) dialog.findViewById(R.id.textView15);
+                final TextView estfee = (TextView) dialog.findViewById(R.id.textView17);
+                final TextView floor = (TextView) dialog.findViewById(R.id.textView19);
+                tin.setText(timeIn);
+                tout.setText(currentTime);
+                estfee.setText(realFee +" BAHT");
+                floor.setText(getFloor);
+
+                dialog.show();
+
             }
         }
-//
 
-//        Criteria crit = new Criteria();
-//        crit.setAccuracy(Criteria.ACCURACY_FINE);
-//        best = locationManager.getBestProvider(crit, false);
-//        locationManager.requestLocationUpdates(best,0,1, (LocationListener) this);
-
-//        Criteria criteria = new Criteria();
-//        provider = locationManager.getBestProvider(criteria, false);
-//                locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
-//        location = locationManager.getLastKnownLocation(locationManager.NETWORK_PROVIDER);
         Thread t = new Thread() {
 
             @Override
@@ -331,9 +283,6 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
         };
 
         t.start();
-
-
-//        this.initializeLocationManager();
     }
 
     @Override
@@ -361,7 +310,11 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
         txt4 = (TextView) v.findViewById(R.id.textView4);
         txt5 = (TextView) v.findViewById(R.id.textView5);
 
-        sensorManager = (SensorManager) getContext().getSystemService(Context.SENSOR_SERVICE);
+//        sensorManager = (SensorManager) getContext().getSystemService(Context.SENSOR_SERVICE);
+        sensorManager = (SensorManager) getContext().getSystemService(SENSOR_SERVICE);
+        accel = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+        simpleStepDetector = new StepDetector();
+        simpleStepDetector.registerListener(this);
 
         txt.setOnClickListener((new View.OnClickListener() {
 
@@ -428,15 +381,25 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
     }
 
     @Override
-    public void onSensorChanged(SensorEvent sensorEvent) {
-        if(running){
-            txt5.setText(String.valueOf(sensorEvent.values[0]));
+    public void onSensorChanged(SensorEvent event) {
+        if (event.sensor.getType() == Sensor.TYPE_ACCELEROMETER) {
+            simpleStepDetector.updateAccel(
+                    event.timestamp, event.values[0], event.values[1], event.values[2]);
         }
+//        if(running){
+//            txt5.setText(String.valueOf(sensorEvent.values[0]));
+//        }
     }
 
     @Override
     public void onAccuracyChanged(Sensor sensor, int i) {
 
+    }
+
+    @Override
+    public void step(long timeNs) {
+        numSteps++;
+        txt5.setText(TEXT_NUM_STEPS + numSteps);
     }
 
     /**
@@ -508,6 +471,7 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
                 i++;
 
                 updateStatusPark(uId, "2", timeIn, "2017-08-18");
+                showDialogReminder();
 
                 Log.wtf("level is : ",getLev(uId));
                 Log.wtf("status is : ",sta+"");
@@ -844,7 +808,9 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
         mCurrLocationMarker = new Marker[lalo.size()];
         ArrayList<LatLng> latlngs = new ArrayList<>();
 
-        for (int i=0;i<lalo.size();i++) {
+        int i;
+
+        for (i=0;i<lalo.size();i++) {
             if (mCurrLocationMarker[i] != null) {
                 mCurrLocationMarker[i].remove();
             }
@@ -863,6 +829,7 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
             pName[i] = getNum.get(i).get("pName").toString();
             pId[i] = getNum.get(i).get("pId").toString();
             available[i] = getNum.get(i).get("available").toString();
+
 
 //            int j = 0;
 //            for (LatLng point : latlngs) {
@@ -917,75 +884,64 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
                     Bitmap myLogo = finalImage.getBitmap();
                     markerOptions.icon(BitmapDescriptorFactory.fromBitmap(myLogo));
 
-
-
                     mCurrLocationMarker[i] = mMap.addMarker(markerOptions);
-                    mCurrLocationMarker[i].setTitle(pName[i]+"/"+available[i]+"/"+0);
-
+                    mCurrLocationMarker[i].setTitle(available[i]+" "+pId[i]);
 
                     mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
                         @Override
                         public boolean onMarkerClick(Marker marker) {
-                            final AlertDialog.Builder builder =
-                                    new AlertDialog.Builder(getActivity());
-                            String title = marker.getTitle();
-                            String[] msg = new String[3];
-                            int j=0;
-                            for(int i =0;i<title.length();i++){
-                                if(title.substring(i,i+1).equalsIgnoreCase("/")){
-                                    j++;
-                                    i++;
-                                }
-                                if(msg[j]!=null) {
-                                    msg[j] = msg[j] + title.substring(i, i + 1);
-                                }
-                                if(msg[j]==null){
 
-                                    msg[j] = title.substring(i, i + 1);
-                                }
+                            if (po.equals(3)) {
+
+                                final Dialog dialog = new Dialog(getContext());
+                                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                                dialog.setContentView(R.layout.dialog_manage);
+
+                                final EditText number = (EditText) dialog.findViewById(R.id.editText);
+                                final Button cncl = (Button) dialog.findViewById(R.id.button_cancel);
+                                final Button ok = (Button) dialog.findViewById(R.id.button_login);
+
+                                String title = marker.getTitle();
+                                String[] msg;
+                                final String pid;
+                                int ava;
+                                msg = title.split(" ");
+                                ava = Integer.parseInt(msg[0]);
+                                pid = msg[1];
+
+                                ok.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        try {
+                                            // สร้าง php ใหม่เปลี่ยนจำนวน available
+                                            response = http.run("http://parkhere.sit.kmutt.ac.th/setNumber.php?pId=" + pid + "&remain=" + number.getText());
+                                        } catch (IOException e) {
+                                            e.printStackTrace();
+                                        }
+                                        dialog.dismiss();
+                                    }
+                                });
+
+                                cncl.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        dialog.dismiss();
+                                    }
+                                });
+
+                                number.setText(ava + "");
+
+                                dialog.show();
+                                marker.hideInfoWindow();
+                            }
+                                return true;
                             }
 
-                            builder.setMessage("Name: \t\t\t\t\t\t\t\t\t\t\t\t\t\t"+msg[0] +"" + "\n\nAvailable: \t\t\t\t\t\t\t\t\t\t\t" + msg[1] + "\n\nReserve: \t\t\t\t\t\t\t\t\t\t\t\t" + msg[2]);
-                            builder.setPositiveButton("ok", new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int id) {
-                                    builder.getContext();
-                                }
-                            });
-                            builder.show();
-                            marker.hideInfoWindow();
-                            return true;
-                        }
                     });
 
-//                IconGenerator generator = new IconGenerator(getActivity());
-//                generator.setStyle(generator.STYLE_BLUE);
-//                Bitmap icon = generator.makeIcon(100 + j + "");
-//                MarkerOptions tp = new MarkerOptions().position(point).icon(BitmapDescriptorFactory.fromBitmap(icon));
-//                mCurrLocationMarker2 = mMap.addMarker(tp);
-//                }
             }
-        }
-//        final LatLng latLng = new LatLng(13.6546897, 100.4946202);
-//        ArrayList<LatLng> latlngs = new ArrayList<>();
-//        latlngs.add(new LatLng(13.6530663, 100.4942920));
-//        latlngs.add(new LatLng(13.6494580, 100.4936801));
-//        if (mCurrLocationMarker1 != null) {
-//            mCurrLocationMarker1.remove();
-//        }
-//        if (mCurrLocationMarker2 != null) {
-//            mCurrLocationMarker2.remove();
-//        }
 
-//        Thread t = new Thread() {
-//
-//            @Override
-//            public void run() {
-//                try {
-//                    while (!isInterrupted()) {
-//                        Thread.sleep(1000);
-//                        runOnUiThread(new Runnable() {
-//                            @Override
-//                            public void run() {
+        }
 
         float[] distance = new float[2];
 
@@ -997,6 +953,7 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
         mLastLocation = location;
         Location.distanceBetween(mLastLocation.getLatitude(), mLastLocation.getLongitude(),
                 13.6546897, 100.4946202, distance);
+
 
         if (distance[0] > 50) {
 //            Log.e("Outside "+location.getLatitude(),location.getLongitude()+"");
@@ -1014,101 +971,6 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
             text = "Inside" + distance[0];
             txt.setText("Inside");
         }
-
-        //Place current location marker
-//        markerOptions.position(latLng);
-
-//        markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
-//        markerOptions.snippet(txt);
-//        markerOptions.draggable(true);
-//        Drawable drawable = getResources().getDrawable(R.drawable.marker_01);
-//        Drawable image = ResourcesCompat.getDrawable(getResources(), R.drawable.marker_01, null);
-
-
-//        if (isAdded()) {
-//            image = ContextCompat.getDrawable(getActivity(), R.drawable.marker_01);
-//        }
-//        // Store our image size as a constant
-//        final int IMAGE_WIDTH = image.getIntrinsicWidth();
-//        final int IMAGE_HEIGHT = image.getIntrinsicHeight();
-//
-//        // You can also use Config.ARGB_4444 to conserve memory or ARGB_565 if
-//        // you don't have any transparency.
-//        Bitmap canvasBitmap = Bitmap.createBitmap(IMAGE_WIDTH,
-//                IMAGE_HEIGHT,
-//                Bitmap.Config.ARGB_8888);
-//
-//        if(isAdded()) {
-//            res = getActivity().getResources();
-//        }
-//        Bitmap canvasBitmap2 = BitmapFactory.decodeResource(res, R.drawable.marker_01);
-//        Bitmap drawableBitmap = canvasBitmap2.copy(Bitmap.Config.ARGB_8888, true);
-//
-//        // Create a canvas, that will draw on to canvasBitmap. canvasBitmap is
-//        // currently blank.
-//        Canvas imageCanvas = new Canvas(canvasBitmap);
-//
-//        // Set up the paint for use with our Canvas
-//        Paint imagePaint = new Paint();
-//        imageCanvas.drawBitmap(drawableBitmap, 0.0f, 0.0f, null);
-//        imagePaint.setTextAlign(Paint.Align.CENTER);
-//        imagePaint.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
-//        imagePaint.setTextSize(35f);
-//
-//        // Draw the image to our canvas
-//        image.draw(imageCanvas);
-//
-//        // Draw the text on top of our image
-//        imageCanvas.drawText(available,
-//                IMAGE_WIDTH / 2,
-//                IMAGE_HEIGHT / 2,
-//                imagePaint);
-//
-//        // This is the final image that you can use
-//        if(isAdded()) {
-//            finalImage = new BitmapDrawable(getResources(), canvasBitmap);
-//        }
-//        Bitmap myLogo = finalImage.getBitmap();
-//        markerOptions.icon(BitmapDescriptorFactory.fromBitmap(myLogo));
-
-//        mCurrLocationMarker[1] = mMap.addMarker(markerOptions);
-//        mCurrLocationMarker1.showInfoWindow();
-
-
-
-//        mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
-//            @Override
-//            public void onInfoWindowClick(Marker marker) {
-//                final AlertDialog.Builder builder =
-//                        new AlertDialog.Builder(getActivity());
-//                builder.setMessage("Name: \t\t\t\t\t\t\t\t\t\t\t\t\t\t" + pName + "\n\nAvailable: \t\t\t\t\t\t\t\t\t\t\t" + available + "\n\nReserve: \t\t\t\t\t\t\t\t\t\t\t\t" + reserved);
-//                builder.setPositiveButton("ok", new DialogInterface.OnClickListener() {
-//                    public void onClick(DialogInterface dialog, int id) {
-//                        builder.getContext();
-//                    }
-//                });
-//                builder.show();
-//            }
-//        });
-//                            }
-//                        }
-
-//                        );
-//                    }
-//                } catch (InterruptedException e) {
-//                }
-//            }
-//        };
-//
-//        t.start();
-
-        //move map camera
-
-//        mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
-//        mMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(location.getLatitude(),location.getLongitude())));
-//        mMap.animateCamera(CameraUpdateFactory.zoomTo(15));
-
-//        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(location.getLatitude(),location.getLongitude()), 16));
 
         showActivity();
         showStatus2();
@@ -1418,7 +1280,6 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
             location.add(latlong);
         }
 
-
         return location;
     }
 
@@ -1434,6 +1295,39 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
 
         }
 
+    }
+
+    public void showDialogReminder(){
+
+        final Dialog dialog = new Dialog(getContext());
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.dialog_floor);
+
+        final EditText number = (EditText) dialog.findViewById(R.id.editText);
+        final Button cncl = (Button) dialog.findViewById(R.id.button_cancel);
+        final Button ok = (Button) dialog.findViewById(R.id.button_login);
+
+        ok.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    // สร้าง php ใหม่เปลี่ยนจำนวน available
+                    response = http.run("http://parkhere.sit.kmutt.ac.th/setFloor.php?uId=" + uId + "&floor=" + number.getText());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                dialog.dismiss();
+            }
+        });
+
+        cncl.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+
+        dialog.show();
     }
 
 }

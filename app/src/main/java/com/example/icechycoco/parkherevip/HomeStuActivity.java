@@ -46,11 +46,15 @@ public class HomeStuActivity extends AppCompatActivity
         uId = sp.getString("UID", "0");
         Toast.makeText(this, "uId : " + uId, Toast.LENGTH_SHORT).show();
 
-        BlankFragment blankFragment = new BlankFragment().newInstance(uId);
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.fragment_container, blankFragment);
-        transaction.commit();
+//        BlankFragment blankFragment = new BlankFragment().newInstance(uId,"1");
+//        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+//        transaction.replace(R.id.fragment_container, blankFragment);
+//        transaction.commit();
 
+        AvailableFragment availableFragment = new AvailableFragment().newInstance(uId);
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.fragment_container, availableFragment);
+        transaction.commit();
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -107,10 +111,16 @@ public class HomeStuActivity extends AppCompatActivity
 
         if (id == R.id.nav_home) {
             //Fragment
-            BlankFragment blankFragment = new BlankFragment().newInstance(uId);
+//            BlankFragment blankFragment = new BlankFragment().newInstance(uId,"1");
+//            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+//            transaction.replace(R.id.fragment_container, blankFragment);
+//            transaction.commit();
+
+            AvailableFragment availableFragment = new AvailableFragment().newInstance(uId);
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-            transaction.replace(R.id.fragment_container, blankFragment);
+            transaction.replace(R.id.fragment_container, availableFragment);
             transaction.commit();
+
         } else if (id == R.id.nav_history) {
             //Fragment
             HistoryFragment historyFragment = new HistoryFragment().newInstance(uId,"1");

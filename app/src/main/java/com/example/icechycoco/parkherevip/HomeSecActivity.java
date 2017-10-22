@@ -63,9 +63,14 @@ public class HomeSecActivity extends AppCompatActivity
         Toast.makeText(this, "uId : " + uId, Toast.LENGTH_SHORT).show();
 
         //Fragment
-        BlankFragment blankFragment = new BlankFragment().newInstance(uId);
+//        BlankFragment blankFragment = new BlankFragment().newInstance(uId,"3");
+//        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+//        transaction.replace(R.id.fragment_container, blankFragment);
+//        transaction.commit();
+
+        AvailableFragment availableFragment = new AvailableFragment().newInstance(uId);
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.fragment_container, blankFragment);
+        transaction.replace(R.id.fragment_container, availableFragment);
         transaction.commit();
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -208,9 +213,13 @@ public class HomeSecActivity extends AppCompatActivity
 
         if (id == R.id.nav_home) {
             //Fragment
-            BlankFragment blankFragment = new BlankFragment().newInstance(uId);
+//            BlankFragment blankFragment = new BlankFragment().newInstance(uId,"3");
+//            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+//            transaction.replace(R.id.fragment_container, blankFragment);
+//            transaction.commit();
+            AvailableFragment availableFragment = new AvailableFragment().newInstance(uId);
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-            transaction.replace(R.id.fragment_container, blankFragment);
+            transaction.replace(R.id.fragment_container, availableFragment);
             transaction.commit();
         } else if (id == R.id.nav_history) {
             //Fragment
