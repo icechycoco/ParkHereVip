@@ -13,7 +13,6 @@ import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
-import android.graphics.drawable.LayerDrawable;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -81,16 +80,13 @@ import static com.google.android.gms.internal.zzagz.runOnUiThread;
  */
 public class BlankFragment extends Fragment implements OnMapReadyCallback, View.OnClickListener,
         GoogleApiClient.ConnectionCallbacks,
-        GoogleApiClient.OnConnectionFailedListener,LocationListener, SensorEventListener{
+        GoogleApiClient.OnConnectionFailedListener, LocationListener, SensorEventListener {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String KEY_ID = "uId";
-    private String uId,best;
+    private String uId, best;
 
-
-
-    LocationManager locationManager;
-    String locationProvider;
+    LatLng latLngPark;
 
     Drawable image;
     Resources res;
@@ -102,9 +98,10 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
     public static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
     GoogleApiClient mGoogleApiClient;
     Location mLastLocation;
+    Marker parkMarker;
     Marker[] mCurrLocationMarker;
     LocationRequest mLocationRequest;
-    TextView txt,txt2,txt3,txt4,txt5;
+    TextView txt, txt2, txt3, txt4, txt5;
     Button btn;
     public ActivityRecognizedService activityRecognition = new ActivityRecognizedService();
     boolean inside;
@@ -114,10 +111,10 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
     String response = null;
     getHttp http = new getHttp();
 
-    String parkId,timeIn,timeOut;
-    String[] pId,pName,available,reserved,latitude,longitude;
-    long la,lo;
-    int level,sta;
+    String parkId, timeIn, timeOut;
+    String[] pId, pName, available, reserved, latitude, longitude;
+    long la, lo;
+    int level, sta;
     String showsta = "NULL";
 
     SensorManager sensorManager;
@@ -125,14 +122,13 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
 
     int i;
 
-
     LocationListener locationListener;
     //variable
     String[] getInfo;
     String getTime;
-    int getCost,getMCost;
+    int getCost, getMCost;
     String currentTime;
-    Date date1,date2;
+    Date date1, date2;
     long realFee;
     long diffHours = 0;
 
@@ -162,17 +158,17 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
         }
         Toast.makeText(getContext(), "uId : " + uId, Toast.LENGTH_SHORT).show();
 
-        if(sta==0){
+        if (sta == 0) {
 
             try {
-                response = http.run("http://parkhere.sit.kmutt.ac.th/estimate.php?uId="+uId);
+                response = http.run("http://parkhere.sit.kmutt.ac.th/estimate.php?uId=" + uId);
             } catch (IOException e) {
                 e.printStackTrace();
             }
 
-            if(response.equals("0")){
+            if (response.equals("0")) {
 
-            }else{
+            } else {
 
 //                final Dialog dialog = new Dialog(getContext());
 //                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -388,12 +384,12 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
         super.onResume();
         running = true;
         Sensor countSensor = sensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER);
-        if(countSensor != null){
-            sensorManager.registerListener(this,countSensor,SensorManager.SENSOR_DELAY_UI);
-        }else{
-            Toast.makeText(getContext(),"Sensor not found", Toast.LENGTH_SHORT).show();
+        if (countSensor != null) {
+            sensorManager.registerListener(this, countSensor, SensorManager.SENSOR_DELAY_UI);
+        } else {
+            Toast.makeText(getContext(), "Sensor not found", Toast.LENGTH_SHORT).show();
         }
-        Log.wtf("","resume");
+        Log.wtf("", "resume");
 
 //        locationListener
 
@@ -405,7 +401,8 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
 
 //        locationManager.requestLocationUpdates(mLocationRequest,mLocationCallback,null);
     }
-    public void onPause(){
+
+    public void onPause() {
         super.onPause();
         running = false;
     }
@@ -429,7 +426,7 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
 
     @Override
     public void onSensorChanged(SensorEvent sensorEvent) {
-        if(running){
+        if (running) {
             txt5.setText(String.valueOf(sensorEvent.values[0]));
         }
     }
@@ -455,14 +452,14 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
         void onFragmentInteraction(Uri uri);
     }
 
-    public boolean checkActivity(){
-        if(vehicle==0 ){
+    public boolean checkActivity() {
+        if (vehicle == 0) {
             return true;
         }
         return false;
     }
 
-    public void showStatus2(){
+    public void showStatus2() {
         String str = getLev(uId);
         String[] getInfo;
         getInfo = str.split(",");
@@ -470,48 +467,49 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
         sta = Integer.parseInt(getInfo[1]);
 
 
-        if(sta==0){
+        if (sta == 0) {
             showsta = "not park";
 
 //            Toast.makeText(getActivity(), "Not Park", Toast.LENGTH_LONG).cancel();
-        }else if(sta==1){
+        } else if (sta == 1) {
             showsta = "park";
 //            Toast.makeText(getActivity(), "Parked", Toast.LENGTH_LONG).show();
         }
 
-        if(sta==0) {
+        if (sta == 0) {
             if (checkActivity() && inside) {
                 level = 10;
 
-                updateLev(level,uId);
+                updateLev(level, uId);
 
-                Log.wtf("level is : ",getLev(uId));
-                Log.wtf("status is : ",sta+"");
-                Log.wtf("Not Park","1");
+                Log.wtf("level is : ", getLev(uId));
+                Log.wtf("status is : ", sta + "");
+                Log.wtf("Not Park", "1");
                 txt3.setText(showsta);
                 String str2 = getLev(uId);
                 String[] getInfo2;
                 getInfo2 = str2.split(",");
                 level = Integer.parseInt(getInfo2[0]);
                 sta = Integer.parseInt(getInfo2[1]);
-                txt4.setText("Level = " +level);
+                txt4.setText("Level = " + level);
 
             }
             if (level == 10 && !checkActivity() && !inside) {
                 level = 20;
                 park = true;
+
                 updateLev(level, uId);
 
                 timeIn = getCurrentTime();
 
-                Log.wtf("why i = ",i+"");
+                Log.wtf("why i = ", i + "");
                 i++;
 
                 updateStatusPark(uId, "2", timeIn, "2017-08-18");
 
-                Log.wtf("level is : ",getLev(uId));
-                Log.wtf("status is : ",sta+"");
-                Log.wtf("Not Park","2");
+                Log.wtf("level is : ", getLev(uId));
+                Log.wtf("status is : ", sta + "");
+                Log.wtf("Not Park", "2");
                 txt3.setText(showsta);
 
                 String str2 = getLev(uId);
@@ -519,80 +517,88 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
                 getInfo2 = str2.split(",");
                 level = Integer.parseInt(getInfo2[0]);
                 sta = Integer.parseInt(getInfo2[1]);
-                txt4.setText("Level = " +level);
+                txt4.setText("Level = " + level);
+
+                LatLng l = getCurrentLocation();
+
+                setParkLatLong(uId,String.valueOf(l.latitude),String.valueOf(l.longitude));
+
+                Log.wtf("wowowww",getParkLatLong(uId));
+
+
 
             }
 
         }
 
-        if(sta==1){
+        if (sta == 1) {
 
-            if(!checkActivity() && inside) {
+            if (!checkActivity() && inside) {
 
                 level = 10;
 
-                updateLev(level,uId);
+                updateLev(level, uId);
 
-                Log.wtf("level is : ",getLev(uId));
-                Log.wtf("status is : ",sta+"");
-                Log.wtf("Park","1");
+                Log.wtf("level is : ", getLev(uId));
+                Log.wtf("status is : ", sta + "");
+                Log.wtf("Park", "1");
                 txt3.setText(showsta);
                 String str2 = getLev(uId);
                 String[] getInfo2;
                 getInfo2 = str2.split(",");
                 level = Integer.parseInt(getInfo2[0]);
                 sta = Integer.parseInt(getInfo2[1]);
-                txt4.setText("Level = " +level);
+                txt4.setText("Level = " + level);
 
             }
-            if(level==10 && checkActivity() && !inside){
-                level=20;
-                park=false;
+            if (level == 10 && checkActivity() && !inside) {
+                level = 20;
+                park = false;
 
-                Log.wtf("why i = ","wow1");
+                Log.wtf("why i = ", "wow1");
 
-                updateLev(level,uId);
+                updateLev(level, uId);
 
-                Log.wtf("why i = ","wow2");
+                Log.wtf("why i = ", "wow2");
 
                 parkId = getParkId(uId);
                 timeOut = getCurrentTime();
 
-                Log.wtf("why i = ","wow3");
+                Log.wtf("why i = ", "wow3");
 
-                Log.wtf("uId before call db ::",uId);
-                Log.wtf("pId before call db::","2");
-                Log.wtf("time before call db ::",timeOut);
-                Log.wtf("get park id before call db :: ",parkId);
+                Log.wtf("uId before call db ::", uId);
+                Log.wtf("pId before call db::", "2");
+                Log.wtf("time before call db ::", timeOut);
+                Log.wtf("get park id before call db :: ", parkId);
 
-                updateStatusNotPark(uId,"2",timeOut,parkId);
+                updateStatusNotPark(uId, "2", timeOut, parkId);
 
-                Log.wtf("why i = ","wow4");
+                Log.wtf("why i = ", "wow4");
 
-                Log.wtf("level is : ",getLev(uId));
-                Log.wtf("status is : ",sta+"");
-                Log.wtf("Park","2");
+                Log.wtf("level is : ", getLev(uId));
+                Log.wtf("status is : ", sta + "");
+                Log.wtf("Park", "2");
                 txt3.setText(showsta);
                 String str2 = getLev(uId);
                 String[] getInfo2;
                 getInfo2 = str2.split(",");
                 level = Integer.parseInt(getInfo2[0]);
                 sta = Integer.parseInt(getInfo2[1]);
-                txt4.setText("Level = " +level);
-                Log.wtf("why i = ","wow5");
+                txt4.setText("Level = " + level);
+                Log.wtf("why i = ", "wow5");
 
             }
         }
 
-        Log.wtf("level is : ",getLev(uId)+"");
-        Log.wtf("status is : ",sta+"");
+        Log.wtf("level is : ", getLev(uId) + "");
+        Log.wtf("status is : ", sta + "");
         txt3.setText(showsta + sta);
         String str2 = getLev(uId);
         String[] getInfo2;
         getInfo2 = str2.split(",");
         level = Integer.parseInt(getInfo2[0]);
         sta = Integer.parseInt(getInfo2[1]);
-        txt4.setText("Level = " +level);
+        txt4.setText("Level = " + level);
     }
 
 //    public void showStatus(){
@@ -740,7 +746,7 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
 //        txt4.setText("Level = " +level);
 //    }
 
-    public String getCurrentTime(){
+    public String getCurrentTime() {
         //current time
         Calendar cal = Calendar.getInstance();
         SimpleDateFormat sdf2 = new SimpleDateFormat("HH:mm:ss");
@@ -748,9 +754,9 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
     }
 
     // get level มาเชคว่าอยู่ขั้นไหนแล้ว
-    public String getLev(String uId){
+    public String getLev(String uId) {
         try {
-            response = http.run("http://parkhere.sit.kmutt.ac.th/Level.php?uId="+uId);
+            response = http.run("http://parkhere.sit.kmutt.ac.th/Level.php?uId=" + uId);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -759,9 +765,9 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
     }
 
     // update level
-    public String updateLev(int lev,String uId){
+    public String updateLev(int lev, String uId) {
         try {
-            response = http.run("http://parkhere.sit.kmutt.ac.th/uplevel.php?uId="+uId+"&level="+lev);
+            response = http.run("http://parkhere.sit.kmutt.ac.th/uplevel.php?uId=" + uId + "&level=" + lev);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -769,19 +775,19 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
     }
 
     // decrease available parking lot
-    public void updateStatusPark(String uId,String pId,String time,String date){
+    public void updateStatusPark(String uId, String pId, String time, String date) {
         try {
-            response = http.run("http://parkhere.sit.kmutt.ac.th/UpdateParkStatus.php?status="+1+"&pId="+pId+"&timeIn="+time+"&date="+date+"&uId="+uId);
+            response = http.run("http://parkhere.sit.kmutt.ac.th/UpdateParkStatus.php?status=" + 1 + "&pId=" + pId + "&timeIn=" + time + "&date=" + date + "&uId=" + uId);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     // ดึงค่า parkId ที่ user park ไปแล้วเพื่ออัพเดตสถานะออกจากที่จอดและก็ไว้เก็บประวัติ
-    public String getParkId(String uId){
+    public String getParkId(String uId) {
         try {
-            response = http.run("http://parkhere.sit.kmutt.ac.th/getParkId.php?uId="+uId);
-            Log.wtf("show park id : " , response);
+            response = http.run("http://parkhere.sit.kmutt.ac.th/getParkId.php?uId=" + uId);
+            Log.wtf("show park id : ", response);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -789,37 +795,37 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
     }
 
     // increase available parking lot
-    public void updateStatusNotPark(String uId,String pId,String time,String parkId){
-        Log.wtf("uId ::",uId);
-        Log.wtf("pId ::",pId);
-        Log.wtf("time ::",time);
-        Log.wtf("get park id :: ",parkId);
+    public void updateStatusNotPark(String uId, String pId, String time, String parkId) {
+        Log.wtf("uId ::", uId);
+        Log.wtf("pId ::", pId);
+        Log.wtf("time ::", time);
+        Log.wtf("get park id :: ", parkId);
         try {
-            response = http.run("http://parkhere.sit.kmutt.ac.th/UpdateNotParkStatus.php?status="+0+"&pId="+pId+"&timeOut="+time+"&uId="+uId+"&parkId="+parkId);
-            Log.wtf("show update not park mai : " , response);
+            response = http.run("http://parkhere.sit.kmutt.ac.th/UpdateNotParkStatus.php?status=" + 0 + "&pId=" + pId + "&timeOut=" + time + "&uId=" + uId + "&parkId=" + parkId);
+            Log.wtf("show update not park mai : ", response);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public void showActivity(){
+    public void showActivity() {
 
-        txt2.setText(activityRecognition.getActivity()+"");
-        vehicle=activityRecognition.getActivity();
+        txt2.setText(activityRecognition.getActivity() + "");
+        vehicle = activityRecognition.getActivity();
 
-        if(vehicle==0){
+        if (vehicle == 0) {
 //            txt2.setText("In Vehicle"+vehicle);
             txt2.setText("In Vehicle");
-        }else{
+        } else {
             txt2.setText("Not in vehicle");
         }
     }
 
-    public void showResult(String t){
+    public void showResult(String t) {
         txt.setText(t);
     }
 
-    public void onClick(View v){
+    public void onClick(View v) {
         txt.setText("FUCK555");
 
     }
@@ -837,14 +843,15 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
     @Override
     public void onLocationChanged(Location location) {
 
+        LatLng l = new LatLng(location.getLatitude(), location.getLongitude());
+        setCurrentLocation(l);
         final MarkerOptions markerOptions = new MarkerOptions();
 
-        final LatLng latLng = null;
         ArrayList<HashMap<String, String>> lalo = getLocation();
         mCurrLocationMarker = new Marker[lalo.size()];
         ArrayList<LatLng> latlngs = new ArrayList<>();
 
-        for (int i=0;i<lalo.size();i++) {
+        for (int i = 0; i < lalo.size(); i++) {
             if (mCurrLocationMarker[i] != null) {
                 mCurrLocationMarker[i].remove();
             }
@@ -867,95 +874,99 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
 //            int j = 0;
 //            for (LatLng point : latlngs) {
 
-                markerOptions.position(latlngs.get(i));
-                markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
-                if (getActivity() != null) {
+            markerOptions.position(latlngs.get(i));
+            markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
+            if (getActivity() != null) {
 
-                    if (isAdded()) {
-                        image = ContextCompat.getDrawable(getActivity(), R.drawable.marker_01);
-                    }
-                    // Store our image size as a constant
-                    final int IMAGE_WIDTH = image.getIntrinsicWidth();
-                    final int IMAGE_HEIGHT = image.getIntrinsicHeight();
+                if (isAdded()) {
+                    image = ContextCompat.getDrawable(getActivity(), R.drawable.marker_01);
+                }
+                // Store our image size as a constant
+                final int IMAGE_WIDTH = image.getIntrinsicWidth();
+                final int IMAGE_HEIGHT = image.getIntrinsicHeight();
 
-                    // You can also use Config.ARGB_4444 to conserve memory or ARGB_565 if
-                    // you don't have any transparency.
-                    Bitmap canvasBitmap = Bitmap.createBitmap(IMAGE_WIDTH,
-                            IMAGE_HEIGHT,
-                            Bitmap.Config.ARGB_8888);
+                // You can also use Config.ARGB_4444 to conserve memory or ARGB_565 if
+                // you don't have any transparency.
+                Bitmap canvasBitmap = Bitmap.createBitmap(IMAGE_WIDTH,
+                        IMAGE_HEIGHT,
+                        Bitmap.Config.ARGB_8888);
 
-                    if (isAdded()) {
-                        res = getActivity().getResources();
-                    }
-                    Bitmap canvasBitmap2 = BitmapFactory.decodeResource(res, R.drawable.marker_01);
-                    Bitmap drawableBitmap = canvasBitmap2.copy(Bitmap.Config.ARGB_8888, true);
+                if (isAdded()) {
+                    res = getActivity().getResources();
+                }
+                Bitmap canvasBitmap2 = BitmapFactory.decodeResource(res, R.drawable.marker_01);
+                Bitmap drawableBitmap = canvasBitmap2.copy(Bitmap.Config.ARGB_8888, true);
 
-                    // Create a canvas, that will draw on to canvasBitmap. canvasBitmap is
-                    // currently blank.
-                    Canvas imageCanvas = new Canvas(canvasBitmap);
+                // Create a canvas, that will draw on to canvasBitmap. canvasBitmap is
+                // currently blank.
+                Canvas imageCanvas = new Canvas(canvasBitmap);
 
-                    // Set up the paint for use with our Canvas
-                    Paint imagePaint = new Paint();
-                    imageCanvas.drawBitmap(drawableBitmap, 0.0f, 0.0f, null);
-                    imagePaint.setTextAlign(Paint.Align.CENTER);
-                    imagePaint.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
-                    imagePaint.setTextSize(35f);
+                // Set up the paint for use with our Canvas
+                Paint imagePaint = new Paint();
+                imageCanvas.drawBitmap(drawableBitmap, 0.0f, 0.0f, null);
+                imagePaint.setTextAlign(Paint.Align.CENTER);
+                imagePaint.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
+                imagePaint.setTextSize(35f);
 
-                    // Draw the image to our canvas
-                    image.draw(imageCanvas);
+                // Draw the image to our canvas
+                image.draw(imageCanvas);
 
-                    // Draw the text on top of our image
-                    imageCanvas.drawText(available[i],
-                            IMAGE_WIDTH / 2,
-                            IMAGE_HEIGHT / 2,
-                            imagePaint);
+                // Draw the text on top of our image
+                imageCanvas.drawText(available[i],
+                        IMAGE_WIDTH / 2,
+                        IMAGE_HEIGHT / 2,
+                        imagePaint);
 
-                    // This is the final image that you can use
-                    if (isAdded()) {
-                        finalImage = new BitmapDrawable(getResources(), canvasBitmap);
-                    }
-                    Bitmap myLogo = finalImage.getBitmap();
-                    markerOptions.icon(BitmapDescriptorFactory.fromBitmap(myLogo));
-
-
-
-                    mCurrLocationMarker[i] = mMap.addMarker(markerOptions);
-                    mCurrLocationMarker[i].setTitle(pName[i]+"/"+available[i]+"/"+0);
+                // This is the final image that you can use
+                if (isAdded()) {
+                    finalImage = new BitmapDrawable(getResources(), canvasBitmap);
+                }
+                Bitmap myLogo = finalImage.getBitmap();
+                markerOptions.icon(BitmapDescriptorFactory.fromBitmap(myLogo));
 
 
-                    mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
-                        @Override
-                        public boolean onMarkerClick(Marker marker) {
-                            final AlertDialog.Builder builder =
-                                    new AlertDialog.Builder(getActivity());
-                            String title = marker.getTitle();
-                            String[] msg = new String[3];
-                            int j=0;
-                            for(int i =0;i<title.length();i++){
-                                if(title.substring(i,i+1).equalsIgnoreCase("/")){
+                mCurrLocationMarker[i] = mMap.addMarker(markerOptions);
+                mCurrLocationMarker[i].setTitle(pName[i] + "/" + available[i] + "/" + 0);
+
+
+                mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+                    @Override
+                    public boolean onMarkerClick(Marker marker) {
+                        final AlertDialog.Builder builder =
+                                new AlertDialog.Builder(getActivity());
+                        String title = marker.getTitle();
+                        String[] msg = new String[3];
+                        if(marker.getTitle().equalsIgnoreCase("park")){
+                            marker.hideInfoWindow();
+
+                        }else {
+                            int j = 0;
+                            for (int i = 0; i < title.length(); i++) {
+                                if (title.substring(i, i + 1).equalsIgnoreCase("/")) {
                                     j++;
                                     i++;
                                 }
-                                if(msg[j]!=null) {
+                                if (msg[j] != null) {
                                     msg[j] = msg[j] + title.substring(i, i + 1);
                                 }
-                                if(msg[j]==null){
+                                if (msg[j] == null) {
 
                                     msg[j] = title.substring(i, i + 1);
                                 }
                             }
 
-                            builder.setMessage("Name: \t\t\t\t\t\t\t\t\t\t\t\t\t\t"+msg[0] +"" + "\n\nAvailable: \t\t\t\t\t\t\t\t\t\t\t" + msg[1] + "\n\nReserve: \t\t\t\t\t\t\t\t\t\t\t\t" + msg[2]);
+                            builder.setMessage("Name: \t\t\t\t\t\t\t\t\t\t\t\t\t\t" + msg[0] + "" + "\n\nAvailable: \t\t\t\t\t\t\t\t\t\t\t" + msg[1] + "\n\nReserve: \t\t\t\t\t\t\t\t\t\t\t\t" + msg[2]);
                             builder.setPositiveButton("ok", new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int id) {
                                     builder.getContext();
                                 }
                             });
                             builder.show();
-                            marker.hideInfoWindow();
-                            return true;
                         }
-                    });
+                        marker.hideInfoWindow();
+                        return true;
+                    }
+                });
 
 //                IconGenerator generator = new IconGenerator(getActivity());
 //                generator.setStyle(generator.STYLE_BLUE);
@@ -965,27 +976,6 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
 //                }
             }
         }
-//        final LatLng latLng = new LatLng(13.6546897, 100.4946202);
-//        ArrayList<LatLng> latlngs = new ArrayList<>();
-//        latlngs.add(new LatLng(13.6530663, 100.4942920));
-//        latlngs.add(new LatLng(13.6494580, 100.4936801));
-//        if (mCurrLocationMarker1 != null) {
-//            mCurrLocationMarker1.remove();
-//        }
-//        if (mCurrLocationMarker2 != null) {
-//            mCurrLocationMarker2.remove();
-//        }
-
-//        Thread t = new Thread() {
-//
-//            @Override
-//            public void run() {
-//                try {
-//                    while (!isInterrupted()) {
-//                        Thread.sleep(1000);
-//                        runOnUiThread(new Runnable() {
-//                            @Override
-//                            public void run() {
 
         float[] distance = new float[2];
 
@@ -1015,93 +1005,6 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
             txt.setText("Inside");
         }
 
-        //Place current location marker
-//        markerOptions.position(latLng);
-
-//        markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
-//        markerOptions.snippet(txt);
-//        markerOptions.draggable(true);
-//        Drawable drawable = getResources().getDrawable(R.drawable.marker_01);
-//        Drawable image = ResourcesCompat.getDrawable(getResources(), R.drawable.marker_01, null);
-
-
-//        if (isAdded()) {
-//            image = ContextCompat.getDrawable(getActivity(), R.drawable.marker_01);
-//        }
-//        // Store our image size as a constant
-//        final int IMAGE_WIDTH = image.getIntrinsicWidth();
-//        final int IMAGE_HEIGHT = image.getIntrinsicHeight();
-//
-//        // You can also use Config.ARGB_4444 to conserve memory or ARGB_565 if
-//        // you don't have any transparency.
-//        Bitmap canvasBitmap = Bitmap.createBitmap(IMAGE_WIDTH,
-//                IMAGE_HEIGHT,
-//                Bitmap.Config.ARGB_8888);
-//
-//        if(isAdded()) {
-//            res = getActivity().getResources();
-//        }
-//        Bitmap canvasBitmap2 = BitmapFactory.decodeResource(res, R.drawable.marker_01);
-//        Bitmap drawableBitmap = canvasBitmap2.copy(Bitmap.Config.ARGB_8888, true);
-//
-//        // Create a canvas, that will draw on to canvasBitmap. canvasBitmap is
-//        // currently blank.
-//        Canvas imageCanvas = new Canvas(canvasBitmap);
-//
-//        // Set up the paint for use with our Canvas
-//        Paint imagePaint = new Paint();
-//        imageCanvas.drawBitmap(drawableBitmap, 0.0f, 0.0f, null);
-//        imagePaint.setTextAlign(Paint.Align.CENTER);
-//        imagePaint.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
-//        imagePaint.setTextSize(35f);
-//
-//        // Draw the image to our canvas
-//        image.draw(imageCanvas);
-//
-//        // Draw the text on top of our image
-//        imageCanvas.drawText(available,
-//                IMAGE_WIDTH / 2,
-//                IMAGE_HEIGHT / 2,
-//                imagePaint);
-//
-//        // This is the final image that you can use
-//        if(isAdded()) {
-//            finalImage = new BitmapDrawable(getResources(), canvasBitmap);
-//        }
-//        Bitmap myLogo = finalImage.getBitmap();
-//        markerOptions.icon(BitmapDescriptorFactory.fromBitmap(myLogo));
-
-//        mCurrLocationMarker[1] = mMap.addMarker(markerOptions);
-//        mCurrLocationMarker1.showInfoWindow();
-
-
-
-//        mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
-//            @Override
-//            public void onInfoWindowClick(Marker marker) {
-//                final AlertDialog.Builder builder =
-//                        new AlertDialog.Builder(getActivity());
-//                builder.setMessage("Name: \t\t\t\t\t\t\t\t\t\t\t\t\t\t" + pName + "\n\nAvailable: \t\t\t\t\t\t\t\t\t\t\t" + available + "\n\nReserve: \t\t\t\t\t\t\t\t\t\t\t\t" + reserved);
-//                builder.setPositiveButton("ok", new DialogInterface.OnClickListener() {
-//                    public void onClick(DialogInterface dialog, int id) {
-//                        builder.getContext();
-//                    }
-//                });
-//                builder.show();
-//            }
-//        });
-//                            }
-//                        }
-
-//                        );
-//                    }
-//                } catch (InterruptedException e) {
-//                }
-//            }
-//        };
-//
-//        t.start();
-
         //move map camera
 
 //        mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
@@ -1117,33 +1020,131 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
 //        if (mGoogleApiClient != null) {
 //            LocationServices.FusedLocationApi.removeLocationUpdates(mGoogleApiClient, this);
 //        }
+
+
+        if (sta==1) {
+            for (int i = 0; i < mCurrLocationMarker.length; i++) {
+                if (mCurrLocationMarker[i] != null) {
+                    mCurrLocationMarker[i].remove();
+                }
+            }
+            if(parkMarker!=null){
+                parkMarker.remove();
+            }
+
+            latLngPark = getCurrentLocation();
+            if(latLngPark==null){
+                latLngPark= new LatLng(13.7,100.5);
+            }
+            final MarkerOptions markerOption = new MarkerOptions();
+            Log.wtf("latlng", latLngPark.toString());
+            markerOption.position(latLngPark);
+            markerOption.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
+            if (getActivity() != null) {
+
+                if (isAdded()) {
+                    image = ContextCompat.getDrawable(getActivity(), R.drawable.marker_01);
+                }
+                // Store our image size as a constant
+                final int IMAGE_WIDTH = image.getIntrinsicWidth();
+                final int IMAGE_HEIGHT = image.getIntrinsicHeight();
+
+                // You can also use Config.ARGB_4444 to conserve memory or ARGB_565 if
+                // you don't have any transparency.
+                Bitmap canvasBitmap = Bitmap.createBitmap(IMAGE_WIDTH,
+                        IMAGE_HEIGHT,
+                        Bitmap.Config.ARGB_8888);
+
+                if (isAdded()) {
+                    res = getActivity().getResources();
+                }
+                Bitmap canvasBitmap2 = BitmapFactory.decodeResource(res, R.drawable.marker_01);
+                Bitmap drawableBitmap = canvasBitmap2.copy(Bitmap.Config.ARGB_8888, true);
+
+                // Create a canvas, that will draw on to canvasBitmap. canvasBitmap is
+                // currently blank.
+                Canvas imageCanvas = new Canvas(canvasBitmap);
+
+                // Set up the paint for use with our Canvas
+                Paint imagePaint = new Paint();
+                imageCanvas.drawBitmap(drawableBitmap, 0.0f, 0.0f, null);
+                imagePaint.setTextAlign(Paint.Align.CENTER);
+                imagePaint.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
+                imagePaint.setTextSize(35f);
+
+                // Draw the image to our canvas
+                image.draw(imageCanvas);
+
+                // Draw the text on top of our image
+                imageCanvas.drawText("PARK",
+                        IMAGE_WIDTH / 2,
+                        IMAGE_HEIGHT / 2,
+                        imagePaint);
+
+                // This is the final image that you can use
+                if (isAdded()) {
+                    finalImage = new BitmapDrawable(getResources(), canvasBitmap);
+                }
+                Bitmap myLogo = finalImage.getBitmap();
+                markerOption.icon(BitmapDescriptorFactory.fromBitmap(myLogo));
+
+//                    mCurrLocationMarker[i].setTitle(pName[i] + "/" + available[i] + "/" + 0);
+
+            }
+            parkMarker = mMap.addMarker(markerOption);
+        }
+    }
+
+    public void setParkLatLong(String uId,String lat,String lon){
+        try {
+            response = http.run("http://parkhere.sit.kmutt.ac.th/setParkLatLong.php?uId="+uId+"&pLat="+lat+"&pLong="+lon);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public String getParkLatLong(String uId){
+        try {
+            response = http.run("http://parkhere.sit.kmutt.ac.th/getParkLatLong.php?uId="+uId);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return response;
+    }
+
+    public void setCurrentLocation(LatLng latLng) {
+        latLngPark = latLng;
+    }
+
+    public LatLng getCurrentLocation() {
+        return latLngPark;
     }
 
     // จำนวน available and reserved
-    public ArrayList getNumParkinglot(){
+    public ArrayList getNumParkinglot() {
 
         ArrayList<HashMap<String, String>> reserve = null;
         reserve = new ArrayList<HashMap<String, String>>();
         HashMap<String, String> map2;
         String[] getInfo2;
-        String pId2,res;
+        String pId2, res;
 
         //String str2 = "2,3";
         //String str2 = "0,0";
         String str2 = getCountRes();
         Scanner scan = new Scanner(str2);
-        for(int j = 0; scan.hasNext(); j++){
+        for (int j = 0; scan.hasNext(); j++) {
             String data = scan.nextLine();
             System.out.println(data);
             getInfo2 = data.split(",");
             pId2 = getInfo2[0];
             res = getInfo2[1];
             map2 = new HashMap<String, String>();
-            if((j+1)!=Integer.parseInt(pId2)){
-                map2.put("pId2", j+1+"");
-                map2.put("res", 0+"");
+            if ((j + 1) != Integer.parseInt(pId2)) {
+                map2.put("pId2", j + 1 + "");
+                map2.put("res", 0 + "");
                 reserve.add(map2);
-            }else {
+            } else {
                 map2.put("pId2", pId2);
                 map2.put("res", res);
                 reserve.add(map2);
@@ -1159,7 +1160,7 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
         //String str = "1,14Floor Building,100,0,13.650784,100.496006\n2,CB2,110,10,13.650784,100.496006";
         String str = response;
         String[] getInfo;
-        String parkName,a,amount,la,lo,pId,pa,remain;
+        String parkName, a, amount, la, lo, pId, pa, remain;
 
         ArrayList<HashMap<String, String>> parkinglot = null;
 
@@ -1167,8 +1168,8 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
         HashMap<String, String> map;
 
         Scanner scanner = new Scanner(str);
-        for(int i = 0; scanner.hasNext(); i++){
-            int aa=0;
+        for (int i = 0; scanner.hasNext(); i++) {
+            int aa = 0;
             String data = scanner.nextLine();
             System.out.println(data);
             getInfo = data.split(",");
@@ -1177,21 +1178,21 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
             remain = getInfo[2];
             amount = getInfo[3];
             pa = getInfo[4];
-            Log.wtf("getNumParkinglot: ", amount );
+            Log.wtf("getNumParkinglot: ", amount);
 
 //            a = Integer.parseInt(amount) - Integer.parseInt(pa) + "";
-            a = Integer.parseInt(remain)+"";
-            if(str2.equals("0,0")){
+            a = Integer.parseInt(remain) + "";
+            if (str2.equals("0,0")) {
 //                a = Integer.parseInt(amount) - Integer.parseInt(pa) + "";
-                a = Integer.parseInt(remain)+ "";
-            }else if(reserve.get(i).get("pId2").toString().equals(pId)){
+                a = Integer.parseInt(remain) + "";
+            } else if (reserve.get(i).get("pId2").toString().equals(pId)) {
 //                a = (Integer.parseInt(amount) -
 //                        Integer.parseInt(reserve.get(i).get("res").toString()) - Integer.parseInt(pa))+"";
-                a = Integer.parseInt(remain) - Integer.parseInt(reserve.get(i).get("res").toString())+"";
+                a = Integer.parseInt(remain) - Integer.parseInt(reserve.get(i).get("res").toString()) + "";
             }
 
             map = new HashMap<String, String>();
-            map.put("pId",pId);
+            map.put("pId", pId);
             map.put("pName", parkName);
             map.put("available", a);
             map.put("amount", amount);
@@ -1216,7 +1217,7 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
 
     }
 
-    public String getCountRes(){
+    public String getCountRes() {
         try {
             response = http.run("http://parkhere.sit.kmutt.ac.th/countRes.php");
         } catch (IOException e) {
@@ -1249,8 +1250,7 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
                 buildGoogleApiClient();
                 mMap.setMyLocationEnabled(true);
             }
-        }
-        else {
+        } else {
             buildGoogleApiClient();
             mMap.setMyLocationEnabled(true);
         }
@@ -1259,8 +1259,7 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
         Criteria criteria = new Criteria();
 
         Location location = locationManager.getLastKnownLocation(locationManager.getBestProvider(criteria, false));
-        if (location != null)
-        {
+        if (location != null) {
             mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(100, 31), 10));
 
             CameraPosition cameraPosition = new CameraPosition.Builder()
@@ -1304,7 +1303,7 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
 
     }
 
-    public boolean checkLocationPermission(){
+    public boolean checkLocationPermission() {
         if (ContextCompat.checkSelfPermission(getContext(),
                 android.Manifest.permission.ACCESS_FINE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED) {
@@ -1336,7 +1335,7 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode,String permissions[], int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
         switch (requestCode) {
             case MY_PERMISSIONS_REQUEST_LOCATION: {
                 // If request is cancelled, the result arrays are empty.
@@ -1368,34 +1367,9 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
         }
     }
 
-    private Drawable createMarkerIcon(Drawable backgroundImage, String text,
-                                      int width, int height) {
-
-        Bitmap canvasBitmap = Bitmap.createBitmap(width, height,
-                Bitmap.Config.ARGB_8888);
-        // Create a canvas, that will draw on to canvasBitmap.
-        Canvas imageCanvas = new Canvas(canvasBitmap);
-
-        // Set up the paint for use with our Canvas
-        Paint imagePaint = new Paint();
-        imagePaint.setTextAlign(Paint.Align.CENTER);
-        imagePaint.setTextSize(16f);
-
-        // Draw the image to our canvas
-        backgroundImage.draw(imageCanvas);
-
-        // Draw the text on top of our image
-        imageCanvas.drawText(text, width / 2, height / 2, imagePaint);
-
-        // Combine background and text to a LayerDrawable
-        LayerDrawable layerDrawable = new LayerDrawable(
-                new Drawable[]{backgroundImage, new BitmapDrawable(canvasBitmap)});
-        return layerDrawable;
-    }
-
-    public ArrayList getLocation(){
+    public ArrayList getLocation() {
         String[] getInfo;
-        String lat,lon;
+        String lat, lon;
         ArrayList<HashMap<String, String>> location = null;
         location = new ArrayList<HashMap<String, String>>();
         HashMap<String, String> latlong;
@@ -1406,7 +1380,7 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
             e.printStackTrace();
         }
         Scanner scanner = new Scanner(response);
-        for(int i = 0; scanner.hasNext(); i++){
+        for (int i = 0; scanner.hasNext(); i++) {
             String data = scanner.nextLine();
             getInfo = data.split(",");
             lat = getInfo[0];
