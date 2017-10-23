@@ -131,10 +131,21 @@ public class HomeStuActivity extends AppCompatActivity
 //            transaction.replace(R.id.fragment_container, blankFragment);
 //            transaction.commit();
 
-            AvailableFragment availableFragment = new AvailableFragment().newInstance(uId,"1");
-            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-            transaction.replace(R.id.fragment_container, availableFragment);
-            transaction.commit();
+            if(sta==1){
+                String pId = getpId(uId);
+                String parkLoc = getParkLocation(uId);
+                BlankFragment blankFragment = new BlankFragment().newInstance(uId,"1",parkLoc);
+                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                transaction.replace(R.id.fragment_container, blankFragment);
+                transaction.commit();
+
+            }else {
+                AvailableFragment availableFragment = new AvailableFragment().newInstance(uId, "1");
+                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                transaction.replace(R.id.fragment_container, availableFragment);
+                transaction.commit();
+
+            }
 
         } else if (id == R.id.nav_history) {
             //Fragment

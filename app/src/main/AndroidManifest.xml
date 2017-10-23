@@ -75,6 +75,7 @@
         <activity android:name=".Tab3" />
 
         <service android:name=".ActivityRecognizedService" />
+        <service android:name=".SecNotificationService" />
 
     </application>
 

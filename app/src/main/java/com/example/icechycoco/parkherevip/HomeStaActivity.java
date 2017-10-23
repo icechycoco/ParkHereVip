@@ -15,11 +15,9 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -156,10 +154,21 @@ public class HomeStaActivity extends AppCompatActivity
 //            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
 //            transaction.replace(R.id.fragment_container, blankFragment);
 //            transaction.commit();
-            AvailableFragment availableFragment = new AvailableFragment().newInstance(uId,"2");
-            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-            transaction.replace(R.id.fragment_container, availableFragment);
-            transaction.commit();
+            if(sta==1){
+                String pId = getpId(uId);
+                String parkLoc = getParkLocation(uId);
+                BlankFragment blankFragment = new BlankFragment().newInstance(uId,"2",parkLoc);
+                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                transaction.replace(R.id.fragment_container, blankFragment);
+                transaction.commit();
+
+            }else {
+                AvailableFragment availableFragment = new AvailableFragment().newInstance(uId, "2");
+                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                transaction.replace(R.id.fragment_container, availableFragment);
+                transaction.commit();
+
+            }
 
         } else if (id == R.id.nav_history) {
             //Fragment

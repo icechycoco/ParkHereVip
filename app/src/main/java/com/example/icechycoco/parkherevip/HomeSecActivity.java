@@ -19,7 +19,6 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -169,6 +168,9 @@ public class HomeSecActivity extends AppCompatActivity
         }
     }
 
+
+
+
     public String userInfo(String query){
         try {
             response = http.run("http://parkhere.sit.kmutt.ac.th/search.php?uLicense=" + query);
@@ -227,10 +229,21 @@ public class HomeSecActivity extends AppCompatActivity
 //            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
 //            transaction.replace(R.id.fragment_container, blankFragment);
 //            transaction.commit();
-            AvailableFragment availableFragment = new AvailableFragment().newInstance(uId,"3");
-            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-            transaction.replace(R.id.fragment_container, availableFragment);
-            transaction.commit();
+            if(sta==1){
+                String pId = getpId(uId);
+                String parkLoc = getParkLocation(uId);
+                BlankFragment blankFragment = new BlankFragment().newInstance(uId,"3",parkLoc);
+                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                transaction.replace(R.id.fragment_container, blankFragment);
+                transaction.commit();
+
+            }else {
+                AvailableFragment availableFragment = new AvailableFragment().newInstance(uId, "3");
+                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                transaction.replace(R.id.fragment_container, availableFragment);
+                transaction.commit();
+
+            }
         } else if (id == R.id.nav_history) {
             //Fragment
             HistoryFragment historyFragment = new HistoryFragment().newInstance(uId,"3");
