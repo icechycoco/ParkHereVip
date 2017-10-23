@@ -312,6 +312,7 @@ public class ReserveinfoFragment extends Fragment {
                 }
 
                 sendEmail(gEmail);
+                showNotification();
 
                 final Handler handler = new Handler();
                 handler.postDelayed(new Runnable() {
@@ -377,6 +378,7 @@ public class ReserveinfoFragment extends Fragment {
                 }
 
                 sendEmail(gEmail);
+                showNotification();
 
                 final Handler handler = new Handler();
                 handler.postDelayed(new Runnable() {
@@ -475,28 +477,28 @@ public class ReserveinfoFragment extends Fragment {
 
     }
 
-//    public void showNotification(View view) {
-//
+    public void showNotification() {
+
 //        RequestFragment requestFragment = new RequestFragment().newInstance(uId);
 //        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
 //        transaction.replace(R.id.fragment_container, requestFragment);
 //        transaction.commit();
-//
-//
-//        Notification notification =
-//                new NotificationCompat.Builder(getContext())
-//                        .setSmallIcon(R.mipmap.ic_launcher)
-//                        .setContentTitle("DevAhoy News")
-//                        .setContentText("สวัสดีครับ ยินดีต้อนรับเข้าสู่บทความ Android Notification :)")
-//                        .setAutoCancel(true)
-//                        .setContentIntent(pendingIntent)
-//                        .build();
-//
-//        NotificationManager notificationManager =
-//                (NotificationManager) getContext().getSystemService(NOTIFICATION_SERVICE);
-//        notificationManager.notify(1000, notification);
-//
-//    }
+
+
+        Notification notification =
+                new NotificationCompat.Builder(getContext())
+                        .setSmallIcon(R.mipmap.ic_launcher)
+                        .setContentTitle("DevAhoy News")
+                        .setContentText("สวัสดีครับ ยินดีต้อนรับเข้าสู่บทความ Android Notification :)")
+                        .setAutoCancel(true)
+                        //.setContentIntent(pendingIntent)
+                        .build();
+
+        NotificationManager notificationManager =
+                (NotificationManager) getContext().getSystemService(NOTIFICATION_SERVICE);
+        notificationManager.notify(1000, notification);
+
+    }
 
     public String getNewGid(String pId){
 //        try {

@@ -107,6 +107,8 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
     private String po;
     private static final String KEY_PID = "pid";
     private String pid;
+    private static final String KEY_LOC = "loc";
+    private String loc;
 
     LocationManager locationManager;
     String locationProvider;
@@ -168,12 +170,13 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
     }
 
     // TODO: Rename and change types and number of parameters
-    public static BlankFragment newInstance(String uId, String po, String pid) {
+    public static BlankFragment newInstance(String uId, String po, String pid , String loc) {
         BlankFragment fragment = new BlankFragment();
         Bundle args = new Bundle();
         args.putString(KEY_ID, uId);
         args.putString(KEY_PO, po);
         args.putString(KEY_PID, pid);
+        args.putString(KEY_LOC, loc);
         fragment.setArguments(args);
         return fragment;
     }
@@ -187,6 +190,7 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
             uId = bundle.getString(KEY_ID);
             po = bundle.getString(KEY_PO);
             pid = bundle.getString(KEY_PID);
+            loc = bundle.getString(KEY_LOC);
         }
         Toast.makeText(getContext(), "uId : " + uId, Toast.LENGTH_SHORT).show();
 
@@ -389,9 +393,6 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
             simpleStepDetector.updateAccel(
                     event.timestamp, event.values[0], event.values[1], event.values[2]);
         }
-//        if(running){
-//            txt5.setText(String.valueOf(sensorEvent.values[0]));
-//        }
     }
 
     @Override
@@ -963,7 +964,8 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
             inside = false;
             text = "Outside" + distance[0];
             txt.setText("Outside");
-            txt.setText(mLastLocation.getAltitude()+"");
+            txt.setText(getElevationFromGoogleMaps(mLastLocation.getLatitude(),mLastLocation.getLongitude())+"");
+            Log.wtf("H is : " , getElevationFromGoogleMaps(mLastLocation.getLatitude(),mLastLocation.getLongitude())+"");
 
         } else {
 //            Log.e("Inside "+location.getLatitude()+"",location.getLongitude()+"");
@@ -1225,6 +1227,44 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
         });
 
         dialog.show();
+    }
+
+    private double getElevationFromGoogleMaps(double longitude, double latitude) {
+        double result = 0;
+        HttpClient httpClient = new DefaultHttpClient();
+        HttpContext localContext = new BasicHttpContext();
+//        String url = "http://maps.googleapis.com/maps/api/elevation/"
+//                + "xml?locations=" + String.valueOf(latitude)
+//                + "," + String.valueOf(longitude)
+//                + "&sensor=true";
+        String url = "https://maps.googleapis.com/maps/api/elevation/json?locations="
+                + String.valueOf(latitude) + "," + String.valueOf(longitude)
+                + "&key=AIzaSyDdflhbxr0Ue1BIaflldYkC0MItjz55dSI";
+        HttpGet httpGet = new HttpGet(url);
+        try {
+            HttpResponse response = httpClient.execute(httpGet, localContext);
+            HttpEntity entity = response.getEntity();
+            if (entity != null) {
+                InputStream instream = entity.getContent();
+                int r = -1;
+                StringBuffer respStr = new StringBuffer();
+                while ((r = instream.read()) != -1)
+                    respStr.append((char) r);
+                String tagOpen = "<elevation>";
+                String tagClose = "</elevation>";
+                if (respStr.indexOf(tagOpen) != -1) {
+                    int start = respStr.indexOf(tagOpen) + tagOpen.length();
+                    int end = respStr.indexOf(tagClose);
+                    String value = respStr.substring(start, end);
+//                    String value = respStr.substring(start, end);
+                    result = Double.parseDouble(value); // convert from meters to feet
+                }
+                instream.close();
+            }
+        } catch (ClientProtocolException e) {}
+        catch (IOException e) {}
+
+        return result;
     }
 
 }

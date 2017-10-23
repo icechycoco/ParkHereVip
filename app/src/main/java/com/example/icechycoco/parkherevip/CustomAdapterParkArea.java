@@ -90,7 +90,7 @@ public class CustomAdapterParkArea extends BaseAdapter implements AvailableFragm
             public void onClick(View v) {
                 pId = position+1+"";
 
-                BlankFragment blankFragment = new BlankFragment().newInstance(availableFragment.getuId(), availableFragment.getPo(), pId);
+                BlankFragment blankFragment = new BlankFragment().newInstance(availableFragment.getuId(), availableFragment.getPo(), pId, getLocation(pId)  );
                 FragmentManager manager = ((FragmentActivity) mContext).getSupportFragmentManager();
                 FragmentTransaction transaction = manager.beginTransaction();
                 transaction.replace(R.id.fragment_container, blankFragment);
@@ -152,6 +152,15 @@ public class CustomAdapterParkArea extends BaseAdapter implements AvailableFragm
     @Override
     public void onFragmentInteraction(Uri uri) {
 
+    }
+
+    public String getLocation(String pId){
+        try {
+            response = http.run("http://parkhere.sit.kmutt.ac.th/getLocation.php");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return response;
     }
 
     public class getHttp {
