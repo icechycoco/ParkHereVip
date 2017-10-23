@@ -40,6 +40,8 @@ public class HomeSecActivity extends AppCompatActivity
     String uId;
     SharedPreferences sp;
 
+    int level,sta;
+
     String[] name = new String[]{"View","Ice","Park"};
     String[] getInfo = null;
     String[] getInfo2 = null;
@@ -62,101 +64,109 @@ public class HomeSecActivity extends AppCompatActivity
         uId = sp.getString("UID", "0");
         Toast.makeText(this, "uId : " + uId, Toast.LENGTH_SHORT).show();
 
-        //Fragment
-//        BlankFragment blankFragment = new BlankFragment().newInstance(uId,"3");
-//        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-//        transaction.replace(R.id.fragment_container, blankFragment);
-//        transaction.commit();
+        String str = getLev(uId);
+        String[] getInfo3;
+        getInfo3 = str.split(",");
+        level = Integer.parseInt(getInfo3[0]);
+        sta = Integer.parseInt(getInfo3[1]);
 
-        AvailableFragment availableFragment = new AvailableFragment().newInstance(uId,"3");
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.fragment_container, availableFragment);
-        transaction.commit();
+        if(sta==1){
+            String pId = getpId(uId);
+            String parkLoc = getParkLocation(uId);
+            BlankFragment blankFragment = new BlankFragment().newInstance(uId,"3",pId,parkLoc);
+            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+            transaction.replace(R.id.fragment_container, blankFragment);
+            transaction.commit();
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.setDrawerListener(toggle);
-        toggle.syncState();
+        }else {
+            AvailableFragment availableFragment = new AvailableFragment().newInstance(uId, "3");
+            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+            transaction.replace(R.id.fragment_container, availableFragment);
+            transaction.commit();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        View hView =  navigationView.getHeaderView(0);
-        TextView nav_user = (TextView)hView.findViewById(R.id.tvname);
-        nav_user.setText(getName(uId));
-        ImageView img = (ImageView)hView.findViewById(R.id.imageView);
-        img.setBackgroundResource(R.drawable.sec);
-        navigationView.setNavigationItemSelectedListener(this);
+            DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+            ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                    this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+            drawer.setDrawerListener(toggle);
+            toggle.syncState();
+
+            NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+            View hView = navigationView.getHeaderView(0);
+            TextView nav_user = (TextView) hView.findViewById(R.id.tvname);
+            nav_user.setText(getName(uId));
+            ImageView img = (ImageView) hView.findViewById(R.id.imageView);
+            img.setBackgroundResource(R.drawable.sec);
+            navigationView.setNavigationItemSelectedListener(this);
 
 
-        final SearchView searchView = (SearchView)findViewById(R.id.search_view);
+            final SearchView searchView = (SearchView) findViewById(R.id.search_view);
 
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
+            searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+                @Override
+                public boolean onQueryTextSubmit(String query) {
 
-                String u = userInfo(query);
-                if (u.equals("0 ")) {
-                    String g = guestInfo(query);
-                    if (g.equals("0 ")) {
-                        final AlertDialog.Builder builder =
-                                new AlertDialog.Builder(getBaseContext());
-                        builder.setMessage("----Invalid License---");
-                        builder.setPositiveButton("ok", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                builder.getContext();
-                            }
-                        });
-                        builder.show();
+                    String u = userInfo(query);
+                    if (u.equals("0 ")) {
+                        String g = guestInfo(query);
+                        if (g.equals("0 ")) {
+                            final AlertDialog.Builder builder =
+                                    new AlertDialog.Builder(getBaseContext());
+                            builder.setMessage("----Invalid License---");
+                            builder.setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    builder.getContext();
+                                }
+                            });
+                            builder.show();
+                        } else {
+                            getInfo = g.split(",");
+                            pName2 = getInfo[0];
+                            fN2 = getInfo[1];
+                            lN2 = getInfo[2];
+                            gName = fN2 + "   " + lN2;
+                            phone2 = getInfo[3];
+
+                            final AlertDialog.Builder builder =
+                                    new AlertDialog.Builder(HomeSecActivity.this);
+                            builder.setMessage("Guest Name: " + gName + "\n\nParked Area: " + pName2 + "\n\nPhone Number : " + phone2);
+                            builder.setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    builder.getContext();
+                                }
+                            });
+                            builder.show();
+                        }
                     } else {
-                        getInfo = g.split(",");
-                        pName2 = getInfo[0];
-                        fN2 = getInfo[1];
-                        lN2 = getInfo[2];
-                        gName = fN2 + "   " + lN2;
-                        phone2 = getInfo[3];
+                        Log.wtf("show userinfo : ", u);
+                        getInfo2 = u.split(",");
+                        pName = getInfo2[0];
+                        fN = getInfo2[1];
+                        lN = getInfo2[2];
+                        uName = fN + "   " + lN;
+                        phone = getInfo2[3];
 
                         final AlertDialog.Builder builder =
                                 new AlertDialog.Builder(HomeSecActivity.this);
-                        builder.setMessage("Guest Name: " + gName + "\n\nParked Area: " + pName2 + "\n\nPhone Number : " + phone2);
+                        builder.setMessage("Name: " + uName + "\n\nParked Area: " + pName + "\n\nPhone Number : " + phone);
                         builder.setPositiveButton("ok", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
                                 builder.getContext();
                             }
                         });
                         builder.show();
+
                     }
-                } else {
-                    Log.wtf("show userinfo : " ,u);
-                    getInfo2 = u.split(",");
-                    pName = getInfo2[0];
-                    fN = getInfo2[1];
-                    lN = getInfo2[2];
-                    uName = fN + "   " + lN;
-                    phone = getInfo2[3];
-
-                    final AlertDialog.Builder builder =
-                            new AlertDialog.Builder(HomeSecActivity.this);
-                    builder.setMessage("Name: " + uName + "\n\nParked Area: " + pName + "\n\nPhone Number : " + phone);
-                    builder.setPositiveButton("ok", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            builder.getContext();
-                        }
-                    });
-                    builder.show();
-
+                    searchView.clearFocus();
+                    return true;
                 }
-                searchView.clearFocus();
-                return true;
-            }
 
-            @Override
-            public boolean onQueryTextChange(String newText)
-            {
-                return false;
-            }
-        });
+                @Override
+                public boolean onQueryTextChange(String newText) {
+                    return false;
+                }
+            });
 
-
+        }
     }
 
     public String userInfo(String query){
@@ -258,6 +268,36 @@ public class HomeSecActivity extends AppCompatActivity
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return response;
+    }
+
+    public String getLev(String uId){
+        try {
+            response = http.run("http://parkhere.sit.kmutt.ac.th/Level.php?uId="+uId);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return response;
+    }
+
+    public String getParkLocation(String uId){
+        try {
+            response = http.run("http://parkhere.sit.kmutt.ac.th/getParkLatLong.php?uId="+uId);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return response;
+    }
+
+    public String getpId(String uId){
+        try {
+            response = http.run("http://parkhere.sit.kmutt.ac.th/getpId.php?uId="+uId);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         return response;
     }
 

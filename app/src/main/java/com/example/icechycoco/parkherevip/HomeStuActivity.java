@@ -29,11 +29,13 @@ public class HomeStuActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,
         HistoryFragment.OnFragmentInteractionListener , MapParkFragment.OnFragmentInteractionListener, BlankFragment.OnFragmentInteractionListener {
 
-    String uId;
+    String uId,po;
     SharedPreferences sp;
     // connect db
     String response = null;
     getHttp http = new getHttp();
+
+    int level,sta;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,29 +48,41 @@ public class HomeStuActivity extends AppCompatActivity
         uId = sp.getString("UID", "0");
         Toast.makeText(this, "uId : " + uId, Toast.LENGTH_SHORT).show();
 
-//        BlankFragment blankFragment = new BlankFragment().newInstance(uId,"1");
-//        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-//        transaction.replace(R.id.fragment_container, blankFragment);
-//        transaction.commit();
+        String str = getLev(uId);
+        String[] getInfo;
+        getInfo = str.split(",");
+        level = Integer.parseInt(getInfo[0]);
+        sta = Integer.parseInt(getInfo[1]);
 
-        AvailableFragment availableFragment = new AvailableFragment().newInstance(uId,"1");
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.fragment_container, availableFragment);
-        transaction.commit();
+        if(sta==1){
+            String pId = getpId(uId);
+            String parkLoc = getParkLocation(uId);
+            BlankFragment blankFragment = new BlankFragment().newInstance(uId,"1",pId,parkLoc);
+            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+            transaction.replace(R.id.fragment_container, blankFragment);
+            transaction.commit();
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.setDrawerListener(toggle);
-        toggle.syncState();
+        }else {
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        View hView =  navigationView.getHeaderView(0);
-        TextView nav_user = (TextView)hView.findViewById(R.id.tvname);
-        nav_user.setText(getName(uId));
-        ImageView img = (ImageView)hView.findViewById(R.id.imageView);
-        img.setBackgroundResource(R.drawable.stu);
-        navigationView.setNavigationItemSelectedListener(this);
+            AvailableFragment availableFragment = new AvailableFragment().newInstance(uId, "1");
+            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+            transaction.replace(R.id.fragment_container, availableFragment);
+            transaction.commit();
+
+            DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+            ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                    this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+            drawer.setDrawerListener(toggle);
+            toggle.syncState();
+
+            NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+            View hView = navigationView.getHeaderView(0);
+            TextView nav_user = (TextView) hView.findViewById(R.id.tvname);
+            nav_user.setText(getName(uId));
+            ImageView img = (ImageView) hView.findViewById(R.id.imageView);
+            img.setBackgroundResource(R.drawable.stu);
+            navigationView.setNavigationItemSelectedListener(this);
+        }
     }
 
     @Override
@@ -153,6 +167,36 @@ public class HomeStuActivity extends AppCompatActivity
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return response;
+    }
+
+    public String getLev(String uId){
+        try {
+            response = http.run("http://parkhere.sit.kmutt.ac.th/Level.php?uId="+uId);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return response;
+    }
+
+    public String getParkLocation(String uId){
+        try {
+            response = http.run("http://parkhere.sit.kmutt.ac.th/getParkLatLong.php?uId="+uId);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return response;
+    }
+
+    public String getpId(String uId){
+        try {
+            response = http.run("http://parkhere.sit.kmutt.ac.th/getpId.php?uId="+uId);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         return response;
     }
 

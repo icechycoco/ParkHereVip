@@ -968,8 +968,8 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
             inside = false;
             text = "Outside" + distance[0];
             txt.setText("Outside");
-            txt.setText(getElevationFromGoogleMaps(mLastLocation.getLatitude(),mLastLocation.getLongitude())+"");
-            Log.wtf("H is : " , getElevationFromGoogleMaps(mLastLocation.getLatitude(),mLastLocation.getLongitude())+"");
+//            txt.setText(getElevationFromGoogleMaps(mLastLocation.getLatitude(),mLastLocation.getLongitude())+"");
+//            Log.wtf("H is : " , getElevationFromGoogleMaps(mLastLocation.getLatitude(),mLastLocation.getLongitude())+"");
 
         } else {
 //            Log.e("Inside "+location.getLatitude()+"",location.getLongitude()+"");
@@ -1218,7 +1218,6 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
             latlong.put("lo", lon);
             location.add(latlong);
         }
-
         return location;
     }
 

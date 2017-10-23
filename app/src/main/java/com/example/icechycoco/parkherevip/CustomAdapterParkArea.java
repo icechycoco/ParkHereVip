@@ -3,6 +3,7 @@ package com.example.icechycoco.parkherevip;
 import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
@@ -15,6 +16,8 @@ import android.view.Window;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -74,12 +77,12 @@ public class CustomAdapterParkArea extends BaseAdapter implements AvailableFragm
         available = Integer.parseInt(strHis.get(position).get("available").toString());
         TextView textView6 = (TextView)view.findViewById(R.id.textView6);
         textView6.setText(available+"");
-        if(available > 20){
-            textView6.setTextColor(Color.parseColor("#96DA14"));
-        }else if(available < 20){
-            textView6.setTextColor(Color.parseColor("#FFAA0E"));
-        }else if(available < 10){
+        ImageView img = (ImageView) view.findViewById(R.id.imageView3);
+        if(available < 15) {
             textView6.setTextColor(Color.parseColor("#DB0000"));
+            img.setImageResource(R.drawable.arrowred);
+        }else if(available == 0){
+            img.setVisibility(View.INVISIBLE);
         }
 
         LinearLayout linearLayout = (LinearLayout)view.findViewById(R.id.linearLayout);
@@ -87,19 +90,7 @@ public class CustomAdapterParkArea extends BaseAdapter implements AvailableFragm
 
             @Override
             public void onClick(View v) {
-                pId = position+1+"";
-
-                BlankFragment blankFragment = new BlankFragment().newInstance(availableFragment.getuId(), availableFragment.getPo(), pId, getLocation(pId)  );
-                FragmentManager manager = ((FragmentActivity) mContext).getSupportFragmentManager();
-                FragmentTransaction transaction = manager.beginTransaction();
-                transaction.replace(R.id.fragment_container, blankFragment);
-                transaction.commit();
-                Log.wtf("get position : ", availableFragment.getPo());
-                Log.wtf("get uId : ", availableFragment.getuId());
-                Log.wtf("get pId : ", pId);
-
-
-                if (availableFragment.getPo().equals(3)) {
+                if (availableFragment.getPo().equals("3")) {
 
                     final Dialog dialog = new Dialog(mContext);
                     dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -144,6 +135,29 @@ public class CustomAdapterParkArea extends BaseAdapter implements AvailableFragm
                 }
             }
         });
+
+
+        img.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                pId = position+1+"";
+
+                BlankFragment blankFragment = new BlankFragment().newInstance(availableFragment.getuId(), availableFragment.getPo(), pId, getLocation(pId)  );
+                FragmentManager manager = ((FragmentActivity) mContext).getSupportFragmentManager();
+                FragmentTransaction transaction = manager.beginTransaction();
+                transaction.replace(R.id.fragment_container, blankFragment);
+                transaction.commit();
+                Log.wtf("get position : ", availableFragment.getPo());
+                Log.wtf("get uId : ", availableFragment.getuId());
+                Log.wtf("get pId : ", pId);
+
+            }
+
+        });
+
+
+
 
         return view;
     }
