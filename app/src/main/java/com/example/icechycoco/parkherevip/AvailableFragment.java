@@ -232,81 +232,54 @@ public class AvailableFragment extends Fragment {
         reserve = new ArrayList<HashMap<String, String>>();
         HashMap<String, String> map2;
         String[] getInfo2;
-        String pId2,res;
+        int pId2;
+        int res,remain;
+        String[] getInfo;
+        String parkName,a,pId;
 
+        String str = getAvailable();
         String str2 = getCountRes();
+
+        Scanner scanner = new Scanner(str);
         Scanner scan = new Scanner(str2);
+
         for(int j = 0; scan.hasNext(); j++){
             String data = scan.nextLine();
             System.out.println(data);
             getInfo2 = data.split(",");
-            pId2 = getInfo2[0];
-            res = getInfo2[1];
-            map2 = new HashMap<String, String>();
-            if((j+1)!=Integer.parseInt(pId2)){
-                map2.put("pId2", j+1+"");
-                map2.put("res", 0+"");
-                reserve.add(map2);
-            }else {
-                map2.put("pId2", pId2);
-                map2.put("res", res);
-                reserve.add(map2);
-            }
-        }
+            pId2 = Integer.parseInt(getInfo2[0]);
+            res = Integer.parseInt(getInfo2[1]);
+            //nRes.add(pId2, res);
 
-        try {
-            response = http.run("http://parkhere.sit.kmutt.ac.th/getAvailable.php");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        //String str = "1,14Floor Building,100,0,13.650784,100.496006\n2,CB2,110,10,13.650784,100.496006";
-        String str = response;
-        String[] getInfo;
-        String parkName,a,amount,la,lo,pId,pa,remain;
-
-        ArrayList<HashMap<String, String>> parkinglot = null;
-
-        parkinglot = new ArrayList<HashMap<String, String>>();
-        HashMap<String, String> map;
-
-        Scanner scanner = new Scanner(str);
-        for(int i = 0; scanner.hasNext(); i++) {
-            int aa = 0;
-            String data = scanner.nextLine();
-            System.out.println(data);
-            getInfo = data.split(",");
+            String data2 = scanner.nextLine();
+            System.out.println(data2);
+            getInfo = data2.split(",");
             pId = getInfo[0];
             parkName = getInfo[1];
-            remain = getInfo[2];
-            amount = getInfo[3];
-            pa = getInfo[4];
-            Log.wtf("getNumParkinglot: ", amount);
+            remain = Integer.parseInt(getInfo[2]);
 
-//            a = Integer.parseInt(amount) - Integer.parseInt(pa) + "";
-            a = Integer.parseInt(remain) + "";
-            if (str2.equals("0,0")) {
-//                a = Integer.parseInt(amount) - Integer.parseInt(pa) + "";
-                a = Integer.parseInt(remain) + "";
-            } else if (reserve.get(i).get("pId2").toString().equals(pId)) {
-//                a = (Integer.parseInt(amount) -
-//                        Integer.parseInt(reserve.get(i).get("res").toString()) - Integer.parseInt(pa))+"";
-                a = Integer.parseInt(remain) - Integer.parseInt(reserve.get(i).get("res").toString()) + "";
-            }
-
-            map = new HashMap<String, String>();
-            map.put("pId", pId);
-            map.put("pName", parkName);
-            map.put("available", a);
-            parkinglot.add(map);
+            map2 = new HashMap<String, String>();
+            map2.put("pId", pId);
+            map2.put("pName", parkName);
+            map2.put("available", remain - res + "" );
+            reserve.add(map2);
         }
 
-        return parkinglot;
+        return reserve;
     }
 
     public String getCountRes(){
         try {
             response = http.run("http://parkhere.sit.kmutt.ac.th/countRes.php");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return response;
+    }
+
+    public String getAvailable(){
+        try {
+            response = http.run("http://parkhere.sit.kmutt.ac.th/getAvailable.php");
         } catch (IOException e) {
             e.printStackTrace();
         }
