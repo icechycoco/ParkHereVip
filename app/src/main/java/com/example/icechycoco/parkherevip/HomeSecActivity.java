@@ -70,20 +70,6 @@ public class HomeSecActivity extends AppCompatActivity
         level = Integer.parseInt(getInfo3[0]);
         sta = Integer.parseInt(getInfo3[1]);
 
-        if(sta==1){
-            String pId = getpId(uId);
-            String parkLoc = getParkLocation(uId);
-            BlankFragment blankFragment = new BlankFragment().newInstance(uId,"3",pId,parkLoc);
-            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-            transaction.replace(R.id.fragment_container, blankFragment);
-            transaction.commit();
-
-        }else {
-            AvailableFragment availableFragment = new AvailableFragment().newInstance(uId, "3");
-            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-            transaction.replace(R.id.fragment_container, availableFragment);
-            transaction.commit();
-
             DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
             ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                     this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -165,6 +151,20 @@ public class HomeSecActivity extends AppCompatActivity
                     return false;
                 }
             });
+
+        if(sta==1){
+            String pId = getpId(uId);
+            String parkLoc = getParkLocation(uId);
+            BlankFragment blankFragment = new BlankFragment().newInstance(uId,"3",parkLoc);
+            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+            transaction.replace(R.id.fragment_container, blankFragment);
+            transaction.commit();
+
+        }else {
+            AvailableFragment availableFragment = new AvailableFragment().newInstance(uId, "3");
+            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+            transaction.replace(R.id.fragment_container, availableFragment);
+            transaction.commit();
 
         }
     }

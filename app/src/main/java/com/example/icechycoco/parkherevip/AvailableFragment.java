@@ -82,86 +82,86 @@ public class AvailableFragment extends Fragment {
         }
         Toast.makeText(getContext(), "uId : " + uId, Toast.LENGTH_SHORT).show();
 
-        String str = getLev(uId);
-        String[] getInfo;
-        getInfo = str.split(",");
-        level = Integer.parseInt(getInfo[0]);
-        sta = Integer.parseInt(getInfo[1]);
-
-        if(sta==1) {
-
-            try {
-                response = http.run("http://parkhere.sit.kmutt.ac.th/estimate.php?uId=" + uId);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-            if (response.equals("0")) {
-
-            } else {
-
-                getInfo = response.split(" ");
-                getTime = getInfo[0];
-                getCost = Integer.parseInt(getInfo[1]);
-                getMCost = Integer.parseInt(getInfo[2]);
-                getFloor = getInfo[3];
-
-                // convert string time in database to time
-                SimpleDateFormat sdf = new SimpleDateFormat("hh:mm:ss");
-                Date date = null;
-                try {
-                    date = sdf.parse(getTime);
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
-                timeIn = sdf.format(date);
-
-                //current time
-                Calendar cal = Calendar.getInstance();
-                SimpleDateFormat sdf2 = new SimpleDateFormat("HH:mm:ss");
-                currentTime = sdf2.format(cal.getTime());
-
-                //calculate diff time
-                SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss");
-                try {
-                    date1 = format.parse(timeIn);
-                    date2 = format.parse(currentTime);
-                    long diff = date2.getTime() - date1.getTime();
-                    System.out.println(diff);
-                    diffHours = diff / (60 * 60 * 1000);
-                    System.out.println("current time " + date2);
-                    System.out.print(diffHours + " hours, ");
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
-
-                //calculate fee
-                long fee = diffHours * getCost;
-                if (fee > getMCost) {
-                    realFee = getMCost;
-                    System.out.println(getMCost);
-                } else {
-                    realFee = fee;
-                    System.out.println(fee);
-                }
-
-                final Dialog dialog = new Dialog(getContext());
-                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-                dialog.setContentView(R.layout.dialog_fee);
-
-                final TextView tin = (TextView) dialog.findViewById(R.id.textView13);
-                final TextView tout = (TextView) dialog.findViewById(R.id.textView15);
-                final TextView estfee = (TextView) dialog.findViewById(R.id.textView17);
-                final TextView floor = (TextView) dialog.findViewById(R.id.textView19);
-                tin.setText(timeIn);
-                tout.setText(currentTime);
-                estfee.setText(realFee + " BAHT");
-                floor.setText(getFloor);
-
-                dialog.show();
-
-            }
-        }
+//        String str = getLev(uId);
+//        String[] getInfo;
+//        getInfo = str.split(",");
+//        level = Integer.parseInt(getInfo[0]);
+//        sta = Integer.parseInt(getInfo[1]);
+//
+//        if(sta==1) {
+//
+//            try {
+//                response = http.run("http://parkhere.sit.kmutt.ac.th/estimate.php?uId=" + uId);
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+//
+//            if (response.equals("0")) {
+//
+//            } else {
+//
+//                getInfo = response.split(" ");
+//                getTime = getInfo[0];
+//                getCost = Integer.parseInt(getInfo[1]);
+//                getMCost = Integer.parseInt(getInfo[2]);
+//                getFloor = getInfo[3];
+//
+//                // convert string time in database to time
+//                SimpleDateFormat sdf = new SimpleDateFormat("hh:mm:ss");
+//                Date date = null;
+//                try {
+//                    date = sdf.parse(getTime);
+//                } catch (ParseException e) {
+//                    e.printStackTrace();
+//                }
+//                timeIn = sdf.format(date);
+//
+//                //current time
+//                Calendar cal = Calendar.getInstance();
+//                SimpleDateFormat sdf2 = new SimpleDateFormat("HH:mm:ss");
+//                currentTime = sdf2.format(cal.getTime());
+//
+//                //calculate diff time
+//                SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss");
+//                try {
+//                    date1 = format.parse(timeIn);
+//                    date2 = format.parse(currentTime);
+//                    long diff = date2.getTime() - date1.getTime();
+//                    System.out.println(diff);
+//                    diffHours = diff / (60 * 60 * 1000);
+//                    System.out.println("current time " + date2);
+//                    System.out.print(diffHours + " hours, ");
+//                } catch (ParseException e) {
+//                    e.printStackTrace();
+//                }
+//
+//                //calculate fee
+//                long fee = diffHours * getCost;
+//                if (fee > getMCost) {
+//                    realFee = getMCost;
+//                    System.out.println(getMCost);
+//                } else {
+//                    realFee = fee;
+//                    System.out.println(fee);
+//                }
+//
+//                final Dialog dialog = new Dialog(getContext());
+//                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+//                dialog.setContentView(R.layout.dialog_fee);
+//
+//                final TextView tin = (TextView) dialog.findViewById(R.id.textView13);
+//                final TextView tout = (TextView) dialog.findViewById(R.id.textView15);
+//                final TextView estfee = (TextView) dialog.findViewById(R.id.textView17);
+//                final TextView floor = (TextView) dialog.findViewById(R.id.textView19);
+//                tin.setText(timeIn);
+//                tout.setText(currentTime);
+//                estfee.setText(realFee + " BAHT");
+//                floor.setText(getFloor);
+//
+//                dialog.show();
+//
+//            }
+//        }
         Thread t = new Thread() {
 
             @Override

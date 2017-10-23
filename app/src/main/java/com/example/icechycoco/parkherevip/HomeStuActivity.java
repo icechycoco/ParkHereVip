@@ -54,21 +54,6 @@ public class HomeStuActivity extends AppCompatActivity
         level = Integer.parseInt(getInfo[0]);
         sta = Integer.parseInt(getInfo[1]);
 
-        if(sta==1){
-            String pId = getpId(uId);
-            String parkLoc = getParkLocation(uId);
-            BlankFragment blankFragment = new BlankFragment().newInstance(uId,"1",pId,parkLoc);
-            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-            transaction.replace(R.id.fragment_container, blankFragment);
-            transaction.commit();
-
-        }else {
-
-            AvailableFragment availableFragment = new AvailableFragment().newInstance(uId, "1");
-            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-            transaction.replace(R.id.fragment_container, availableFragment);
-            transaction.commit();
-
             DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
             ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                     this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -82,7 +67,23 @@ public class HomeStuActivity extends AppCompatActivity
             ImageView img = (ImageView) hView.findViewById(R.id.imageView);
             img.setBackgroundResource(R.drawable.stu);
             navigationView.setNavigationItemSelectedListener(this);
+
+        if(sta==1){
+            String pId = getpId(uId);
+            String parkLoc = getParkLocation(uId);
+            BlankFragment blankFragment = new BlankFragment().newInstance(uId,"1",parkLoc);
+            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+            transaction.replace(R.id.fragment_container, blankFragment);
+            transaction.commit();
+
+        }else {
+
+            AvailableFragment availableFragment = new AvailableFragment().newInstance(uId, "1");
+            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+            transaction.replace(R.id.fragment_container, availableFragment);
+            transaction.commit();
         }
+
     }
 
     @Override
