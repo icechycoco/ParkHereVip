@@ -2,7 +2,6 @@ package com.example.icechycoco.parkherevip;
 
 import android.app.Dialog;
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
 import android.support.v4.app.FragmentActivity;
@@ -156,7 +155,7 @@ public class CustomAdapterParkArea extends BaseAdapter implements AvailableFragm
 
     public String getLocation(String pId){
         try {
-            response = http.run("http://parkhere.sit.kmutt.ac.th/getLocation.php");
+            response = http.run("http://parkhere.sit.kmutt.ac.th/getLocation.php?pId="+pId);
         } catch (IOException e) {
             e.printStackTrace();
         }
