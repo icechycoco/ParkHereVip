@@ -226,6 +226,37 @@ public class AvailableFragment extends Fragment {
         return response;
     }
 
+    public ArrayList getDistance(){
+        ArrayList<HashMap<String, String>> distance = null;
+        distance = new ArrayList<HashMap<String, String>>();
+        HashMap<String, String> parkarea;
+        String[] getInfo;
+        double lat,lon;
+
+        for(int i=1;i<4;i++){
+            String location = getLocation(i);
+            getInfo = location.split(",");
+            lat = Double.parseDouble(getInfo[0]);
+            lon = Double.parseDouble(getInfo[1]);
+
+            // code here //
+
+
+
+
+
+            
+            parkarea = new HashMap<String, String>();
+            //parkarea.put("lat",lat);
+            //parkarea.put("lat",lon);
+            distance.add(parkarea);
+
+        }
+
+
+        return distance;
+    }
+
     public ArrayList getParkArea(){
 
         ArrayList<HashMap<String, String>> reserve = null;
@@ -266,6 +297,15 @@ public class AvailableFragment extends Fragment {
         }
 
         return reserve;
+    }
+
+    public String getLocation(int pId){
+        try {
+            response = http.run("http://parkhere.sit.kmutt.ac.th/getLocation.php?pId="+pId);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return response;
     }
 
     public String getCountRes(){

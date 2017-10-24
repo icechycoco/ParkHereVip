@@ -46,8 +46,6 @@ public class LoginActivity extends AppCompatActivity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_login);
 
-
-
         etUsername = (EditText) findViewById(R.id.etUsername);
         etPassword = (EditText) findViewById(R.id.etPassword);
         btLogin = (Button) findViewById(R.id.btLogin);
@@ -86,9 +84,6 @@ public class LoginActivity extends AppCompatActivity {
 //                editor.putString("Username", etUsername.getText().toString());
 //                editor.putString("Password", etPassword.getText().toString());
 //                editor.commit();
-
-
-
 
             }
 
