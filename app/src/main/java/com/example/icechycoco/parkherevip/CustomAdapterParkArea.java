@@ -47,10 +47,14 @@ public class CustomAdapterParkArea extends BaseAdapter implements AvailableFragm
 
     //String[] strName;
     ArrayList<HashMap<String, String>> strHis;
+    ArrayList<HashMap<String, String>> strDistance;
 
-    public CustomAdapterParkArea(Context context, ArrayList<HashMap<String, String>> strHis) {
+
+    public CustomAdapterParkArea(Context context, ArrayList<HashMap<String, String>> strHis,
+                                 ArrayList<HashMap<String, String>> strDistance) {
         this.mContext= context;
         this.strHis = strHis;
+        this.strDistance = strDistance;
     }
 
     public int getCount() {
@@ -77,6 +81,8 @@ public class CustomAdapterParkArea extends BaseAdapter implements AvailableFragm
         available = Integer.parseInt(strHis.get(position).get("available").toString());
         TextView textView6 = (TextView)view.findViewById(R.id.textView6);
         textView6.setText(available+"");
+        TextView textView20 = (TextView)view.findViewById(R.id.textView20);
+        textView20.setText(strDistance.get(position).get("d").toString()+" m");
         ImageView img = (ImageView) view.findViewById(R.id.imageView3);
         if(available < 15) {
             textView6.setTextColor(Color.parseColor("#DB0000"));

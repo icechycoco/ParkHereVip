@@ -194,7 +194,7 @@ public class AvailableFragment extends Fragment {
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final View v = inflater.inflate(R.layout.fragment_available, container, false);
-        CustomAdapterParkArea adapter = new CustomAdapterParkArea(getContext(), getParkArea());
+        CustomAdapterParkArea adapter = new CustomAdapterParkArea(getContext(), getParkArea(), getDistance());
         ListView listView = (ListView) v.findViewById(R.id.listView1);
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -279,6 +279,8 @@ public class AvailableFragment extends Fragment {
                             Log.wtf("onDirectiom.0nFailure", t);
                         }
                     });
+
+            Log.wtf("distance is ",dis);
             parkarea = new HashMap<String, String>();
             parkarea.put("d",dis);
             distance.add(parkarea);
