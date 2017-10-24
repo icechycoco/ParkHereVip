@@ -64,6 +64,9 @@ public class AvailableFragment extends Fragment {
     getHttp http = new getHttp();
 
     String dis;
+    LatLng origin = null;
+    LatLng destination = null;
+    HashMap<String, String> parkarea = new HashMap<String, String>();
 
     public AvailableFragment() {
         // Required empty public constructor
@@ -88,6 +91,7 @@ public class AvailableFragment extends Fragment {
             po = bundle.getString(KEY_PO);
         }
         Toast.makeText(getContext(), "uId : " + uId, Toast.LENGTH_SHORT).show();
+
 
 //        String str = getLev(uId);
 //        String[] getInfo;
@@ -169,6 +173,8 @@ public class AvailableFragment extends Fragment {
 //
 //            }
 //        }
+
+        getDistance();
         Thread t = new Thread() {
 
             @Override
@@ -236,7 +242,6 @@ public class AvailableFragment extends Fragment {
     public ArrayList getDistance(){
         ArrayList<HashMap<String, String>> distance = null;
         distance = new ArrayList<HashMap<String, String>>();
-        HashMap<String, String> parkarea;
         String[] getInfo;
         double lat,lon;
 
@@ -255,9 +260,9 @@ public class AvailableFragment extends Fragment {
             Location cLocation = locationManager.getLastKnownLocation(locationManager.getBestProvider(criteria, false));
 
             String serverKey = "AIzaSyCrvg_MLcS21bt3a11mN9MFKg8FTqBNkkc";
-            LatLng origin = new LatLng(cLocation.getLatitude(), cLocation.getLongitude());
+            origin = new LatLng(cLocation.getLatitude(), cLocation.getLongitude());
             Log.wtf("Current Location",origin.toString());
-            LatLng destination = new LatLng(lat, lon);
+            destination = new LatLng(lat, lon);
             GoogleDirection.withServerKey(serverKey)
                     .from(origin)
                     .to(destination)
@@ -269,8 +274,13 @@ public class AvailableFragment extends Fragment {
                             if (direction.isOK()) {
                                 Route route = direction.getRouteList().get(0);
                                 Leg leg = route.getLegList().get(0);
-//                                    Log.wtf("Direction Status",leg.getDistance().getText());
                                 setDistance(leg.getDistance().getText());
+                                Log.wtf("show Status",leg.getDistance().getText());
+                                Log.wtf("show Dis",dis);
+                                Log.wtf("show cur",origin.toString());
+                                Log.wtf("show des",destination.toString());
+
+                                parkarea.put("d",dis);
 
                             }
                         }
@@ -279,10 +289,10 @@ public class AvailableFragment extends Fragment {
                             Log.wtf("onDirectiom.0nFailure", t);
                         }
                     });
-            parkarea = new HashMap<String, String>();
-            parkarea.put("d",dis);
+
             distance.add(parkarea);
         }
+
         return distance;
     }
 
