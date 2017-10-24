@@ -64,9 +64,9 @@ public class ReserveinfoFragment extends Fragment {
 
 
     // gui
-    Button btn, btnC, btnS;
+    Button btn, btnC;
     EditText etGuestN, etGuestS, etLicen, etEmail, etPhone, etDate;
-    TextView textView;
+    TextView textView,textView11;
     RadioGroup radioGroup;
 
     String setName, setSur, setLicen, setEmail, setPhone, setgId;
@@ -125,6 +125,9 @@ public class ReserveinfoFragment extends Fragment {
         // Inflate the layout for this fragment
 
         final View v = inflater.inflate(R.layout.fragment_reserve, container, false);
+        textView11 = (TextView) v.findViewById(R.id.textView11);
+        textView11.setText(getParkName(pId));
+
         btn = (Button) v.findViewById(R.id.btn_reserve);
         btnC = (Button) v.findViewById(R.id.btn_check);
         //btnS = (Button) v.findViewById(R.id.btn_select);
@@ -527,6 +530,16 @@ public class ReserveinfoFragment extends Fragment {
             // TODO Auto-generat-ed catch block
             e.printStackTrace();
         }
+    }
+
+    public String getParkName(String pId){
+        try {
+            response = http.run("http://parkhere.sit.kmutt.ac.th/getPname.php?pId="+pId);
+        } catch (IOException e) {
+            // TODO Auto-generat-ed catch block
+            e.printStackTrace();
+        }
+        return response;
     }
 
     public String randCode(){

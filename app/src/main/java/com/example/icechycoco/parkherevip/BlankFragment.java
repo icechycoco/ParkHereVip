@@ -211,6 +211,12 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
         }
         Toast.makeText(getContext(), "uId : " + uId, Toast.LENGTH_SHORT).show();
 
+        String str = getLev(uId);
+        String[] getInfo;
+        getInfo = str.split(",");
+        level = Integer.parseInt(getInfo[0]);
+        sta = Integer.parseInt(getInfo[1]);
+
         if(sta==1){
 
             try {

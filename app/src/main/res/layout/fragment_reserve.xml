@@ -13,7 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginTop="15dp">
+        android:layout_marginTop="20dp">
 
         <ImageView
             android:id="@+id/imageView4"
@@ -27,8 +27,8 @@
             android:id="@+id/textView11"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="RESERVE parking lot for guest"
-            android:textSize="20sp"
+            android:text="RESERVE"
+            android:textSize="18sp"
             android:textColor="#000000"
             android:layout_marginStart="10dp"
             android:layout_gravity="center_vertical"/>
@@ -42,72 +42,67 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginTop="10dp">
+        android:layout_marginTop="5dp">
 
         <EditText
             android:id="@+id/etGuestN"
-            android:layout_width="160dp"
+            android:layout_width="133dp"
             android:layout_height="wrap_content"
-            android:hint="Guest Name"
-            android:layout_marginStart="15dp"
-            android:inputType="textPersonName"
-            android:background="@drawable/reserve_bg"
-            android:drawableLeft="@drawable/profile"
+            android:layout_marginStart="45dp"
             android:drawablePadding="15dp"
-            android:padding="10dp"/>
+            android:hint="Name"
+            android:inputType="textPersonName"
+            android:padding="10dp" />
 
         <EditText
             android:id="@+id/etGuestS"
-            android:layout_width="match_parent"
+            android:layout_width="135dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
             android:layout_marginEnd="15dp"
-            android:hint="Guest Surname"
+            android:layout_marginStart="5dp"
+            android:hint="Surname"
             android:inputType="textPersonName"
-            android:layout_weight="5.56"
-            android:background="@drawable/reserve_bg"
-            android:padding="10dp"/>
+            android:padding="10dp" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginTop="8dp">
+        android:layout_marginTop="5dp">
 
         <Button
             android:id="@+id/btn_check"
             style="@android:style/Widget.DeviceDefault.Light.Button.Small"
-            android:layout_width="112dp"
+            android:layout_width="91dp"
             android:layout_height="35dp"
-            android:layout_marginStart="40dp"
+            android:layout_marginStart="45dp"
             android:text="Check" />
 
         <TextView
             android:id="@+id/tv_result"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
+            android:layout_marginStart="5dp"
             android:layout_marginEnd="10dp"/>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:orientation="horizontal">
+        android:layout_marginTop="5dp"
+        android:orientation="horizontal"
+        android:weightSum="1">
 
         <EditText
             android:id="@+id/etLicen"
-            android:layout_width="250dp"
+            android:layout_width="270dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
+            android:layout_marginStart="45dp"
+            android:layout_weight="1.66"
             android:hint="License Plate"
             android:inputType="textPersonName"
-            android:background="@drawable/reserve_bg"
-            android:drawableLeft="@drawable/target"
-            android:drawablePadding="15dp"
-            android:padding="10dp"/>
+            android:padding="10dp" />
 
     </LinearLayout>
 
@@ -115,19 +110,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginTop="10dp">
+        android:layout_marginTop="5dp">
 
         <EditText
             android:id="@+id/etPhone"
-            android:layout_width="250dp"
+            android:layout_width="270dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
+            android:layout_marginStart="45dp"
             android:hint="Phone"
             android:inputType="phone"
-            android:background="@drawable/reserve_bg"
-            android:drawableLeft="@drawable/phonecall"
-            android:drawablePadding="15dp"
-            android:padding="10dp"/>
+            android:padding="10dp" />
 
     </LinearLayout>
 
@@ -135,38 +127,32 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginTop="10dp">
+        android:layout_marginTop="5dp">
 
         <EditText
             android:id="@+id/etEmail"
-            android:layout_width="250dp"
+            android:layout_width="270dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
+            android:layout_marginStart="45dp"
             android:hint="Email"
             android:inputType="textEmailAddress"
-            android:background="@drawable/reserve_bg"
-            android:drawableLeft="@drawable/envelope"
-            android:drawablePadding="15dp"
-            android:padding="10dp"/>
+            android:padding="10dp" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginTop="10dp">
+        android:layout_marginTop="5dp">
 
         <EditText
             android:id="@+id/etDate"
-            android:layout_width="250dp"
+            android:layout_width="270dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
+            android:layout_marginStart="45dp"
             android:hint="Date"
             android:inputType="date"
-            android:background="@drawable/reserve_bg"
-            android:drawableLeft="@drawable/calendar"
-            android:drawablePadding="15dp"
-            android:padding="10dp"/>
+            android:padding="10dp" />
 
     </LinearLayout>
 
@@ -174,13 +160,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_marginTop="10dp">
+        android:layout_marginTop="5dp">
 
         <TextView
             android:id="@+id/textView7"
-            android:layout_height="wrap_content"
-            android:layout_width="match_parent"
-            android:layout_marginStart="15dp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginStart="60dp"
             android:text="Choose time interval "
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             android:textSize="15dp" />
@@ -188,10 +174,10 @@
         <RadioGroup
 
             android:id="@+id/radioGroup"
-            android:orientation="horizontal"
+            android:orientation="vertical"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp">
+            android:layout_marginStart="70dp">
 
             <RadioButton
                 android:id="@+id/radioButton1"
@@ -207,7 +193,7 @@
 
             <RadioButton
                 android:id="@+id/radioButton3"
-                android:layout_width="138dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="06:00 - 18:00" />
 
@@ -224,12 +210,12 @@
         <Button
             android:id="@+id/btn_reserve"
             android:layout_width="100dp"
-            android:layout_height="wrap_content"
+            android:layout_height="35dp"
             android:layout_gravity="center_horizontal"
+            android:background="#5dbffd"
             android:text="RESERVE"
             android:textColor="#FFFFFF"
-            android:textSize="18dp"
-            android:background="#5dbffd"/>
+            android:textSize="15dp" />
 
     </LinearLayout>
 
