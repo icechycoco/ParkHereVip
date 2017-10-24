@@ -1,24 +1,29 @@
 package com.example.icechycoco.parkherevip;
 
-import android.app.Dialog;
+import android.content.Context;
+import android.location.Criteria;
 import android.location.Location;
+import android.location.LocationManager;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
+import com.akexorcist.googledirection.DirectionCallback;
+import com.akexorcist.googledirection.GoogleDirection;
+import com.akexorcist.googledirection.constant.TransportMode;
+import com.akexorcist.googledirection.constant.Unit;
+import com.akexorcist.googledirection.model.Direction;
+import com.akexorcist.googledirection.model.Leg;
+import com.akexorcist.googledirection.model.Route;
+import com.google.android.gms.maps.model.LatLng;
+
 import java.io.IOException;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -57,6 +62,8 @@ public class AvailableFragment extends Fragment {
     // connect db
     String response = null;
     getHttp http = new getHttp();
+
+    String dis;
 
     public AvailableFragment() {
         // Required empty public constructor
@@ -233,6 +240,7 @@ public class AvailableFragment extends Fragment {
         String[] getInfo;
         double lat,lon;
 
+
         for(int i=1;i<4;i++){
             String location = getLocation(i);
             getInfo = location.split(",");
@@ -241,20 +249,45 @@ public class AvailableFragment extends Fragment {
 
             // code here //
 
+            LocationManager locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
+            Criteria criteria = new Criteria();
 
+            Location cLocation = locationManager.getLastKnownLocation(locationManager.getBestProvider(criteria, false));
 
+            String serverKey = "AIzaSyCrvg_MLcS21bt3a11mN9MFKg8FTqBNkkc";
+            LatLng origin = new LatLng(cLocation.getLatitude(), cLocation.getLongitude());
+            Log.wtf("Current Location",origin.toString());
+            LatLng destination = new LatLng(lat, lon);
+            GoogleDirection.withServerKey(serverKey)
+                    .from(origin)
+                    .to(destination)
+                    .transportMode(TransportMode.DRIVING)
+                    .unit(Unit.METRIC)
+                    .execute(new DirectionCallback() {
+                        @Override
+                        public void onDirectionSuccess(Direction direction, String rawBody) {
+                            if (direction.isOK()) {
+                                Route route = direction.getRouteList().get(0);
+                                Leg leg = route.getLegList().get(0);
+//                                    Log.wtf("Direction Status",leg.getDistance().getText());
+                                setDistance(leg.getDistance().getText());
 
-
-            
+                            }
+                        }
+                        @Override
+                        public void onDirectionFailure(Throwable t) {
+                            Log.wtf("onDirectiom.0nFailure", t);
+                        }
+                    });
             parkarea = new HashMap<String, String>();
-            //parkarea.put("lat",lat);
-            //parkarea.put("lat",lon);
+            parkarea.put("d",dis);
             distance.add(parkarea);
-
         }
-
-
         return distance;
+    }
+
+    public void setDistance(String d){
+        dis = d;
     }
 
     public ArrayList getParkArea(){

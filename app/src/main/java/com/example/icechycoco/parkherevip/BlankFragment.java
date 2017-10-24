@@ -8,7 +8,6 @@ import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
@@ -38,14 +37,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.akexorcist.googledirection.DirectionCallback;
-import com.akexorcist.googledirection.GoogleDirection;
-import com.akexorcist.googledirection.constant.TransportMode;
-import com.akexorcist.googledirection.constant.Unit;
-import com.akexorcist.googledirection.model.Direction;
-import com.akexorcist.googledirection.model.Leg;
-import com.akexorcist.googledirection.model.Route;
-import com.akexorcist.googledirection.util.DirectionConverter;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.ActivityRecognition;
@@ -56,12 +47,9 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
-import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.android.gms.maps.model.PolylineOptions;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -117,7 +105,7 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
     private static final String KEY_PARKLOC = "parkLoc";
     private String parkLoc;
 
-    Location currentLocation;
+    Location location;
 
     Drawable image;
     Resources res;
@@ -826,7 +814,10 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
     }
 
     @Override
-    public void onLocationChanged(Location location) {
+    public void onLocationChanged(Location l) {
+
+        location = l;
+
 //
 //        final MarkerOptions markerOptions = new MarkerOptions();
 //
@@ -1043,7 +1034,8 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
         LocationManager locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
         Criteria criteria = new Criteria();
 
-        Location location = locationManager.getLastKnownLocation(locationManager.getBestProvider(criteria, false));
+        location = locationManager.getLastKnownLocation(locationManager.getBestProvider(criteria, false));
+
         if (location != null)
         {
             mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(100, 31), 10));
@@ -1058,55 +1050,7 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
 
 
 
-            if(parkLoc==null) {
-                String serverKey = "AIzaSyCrvg_MLcS21bt3a11mN9MFKg8FTqBNkkc";
-                LatLng origin = new LatLng(location.getLatitude(), location.getLongitude());
-                String[] des = loc.split(",");
-                LatLng destination = new LatLng(Double.parseDouble(des[0]), Double.parseDouble(des[1]));
-                final MarkerOptions markerOptions = new MarkerOptions();
-                markerOptions.position(destination);
-                markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
 
-                GoogleDirection.withServerKey(serverKey)
-                        .from(origin)
-                        .to(destination)
-                        .transportMode(TransportMode.DRIVING)
-                        .unit(Unit.METRIC)
-                        .execute(new DirectionCallback() {
-                            @Override
-                            public void onDirectionSuccess(Direction direction, String rawBody) {
-                                if (direction.isOK()) {
-                                    Route route = direction.getRouteList().get(0);
-                                    Leg leg = route.getLegList().get(0);
-                                    ArrayList<LatLng> directionPositionList = leg.getDirectionPoint();
-                                    PolylineOptions polylineOptions = DirectionConverter.createPolyline
-                                            (getActivity().getApplicationContext(), directionPositionList, 5, Color.BLUE);
-                                    mMap.addPolyline(polylineOptions);
-                                    mMap.addMarker(markerOptions);
-                                }
-                            }
-
-                            @Override
-                            public void onDirectionFailure(Throwable t) {
-                                Log.wtf("onDirectiom.0nFailure", t);
-                            }
-                        });
-            }
-            if(parkLoc!=null){
-                final MarkerOptions markerOptions = new MarkerOptions();
-                String[] des = parkLoc.split(",");
-                LatLng parkLocation = new LatLng(Double.parseDouble(des[0]), Double.parseDouble(des[1]));
-                markerOptions.position(parkLocation);
-                markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
-                mMap.addMarker(markerOptions);
-                CameraPosition parkPosition = new CameraPosition.Builder()
-                        .target(parkLocation)      // Sets the center of the map to location user
-                        .zoom(17)                   // Sets the zoom
-//                    .bearing(90)                // Sets the orientation of the camera to east
-//                    .tilt(40)                   // Sets the tilt of the camera to 30 degrees
-                        .build();                   // Creates a CameraPosition from the builder
-                mMap.animateCamera(CameraUpdateFactory.newCameraPosition(parkPosition));
-            }
         }
 
 

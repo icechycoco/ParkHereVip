@@ -60,6 +60,7 @@ public class SecNotificationService extends Service{
                 Process.THREAD_PRIORITY_BACKGROUND);
         thread.start();
 
+        setAlarm();
         // Get the HandlerThread's Looper and use it for our Handler
         mServiceLooper = thread.getLooper();
         mServiceHandler = new ServiceHandler(mServiceLooper);
@@ -129,6 +130,7 @@ public class SecNotificationService extends Service{
         mServiceHandler.sendMessage(msg);
         setAlarm();
 
+
         // If we get killed, after returning from here, restart
         return START_STICKY;
     }
@@ -144,4 +146,6 @@ public class SecNotificationService extends Service{
     public IBinder onBind(Intent intent) {
         return null;
     }
+
+
 }
