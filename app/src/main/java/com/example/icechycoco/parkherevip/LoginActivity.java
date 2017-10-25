@@ -109,43 +109,45 @@ public class LoginActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        if(response.equals("0")){
-            AlertDialog.Builder builder =
-                    new AlertDialog.Builder(LoginActivity.this);
-            builder.setMessage("Wrong Username or Password");
-            builder.setPositiveButton("Try Again", new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int id) {
+        if(response!=null) {
+            if (response.equals("0")) {
+                AlertDialog.Builder builder =
+                        new AlertDialog.Builder(LoginActivity.this);
+                builder.setMessage("Wrong Username or Password");
+                builder.setPositiveButton("Try Again", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+
+                    }
+                });
+                builder.show();
+            } else {
+                getInfo = response.split(" ");
+                position = getInfo[0];
+                uId = getInfo[1];
+
+                sp = getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
+                editor = sp.edit();
+                editor.putString("UID", uId);
+                editor.putBoolean("hasLoggedIn", true);
+                editor.commit();
+                boolean hasLoggedIn = sp.getBoolean("hasLoggedIn", false);
+
+
+                if (position.equals("1")) { // user: student pass: 123456
+                    Intent intent = new Intent(LoginActivity.this, HomeStuActivity.class);
+                    startActivity(intent);
+                    finish();
+                } else if (position.equals("2")) { //user : staff pass :123456
+                    Intent intent = new Intent(LoginActivity.this, HomeStaActivity.class);
+                    startActivity(intent);
+                    finish();
+                } else if (position.equals("3")) { // user:guard pass:123456
+                    Intent intent = new Intent(LoginActivity.this, HomeSecActivity.class);
+                    startActivity(intent);
+                    finish();
+                } else {
 
                 }
-            });
-            builder.show();
-        }else {
-            getInfo = response.split(" ");
-            position = getInfo[0];
-            uId = getInfo[1];
-
-            sp = getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
-            editor = sp.edit();
-            editor.putString("UID", uId);
-            editor.putBoolean("hasLoggedIn", true);
-            editor.commit();
-            boolean hasLoggedIn = sp.getBoolean("hasLoggedIn", false);
-
-
-            if (position.equals("1")) { // user: student pass: 123456
-                Intent intent = new Intent(LoginActivity.this, HomeStuActivity.class);
-                startActivity(intent);
-                finish();
-            } else if (position.equals("2")) { //user : staff pass :123456
-                Intent intent = new Intent(LoginActivity.this, HomeStaActivity.class);
-                startActivity(intent);
-                finish();
-            } else if (position.equals("3")) { // user:guard pass:123456
-                Intent intent = new Intent(LoginActivity.this, HomeSecActivity.class);
-                startActivity(intent);
-                finish();
-            } else {
-
             }
         }
     }

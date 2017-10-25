@@ -1,9 +1,6 @@
 package com.example.icechycoco.parkherevip;
 
-import android.content.Context;
-import android.location.Criteria;
 import android.location.Location;
-import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -21,6 +18,7 @@ import com.akexorcist.googledirection.constant.Unit;
 import com.akexorcist.googledirection.model.Direction;
 import com.akexorcist.googledirection.model.Leg;
 import com.akexorcist.googledirection.model.Route;
+import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.maps.model.LatLng;
 
 import java.io.IOException;
@@ -41,7 +39,7 @@ import static com.google.android.gms.internal.zzagz.runOnUiThread;
  * Created by icechycoco on 10/22/2017 AD.
  */
 
-public class AvailableFragment extends Fragment {
+public class AvailableFragment extends Fragment implements LocationListener{
 
     private static final String KEY_ID = "uId";
     private static String uId;
@@ -64,6 +62,11 @@ public class AvailableFragment extends Fragment {
     getHttp http = new getHttp();
 
     String dis;
+    LatLng origin;
+    LatLng destination;
+    HashMap<String, String> parkarea;
+
+    Location cLocation;
 
     public AvailableFragment() {
         // Required empty public constructor
@@ -194,7 +197,7 @@ public class AvailableFragment extends Fragment {
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final View v = inflater.inflate(R.layout.fragment_available, container, false);
-        CustomAdapterParkArea adapter = new CustomAdapterParkArea(getContext(), getParkArea());
+        CustomAdapterParkArea adapter = new CustomAdapterParkArea(getContext(), getParkArea(), getDistance());
         ListView listView = (ListView) v.findViewById(R.id.listView1);
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -202,6 +205,7 @@ public class AvailableFragment extends Fragment {
 
             }
         });
+        getDistance();
 
 
         return v;
@@ -236,7 +240,6 @@ public class AvailableFragment extends Fragment {
     public ArrayList getDistance(){
         ArrayList<HashMap<String, String>> distance = null;
         distance = new ArrayList<HashMap<String, String>>();
-        HashMap<String, String> parkarea;
         String[] getInfo;
         double lat,lon;
 
@@ -249,13 +252,46 @@ public class AvailableFragment extends Fragment {
 
             // code here //
 
-            LocationManager locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
-            Criteria criteria = new Criteria();
-
-            Location cLocation = locationManager.getLastKnownLocation(locationManager.getBestProvider(criteria, false));
-
+//            String serverKey = "AIzaSyCrvg_MLcS21bt3a11mN9MFKg8FTqBNkkc";
+////            origin = new LatLng(cLocation.getLatitude(), cLocation.getLongitude());
+//            origin = new LatLng(30, 100);
+//            Log.wtf("Current Location",origin.toString());
+//            destination = new LatLng(lat, lon);
+//            Log.wtf("Des Location",destination.toString());
+//            GoogleDirection.withServerKey(serverKey)
+//                    .from(origin)
+//                    .to(destination)
+//                    .transportMode(TransportMode.DRIVING)
+//                    .unit(Unit.METRIC)
+//                    .execute(new DirectionCallback() {
+//                        @Override
+//                        public void onDirectionSuccess(Direction direction, String rawBody) {
+//                            if (direction.isOK()) {
+//                                Route route = direction.getRouteList().get(0);
+//                                Leg leg = route.getLegList().get(0);
+////                                    Log.wtf("Direction Status",leg.getDistance().getText());
+//                                setDistance(leg.getDistance().getText());
+//                                Log.wtf("show Status",leg.getDistance().getText());
+//                                Log.wtf("show Dis",dis);
+//                                Log.wtf("show cur",origin.toString());
+//                                Log.wtf("show des",destination.toString());
+//
+//                                parkarea.put("d",dis);
+//
+//                            }
+//                        }
+//                        @Override
+//                        public void onDirectionFailure(Throwable t) {
+//                            Log.wtf("onDirectiom.0nFailure", t);
+//                        }
+//                    });
+//
+//            Log.wtf("distance is ",dis);
+////            parkarea = new HashMap<String, String>();
+////            parkarea.put("d",dis);
+//            distance.add(parkarea);
             String serverKey = "AIzaSyCrvg_MLcS21bt3a11mN9MFKg8FTqBNkkc";
-            LatLng origin = new LatLng(cLocation.getLatitude(), cLocation.getLongitude());
+            LatLng origin = new LatLng(13.651, 100.493);
             Log.wtf("Current Location",origin.toString());
             LatLng destination = new LatLng(lat, lon);
             GoogleDirection.withServerKey(serverKey)
@@ -269,12 +305,9 @@ public class AvailableFragment extends Fragment {
                             if (direction.isOK()) {
                                 Route route = direction.getRouteList().get(0);
                                 Leg leg = route.getLegList().get(0);
-//                                    Log.wtf("Direction Status",leg.getDistance().getText());
+                                    Log.wtf("Direction Status",leg.getDistance().getText());
                                 setDistance(leg.getDistance().getText());
-                                Log.wtf("show Status",leg.getDistance().getText());
-                                Log.wtf("show Dis",dis);
-                                Log.wtf("show cur",origin.toString());
-                                Log.wtf("show des",destination.toString());
+                                Log.wtf("dis in",dis);
 
                                 parkarea.put("d",dis);
 
@@ -285,10 +318,8 @@ public class AvailableFragment extends Fragment {
                             Log.wtf("onDirectiom.0nFailure", t);
                         }
                     });
-
-            Log.wtf("distance is ",dis);
             parkarea = new HashMap<String, String>();
-            parkarea.put("d",dis);
+            Log.wtf("dis out",parkarea.get(i));
             distance.add(parkarea);
         }
         return distance;
@@ -372,6 +403,11 @@ public class AvailableFragment extends Fragment {
         Calendar cal = Calendar.getInstance();
         SimpleDateFormat sdf2 = new SimpleDateFormat("HH:mm:ss");
         return sdf2.format(cal.getTime());
+    }
+
+    @Override
+    public void onLocationChanged(Location location) {
+        cLocation = location;
     }
 
     public interface OnFragmentInteractionListener {
