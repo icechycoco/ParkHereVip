@@ -81,8 +81,8 @@ public class CustomAdapterParkArea extends BaseAdapter implements AvailableFragm
         available = Integer.parseInt(strHis.get(position).get("available").toString());
         TextView textView6 = (TextView)view.findViewById(R.id.textView6);
         textView6.setText(available+"");
-        TextView textView20 = (TextView)view.findViewById(R.id.textView20);
-        textView20.setText(strDistance.get(position).get("d").toString()+" m");
+//        TextView textView20 = (TextView)view.findViewById(R.id.textView20);
+//        textView20.setText(strDistance.get(position).get("d").toString());
         ImageView img = (ImageView) view.findViewById(R.id.imageView3);
         if(available < 15) {
             textView6.setTextColor(Color.parseColor("#DB0000"));
@@ -105,14 +105,6 @@ public class CustomAdapterParkArea extends BaseAdapter implements AvailableFragm
                     final EditText number = (EditText) dialog.findViewById(R.id.editText);
                     final Button cncl = (Button) dialog.findViewById(R.id.button_cancel);
                     final Button ok = (Button) dialog.findViewById(R.id.button_login);
-
-//                    String title = marker.getTitle();
-//                    String[] msg;
-//                    final String pid;
-//                    int ava;
-//                    msg = title.split(" ");
-//                    ava = Integer.parseInt(msg[0]);
-//                    pid = msg[1];
 
                     ok.setOnClickListener(new View.OnClickListener() {
                         @Override

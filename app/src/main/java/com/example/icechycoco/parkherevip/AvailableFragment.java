@@ -1,14 +1,22 @@
 package com.example.icechycoco.parkherevip;
 
+import android.app.Dialog;
+import android.content.Context;
+import android.location.Criteria;
 import android.location.Location;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.akexorcist.googledirection.DirectionCallback;
@@ -18,7 +26,9 @@ import com.akexorcist.googledirection.constant.Unit;
 import com.akexorcist.googledirection.model.Direction;
 import com.akexorcist.googledirection.model.Leg;
 import com.akexorcist.googledirection.model.Route;
+import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationListener;
+import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.maps.model.LatLng;
 
 import java.io.IOException;
@@ -56,6 +66,12 @@ public class AvailableFragment extends Fragment implements LocationListener{
     long diffHours = 0;
     int level,sta;
 
+    //Define a request code to send to Google Play services
+    private final static int CONNECTION_FAILURE_RESOLUTION_REQUEST = 9000;
+    private GoogleApiClient mGoogleApiClient;
+    private LocationRequest mLocationRequest;
+    private double currentLatitude;
+    private double currentLongitude;
 
     // connect db
     String response = null;
@@ -64,9 +80,10 @@ public class AvailableFragment extends Fragment implements LocationListener{
     String dis;
     LatLng origin;
     LatLng destination;
-    HashMap<String, String> parkarea;
 
     Location cLocation;
+
+    ArrayList sentDistance = null;
 
     public AvailableFragment() {
         // Required empty public constructor
@@ -91,87 +108,7 @@ public class AvailableFragment extends Fragment implements LocationListener{
             po = bundle.getString(KEY_PO);
         }
         Toast.makeText(getContext(), "uId : " + uId, Toast.LENGTH_SHORT).show();
-
-//        String str = getLev(uId);
-//        String[] getInfo;
-//        getInfo = str.split(",");
-//        level = Integer.parseInt(getInfo[0]);
-//        sta = Integer.parseInt(getInfo[1]);
-//
-//        if(sta==1) {
-//
-//            try {
-//                response = http.run("http://parkhere.sit.kmutt.ac.th/estimate.php?uId=" + uId);
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
-//
-//            if (response.equals("0")) {
-//
-//            } else {
-//
-//                getInfo = response.split(" ");
-//                getTime = getInfo[0];
-//                getCost = Integer.parseInt(getInfo[1]);
-//                getMCost = Integer.parseInt(getInfo[2]);
-//                getFloor = getInfo[3];
-//
-//                // convert string time in database to time
-//                SimpleDateFormat sdf = new SimpleDateFormat("hh:mm:ss");
-//                Date date = null;
-//                try {
-//                    date = sdf.parse(getTime);
-//                } catch (ParseException e) {
-//                    e.printStackTrace();
-//                }
-//                timeIn = sdf.format(date);
-//
-//                //current time
-//                Calendar cal = Calendar.getInstance();
-//                SimpleDateFormat sdf2 = new SimpleDateFormat("HH:mm:ss");
-//                currentTime = sdf2.format(cal.getTime());
-//
-//                //calculate diff time
-//                SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss");
-//                try {
-//                    date1 = format.parse(timeIn);
-//                    date2 = format.parse(currentTime);
-//                    long diff = date2.getTime() - date1.getTime();
-//                    System.out.println(diff);
-//                    diffHours = diff / (60 * 60 * 1000);
-//                    System.out.println("current time " + date2);
-//                    System.out.print(diffHours + " hours, ");
-//                } catch (ParseException e) {
-//                    e.printStackTrace();
-//                }
-//
-//                //calculate fee
-//                long fee = diffHours * getCost;
-//                if (fee > getMCost) {
-//                    realFee = getMCost;
-//                    System.out.println(getMCost);
-//                } else {
-//                    realFee = fee;
-//                    System.out.println(fee);
-//                }
-//
-//                final Dialog dialog = new Dialog(getContext());
-//                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-//                dialog.setContentView(R.layout.dialog_fee);
-//
-//                final TextView tin = (TextView) dialog.findViewById(R.id.textView13);
-//                final TextView tout = (TextView) dialog.findViewById(R.id.textView15);
-//                final TextView estfee = (TextView) dialog.findViewById(R.id.textView17);
-//                final TextView floor = (TextView) dialog.findViewById(R.id.textView19);
-//                tin.setText(timeIn);
-//                tout.setText(currentTime);
-//                estfee.setText(realFee + " BAHT");
-//                floor.setText(getFloor);
-//
-//                dialog.show();
-//
-//            }
-//        }
+        sentDistance = getDistance();
         Thread t = new Thread() {
 
             @Override
@@ -197,7 +134,7 @@ public class AvailableFragment extends Fragment implements LocationListener{
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final View v = inflater.inflate(R.layout.fragment_available, container, false);
-        CustomAdapterParkArea adapter = new CustomAdapterParkArea(getContext(), getParkArea(), getDistance());
+        CustomAdapterParkArea adapter = new CustomAdapterParkArea(getContext(), getParkArea(), sentDistance);
         ListView listView = (ListView) v.findViewById(R.id.listView1);
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -205,8 +142,6 @@ public class AvailableFragment extends Fragment implements LocationListener{
 
             }
         });
-        getDistance();
-
 
         return v;
     }
@@ -240,60 +175,37 @@ public class AvailableFragment extends Fragment implements LocationListener{
     public ArrayList getDistance(){
         ArrayList<HashMap<String, String>> distance = null;
         distance = new ArrayList<HashMap<String, String>>();
+        HashMap<String, String> parkarea;
         String[] getInfo;
         double lat,lon;
-
 
         for(int i=1;i<4;i++){
             String location = getLocation(i);
             getInfo = location.split(",");
             lat = Double.parseDouble(getInfo[0]);
             lon = Double.parseDouble(getInfo[1]);
-
-            // code here //
-
-//            String serverKey = "AIzaSyCrvg_MLcS21bt3a11mN9MFKg8FTqBNkkc";
-////            origin = new LatLng(cLocation.getLatitude(), cLocation.getLongitude());
-//            origin = new LatLng(30, 100);
-//            Log.wtf("Current Location",origin.toString());
-//            destination = new LatLng(lat, lon);
-//            Log.wtf("Des Location",destination.toString());
-//            GoogleDirection.withServerKey(serverKey)
-//                    .from(origin)
-//                    .to(destination)
-//                    .transportMode(TransportMode.DRIVING)
-//                    .unit(Unit.METRIC)
-//                    .execute(new DirectionCallback() {
-//                        @Override
-//                        public void onDirectionSuccess(Direction direction, String rawBody) {
-//                            if (direction.isOK()) {
-//                                Route route = direction.getRouteList().get(0);
-//                                Leg leg = route.getLegList().get(0);
-////                                    Log.wtf("Direction Status",leg.getDistance().getText());
-//                                setDistance(leg.getDistance().getText());
-//                                Log.wtf("show Status",leg.getDistance().getText());
-//                                Log.wtf("show Dis",dis);
-//                                Log.wtf("show cur",origin.toString());
-//                                Log.wtf("show des",destination.toString());
-//
-//                                parkarea.put("d",dis);
-//
-//                            }
-//                        }
-//                        @Override
-//                        public void onDirectionFailure(Throwable t) {
-//                            Log.wtf("onDirectiom.0nFailure", t);
-//                        }
-//                    });
-//
-//            Log.wtf("distance is ",dis);
-////            parkarea = new HashMap<String, String>();
-////            parkarea.put("d",dis);
-//            distance.add(parkarea);
             String serverKey = "AIzaSyCrvg_MLcS21bt3a11mN9MFKg8FTqBNkkc";
-            LatLng origin = new LatLng(13.651, 100.493);
+
+            LocationManager locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
+
+            Criteria criteria = new Criteria();
+            String provider = locationManager.getBestProvider(criteria, false);
+
+//                locationManager.requestLocationUpdates(provider,1000,0, (android.location.LocationListener) this);
+
+            cLocation = locationManager.getLastKnownLocation(provider);
+            cLocation = new Location(locationManager.getBestProvider(criteria, false));
+            cLocation.setLatitude(currentLatitude);
+            cLocation.setLongitude(currentLongitude);
+//            LatLng origin = new LatLng(cLocation.getLatitude(), cLocation.getLongitude());
+            LatLng origin = new LatLng(13, 100);
+
+            parkarea = new HashMap<String, String>();
+
+            //Log.wtf("Current Location",currentLatitude+" "+currentLongitude);
             Log.wtf("Current Location",origin.toString());
             LatLng destination = new LatLng(lat, lon);
+            Log.wtf("Current Location",destination.toString());
             GoogleDirection.withServerKey(serverKey)
                     .from(origin)
                     .to(destination)
@@ -305,11 +217,10 @@ public class AvailableFragment extends Fragment implements LocationListener{
                             if (direction.isOK()) {
                                 Route route = direction.getRouteList().get(0);
                                 Leg leg = route.getLegList().get(0);
-                                    Log.wtf("Direction Status",leg.getDistance().getText());
+//                                Log.wtf("Direction Status",leg.getDistance().getText());
                                 setDistance(leg.getDistance().getText());
-                                Log.wtf("dis in",dis);
-
-                                parkarea.put("d",dis);
+                                Log.wtf("dis in",getDis());
+                                //parkarea.put("d",dis);
 
                             }
                         }
@@ -318,15 +229,22 @@ public class AvailableFragment extends Fragment implements LocationListener{
                             Log.wtf("onDirectiom.0nFailure", t);
                         }
                     });
-            parkarea = new HashMap<String, String>();
-            Log.wtf("dis out",parkarea.get(i));
+            Log.wtf("dis out1",getDis());
+            parkarea.put("d",getDis());
+            //parkarea.put("d","1");
+            Log.wtf("dis out2",getDis());
             distance.add(parkarea);
+            //Log.wtf("distance = ",distance.get(i).get("d").toString());
         }
         return distance;
     }
 
     public void setDistance(String d){
-        dis = d;
+        this.dis = d;
+    }
+
+    public String getDis(){
+        return dis;
     }
 
     public ArrayList getParkArea(){
@@ -348,14 +266,12 @@ public class AvailableFragment extends Fragment implements LocationListener{
 
         for(int j = 0; scan.hasNext(); j++){
             String data = scan.nextLine();
-            System.out.println(data);
             getInfo2 = data.split(",");
             pId2 = Integer.parseInt(getInfo2[0]);
             res = Integer.parseInt(getInfo2[1]);
             //nRes.add(pId2, res);
 
             String data2 = scanner.nextLine();
-            System.out.println(data2);
             getInfo = data2.split(",");
             pId = getInfo[0];
             parkName = getInfo[1];
