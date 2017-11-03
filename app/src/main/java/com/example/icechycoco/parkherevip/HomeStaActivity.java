@@ -161,12 +161,15 @@ public class HomeStaActivity extends AppCompatActivity
                 transaction.replace(R.id.fragment_container, blankFragment);
                 transaction.commit();
 
+                setActionBarTitle("ParkHere");
+
             }else {
                 AvailableFragment availableFragment = new AvailableFragment().newInstance(uId, "2");
                 FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
                 transaction.replace(R.id.fragment_container, availableFragment);
                 transaction.commit();
 
+                setActionBarTitle("ParkHere");
             }
 
         } else if (id == R.id.nav_history) {
@@ -175,6 +178,7 @@ public class HomeStaActivity extends AppCompatActivity
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
             transaction.replace(R.id.fragment_container, historyFragment);
             transaction.commit();
+            setActionBarTitle("History");
 
         } else if (id == R.id.nav_reserve) {
             //Fragment
@@ -182,6 +186,7 @@ public class HomeStaActivity extends AppCompatActivity
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
             transaction.replace(R.id.fragment_container, reserveFragmentt);
             transaction.commit();
+            setActionBarTitle("Reserve");
 
         } else if (id == R.id.nav_logout) {
             SharedPreferences sp = getSharedPreferences("App_Config", Context.MODE_PRIVATE);
@@ -191,6 +196,7 @@ public class HomeStaActivity extends AppCompatActivity
             editor.commit();
             Intent intent = new Intent(this, LoginActivity.class);
             startActivity(intent);
+            setActionBarTitle("ParkHere");
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -253,6 +259,10 @@ public class HomeStaActivity extends AppCompatActivity
             return response.body().string();
 
         }
+    }
+
+    public void setActionBarTitle(String title) {
+        getSupportActionBar().setTitle(title);
     }
 
 }

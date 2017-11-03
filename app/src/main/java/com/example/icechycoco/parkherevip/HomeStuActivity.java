@@ -137,6 +137,7 @@ public class HomeStuActivity extends AppCompatActivity
                 FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
                 transaction.replace(R.id.fragment_container, blankFragment);
                 transaction.commit();
+                setActionBarTitle("ParkHere");
 
             }else {
                 AvailableFragment availableFragment = new AvailableFragment().newInstance(uId, "1");
@@ -144,6 +145,7 @@ public class HomeStuActivity extends AppCompatActivity
                 transaction.replace(R.id.fragment_container, availableFragment);
                 transaction.commit();
 
+                setActionBarTitle("ParkHere");
             }
 
         } else if (id == R.id.nav_history) {
@@ -152,6 +154,7 @@ public class HomeStuActivity extends AppCompatActivity
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
             transaction.replace(R.id.fragment_container, historyFragment);
             transaction.commit();
+            setActionBarTitle("History");
         } else if (id == R.id.nav_logout) {
             SharedPreferences sp = getSharedPreferences("App_Config", Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = sp.edit();
@@ -160,6 +163,8 @@ public class HomeStuActivity extends AppCompatActivity
             editor.commit();
             Intent intent = new Intent(this, LoginActivity.class);
             startActivity(intent);
+
+            setActionBarTitle("ParkHere");
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -222,5 +227,9 @@ public class HomeStuActivity extends AppCompatActivity
             return response.body().string();
 
         }
+    }
+
+    public void setActionBarTitle(String title) {
+        getSupportActionBar().setTitle(title);
     }
 }

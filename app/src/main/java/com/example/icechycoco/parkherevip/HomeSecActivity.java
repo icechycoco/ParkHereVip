@@ -58,6 +58,8 @@ public class HomeSecActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        setActionBarTitle("ParkHere");
+
         // send variable
         sp = getSharedPreferences("PREF_NAME", Context.MODE_PRIVATE);
         uId = sp.getString("UID", "0");
@@ -237,12 +239,14 @@ public class HomeSecActivity extends AppCompatActivity
                 FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
                 transaction.replace(R.id.fragment_container, blankFragment);
                 transaction.commit();
+                setActionBarTitle("ParkHere");
 
             }else {
                 AvailableFragment availableFragment = new AvailableFragment().newInstance(uId, "3");
                 FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
                 transaction.replace(R.id.fragment_container, availableFragment);
                 transaction.commit();
+                setActionBarTitle("ParkHere");
 
             }
         } else if (id == R.id.nav_history) {
@@ -251,12 +255,14 @@ public class HomeSecActivity extends AppCompatActivity
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
             transaction.replace(R.id.fragment_container, historyFragment);
             transaction.commit();
+            setActionBarTitle("History");
         } else if (id == R.id.nav_request){
             //Fragment
             RequestFragment requestFragment = new RequestFragment().newInstance(uId);
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
             transaction.replace(R.id.fragment_container, requestFragment);
             transaction.commit();
+            setActionBarTitle("Request");
         } else if (id == R.id.nav_logout) {
             SharedPreferences sp = getSharedPreferences("App_Config", Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = sp.edit();
@@ -265,6 +271,7 @@ public class HomeSecActivity extends AppCompatActivity
             editor.commit();
             Intent intent = new Intent(this, LoginActivity.class);
             startActivity(intent);
+            setActionBarTitle("ParkHere");
         }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
@@ -326,5 +333,9 @@ public class HomeSecActivity extends AppCompatActivity
             return response.body().string();
 
         }
+    }
+
+    public void setActionBarTitle(String title) {
+        getSupportActionBar().setTitle(title);
     }
 }
