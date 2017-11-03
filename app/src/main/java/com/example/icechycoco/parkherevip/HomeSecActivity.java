@@ -94,8 +94,8 @@ public class HomeSecActivity extends AppCompatActivity
                         String g = guestInfo(query);
                         if (g.equals("0")) {
                             final AlertDialog.Builder builder =
-                                    new AlertDialog.Builder(getBaseContext());
-                            builder.setMessage("----Invalid License---");
+                                    new AlertDialog.Builder(HomeSecActivity.this);
+                            builder.setMessage("               License Not Found");
                             builder.setPositiveButton("ok", new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int id) {
                                     builder.getContext();
@@ -112,6 +112,7 @@ public class HomeSecActivity extends AppCompatActivity
 
                             final AlertDialog.Builder builder =
                                     new AlertDialog.Builder(HomeSecActivity.this);
+                            builder.setTitle("Guest Infomation");
                             builder.setMessage("Guest Name:    " + gName + "\n\nParked Area:    " + pName2 + "\n\nMobile No:       " + phone2);
                             builder.setPositiveButton("ok", new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int id) {
@@ -131,7 +132,8 @@ public class HomeSecActivity extends AppCompatActivity
 
                         final AlertDialog.Builder builder =
                                 new AlertDialog.Builder(HomeSecActivity.this);
-                        builder.setMessage("Name:           " + uName + "\n\nParked Area: " + pName + "\n\nMobile No:     " + phone);
+                        builder.setTitle("User Infomation");
+                        builder.setMessage("Name:             " + uName + "\n\nParked Area: " + pName + "\n\nMobile No:     " + phone);
                         builder.setPositiveButton("ok", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
                                 builder.getContext();
