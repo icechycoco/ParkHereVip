@@ -1,11 +1,8 @@
 package com.example.icechycoco.parkherevip;
 
 import android.app.DatePickerDialog;
-import android.app.Notification;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
+import android.app.Dialog;
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
@@ -15,12 +12,11 @@ import android.support.annotation.IdRes;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.app.NotificationCompat;
-import android.support.v4.app.TaskStackBuilder;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -28,7 +24,6 @@ import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.MultiFormatWriter;
@@ -46,8 +41,6 @@ import java.util.Random;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
-
-import static android.content.Context.NOTIFICATION_SERVICE;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -173,76 +166,112 @@ public class ReserveinfoFragment extends Fragment {
             }
         });
 
+
         img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                setName = etGuestN.getText().toString();
-                setSur = etGuestS.getText().toString();
-                try {
-                    response = http.run("http://parkhere.sit.kmutt.ac.th/checkG.php?gFirstN=" + setName + "&gLastN=" + setSur);
-                    //Log.wtf("eie",response);
-                } catch (IOException e) {
-                    // TODO Auto-generat-ed catch block
-                    e.printStackTrace();
-                }
-                Log.wtf("mightt","2");
+                if(etGuestN.getText().toString().isEmpty()==false && etGuestS.getText().toString().isEmpty()==false) {
 
-                if (response.equals("0")) {
-                    //textView.setText("please fill in a guest infomation");
-                    btn.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            Log.wtf("mightt","3");
+                    setName = etGuestN.getText().toString();
+                    setSur = etGuestS.getText().toString();
+                    try {
+                        response = http.run("http://parkhere.sit.kmutt.ac.th/checkG.php?gFirstN=" + setName + "&gLastN=" + setSur);
+                        //Log.wtf("eie",response);
+                    } catch (IOException e) {
+                        // TODO Auto-generat-ed catch block
+                        e.printStackTrace();
+                    }
+                    Log.wtf("mightt", "2");
 
-                            setLicen = etLicen.getText().toString();
+                    if (response.equals("0")) {
+                        //textView.setText("please fill in a guest infomation");
+                        btn.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                Log.wtf("mightt", "3");
 
-                            Log.wtf("mightt","3.1");
-                            setEmail = etEmail.getText().toString();
-                            setDate = etDate.getText().toString();
+                                setLicen = etLicen.getText().toString();
 
-                            Log.wtf("mightt","3.2");
-                            setPhone = etPhone.getText().toString();
-                            //current time
-                            Calendar cal = Calendar.getInstance();
-                            SimpleDateFormat sdf2 = new SimpleDateFormat("HH:mm:ss");
+                                Log.wtf("mightt", "3.1");
+                                setEmail = etEmail.getText().toString();
 
-                            Log.wtf("mightt","3.3");
-                            setTimeRes = sdf2.format(cal.getTime());
-                            SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+                                if(etEmail.getText().toString().indexOf("@") == -1 || etEmail.getText().toString().indexOf(".") == -1 ){
 
-                            Log.wtf("mightt","3.4");
-                            setDateRes = sdf.format(new Date());
-                            setuId = uId;
-                            //setpId = "1"; //รับค่าจากการเลือกแอเรีย
-                            setpId = pId;
 
-                            Log.wtf("mightt","3.5");
-                            //setgId = "73"; // ตารางต้องเหมือนกันอะ reserve and guest ถึงจะสร้างได้ ยัง bug อยุ่
+                                    final Dialog dialog = new Dialog(getContext());
+                                    dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                                    dialog.setContentView(R.layout.dialog_warn);
+
+                                    final TextView txt = (TextView) dialog.findViewById(R.id.textView11);
+                                    final Button cncl = (Button) dialog.findViewById(R.id.button_cancel);
+                                    final Button ok = (Button) dialog.findViewById(R.id.button_login);
+                                    txt.setText("Please enter  a valid email");
+                                    dialog.show();
+                                    return;
+
+                                }
+                                setDate = etDate.getText().toString();
+
+                                Log.wtf("mightt", "3.2");
+                                setPhone = etPhone.getText().toString();
+                                Log.wtf("Dday", etPhone.getText().toString().length()+"");
+                                if(etPhone.getText().toString().length() != 10 ){
+
+
+                                    final Dialog dialog = new Dialog(getContext());
+                                    dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                                    dialog.setContentView(R.layout.dialog_warn);
+
+                                    final TextView txt = (TextView) dialog.findViewById(R.id.textView11);
+                                    final Button cncl = (Button) dialog.findViewById(R.id.button_cancel);
+                                    final Button ok = (Button) dialog.findViewById(R.id.button_login);
+                                    txt.setText("Please enter  a valid mobile no.");
+                                    dialog.show();
+                                    return;
+
+                                }
+
+                                //current time
+                                Calendar cal = Calendar.getInstance();
+                                SimpleDateFormat sdf2 = new SimpleDateFormat("HH:mm:ss");
+
+                                Log.wtf("mightt", "3.3");
+                                setTimeRes = sdf2.format(cal.getTime());
+                                SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+
+                                Log.wtf("mightt", "3.4");
+                                setDateRes = sdf.format(new Date());
+                                setuId = uId;
+                                //setpId = "1"; //รับค่าจากการเลือกแอเรีย
+                                setpId = pId;
+
+                                Log.wtf("mightt", "3.5");
+                                //setgId = "73"; // ตารางต้องเหมือนกันอะ reserve and guest ถึงจะสร้างได้ ยัง bug อยุ่
 //                            setQR = randCode();
 
-                            setQR = randCode();
+                                setQR = randCode();
 
-                            Log.wtf("mightt","3.6");
-                            setStatus = "0"; // 0 = จองอยู่ 1=จอด อาจจะไม่ต้องมีก็ได้
+                                Log.wtf("mightt", "3.6");
+                                setStatus = "0"; // 0 = จองอยู่ 1=จอด อาจจะไม่ต้องมีก็ได้
 
-                            Log.wtf("mightt","3.7");
-                            //ทำไมมันไม่ insert ข้อมูลในตาราง reserve , guest ก็ไม่ขึ้นละสาส
-                            //แก้ php เรื่องหักลบ amount บางทีมันเป็น -1
-                            //ให้มันคืนค่าamountทุกๆเที่ยงคืน
-                            Log.wtf("date res : ",setDateRes +" "+setpId );
+                                Log.wtf("mightt", "3.7");
+                                //ทำไมมันไม่ insert ข้อมูลในตาราง reserve , guest ก็ไม่ขึ้นละสาส
+                                //แก้ php เรื่องหักลบ amount บางทีมันเป็น -1
+                                //ให้มันคืนค่าamountทุกๆเที่ยงคืน
+                                Log.wtf("date res : ", setDateRes + " " + setpId);
 
 //                            sendEmail(setEmail);
-                            Log.wtf("mightt","4");
+                                Log.wtf("mightt", "4");
 
-                            try {
-                                response = http.run("http://parkhere.sit.kmutt.ac.th/newguest.php?gFirstN=" + setName + "&gLastN=" + setSur + "&gEmail=" + setEmail + "&gLicense=" + setLicen + "&gPhone=" + setPhone);
-                                Log.wtf("eie",response);
-                                //response = http.run("http://parkhere.sit.kmutt.ac.th/UpdateLevelUser.php?level="+1+"&uId="+10002);
-                                //Log.wtf("eie",response);
-                            } catch (IOException e) {
-                                // TODO Auto-generat-ed catch block
-                                e.printStackTrace();
-                            }
+                                try {
+                                    response = http.run("http://parkhere.sit.kmutt.ac.th/newguest.php?gFirstN=" + setName + "&gLastN=" + setSur + "&gEmail=" + setEmail + "&gLicense=" + setLicen + "&gPhone=" + setPhone);
+                                    Log.wtf("eie", response);
+                                    //response = http.run("http://parkhere.sit.kmutt.ac.th/UpdateLevelUser.php?level="+1+"&uId="+10002);
+                                    //Log.wtf("eie",response);
+                                } catch (IOException e) {
+                                    // TODO Auto-generat-ed catch block
+                                    e.printStackTrace();
+                                }
 //                            Log.wtf("name and las : ",setName+"  "+setSur);
 //
 //                            setgId = getNewGid(setName,setSur);
@@ -253,16 +282,17 @@ public class ReserveinfoFragment extends Fragment {
 //                            FragmentTransaction transaction = getFragmentManager().beginTransaction();
 //                            transaction.replace(R.id.fragment_container, blankFragment);
 //                            transaction.commit();
-                            Log.wtf("mightt","5");
-                            reserve1();
-                        }
-                    });
-                } else {
-                    //textView.setText("Existed Guest Infomation");
-                    Log.wtf("mightt","6");
+                                Log.wtf("mightt", "5");
+                                reserve1();
+                            }
+                        });
+                    } else {
+                        //textView.setText("Existed Guest Infomation");
+                        Log.wtf("mightt", "6");
 
-                    reserve2();
+                        reserve2();
 
+                    }
                 }
             }
         });
@@ -305,6 +335,38 @@ public class ReserveinfoFragment extends Fragment {
                 setQR = randCode();
                 setStatus = "0"; // 0 = จองอยู่ 1=จอด อาจจะไม่ต้องมีก็ได้
                 setgId = gId;
+
+                if(etEmail.getText().toString().indexOf("@") == -1 || etEmail.getText().toString().indexOf(".") == -1 ){
+
+
+                    final Dialog dialog = new Dialog(getContext());
+                    dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                    dialog.setContentView(R.layout.dialog_warn);
+
+                    final TextView txt = (TextView) dialog.findViewById(R.id.textView11);
+                    final Button cncl = (Button) dialog.findViewById(R.id.button_cancel);
+                    final Button ok = (Button) dialog.findViewById(R.id.button_login);
+                    txt.setText("Please enter  a valid email");
+                    dialog.show();
+                    return;
+
+                }
+                if(etPhone.getText().toString().length() != 10 ){
+
+
+                    final Dialog dialog = new Dialog(getContext());
+                    dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                    dialog.setContentView(R.layout.dialog_warn);
+
+                    final TextView txt = (TextView) dialog.findViewById(R.id.textView11);
+                    final Button cncl = (Button) dialog.findViewById(R.id.button_cancel);
+                    final Button ok = (Button) dialog.findViewById(R.id.button_login);
+                    txt.setText("Please enter  a valid mobile no.");
+                    dialog.show();
+                    return;
+
+                }
+
                 Log.wtf("date res : ",setDateRes +" "+setpId );
                 reserve(setuId, setpId, setgId, setDate, setInterval, setTimeRes, setQR, setStatus,setDateRes);
                 try {
