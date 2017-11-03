@@ -30,7 +30,7 @@ public class CustomAdapterReq extends BaseAdapter implements RequestFragment.OnF
     ArrayList<HashMap<String, String>> strHis;
     String[] getInfo1;
     String str1;
-    String[] month = {"Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"};
+    String[] month = {"null","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"};
     String d,m,mm,y,newDate;
 
     public CustomAdapterReq(Context context, ArrayList<HashMap<String, String>> strHis) {

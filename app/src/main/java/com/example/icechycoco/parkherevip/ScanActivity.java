@@ -85,7 +85,7 @@ public class ScanActivity extends AppCompatActivity implements ZXingScannerView.
         getInfo = response.split(",");
         fN = getInfo[0];
         lN = getInfo[1];
-        gName = fN + "  " + lN;
+        gName = fN + " " + lN;
         licen = getInfo[2];
         date = getInfo[3];
         timeInter = Integer.parseInt(getInfo[4]);
@@ -105,7 +105,7 @@ public class ScanActivity extends AppCompatActivity implements ZXingScannerView.
 
         final AlertDialog.Builder builder =
                 new AlertDialog.Builder(this);
-        builder.setMessage("\nคุณ " + gName + "\n\n" + parkN + "\n\n" + licen + "\n\n" + date + "\n\n" + timeSeq);
+        builder.setMessage("\nKhun: " + gName + "\n\nPark Area:" + parkN + "\n\nLicense:" + licen + "\n\nDate:" + date + "\n\nTime:" + timeSeq);
 
         builder.setPositiveButton("CONFIRM", new DialogInterface.OnClickListener() {
 

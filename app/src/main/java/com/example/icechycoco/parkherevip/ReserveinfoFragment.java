@@ -77,9 +77,9 @@ public class ReserveinfoFragment extends Fragment {
     String[] getGInfo;
     String gId, gEmail, gLicen, gPhone;
 
-    //setpId ต้องรับค่าจากปุ่มที่กดเลือกแอเรีย
-    // setuId ต้องรับค่ามาจากหน้าลอกอิน
-    // setQR รับค่ามาจากตัว generate
+    String[] month = {"null","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"};
+    String d,m,mm,y,newDate;
+    String[] getInfo1;
 
     String response = null;
     getHttp http = new getHttp();
@@ -116,8 +116,6 @@ public class ReserveinfoFragment extends Fragment {
             uId = bundle.getString(KEY_ID);
             pId = bundle.getString(KEY_PID);
         }
-        Toast.makeText(getContext(), "uId : " + uId, Toast.LENGTH_SHORT).show();
-        Toast.makeText(getContext(), "pId : " + pId, Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -144,7 +142,6 @@ public class ReserveinfoFragment extends Fragment {
         etPhone = (EditText) v.findViewById(R.id.etPhone);
         etDate = (EditText) v.findViewById(R.id.etDate);
 
-        //textView = (TextView) v.findViewById(R.id.tv_result);
 
         etDate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -613,7 +610,21 @@ public class ReserveinfoFragment extends Fragment {
 
         File file = new File(root+"/"+name);
         file.delete();
+    }
 
+    public String changeDateFormat(String str){
+        getInfo1 = str.split("-");
+        y = getInfo1[0];
+        m = getInfo1[1];
+        d = getInfo1[2];
+        for(int i=0;i<month.length;i++){
+            if(i==Integer.parseInt(m)){
+                mm = month[i];
+                break;
+            }
+        }
+        newDate = d + " " + mm + " " + y;
+        return newDate;
     }
 
     public void sendEmail(final String email){
@@ -623,16 +634,16 @@ public class ReserveinfoFragment extends Fragment {
             public void run() {
                 try {
                     GMailSender sender = new GMailSender(
-                            "vipsmartpark@gmail.com",
+                            "parkhere.official@gmail.com",
                             "villicepark");
                     sender.addAttachment(root+"/"+fname);
                     Log.wtf("mail",root);
                     sender.sendMail("Parking Confirmation at KMUTT",
                             "To: Khun  " + setName+ "   " + setSur + "\n\n" +
-                                    "We reserved a parking lot for you on " + setDate + "\n\n" +
+                                    "We reserved a parking lot for you on " + changeDateFormat(setDate) + "\n\n" +
                                     "This is your parking area, click into this link  " + getNewGid(setpId) + "\n\n\n\n" +
                                     "This mail has been sent from ParkHere application.",
-                            "vipsmartpark@gmail.com",
+                            "parkhere.official@gmail.com",
                             email);
                 } catch (Exception e) {
                     e.printStackTrace();

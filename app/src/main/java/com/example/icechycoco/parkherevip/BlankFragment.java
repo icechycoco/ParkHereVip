@@ -208,7 +208,6 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
             loc = bundle.getString(KEY_LOC);
             parkLoc = bundle.getString(KEY_PARKLOC);
         }
-        Toast.makeText(getContext(), "uId : " + uId, Toast.LENGTH_SHORT).show();
 
         String str = getLev(uId);
         String[] getInfo;
@@ -374,7 +373,6 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
         if(countSensor != null){
             sensorManager.registerListener(this,countSensor,SensorManager.SENSOR_DELAY_UI);
         }else{
-            Toast.makeText(getContext(),"Sensor not found", Toast.LENGTH_SHORT).show();
         }
         Log.wtf("","resume");
 

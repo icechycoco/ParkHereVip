@@ -1,6 +1,8 @@
 package com.example.icechycoco.parkherevip;
 
 import android.app.Activity;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
@@ -57,8 +59,10 @@ public class Tab3 extends Activity {
         }else {
             TextView textView9 = (TextView) findViewById(R.id.textView9);
             textView9.setText("Security Guard only");
-            ImageView imageView = (ImageView) findViewById(R.id.imageView6);
-            imageView.setVisibility(View.VISIBLE);
+            final ImageView img = (ImageView) findViewById(R.id.imageView6);
+            Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.warningsign);
+            img.setImageBitmap(bitmap);
+            img.setVisibility(View.VISIBLE);
         }
     }
 

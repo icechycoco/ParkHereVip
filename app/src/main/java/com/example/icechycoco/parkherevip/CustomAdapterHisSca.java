@@ -20,7 +20,7 @@ public class CustomAdapterHisSca extends BaseAdapter {
     ArrayList<HashMap<String, String>> strHis;
     String[] getInfo1,getInfo2,getInfo3;
     String str1,str2,str3;
-    String[] month = {"Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"};
+    String[] month = {"null","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"};
     String d,m,mm,y,newDate;
     String h,min,s,newTime;
 

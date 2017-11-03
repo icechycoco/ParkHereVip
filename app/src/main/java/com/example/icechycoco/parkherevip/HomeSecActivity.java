@@ -61,7 +61,6 @@ public class HomeSecActivity extends AppCompatActivity
         // send variable
         sp = getSharedPreferences("PREF_NAME", Context.MODE_PRIVATE);
         uId = sp.getString("UID", "0");
-        Toast.makeText(this, "uId : " + uId, Toast.LENGTH_SHORT).show();
 
         String str = getLev(uId);
         String[] getInfo3;
@@ -93,7 +92,7 @@ public class HomeSecActivity extends AppCompatActivity
                     String u = userInfo(query);
                     if (u.equals("0 ")) {
                         String g = guestInfo(query);
-                        if (g.equals("0 ")) {
+                        if (g.equals("0")) {
                             final AlertDialog.Builder builder =
                                     new AlertDialog.Builder(getBaseContext());
                             builder.setMessage("----Invalid License---");
@@ -108,12 +107,12 @@ public class HomeSecActivity extends AppCompatActivity
                             pName2 = getInfo[0];
                             fN2 = getInfo[1];
                             lN2 = getInfo[2];
-                            gName = fN2 + "   " + lN2;
+                            gName = fN2 + " " + lN2;
                             phone2 = getInfo[3];
 
                             final AlertDialog.Builder builder =
                                     new AlertDialog.Builder(HomeSecActivity.this);
-                            builder.setMessage("Guest Name: " + gName + "\n\nParked Area: " + pName2 + "\n\nPhone Number : " + phone2);
+                            builder.setMessage("Guest Name:    " + gName + "\n\nParked Area:    " + pName2 + "\n\nMobile No:       " + phone2);
                             builder.setPositiveButton("ok", new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int id) {
                                     builder.getContext();
@@ -127,12 +126,12 @@ public class HomeSecActivity extends AppCompatActivity
                         pName = getInfo2[0];
                         fN = getInfo2[1];
                         lN = getInfo2[2];
-                        uName = fN + "   " + lN;
+                        uName = fN + " " + lN;
                         phone = getInfo2[3];
 
                         final AlertDialog.Builder builder =
                                 new AlertDialog.Builder(HomeSecActivity.this);
-                        builder.setMessage("Name: " + uName + "\n\nParked Area: " + pName + "\n\nPhone Number : " + phone);
+                        builder.setMessage("Name:           " + uName + "\n\nParked Area: " + pName + "\n\nMobile No:     " + phone);
                         builder.setPositiveButton("ok", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
                                 builder.getContext();

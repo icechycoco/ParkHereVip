@@ -107,7 +107,6 @@ public class AvailableFragment extends Fragment implements LocationListener{
             uId = bundle.getString(KEY_ID);
             po = bundle.getString(KEY_PO);
         }
-        Toast.makeText(getContext(), "uId : " + uId, Toast.LENGTH_SHORT).show();
         sentDistance = getDistance();
         Thread t = new Thread() {
 

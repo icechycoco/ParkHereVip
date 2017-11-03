@@ -22,7 +22,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Android Studio"
-        android:textColor="#000000"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold"
         android:textSize="15sp"
         android:layout_gravity="center_horizontal" />
 

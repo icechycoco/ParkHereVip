@@ -61,8 +61,6 @@ public class HistoryFragment extends Fragment {
             uId = bundle.getString(KEY_ID);
             po = bundle.getString(KEY_PO);
         }
-        Toast.makeText(getContext(), "uId : " + uId, Toast.LENGTH_SHORT).show();
-        Toast.makeText(getContext(), "position : " + po, Toast.LENGTH_SHORT).show();
     }
 
     @Override

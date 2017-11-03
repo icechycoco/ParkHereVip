@@ -66,7 +66,6 @@ public class RequestFragment extends Fragment {
         if (bundle != null) {
             uId = bundle.getString(KEY_ID);
         }
-        Toast.makeText(getContext(), "uId : " + uId, Toast.LENGTH_SHORT).show();
     }
 
     public void setuId(String uId){

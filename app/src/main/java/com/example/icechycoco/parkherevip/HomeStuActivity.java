@@ -46,7 +46,6 @@ public class HomeStuActivity extends AppCompatActivity
 
         sp = getSharedPreferences("PREF_NAME", Context.MODE_PRIVATE);
         uId = sp.getString("UID", "0");
-        Toast.makeText(this, "uId : " + uId, Toast.LENGTH_SHORT).show();
 
         String str = getLev(uId);
         String[] getInfo;

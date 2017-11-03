@@ -75,7 +75,6 @@ public class QRScanFragment extends Fragment {
             uId = bundle.getString(KEY_ID);
             code = bundle.getString(KEY_CODE);
         }
-        Toast.makeText(getContext(), "uId : " + uId, Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -144,7 +143,7 @@ public class QRScanFragment extends Fragment {
 
                         public void onClick(DialogInterface dialog, int id) {
 
-                            Toast.makeText(getActivity().getApplicationContext(), "COMPLETED RESERVATION",
+                            Toast.makeText(getActivity().getApplicationContext(), "COMPLETED",
                                     Toast.LENGTH_SHORT).show();
                             RequestFragment requestFragment = new RequestFragment().newInstance(uId);
                             FragmentTransaction transaction = getFragmentManager().beginTransaction();
