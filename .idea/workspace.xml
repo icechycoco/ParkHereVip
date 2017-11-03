@@ -39,11 +39,9 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/fileSnapshots.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/taskArtifacts.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/taskArtifacts.lock" afterPath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/taskArtifacts.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.bin" afterPath="$PROJECT_DIR$/.gradle/3.3/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" afterPath="$PROJECT_DIR$/.gradle/3.3/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/tasks/_app_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" afterPath="$PROJECT_DIR$/.gradle/3.3/tasks/_app_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/icechycoco/parkherevip/HomeSecActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/icechycoco/parkherevip/HomeSecActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/drawable/edittext_bg.xml" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/edittext_bg.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_reserve.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_reserve.xml" />
     </list>
     <ignored path="ParkHereVip.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -75,31 +73,91 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="HomeSecActivity.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/icechycoco/parkherevip/HomeSecActivity.java">
+      <file leaf-file-name="BlankFragment.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/icechycoco/parkherevip/BlankFragment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="515">
-              <caret line="110" column="48" selection-start-line="110" selection-start-column="48" selection-end-line="110" selection-end-column="48" />
+            <state relative-caret-position="4275">
+              <caret line="1323" column="37" selection-start-line="1323" selection-start-column="35" selection-end-line="1323" selection-end-column="37" />
               <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#3869#4116#0" expanded="true" />
-                <element signature="e#4115#4116#0" expanded="true" />
-                <element signature="e#4909#5156#0" expanded="true" />
-                <element signature="e#5155#5156#0" expanded="true" />
-                <element signature="e#5977#6208#0" expanded="true" />
-                <element signature="e#6207#6208#0" expanded="true" />
+                <element signature="docComment;class#BlankFragment#0" expanded="false" />
+                <element signature="method#BlankFragment#0;class#BlankFragment#0" expanded="false" />
+                <element signature="method#newInstance#0;class#BlankFragment#0" expanded="false" />
+                <element signature="method#newInstance#1;class#BlankFragment#0" expanded="false" />
+                <element signature="method#onCreate#0;class#BlankFragment#0" expanded="false" />
+                <element signature="method#onCreateView#0;class#BlankFragment#0" expanded="false" />
+                <element signature="method#onButtonPressed#0;class#BlankFragment#0" expanded="false" />
+                <element signature="method#onResume#0;class#BlankFragment#0" expanded="false" />
+                <element signature="e#13284#13310#0" expanded="false" />
+                <element signature="method#onPause#0;class#BlankFragment#0" expanded="false" />
+                <element signature="method#onAttach#0;class#BlankFragment#0" expanded="false" />
+                <element signature="method#onDetach#0;class#BlankFragment#0" expanded="false" />
+                <element signature="method#onSensorChanged#0;class#BlankFragment#0" expanded="false" />
+                <element signature="method#onAccuracyChanged#0;class#BlankFragment#0" expanded="false" />
+                <element signature="method#step#0;class#BlankFragment#0" expanded="false" />
+                <element signature="docComment;class#OnFragmentInteractionListener#0;class#BlankFragment#0" expanded="false" />
+                <element signature="class#OnFragmentInteractionListener#0;class#BlankFragment#0" expanded="false" />
+                <element signature="method#checkActivity#0;class#BlankFragment#0" expanded="false" />
+                <element signature="method#showStatus2#0;class#BlankFragment#0" expanded="false" />
+                <element signature="e#19734#19765#0" expanded="false" />
+                <element signature="method#getCurrentTime#0;class#BlankFragment#0" expanded="false" />
+                <element signature="method#getLev#0;class#BlankFragment#0" expanded="false" />
+                <element signature="method#updateLev#0;class#BlankFragment#0" expanded="false" />
+                <element signature="method#updateStatusPark#0;class#BlankFragment#0" expanded="false" />
+                <element signature="method#getParkId#0;class#BlankFragment#0" expanded="false" />
+                <element signature="method#updateStatusNotPark#0;class#BlankFragment#0" expanded="false" />
+                <element signature="method#showActivity#0;class#BlankFragment#0" expanded="false" />
+                <element signature="method#onClick#0;class#BlankFragment#0" expanded="false" />
+                <element signature="method#buildGoogleApiClient#0;class#BlankFragment#0" expanded="false" />
+                <element signature="e#28216#28232#0" expanded="false" />
+                <element signature="class#29441:30606" expanded="false" />
+                <element signature="method#onDirectionSuccess#0;class#29441:30606" expanded="false" />
+                <element signature="method#onDirectionFailure#0;class#29441:30606" expanded="false" />
+                <element signature="e#30621#30623#0" expanded="false" />
+                <element signature="e#38286#38368#0" expanded="false" />
+                <element signature="e#38651#38766#0" expanded="false" />
+                <element signature="e#38909#38993#0" expanded="false" />
+                <element signature="e#39340#39363#0" expanded="false" />
+                <element signature="docComment;method#onMapReady#0;class#BlankFragment#0" expanded="false" />
+                <element signature="method#onMapReady#0;class#BlankFragment#0" expanded="false" />
+                <element signature="e#40233#40278#0" expanded="false" />
+                <element signature="method#onConnected#0;class#BlankFragment#0" expanded="false" />
+                <element signature="method#onConnectionSuspended#0;class#BlankFragment#0" expanded="false" />
+                <element signature="method#onConnectionFailed#0;class#BlankFragment#0" expanded="false" />
+                <element signature="method#checkLocationPermission#0;class#BlankFragment#0" expanded="false" />
+                <element signature="e#43686#43752#0" expanded="false" />
+                <element signature="e#45015#45048#0" expanded="false" />
+                <element signature="e#45837#45913#0" expanded="false" />
+                <element signature="method#createMarkerIcon#0;class#BlankFragment#0" expanded="false" />
+                <element signature="method#getLocation#0;class#BlankFragment#0" expanded="false" />
+                <element signature="class#getHttp#0;class#BlankFragment#0" expanded="false" />
+                <element signature="method#run#0;class#getHttp#0;class#BlankFragment#0" expanded="false" />
+                <element signature="method#showDialogReminder#0;class#BlankFragment#0" expanded="false" />
+                <element signature="e#49630#49701#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ScanActivity.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/icechycoco/parkherevip/ScanActivity.java">
+      <file leaf-file-name="HistoryFragment.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/icechycoco/parkherevip/HistoryFragment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1035">
-              <caret line="107" column="49" selection-start-line="107" selection-start-column="49" selection-end-line="107" selection-end-column="49" />
+            <state relative-caret-position="390">
+              <caret line="61" column="42" selection-start-line="61" selection-start-column="42" selection-end-line="61" selection-end-column="42" />
               <folding />
             </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="fragment_reserve.xml" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_reserve.xml">
+          <provider editor-type-id="text-editor">
+            <state relative-caret-position="316">
+              <caret line="84" column="41" selection-start-line="84" selection-start-column="41" selection-end-line="84" selection-end-column="41" />
+              <folding />
+            </state>
+          </provider>
+          <provider selected="true" editor-type-id="android-designer2">
+            <state />
           </provider>
         </entry>
       </file>
@@ -2638,8 +2696,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_history.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/icechycoco/parkherevip/CustomAdapterRes.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_request.xml" />
         <option value="$USER_HOME$/Library/Android/sdk/platforms/android-25/android.jar!/android/app/IntentService.class" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/icechycoco/parkherevip/ActivityRecognizedService.java" />
@@ -2680,7 +2736,6 @@
         <option value="$PROJECT_DIR$/app/src/main/res/layout/nav_header_home.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/icechycoco/parkherevip/HomeStaActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/icechycoco/parkherevip/HomeStuActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_reserve.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/icechycoco/parkherevip/HistoryFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/icechycoco/parkherevip/BlankFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/icechycoco/parkherevip/AvailableFragment.java" />
@@ -2689,6 +2744,9 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/icechycoco/parkherevip/ReserveFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/icechycoco/parkherevip/ReserveinfoFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/icechycoco/parkherevip/HomeSecActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/drawable/edittext_bg.xml" />
+        <option value="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/layout/fragment_reserve.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_reserve.xml" />
       </list>
     </option>
   </component>
@@ -2764,6 +2822,24 @@
               <option name="myItemId" value="res" />
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="values" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderTypeNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ParkHereVip" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="res" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderNode" />
+            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -2780,6 +2856,24 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="layout" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderTypeNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ParkHereVip" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="res" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="drawable" />
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderTypeNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -3525,7 +3619,7 @@
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5833333" sideWeight="0.51534736" order="11" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18174475" sideWeight="0.48339483" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.12600969" sideWeight="0.48339483" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980332" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
@@ -3632,18 +3726,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://$USER_HOME$/AppData/Local/Android/sdk/platforms/android-25/android.jar!/android/os/Handler.class" />
-    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="277">
-          <caret line="77" column="54" selection-start-line="77" selection-start-column="54" selection-end-line="77" selection-end-column="54" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-manifest">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/icechycoco/parkherevip/ActivityRecognizedService.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
@@ -3706,22 +3788,6 @@
       </provider>
       <provider selected="true" editor-type-id="android-designer2">
         <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/login_bg.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="21" column="13" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/colors.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="27" selection-start-line="7" selection-start-column="24" selection-end-line="7" selection-end-column="27" />
-          <folding />
-        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_login.xml">
@@ -3804,17 +3870,6 @@
           <caret line="46" column="16" selection-start-line="46" selection-start-column="11" selection-end-line="46" selection-end-column="16" />
           <folding />
         </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_reserve_info.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="3" selection-start-line="9" selection-start-column="3" selection-end-line="19" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/icechycoco/parkherevip/SecNotificationService.java">
@@ -3954,94 +4009,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_reserve.xml">
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="263">
-          <caret line="125" column="29" selection-start-line="125" selection-start-column="29" selection-end-line="125" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/icechycoco/parkherevip/HistoryFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-613">
-          <caret line="62" column="9" selection-start-line="62" selection-start-column="9" selection-end-line="62" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/icechycoco/parkherevip/CustomAdapterHisRes.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="242">
           <caret line="94" column="0" selection-start-line="94" selection-start-column="0" selection-end-line="94" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/icechycoco/parkherevip/BlankFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="181">
-          <caret line="1200" column="76" selection-start-line="1200" selection-start-column="71" selection-end-line="1200" selection-end-column="76" />
-          <folding>
-            <element signature="docComment;class#BlankFragment#0" expanded="false" />
-            <element signature="method#BlankFragment#0;class#BlankFragment#0" expanded="false" />
-            <element signature="method#newInstance#0;class#BlankFragment#0" expanded="false" />
-            <element signature="method#newInstance#1;class#BlankFragment#0" expanded="false" />
-            <element signature="method#onCreate#0;class#BlankFragment#0" expanded="false" />
-            <element signature="method#onCreateView#0;class#BlankFragment#0" expanded="false" />
-            <element signature="method#onButtonPressed#0;class#BlankFragment#0" expanded="false" />
-            <element signature="method#onResume#0;class#BlankFragment#0" expanded="false" />
-            <element signature="e#13284#13310#0" expanded="false" />
-            <element signature="method#onPause#0;class#BlankFragment#0" expanded="false" />
-            <element signature="method#onAttach#0;class#BlankFragment#0" expanded="false" />
-            <element signature="method#onDetach#0;class#BlankFragment#0" expanded="false" />
-            <element signature="method#onSensorChanged#0;class#BlankFragment#0" expanded="false" />
-            <element signature="method#onAccuracyChanged#0;class#BlankFragment#0" expanded="false" />
-            <element signature="method#step#0;class#BlankFragment#0" expanded="false" />
-            <element signature="docComment;class#OnFragmentInteractionListener#0;class#BlankFragment#0" expanded="false" />
-            <element signature="class#OnFragmentInteractionListener#0;class#BlankFragment#0" expanded="false" />
-            <element signature="method#checkActivity#0;class#BlankFragment#0" expanded="false" />
-            <element signature="method#showStatus2#0;class#BlankFragment#0" expanded="false" />
-            <element signature="e#19734#19765#0" expanded="false" />
-            <element signature="method#getCurrentTime#0;class#BlankFragment#0" expanded="false" />
-            <element signature="method#getLev#0;class#BlankFragment#0" expanded="false" />
-            <element signature="method#updateLev#0;class#BlankFragment#0" expanded="false" />
-            <element signature="method#updateStatusPark#0;class#BlankFragment#0" expanded="false" />
-            <element signature="method#getParkId#0;class#BlankFragment#0" expanded="false" />
-            <element signature="method#updateStatusNotPark#0;class#BlankFragment#0" expanded="false" />
-            <element signature="method#showActivity#0;class#BlankFragment#0" expanded="false" />
-            <element signature="method#onClick#0;class#BlankFragment#0" expanded="false" />
-            <element signature="method#buildGoogleApiClient#0;class#BlankFragment#0" expanded="false" />
-            <element signature="e#28216#28232#0" expanded="false" />
-            <element signature="class#29441:30606" expanded="false" />
-            <element signature="method#onDirectionSuccess#0;class#29441:30606" expanded="false" />
-            <element signature="method#onDirectionFailure#0;class#29441:30606" expanded="false" />
-            <element signature="e#30621#30623#0" expanded="false" />
-            <element signature="e#38286#38368#0" expanded="false" />
-            <element signature="e#38651#38766#0" expanded="false" />
-            <element signature="e#38909#38993#0" expanded="false" />
-            <element signature="e#39340#39363#0" expanded="false" />
-            <element signature="docComment;method#onMapReady#0;class#BlankFragment#0" expanded="false" />
-            <element signature="method#onMapReady#0;class#BlankFragment#0" expanded="false" />
-            <element signature="e#40233#40278#0" expanded="false" />
-            <element signature="method#onConnected#0;class#BlankFragment#0" expanded="false" />
-            <element signature="method#onConnectionSuspended#0;class#BlankFragment#0" expanded="false" />
-            <element signature="method#onConnectionFailed#0;class#BlankFragment#0" expanded="false" />
-            <element signature="method#checkLocationPermission#0;class#BlankFragment#0" expanded="false" />
-            <element signature="e#43686#43752#0" expanded="false" />
-            <element signature="e#45015#45048#0" expanded="false" />
-            <element signature="e#45837#45913#0" expanded="false" />
-            <element signature="method#createMarkerIcon#0;class#BlankFragment#0" expanded="false" />
-            <element signature="method#getLocation#0;class#BlankFragment#0" expanded="false" />
-            <element signature="class#getHttp#0;class#BlankFragment#0" expanded="false" />
-            <element signature="method#run#0;class#getHttp#0;class#BlankFragment#0" expanded="false" />
-            <element signature="method#showDialogReminder#0;class#BlankFragment#0" expanded="false" />
-            <element signature="method#getElevationFromGoogleMaps#0;class#BlankFragment#0" expanded="false" />
-            <element signature="e#49630#49701#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -4112,18 +4084,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/icechycoco/parkherevip/ScanActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1035">
-          <caret line="107" column="49" selection-start-line="107" selection-start-column="49" selection-end-line="107" selection-end-column="49" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/icechycoco/parkherevip/HomeSecActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="515">
-          <caret line="110" column="48" selection-start-line="110" selection-start-column="48" selection-end-line="110" selection-end-column="48" />
+        <state relative-caret-position="35">
+          <caret line="78" column="75" selection-start-line="78" selection-start-column="75" selection-end-line="78" selection-end-column="75" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#3869#4116#0" expanded="true" />
@@ -4134,6 +4098,139 @@
             <element signature="e#6207#6208#0" expanded="true" />
           </folding>
         </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/icechycoco/parkherevip/ScanActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1035">
+          <caret line="107" column="49" selection-start-line="107" selection-start-column="49" selection-end-line="107" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/icechycoco/parkherevip/BlankFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4275">
+          <caret line="1323" column="37" selection-start-line="1323" selection-start-column="35" selection-end-line="1323" selection-end-column="37" />
+          <folding>
+            <element signature="docComment;class#BlankFragment#0" expanded="false" />
+            <element signature="method#BlankFragment#0;class#BlankFragment#0" expanded="false" />
+            <element signature="method#newInstance#0;class#BlankFragment#0" expanded="false" />
+            <element signature="method#newInstance#1;class#BlankFragment#0" expanded="false" />
+            <element signature="method#onCreate#0;class#BlankFragment#0" expanded="false" />
+            <element signature="method#onCreateView#0;class#BlankFragment#0" expanded="false" />
+            <element signature="method#onButtonPressed#0;class#BlankFragment#0" expanded="false" />
+            <element signature="method#onResume#0;class#BlankFragment#0" expanded="false" />
+            <element signature="e#13284#13310#0" expanded="false" />
+            <element signature="method#onPause#0;class#BlankFragment#0" expanded="false" />
+            <element signature="method#onAttach#0;class#BlankFragment#0" expanded="false" />
+            <element signature="method#onDetach#0;class#BlankFragment#0" expanded="false" />
+            <element signature="method#onSensorChanged#0;class#BlankFragment#0" expanded="false" />
+            <element signature="method#onAccuracyChanged#0;class#BlankFragment#0" expanded="false" />
+            <element signature="method#step#0;class#BlankFragment#0" expanded="false" />
+            <element signature="docComment;class#OnFragmentInteractionListener#0;class#BlankFragment#0" expanded="false" />
+            <element signature="class#OnFragmentInteractionListener#0;class#BlankFragment#0" expanded="false" />
+            <element signature="method#checkActivity#0;class#BlankFragment#0" expanded="false" />
+            <element signature="method#showStatus2#0;class#BlankFragment#0" expanded="false" />
+            <element signature="e#19734#19765#0" expanded="false" />
+            <element signature="method#getCurrentTime#0;class#BlankFragment#0" expanded="false" />
+            <element signature="method#getLev#0;class#BlankFragment#0" expanded="false" />
+            <element signature="method#updateLev#0;class#BlankFragment#0" expanded="false" />
+            <element signature="method#updateStatusPark#0;class#BlankFragment#0" expanded="false" />
+            <element signature="method#getParkId#0;class#BlankFragment#0" expanded="false" />
+            <element signature="method#updateStatusNotPark#0;class#BlankFragment#0" expanded="false" />
+            <element signature="method#showActivity#0;class#BlankFragment#0" expanded="false" />
+            <element signature="method#onClick#0;class#BlankFragment#0" expanded="false" />
+            <element signature="method#buildGoogleApiClient#0;class#BlankFragment#0" expanded="false" />
+            <element signature="e#28216#28232#0" expanded="false" />
+            <element signature="class#29441:30606" expanded="false" />
+            <element signature="method#onDirectionSuccess#0;class#29441:30606" expanded="false" />
+            <element signature="method#onDirectionFailure#0;class#29441:30606" expanded="false" />
+            <element signature="e#30621#30623#0" expanded="false" />
+            <element signature="e#38286#38368#0" expanded="false" />
+            <element signature="e#38651#38766#0" expanded="false" />
+            <element signature="e#38909#38993#0" expanded="false" />
+            <element signature="e#39340#39363#0" expanded="false" />
+            <element signature="docComment;method#onMapReady#0;class#BlankFragment#0" expanded="false" />
+            <element signature="method#onMapReady#0;class#BlankFragment#0" expanded="false" />
+            <element signature="e#40233#40278#0" expanded="false" />
+            <element signature="method#onConnected#0;class#BlankFragment#0" expanded="false" />
+            <element signature="method#onConnectionSuspended#0;class#BlankFragment#0" expanded="false" />
+            <element signature="method#onConnectionFailed#0;class#BlankFragment#0" expanded="false" />
+            <element signature="method#checkLocationPermission#0;class#BlankFragment#0" expanded="false" />
+            <element signature="e#43686#43752#0" expanded="false" />
+            <element signature="e#45015#45048#0" expanded="false" />
+            <element signature="e#45837#45913#0" expanded="false" />
+            <element signature="method#createMarkerIcon#0;class#BlankFragment#0" expanded="false" />
+            <element signature="method#getLocation#0;class#BlankFragment#0" expanded="false" />
+            <element signature="class#getHttp#0;class#BlankFragment#0" expanded="false" />
+            <element signature="method#run#0;class#getHttp#0;class#BlankFragment#0" expanded="false" />
+            <element signature="method#showDialogReminder#0;class#BlankFragment#0" expanded="false" />
+            <element signature="e#49630#49701#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_reserve_info.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="3" selection-start-line="9" selection-start-column="3" selection-end-line="19" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/colors.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="30" selection-start-line="6" selection-start-column="24" selection-end-line="6" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/login_bg.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" column="12" selection-start-line="17" selection-start-column="12" selection-end-line="17" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/build/intermediates/res/merged/debug/layout/fragment_reserve.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="4" column="40" selection-start-line="4" selection-start-column="40" selection-end-line="4" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/edittext_bg.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="8" selection-start-line="6" selection-start-column="8" selection-end-line="6" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/icechycoco/parkherevip/HistoryFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="61" column="42" selection-start-line="61" selection-start-column="42" selection-end-line="61" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_reserve.xml">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="316">
+          <caret line="84" column="41" selection-start-line="84" selection-start-column="41" selection-end-line="84" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="android-designer2">
+        <state />
       </provider>
     </entry>
   </component>
