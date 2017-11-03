@@ -24,6 +24,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -128,8 +129,10 @@ public class ReserveinfoFragment extends Fragment {
         textView11 = (TextView) v.findViewById(R.id.textView11);
         textView11.setText(getParkName(pId));
 
+        ImageView img = (ImageView) v.findViewById(R.id.imageView7);
+
         btn = (Button) v.findViewById(R.id.btn_reserve);
-        btnC = (Button) v.findViewById(R.id.btn_check);
+        //btnC = (Button) v.findViewById(R.id.btn_check);
         //btnS = (Button) v.findViewById(R.id.btn_select);
 
         Log.wtf("mightt","1");
@@ -141,7 +144,7 @@ public class ReserveinfoFragment extends Fragment {
         etPhone = (EditText) v.findViewById(R.id.etPhone);
         etDate = (EditText) v.findViewById(R.id.etDate);
 
-        textView = (TextView) v.findViewById(R.id.tv_result);
+        //textView = (TextView) v.findViewById(R.id.tv_result);
 
         etDate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -173,7 +176,7 @@ public class ReserveinfoFragment extends Fragment {
             }
         });
 
-        btnC.setOnClickListener(new View.OnClickListener() {
+        img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 setName = etGuestN.getText().toString();
@@ -188,7 +191,7 @@ public class ReserveinfoFragment extends Fragment {
                 Log.wtf("mightt","2");
 
                 if (response.equals("0")) {
-                    textView.setText("please fill in a guest infomation");
+                    //textView.setText("please fill in a guest infomation");
                     btn.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
@@ -258,7 +261,7 @@ public class ReserveinfoFragment extends Fragment {
                         }
                     });
                 } else {
-                    textView.setText("Existed Guest Infomation");
+                    //textView.setText("Existed Guest Infomation");
                     Log.wtf("mightt","6");
 
                     reserve2();
@@ -315,7 +318,6 @@ public class ReserveinfoFragment extends Fragment {
                 }
 
                 sendEmail(gEmail);
-                showNotification();
 
                 final Handler handler = new Handler();
                 handler.postDelayed(new Runnable() {
@@ -381,7 +383,6 @@ public class ReserveinfoFragment extends Fragment {
                 }
 
                 sendEmail(gEmail);
-                showNotification();
 
                 final Handler handler = new Handler();
                 handler.postDelayed(new Runnable() {
@@ -480,28 +481,6 @@ public class ReserveinfoFragment extends Fragment {
 
     }
 
-    public void showNotification() {
-
-//        RequestFragment requestFragment = new RequestFragment().newInstance(uId);
-//        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-//        transaction.replace(R.id.fragment_container, requestFragment);
-//        transaction.commit();
-
-
-        Notification notification =
-                new NotificationCompat.Builder(getContext())
-                        .setSmallIcon(R.mipmap.ic_launcher)
-                        .setContentTitle("DevAhoy News")
-                        .setContentText("สวัสดีครับ ยินดีต้อนรับเข้าสู่บทความ Android Notification :)")
-                        .setAutoCancel(true)
-                        //.setContentIntent(pendingIntent)
-                        .build();
-
-        NotificationManager notificationManager =
-                (NotificationManager) getContext().getSystemService(NOTIFICATION_SERVICE);
-        notificationManager.notify(1000, notification);
-
-    }
 
     public String getNewGid(String pId){
 //        try {
@@ -648,7 +627,7 @@ public class ReserveinfoFragment extends Fragment {
                             "villicepark");
                     sender.addAttachment(root+"/"+fname);
                     Log.wtf("mail",root);
-                    sender.sendMail("Confirm Park Reservation at KMUTT",
+                    sender.sendMail("Parking Confirmation at KMUTT",
                             "To: Khun  " + setName+ "   " + setSur + "\n\n" +
                                     "We reserved a parking lot for you on " + setDate + "\n\n" +
                                     "This is your parking area, click into this link  " + getNewGid(setpId) + "\n\n\n\n" +

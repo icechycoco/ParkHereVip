@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -72,7 +73,7 @@ public class CustomAdapter extends BaseAdapter {
         textView1.setText(strHis.get(position).get("pName").toString());
         str1 = strHis.get(position).get("timeIn").toString();
         TextView textView2 = (TextView)view.findViewById(R.id.textView2);
-        textView2.setText("Time in  " + changeTimeFormat(str1));
+        textView2.setText("Time in : " + changeTimeFormat(str1));
 
         str2 = strHis.get(position).get("timeO").toString();
         TextView textView3 = (TextView)view.findViewById(R.id.textView3);
@@ -81,6 +82,7 @@ public class CustomAdapter extends BaseAdapter {
         str3 = strHis.get(position).get("date").toString();
         TextView textView4 = (TextView)view.findViewById(R.id.textView4);
         textView4.setText(changeDateFormat(str3));
+
 
         return view;
     }

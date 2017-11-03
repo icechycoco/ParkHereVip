@@ -1113,8 +1113,6 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
             mMap.animateCamera(CameraUpdateFactory.newCameraPosition(parkPosition));
         }
 
-
-
     }
 
 

@@ -1,12 +1,16 @@
 package com.example.icechycoco.parkherevip;
 
 import android.app.Activity;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
@@ -42,10 +46,11 @@ public class Tab1 extends Activity {
         Log.wtf("position id is :  ", po);
         Log.wtf("user id is :  ", uId);
 
+
         String str = getHis(uId);
         if (str.equals("end")) {
             TextView textView9 = (TextView) findViewById(R.id.textView9);
-            textView9.setText("No parked history");
+            textView9.setText("No Parked History");
         } else {
             String[] getInfo;
             String parkName, timeI, timeO, date;
@@ -72,6 +77,14 @@ public class Tab1 extends Activity {
                 map.put("date", date);
                 history.add(map);
             }
+
+
+            final ImageView img = (ImageView) findViewById(R.id.imageView6);
+            Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.warningsign);
+            img.setImageBitmap(bitmap);
+//            img.setVisibility(View.INVISIBLE);
+
+
             CustomAdapter adapter = new CustomAdapter(this, history);
             ListView listView = (ListView) findViewById(R.id.listView1);
             listView.setAdapter(adapter);

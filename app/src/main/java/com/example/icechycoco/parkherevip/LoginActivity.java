@@ -9,6 +9,8 @@ import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -63,6 +65,21 @@ public class LoginActivity extends AppCompatActivity {
         if(userId!=""){
             login(userId,password);
         }
+
+        etPassword.addTextChangedListener(new TextWatcher() {
+
+            public void afterTextChanged(Editable s) {}
+
+            public void beforeTextChanged(CharSequence s, int start,
+                                          int count, int after) {
+            }
+
+            public void onTextChanged(CharSequence s, int start,
+                                      int before, int count) {
+                btLogin.setBackgroundColor(getResources().getColor(R.color.blue));
+            }
+        });
+
         btLogin.setOnClickListener(new View.OnClickListener() {
 
             @Override

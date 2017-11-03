@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
@@ -54,7 +55,9 @@ public class Tab2 extends Activity {
             });
         }else {
             TextView textView9 = (TextView) findViewById(R.id.textView9);
-            textView9.setText("Available for Staff only");
+            textView9.setText("Staff only");
+            ImageView imageView = (ImageView) findViewById(R.id.imageView6);
+            imageView.setVisibility(View.VISIBLE);
         }
     }
 
