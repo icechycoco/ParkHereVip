@@ -69,7 +69,7 @@ public class CustomAdapterParkArea extends BaseAdapter implements AvailableFragm
         return 0;
     }
 
-    public View getView(final int position, View view, ViewGroup parent) {
+    public View getView(final int position, View view, final ViewGroup parent) {
         LayoutInflater mInflater =
                 (LayoutInflater)mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
@@ -103,19 +103,29 @@ public class CustomAdapterParkArea extends BaseAdapter implements AvailableFragm
                     dialog.setContentView(R.layout.dialog_manage);
 
                     final EditText number = (EditText) dialog.findViewById(R.id.editText);
+                    number.setText(strHis.get(position).get("available").toString());
                     final Button cncl = (Button) dialog.findViewById(R.id.button_cancel);
                     final Button ok = (Button) dialog.findViewById(R.id.button_login);
 
                     ok.setOnClickListener(new View.OnClickListener() {
+
                         @Override
                         public void onClick(View v) {
+                            pId = position+1+"";
+                            Log.wtf("get pId : ", pId);
                             try {
                                 // สร้าง php ใหม่เปลี่ยนจำนวน available
                                 response = http.run("http://parkhere.sit.kmutt.ac.th/setNumber.php?pId=" + pId + "&remain=" + number.getText());
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
+                            availableFragment = new AvailableFragment().newInstance(availableFragment.getuId(), availableFragment.getPo());
+                            FragmentManager manager = ((FragmentActivity) mContext).getSupportFragmentManager();
+                            FragmentTransaction transaction = manager.beginTransaction();
+                            transaction.replace(R.id.fragment_container, availableFragment);
+                            transaction.commit();
                             dialog.dismiss();
+
                         }
                     });
 
@@ -125,8 +135,6 @@ public class CustomAdapterParkArea extends BaseAdapter implements AvailableFragm
                             dialog.dismiss();
                         }
                     });
-
-                    number.setText(available + "");
 
                     dialog.show();
 
