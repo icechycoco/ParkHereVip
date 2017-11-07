@@ -256,8 +256,6 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
                     long diff = date2.getTime() - date1.getTime();
                     System.out.println(diff);
                     diffHours = diff / (60 * 60 * 1000);
-                    System.out.println("current time " + date2);
-                    System.out.print(diffHours + " hours, ");
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
@@ -269,7 +267,6 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
                     System.out.println(getMCost);
                 }else{
                     realFee = fee;
-                    System.out.println(fee);
                 }
 
                 final Dialog dialog = new Dialog(getContext());
@@ -494,7 +491,8 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
                 Log.wtf("why i = ",i+"");
                 i++;
 
-                updateStatusPark(uId, "2", timeIn, "2017-08-18");
+                // ไม่รู้ถูกป่าว แบบกูเพิ่มให้มันจำ lat long ที่ปาร์คไปเลย ตอนสร้างตารางใหม่อะ
+                updateStatusPark(uId, "2", timeIn, currentTime,mLastLocation.getLatitude()+"",mLastLocation.getLongitude()+"");
                 showDialogReminder();
 
 //                Log.wtf("level is : ",getLev(uId));
@@ -757,9 +755,9 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
     }
 
     // decrease available parking lot
-    public void updateStatusPark(String uId,String pId,String time,String date){
+    public void updateStatusPark(String uId,String pId,String time,String date, String lat,String lon){
         try {
-            response = http.run("http://parkhere.sit.kmutt.ac.th/UpdateParkStatus.php?status="+1+"&pId="+pId+"&timeIn="+time+"&date="+date+"&uId="+uId);
+            response = http.run("http://parkhere.sit.kmutt.ac.th/UpdateParkStatus.php?status="+1+"&pId="+pId+"&timeIn="+time+"&date="+date+"&uId="+uId+"&lat="+lat+"$lon="+lon);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -825,9 +823,6 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
     @Override
     public void onLocationChanged(Location location) {
 
-
-
-
         if(parkLoc==null) {
             if(focus) {
                 CameraPosition cameraPosition = new CameraPosition.Builder()
@@ -874,149 +869,6 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
                         }
                     });
         }
-
-
-//
-//        final MarkerOptions markerOptions = new MarkerOptions();
-//
-//        final LatLng latLng = null;
-//        ArrayList<HashMap<String, String>> lalo = getLocation();
-//        mCurrLocationMarker = new Marker[lalo.size()];
-//        ArrayList<LatLng> latlngs = new ArrayList<>();
-//
-//        int i;
-//
-//        for (i=0;i<lalo.size();i++) {
-//            if (mCurrLocationMarker[i] != null) {
-//                mCurrLocationMarker[i].remove();
-//            }
-//            latlngs.add(new LatLng(Double.parseDouble(lalo.get(i).get("la").toString()),
-//                    Double.parseDouble(lalo.get(i).get("lo").toString())));
-//
-//            Log.wtf("might narak", Double.parseDouble(lalo.get(i).get("la").toString()) + " " + Double.parseDouble(lalo.get(i).get("lo").toString()));
-//
-//
-//            ArrayList<HashMap<String, String>> getNum = getNumParkinglot();
-//
-//            pName = new String[lalo.size()];
-//            pId = new String[lalo.size()];
-//            available = new String[lalo.size()];
-//            // รับมาแต่ละตัว
-//            pName[i] = getNum.get(i).get("pName").toString();
-//            pId[i] = getNum.get(i).get("pId").toString();
-//            available[i] = getNum.get(i).get("available").toString();
-//
-////            int j = 0;
-////            for (LatLng point : latlngs) {
-//
-//                markerOptions.position(latlngs.get(i));
-//                markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
-//                if (getActivity() != null) {
-//
-////                    if (isAdded()) {
-////                        image = ContextCompat.getDrawable(getActivity(), R.drawable.marker_01);
-////                    }
-////                    // Store our image size as a constant
-////                    final int IMAGE_WIDTH = image.getIntrinsicWidth();
-////                    final int IMAGE_HEIGHT = image.getIntrinsicHeight();
-////
-////                    // You can also use Config.ARGB_4444 to conserve memory or ARGB_565 if
-////                    // you don't have any transparency.
-////                    Bitmap canvasBitmap = Bitmap.createBitmap(IMAGE_WIDTH,
-////                            IMAGE_HEIGHT,
-////                            Bitmap.Config.ARGB_8888);
-////
-////                    if (isAdded()) {
-////                        res = getActivity().getResources();
-////                    }
-////                    Bitmap canvasBitmap2 = BitmapFactory.decodeResource(res, R.drawable.marker_01);
-////                    Bitmap drawableBitmap = canvasBitmap2.copy(Bitmap.Config.ARGB_8888, true);
-////
-////                    // Create a canvas, that will draw on to canvasBitmap. canvasBitmap is
-////                    // currently blank.
-////                    Canvas imageCanvas = new Canvas(canvasBitmap);
-////
-////                    // Set up the paint for use with our Canvas
-////                    Paint imagePaint = new Paint();
-////                    imageCanvas.drawBitmap(drawableBitmap, 0.0f, 0.0f, null);
-////                    imagePaint.setTextAlign(Paint.Align.CENTER);
-////                    imagePaint.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
-////                    imagePaint.setTextSize(35f);
-////
-////                    // Draw the image to our canvas
-////                    image.draw(imageCanvas);
-////
-////                    // Draw the text on top of our image
-////                    imageCanvas.drawText(available[i],
-////                            IMAGE_WIDTH / 2,
-////                            IMAGE_HEIGHT / 2,
-////                            imagePaint);
-////
-////                    // This is the final image that you can use
-////                    if (isAdded()) {
-////                        finalImage = new BitmapDrawable(getResources(), canvasBitmap);
-////                    }
-////                    Bitmap myLogo = finalImage.getBitmap();
-////                    markerOptions.icon(BitmapDescriptorFactory.fromBitmap(myLogo));
-////
-////                    mCurrLocationMarker[i] = mMap.addMarker(markerOptions);
-////                    mCurrLocationMarker[i].setTitle(available[i]+" "+pId[i]);
-//
-////                    mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
-////                        @Override
-////                        public boolean onMarkerClick(Marker marker) {
-////
-////                            if (po.equals(3)) {
-////
-////                                final Dialog dialog = new Dialog(getContext());
-////                                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-////                                dialog.setContentView(R.layout.dialog_manage);
-////
-////                                final EditText number = (EditText) dialog.findViewById(R.id.editText);
-////                                final Button cncl = (Button) dialog.findViewById(R.id.button_cancel);
-////                                final Button ok = (Button) dialog.findViewById(R.id.button_login);
-////
-////                                String title = marker.getTitle();
-////                                String[] msg;
-////                                final String pid;
-////                                int ava;
-////                                msg = title.split(" ");
-////                                ava = Integer.parseInt(msg[0]);
-////                                pid = msg[1];
-////
-////                                ok.setOnClickListener(new View.OnClickListener() {
-////                                    @Override
-////                                    public void onClick(View v) {
-////                                        try {
-////                                            // สร้าง php ใหม่เปลี่ยนจำนวน available
-////                                            response = http.run("http://parkhere.sit.kmutt.ac.th/setNumber.php?pId=" + pid + "&remain=" + number.getText());
-////                                        } catch (IOException e) {
-////                                            e.printStackTrace();
-////                                        }
-////                                        dialog.dismiss();
-////                                    }
-////                                });
-////
-////                                cncl.setOnClickListener(new View.OnClickListener() {
-////                                    @Override
-////                                    public void onClick(View v) {
-////                                        dialog.dismiss();
-////                                    }
-////                                });
-////
-////                                number.setText(ava + "");
-////
-////                                dialog.show();
-////                                marker.hideInfoWindow();
-////                            }
-////                                return true;
-////                            }
-////
-////                    });
-//
-//            }
-//
-//        }
 
         float[] distance = new float[2];
 
@@ -1233,15 +1085,16 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
         return layerDrawable;
     }
 
-    public ArrayList getLocation(){
+
+    // เอาไว้เรียก lat long ของ user ที่ parked อยุ่
+    public ArrayList getParkLocation(){
         String[] getInfo;
         String lat,lon;
-        ArrayList<HashMap<String, String>> location = null;
-        location = new ArrayList<HashMap<String, String>>();
+        ArrayList<HashMap<String, String>> parkLocation = new ArrayList<HashMap<String, String>>();
         HashMap<String, String> latlong;
 
         try {
-            response = http.run("http://parkhere.sit.kmutt.ac.th/getLocation.php");
+            response = http.run("http://parkhere.sit.kmutt.ac.th/getParkLatLong.php");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -1255,9 +1108,9 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
             latlong = new HashMap<String, String>();
             latlong.put("la", lat);
             latlong.put("lo", lon);
-            location.add(latlong);
+            parkLocation.add(latlong);
         }
-        return location;
+        return parkLocation;
     }
 
     public class getHttp {
@@ -1305,44 +1158,6 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
         });
 
         dialog.show();
-    }
-
-    private double getElevationFromGoogleMaps(double longitude, double latitude) {
-        double result = 0;
-        HttpClient httpClient = new DefaultHttpClient();
-        HttpContext localContext = new BasicHttpContext();
-//        String url = "http://maps.googleapis.com/maps/api/elevation/"
-//                + "xml?locations=" + String.valueOf(latitude)
-//                + "," + String.valueOf(longitude)
-//                + "&sensor=true";
-        String url = "https://maps.googleapis.com/maps/api/elevation/json?locations="
-                + String.valueOf(latitude) + "," + String.valueOf(longitude)
-                + "&key=AIzaSyDdflhbxr0Ue1BIaflldYkC0MItjz55dSI";
-        HttpGet httpGet = new HttpGet(url);
-        try {
-            HttpResponse response = httpClient.execute(httpGet, localContext);
-            HttpEntity entity = response.getEntity();
-            if (entity != null) {
-                InputStream instream = entity.getContent();
-                int r = -1;
-                StringBuffer respStr = new StringBuffer();
-                while ((r = instream.read()) != -1)
-                    respStr.append((char) r);
-                String tagOpen = "<elevation>";
-                String tagClose = "</elevation>";
-                if (respStr.indexOf(tagOpen) != -1) {
-                    int start = respStr.indexOf(tagOpen) + tagOpen.length();
-                    int end = respStr.indexOf(tagClose);
-                    String value = respStr.substring(start, end);
-//                    String value = respStr.substring(start, end);
-                    result = Double.parseDouble(value); // convert from meters to feet
-                }
-                instream.close();
-            }
-        } catch (ClientProtocolException e) {}
-        catch (IOException e) {}
-
-        return result;
     }
 
 }

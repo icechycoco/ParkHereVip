@@ -101,7 +101,7 @@ public class AvailableFragment extends Fragment implements LocationListener{
             uId = bundle.getString(KEY_ID);
             po = bundle.getString(KEY_PO);
         }
-        sentDistance = getDistance();
+        //sentDistance = getDistance();
 //        Thread t = new Thread() {
 //
 //            @Override
@@ -161,8 +161,8 @@ public class AvailableFragment extends Fragment implements LocationListener{
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                sentDistance = getDistance();
-                                CustomAdapterParkArea adapter = new CustomAdapterParkArea(getContext(), getParkArea(), sentDistance);
+                                //sentDistance = getDistance();
+                                CustomAdapterParkArea adapter = new CustomAdapterParkArea(getContext(), getParkArea());
                                 if(getView()!=null) {
                                     ListView listView = (ListView) getView().findViewById(R.id.listView1);
                                     listView.setAdapter(adapter);
@@ -219,72 +219,72 @@ public class AvailableFragment extends Fragment implements LocationListener{
         return response;
     }
 
-    public ArrayList getDistance(){
-        ArrayList<HashMap<String, String>> distance = null;
-        distance = new ArrayList<HashMap<String, String>>();
-        HashMap<String, String> parkarea;
-        String[] getInfo;
-        double lat,lon;
-
-        for(int i=1;i<7;i++){
-            String location = getLocation(i);
-            getInfo = location.split(",");
-            lat = Double.parseDouble(getInfo[0]);
-            lon = Double.parseDouble(getInfo[1]);
-            String serverKey = "AIzaSyCrvg_MLcS21bt3a11mN9MFKg8FTqBNkkc";
-
-            LocationManager locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
-
-            Criteria criteria = new Criteria();
-            String provider = locationManager.getBestProvider(criteria, false);
-
-//                locationManager.requestLocationUpdates(provider,1000,0, (android.location.LocationListener) this);
-
-            cLocation = locationManager.getLastKnownLocation(provider);
-            cLocation = new Location(locationManager.getBestProvider(criteria, false));
-            cLocation.setLatitude(currentLatitude);
-            cLocation.setLongitude(currentLongitude);
-//            LatLng origin = new LatLng(cLocation.getLatitude(), cLocation.getLongitude());
-            LatLng origin = new LatLng(13, 100);
-
-            parkarea = new HashMap<String, String>();
-
-            //Log.wtf("Current Location",currentLatitude+" "+currentLongitude);
-            Log.wtf("Current Location",origin.toString());
-            LatLng destination = new LatLng(lat, lon);
-            Log.wtf("Current Location",destination.toString());
-            GoogleDirection.withServerKey(serverKey)
-                    .from(origin)
-                    .to(destination)
-                    .transportMode(TransportMode.DRIVING)
-                    .unit(Unit.METRIC)
-                    .execute(new DirectionCallback() {
-                        @Override
-                        public void onDirectionSuccess(Direction direction, String rawBody) {
-                            if (direction.isOK()) {
-                                Route route = direction.getRouteList().get(0);
-                                Leg leg = route.getLegList().get(0);
-                                Log.wtf("Direction Status",leg.getDistance().getText());
-                                setDistance(leg.getDistance().getText());
-                                Log.wtf("dis in",getDis());
-                                //parkarea.put("d",dis);
-
-                            }
-                        }
-                        @Override
-                        public void onDirectionFailure(Throwable t) {
-                            Log.wtf("onDirectiom.0nFailure", t);
-                        }
-                    });
-            Log.wtf("dis out1",getDis());
-            parkarea.put("d","1 km");
-            //parkarea.put("d","1");
-            Log.wtf("dis out2",getDis());
-            distance.add(parkarea);
-            //Log.wtf("distance = ",distance.get(i).get("d").toString());
-        }
-        return distance;
-    }
+//    public ArrayList getDistance(){
+//        ArrayList<HashMap<String, String>> distance = null;
+//        distance = new ArrayList<HashMap<String, String>>();
+//        HashMap<String, String> parkarea;
+//        String[] getInfo;
+//        double lat,lon;
+//
+//        for(int i=1;i<8;i++){
+//            String location = getLocation(i);
+//            getInfo = location.split(",");
+//            lat = Double.parseDouble(getInfo[0]);
+//            lon = Double.parseDouble(getInfo[1]);
+//            String serverKey = "AIzaSyCrvg_MLcS21bt3a11mN9MFKg8FTqBNkkc";
+//
+//            LocationManager locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
+//
+//            Criteria criteria = new Criteria();
+//            String provider = locationManager.getBestProvider(criteria, false);
+//
+////                locationManager.requestLocationUpdates(provider,1000,0, (android.location.LocationListener) this);
+//
+//            cLocation = locationManager.getLastKnownLocation(provider);
+//            cLocation = new Location(locationManager.getBestProvider(criteria, false));
+//            cLocation.setLatitude(currentLatitude);
+//            cLocation.setLongitude(currentLongitude);
+////            LatLng origin = new LatLng(cLocation.getLatitude(), cLocation.getLongitude());
+//            LatLng origin = new LatLng(13, 100);
+//
+//            parkarea = new HashMap<String, String>();
+//
+//            //Log.wtf("Current Location",currentLatitude+" "+currentLongitude);
+//            Log.wtf("Current Location",origin.toString());
+//            LatLng destination = new LatLng(lat, lon);
+//            Log.wtf("Current Location",destination.toString());
+//            GoogleDirection.withServerKey(serverKey)
+//                    .from(origin)
+//                    .to(destination)
+//                    .transportMode(TransportMode.DRIVING)
+//                    .unit(Unit.METRIC)
+//                    .execute(new DirectionCallback() {
+//                        @Override
+//                        public void onDirectionSuccess(Direction direction, String rawBody) {
+//                            if (direction.isOK()) {
+//                                Route route = direction.getRouteList().get(0);
+//                                Leg leg = route.getLegList().get(0);
+//                                Log.wtf("Direction Status",leg.getDistance().getText());
+//                                setDistance(leg.getDistance().getText());
+//                                Log.wtf("dis in",getDis());
+//                                //parkarea.put("d",dis);
+//
+//                            }
+//                        }
+//                        @Override
+//                        public void onDirectionFailure(Throwable t) {
+//                            Log.wtf("onDirectiom.0nFailure", t);
+//                        }
+//                    });
+//            Log.wtf("dis out1",getDis());
+//            parkarea.put("d","1 km");
+//            //parkarea.put("d","1");
+//            Log.wtf("dis out2",getDis());
+//            distance.add(parkarea);
+//            //Log.wtf("distance = ",distance.get(i).get("d").toString());
+//        }
+//        return distance;
+//    }
 
     public void setDistance(String d){
         this.dis = d;
@@ -376,9 +376,9 @@ public class AvailableFragment extends Fragment implements LocationListener{
     @Override
     public void onResume() {
         super.onResume();
-        sentDistance = getDistance();
-        Log.wtf("ok",""+getDistance().get(1));
-        CustomAdapterParkArea adapter = new CustomAdapterParkArea(getContext(), getParkArea(), sentDistance);
+//        sentDistance = getDistance();
+//        Log.wtf("ok",""+getDistance().get(1));
+        CustomAdapterParkArea adapter = new CustomAdapterParkArea(getContext(), getParkArea());
         ListView listView = (ListView) getView().findViewById(R.id.listView1);
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {

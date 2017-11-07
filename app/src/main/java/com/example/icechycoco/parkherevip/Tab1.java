@@ -80,7 +80,7 @@ public class Tab1 extends Activity {
 
 
             final ImageView img = (ImageView) findViewById(R.id.imageView6);
-            Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.warningsign);
+            Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.warn1);
             img.setImageBitmap(bitmap);
             img.setVisibility(View.INVISIBLE);
 

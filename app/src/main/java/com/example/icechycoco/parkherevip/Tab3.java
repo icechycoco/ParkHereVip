@@ -60,7 +60,7 @@ public class Tab3 extends Activity {
             TextView textView9 = (TextView) findViewById(R.id.textView9);
             textView9.setText("Security Guard only");
             final ImageView img = (ImageView) findViewById(R.id.imageView6);
-            Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.warningsign);
+            Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.warn1);
             img.setImageBitmap(bitmap);
             img.setVisibility(View.VISIBLE);
         }
