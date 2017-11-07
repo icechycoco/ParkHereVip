@@ -35,102 +35,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e0e0a3fc-341a-4402-91e2-8d939ae3068f" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/runConfigurations.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/fileHashes.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/fileSnapshots.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/taskArtifacts.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/taskArtifacts.lock" afterPath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/taskArtifacts.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.bin" afterPath="$PROJECT_DIR$/.gradle/3.3/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" afterPath="$PROJECT_DIR$/.gradle/3.3/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/tasks/_app_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.bin" afterPath="$PROJECT_DIR$/.gradle/3.3/tasks/_app_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/tasks/_app_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" afterPath="$PROJECT_DIR$/.gradle/3.3/tasks/_app_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/android_maps_utils_0_4_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/android_maps_utils_0_4_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/animated_vector_drawable_25_3_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/animated_vector_drawable_25_3_1.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/appcompat_v7_25_3_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/appcompat_v7_25_3_1.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/constraint_layout_1_0_2.xml" afterPath="$PROJECT_DIR$/.idea/libraries/constraint_layout_1_0_2.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/constraint_layout_solver_1_0_2.xml" afterPath="$PROJECT_DIR$/.idea/libraries/constraint_layout_solver_1_0_2.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/core_1_9_8.xml" afterPath="$PROJECT_DIR$/.idea/libraries/core_1_9_8.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/design_25_3_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/design_25_3_1.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/espresso_core_2_2_2.xml" afterPath="$PROJECT_DIR$/.idea/libraries/espresso_core_2_2_2.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/espresso_idling_resource_2_2_2.xml" afterPath="$PROJECT_DIR$/.idea/libraries/espresso_idling_resource_2_2_2.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/exposed_instrumentation_api_publish_0_5.xml" afterPath="$PROJECT_DIR$/.idea/libraries/exposed_instrumentation_api_publish_0_5.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/firebase_analytics_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/firebase_analytics_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/firebase_analytics_impl_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/firebase_analytics_impl_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/firebase_appindexing_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/firebase_appindexing_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/firebase_auth_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/firebase_auth_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/firebase_common_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/firebase_common_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/firebase_config_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/firebase_config_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/firebase_crash_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/firebase_crash_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/firebase_database_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/firebase_database_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/firebase_database_connection_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/firebase_database_connection_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/firebase_dynamic_links_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/firebase_dynamic_links_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/firebase_iid_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/firebase_iid_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/firebase_messaging_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/firebase_messaging_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/firebase_storage_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/firebase_storage_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/firebase_storage_common_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/firebase_storage_common_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/googledirectionlibrary_1_0_5.xml" afterPath="$PROJECT_DIR$/.idea/libraries/googledirectionlibrary_1_0_5.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/mediarouter_v7_25_2_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/mediarouter_v7_25_2_0.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/multidex_1_0_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/multidex_1_0_1.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/multidex_instrumentation_1_0_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/multidex_instrumentation_1_0_1.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/org_apache_http_legacy_android_25.xml" afterPath="$PROJECT_DIR$/.idea/libraries/org_apache_http_legacy_android_25.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/palette_v7_25_2_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/palette_v7_25_2_0.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_ads_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_ads_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_ads_lite_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_ads_lite_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_analytics_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_analytics_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_analytics_impl_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_analytics_impl_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_appinvite_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_appinvite_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_auth_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_auth_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_auth_api_phone_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_auth_api_phone_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_auth_base_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_auth_base_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_awareness_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_awareness_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_base_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_base_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_basement_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_basement_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_cast_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_cast_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_cast_framework_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_cast_framework_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_clearcut_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_clearcut_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_drive_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_drive_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_fitness_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_fitness_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_games_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_games_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_gass_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_gass_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_gcm_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_gcm_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_identity_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_identity_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_iid_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_iid_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_instantapps_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_instantapps_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_location_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_location_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_maps_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_maps_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_nearby_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_nearby_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_panorama_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_panorama_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_places_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_places_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_plus_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_plus_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_safetynet_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_safetynet_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_tagmanager_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_tagmanager_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_tagmanager_api_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_tagmanager_api_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_tagmanager_v4_impl_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_tagmanager_v4_impl_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_tasks_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_tasks_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_vision_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_vision_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_vision_common_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_vision_common_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_wallet_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_wallet_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_wearable_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_wearable_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/recyclerview_v7_25_3_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/recyclerview_v7_25_3_1.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/rules_0_5.xml" afterPath="$PROJECT_DIR$/.idea/libraries/rules_0_5.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/runner_0_5.xml" afterPath="$PROJECT_DIR$/.idea/libraries/runner_0_5.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/support_annotations_25_3_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/support_annotations_25_3_1.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/support_compat_25_3_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/support_compat_25_3_1.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/support_core_ui_25_3_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/support_core_ui_25_3_1.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/support_core_utils_25_3_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/support_core_utils_25_3_1.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/support_fragment_25_3_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/support_fragment_25_3_1.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/support_media_compat_25_3_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/support_media_compat_25_3_1.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/support_v4_25_3_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/support_v4_25_3_1.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/support_vector_drawable_25_3_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/support_vector_drawable_25_3_1.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/transition_25_3_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/transition_25_3_1.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/zxing_1_9_8.xml" afterPath="$PROJECT_DIR$/.idea/libraries/zxing_1_9_8.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/app.iml" afterPath="$PROJECT_DIR$/app/app.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/icechycoco/parkherevip/ReserveinfoFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/icechycoco/parkherevip/ReserveinfoFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/dialog_warn.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/dialog_warn.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/local.properties" afterPath="$PROJECT_DIR$/local.properties" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/icechycoco/parkherevip/AvailableFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/icechycoco/parkherevip/AvailableFragment.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/icechycoco/parkherevip/BlankFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/icechycoco/parkherevip/BlankFragment.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/icechycoco/parkherevip/CustomAdapterParkArea.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/icechycoco/parkherevip/CustomAdapterParkArea.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/icechycoco/parkherevip/HomeSecActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/icechycoco/parkherevip/HomeSecActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/icechycoco/parkherevip/HomeStaActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/icechycoco/parkherevip/HomeStaActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/icechycoco/parkherevip/HomeStuActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/icechycoco/parkherevip/HomeStuActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/icechycoco/parkherevip/ScanActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/icechycoco/parkherevip/ScanActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_blank.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_blank.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/listview_parkarea.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/listview_parkarea.xml" />
     </list>
     <ignored path="ParkHereVip.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -2698,7 +2620,6 @@
       <list>
         <option value="$PROJECT_DIR$/app/src/main/res/values-v21/google_maps_api.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/icechycoco/parkherevip/ScanQR.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/icechycoco/parkherevip/ScanActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_qrscan.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/icechycoco/parkherevip/GeofenceTransitionsIntentService.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/icechycoco/parkherevip/GMailSender.java" />
@@ -2714,7 +2635,6 @@
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_request.xml" />
         <option value="$USER_HOME$/Library/Android/sdk/platforms/android-25/android.jar!/android/app/IntentService.class" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/icechycoco/parkherevip/ActivityRecognizedService.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_blank.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/icechycoco/parkherevip/HistoryFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/icechycoco/parkherevip/CustomAdapterHisRes.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/icechycoco/parkherevip/Splash.java" />
@@ -2728,33 +2648,35 @@
         <option value="$PROJECT_DIR$/app/src/main/res/layout/dialog_fee.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/icechycoco/parkherevip/Available.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_available.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/icechycoco/parkherevip/SecNotificationService.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/listview_parkarea.xml" />
         <option value="$PROJECT_DIR$/app/build.gradle" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/icechycoco/parkherevip/AvailableFragment.java" />
         <option value="$PROJECT_DIR$/local.properties" />
         <option value="$PROJECT_DIR$/build.gradle" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/icechycoco/parkherevip/LoginActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_history.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/icechycoco/parkherevip/HomeSecActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/icechycoco/parkherevip/RequestFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/icechycoco/parkherevip/ReserveFragment.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/icechycoco/parkherevip/BlankFragment.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/icechycoco/parkherevip/HomeStaActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/icechycoco/parkherevip/HomeStuActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/icechycoco/parkherevip/CustomAdapterParkArea.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/dialog_warn.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/icechycoco/parkherevip/ReserveinfoFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/icechycoco/parkherevip/CustomAdapterParkArea.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/listview_parkarea.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/icechycoco/parkherevip/HomeStaActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/icechycoco/parkherevip/HomeStuActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/icechycoco/parkherevip/HomeSecActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/icechycoco/parkherevip/ScanActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/icechycoco/parkherevip/AvailableFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/icechycoco/parkherevip/SecNotificationService.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_blank.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/icechycoco/parkherevip/BlankFragment.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="1358" />
+    <option name="x" value="-8" />
     <option name="y" value="-8" />
-    <option name="width" value="1616" />
-    <option name="height" value="876" />
+    <option name="width" value="1382" />
+    <option name="height" value="744" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -2800,7 +2722,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
+      <pane id="PackagesPane" />
       <pane id="AndroidView">
         <subPane>
           <PATH>
@@ -2818,67 +2740,36 @@
               <option name="myItemId" value="ParkHereVip" />
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ParkHereVip" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ParkHereVip" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="parkherevip" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane />
       </pane>
-      <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="last_opened_file_path" value="$USER_HOME$/Downloads/GeofenceDemo copy 2" />
     <property name="android.project.structure.last.selected" value="app" />
     <property name="android.project.structure.proportion" value="0.15" />
-    <property name="device.picker.selection" value="4d00eaa7be5ea0c3" />
+    <property name="device.picker.selection" value="SH46TWW02777" />
     <property name="settings.editor.selected.configurable" value="instant.run" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
     <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file://C:/Users/Rodrin/AndroidStudioProjects/ParkHereVip/app/src/main/AndroidManifest.xml" />
   </component>
   <component name="RecentsManager">
-    <key name="android.template.parentActivityClass">
-      <recent name="" />
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.example.icechycoco.parkherevip" />
     </key>
     <key name="ExtractSuperBase.RECENT_KEYS">
       <recent name="com.example.icechycoco.parkherevip" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Rodrin\AndroidStudioProjects\ParkHereVip\app\src\main\res\layout" />
+      <recent name="C:\Users\Rodrin\AndroidStudioProjects\ParkHereVip\app\src\main\res\values-v21" />
+      <recent name="C:\Users\Rodrin\AndroidStudioProjects\ParkHereVip\app\src\main\res\menu" />
     </key>
     <key name="android.template.packageName">
       <recent name="com.example.icechycoco.parkherevip" />
@@ -2888,16 +2779,11 @@
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="com.example.icechycoco.parkherevip" />
     </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\Rodrin\AndroidStudioProjects\ParkHereVip\app\src\main\res\layout" />
-      <recent name="C:\Users\Rodrin\AndroidStudioProjects\ParkHereVip\app\src\main\res\values-v21" />
-      <recent name="C:\Users\Rodrin\AndroidStudioProjects\ParkHereVip\app\src\main\res\menu" />
-    </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.example.icechycoco.parkherevip" />
     </key>
-    <key name="CreateClassDialog.RecentsKey">
-      <recent name="com.example.icechycoco.parkherevip" />
+    <key name="android.template.parentActivityClass">
+      <recent name="" />
     </key>
   </component>
   <component name="RunManager" selected="Android App.app">
@@ -3543,7 +3429,14 @@
       <option name="project" value="LOCAL" />
       <updated>1509697967919</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="fix error reserve2">
+      <created>1509794475702</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1509794475702</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TodoView">
@@ -3556,23 +3449,23 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="1358" y="-8" width="1616" height="876" extended-state="6" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="false" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32692307" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32352942" sideWeight="0.49167928" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32189542" sideWeight="0.49167928" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2003231" sideWeight="0.52272725" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26797387" sideWeight="0.52420574" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3830645" sideWeight="0.47579426" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Android Monitor" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3120915" sideWeight="0.47579426" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3267974" sideWeight="0.49394855" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2009804" sideWeight="0.48789713" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32843137" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5833333" sideWeight="0.51534736" order="11" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1844473" sideWeight="0.48339483" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18381241" sideWeight="0.48339483" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980332" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
@@ -3672,7 +3565,8 @@
     <MESSAGE value="before DDay" />
     <MESSAGE value="fix nav" />
     <MESSAGE value="fix error reserve" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix error reserve" />
+    <MESSAGE value="fix error reserve2" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix error reserve2" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -3682,15 +3576,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/icechycoco/parkherevip/StepListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_available_fragment.xml" />
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_available.xml" />
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/icechycoco/parkherevip/Available.java" />
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/icechycoco/parkherevip/CustomAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -3704,7 +3589,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
           <caret line="9" column="3" selection-start-line="9" selection-start-column="3" selection-end-line="19" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
       <provider editor-type-id="android-designer2">
@@ -3722,17 +3606,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1260">
           <caret line="87" column="42" selection-start-line="87" selection-start-column="42" selection-end-line="87" selection-end-column="42" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/listview.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="36" selection-start-line="13" selection-start-column="7" selection-end-line="14" selection-end-column="36" />
-          <folding />
         </state>
       </provider>
       <provider editor-type-id="android-designer2">
@@ -3792,20 +3665,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
           <caret line="12" column="40" selection-start-line="12" selection-start-column="40" selection-end-line="12" selection-end-column="40" />
-          <folding />
         </state>
       </provider>
       <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/listview_parkarea.xml">
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="-366">
-          <caret line="18" column="40" selection-start-line="18" selection-start-column="40" selection-end-line="18" selection-end-column="40" />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="android-designer2">
         <state />
       </provider>
     </entry>
@@ -3830,13 +3692,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/icechycoco/parkherevip/SecNotificationService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="87" column="68" selection-start-line="87" selection-start-column="68" selection-end-line="87" selection-end-column="68" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="370">
@@ -3857,7 +3712,6 @@
       <provider editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
       <provider selected="true" editor-type-id="android-designer2">
@@ -3868,7 +3722,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="578">
           <caret line="34" column="49" selection-start-line="34" selection-start-column="49" selection-end-line="34" selection-end-column="49" />
-          <folding />
         </state>
       </provider>
       <provider editor-type-id="android-designer2">
@@ -3879,7 +3732,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
           <caret line="3" column="50" selection-start-line="3" selection-start-column="50" selection-end-line="3" selection-end-column="50" />
-          <folding />
         </state>
       </provider>
       <provider editor-type-id="android-designer2">
@@ -3901,7 +3753,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="164">
           <caret line="11" column="28" selection-start-line="11" selection-start-column="26" selection-end-line="11" selection-end-column="28" />
-          <folding />
         </state>
       </provider>
       <provider editor-type-id="android-designer2">
@@ -3912,6 +3763,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
           <caret line="48" column="54" selection-start-line="48" selection-start-column="54" selection-end-line="48" selection-end-column="54" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -3927,7 +3779,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="323">
           <caret line="19" column="35" selection-start-line="19" selection-start-column="35" selection-end-line="19" selection-end-column="35" />
-          <folding />
         </state>
       </provider>
       <provider editor-type-id="android-designer2">
@@ -3938,7 +3789,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
       <provider editor-type-id="android-designer2">
@@ -3961,41 +3811,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/icechycoco/parkherevip/ReserveFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="68" column="9" selection-start-line="68" selection-start-column="9" selection-end-line="68" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/icechycoco/parkherevip/HistoryFragment.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="340">
           <caret line="61" column="28" selection-start-line="61" selection-start-column="28" selection-end-line="61" selection-end-column="28" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/icechycoco/parkherevip/HomeStaActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="218">
-          <caret line="198" column="42" selection-start-line="198" selection-start-column="42" selection-end-line="198" selection-end-column="42" />
-          <folding>
-            <element signature="e#9917#9918#0" expanded="true" />
-            <element signature="e#9970#9971#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/icechycoco/parkherevip/HomeSecActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="48">
-          <caret line="256" column="33" selection-start-line="256" selection-start-column="33" selection-end-line="257" selection-end-column="41" />
-          <folding>
-            <element signature="e#13130#13131#0" expanded="true" />
-            <element signature="e#13183#13184#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -4012,34 +3832,14 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/icechycoco/parkherevip/HomeStuActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="544">
-          <caret line="146" column="0" selection-start-line="146" selection-start-column="0" selection-end-line="146" selection-end-column="0" />
-          <folding>
-            <element signature="e#8383#8384#0" expanded="true" />
-            <element signature="e#8436#8437#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_reserve.xml">
       <provider editor-type-id="text-editor">
         <state relative-caret-position="4114">
           <caret line="242" column="0" selection-start-line="242" selection-start-column="0" selection-end-line="242" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
       <provider selected="true" editor-type-id="android-designer2">
         <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/icechycoco/parkherevip/CustomAdapterParkArea.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1139">
-          <caret line="100" column="20" selection-start-line="100" selection-start-column="20" selection-end-line="106" selection-end-column="86" />
-          <folding />
-        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/dialog_floor.xml">
@@ -4057,7 +3857,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
           <caret line="7" column="4" selection-start-line="7" selection-start-column="4" selection-end-line="22" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
       <provider editor-type-id="android-designer2">
@@ -4075,38 +3874,10 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/icechycoco/parkherevip/BlankFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3519">
-          <caret line="320" column="0" selection-start-line="320" selection-start-column="0" selection-end-line="320" selection-end-column="0" />
-          <folding>
-            <element signature="docComment;class#BlankFragment#0" expanded="false" />
-            <element signature="method#BlankFragment#0;class#BlankFragment#0" expanded="false" />
-            <element signature="method#newInstance#0;class#BlankFragment#0" expanded="false" />
-            <element signature="method#newInstance#1;class#BlankFragment#0" expanded="false" />
-            <element signature="method#onConnected#0;class#BlankFragment#0" expanded="false" />
-            <element signature="method#onConnectionSuspended#0;class#BlankFragment#0" expanded="false" />
-            <element signature="method#checkLocationPermission#0;class#BlankFragment#0" expanded="false" />
-            <element signature="e#43686#43752#0" expanded="false" />
-            <element signature="method#onRequestPermissionsResult#0;class#BlankFragment#0" expanded="false" />
-            <element signature="e#45015#45048#0" expanded="false" />
-            <element signature="e#45837#45913#0" expanded="false" />
-            <element signature="method#createMarkerIcon#0;class#BlankFragment#0" expanded="false" />
-            <element signature="method#getLocation#0;class#BlankFragment#0" expanded="false" />
-            <element signature="class#getHttp#0;class#BlankFragment#0" expanded="false" />
-            <element signature="method#run#0;class#getHttp#0;class#BlankFragment#0" expanded="false" />
-            <element signature="method#showDialogReminder#0;class#BlankFragment#0" expanded="false" />
-            <element signature="method#getElevationFromGoogleMaps#0;class#BlankFragment#0" expanded="false" />
-            <element signature="e#49630#49701#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/dialog_warn.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
           <caret line="15" column="40" selection-start-line="15" selection-start-column="40" selection-end-line="15" selection-end-column="40" />
-          <folding />
         </state>
       </provider>
       <provider editor-type-id="android-designer2">
@@ -4117,14 +3888,21 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
           <caret line="10" column="56" selection-start-line="10" selection-start-column="56" selection-end-line="10" selection-end-column="56" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/icechycoco/parkherevip/ReserveFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1258">
+          <caret line="102" column="49" selection-start-line="102" selection-start-column="41" selection-end-line="102" selection-end-column="49" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/icechycoco/parkherevip/ReserveinfoFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-4165">
-          <caret line="307" column="10" selection-start-line="307" selection-start-column="10" selection-end-line="307" selection-end-column="10" />
+        <state relative-caret-position="125">
+          <caret line="481" column="63" selection-start-line="481" selection-start-column="55" selection-end-line="481" selection-end-column="63" />
           <folding>
             <element signature="docComment;class#ReserveinfoFragment#0" expanded="false" />
             <element signature="method#ReserveinfoFragment#0;class#ReserveinfoFragment#0" expanded="false" />
@@ -4164,10 +3942,139 @@
         </state>
       </provider>
     </entry>
+    <entry file="jar://$USER_HOME$/AppData/Local/Android/sdk/platforms/android-25/android.jar!/java/util/logging/Handler.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="14" column="22" selection-start-line="14" selection-start-column="22" selection-end-line="14" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/listview.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="31" selection-start-line="7" selection-start-column="31" selection-end-line="7" selection-end-column="31" />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/listview_parkarea.xml">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="208">
+          <caret line="48" column="45" selection-start-line="48" selection-start-column="45" selection-end-line="48" selection-end-column="45" />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/icechycoco/parkherevip/HomeStaActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2890">
+          <caret line="196" column="0" selection-start-line="196" selection-start-column="0" selection-end-line="196" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/icechycoco/parkherevip/HomeStuActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2380">
+          <caret line="163" column="0" selection-start-line="163" selection-start-column="0" selection-end-line="163" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/icechycoco/parkherevip/CustomAdapterParkArea.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="952">
+          <caret line="89" column="27" selection-start-line="89" selection-start-column="27" selection-end-line="89" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/icechycoco/parkherevip/AvailableFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="25" selection-start-line="2" selection-start-column="19" selection-end-line="2" selection-end-column="25" />
+        <state relative-caret-position="3366">
+          <caret line="287" column="34" selection-start-line="287" selection-start-column="34" selection-end-line="287" selection-end-column="34" />
+          <folding>
+            <element signature="docComment;class#AvailableFragment#0" expanded="false" />
+            <element signature="method#AvailableFragment#0;class#AvailableFragment#0" expanded="false" />
+            <element signature="method#newInstance#0;class#AvailableFragment#0" expanded="false" />
+            <element signature="method#getLev#0;class#AvailableFragment#0" expanded="false" />
+            <element signature="class#9351:10254" expanded="false" />
+            <element signature="method#onDirectionSuccess#0;class#9351:10254" expanded="false" />
+            <element signature="method#onDirectionFailure#0;class#9351:10254" expanded="false" />
+            <element signature="method#getParkArea#0;class#AvailableFragment#0" expanded="false" />
+            <element signature="method#getLocation#0;class#AvailableFragment#0" expanded="false" />
+            <element signature="method#getCountRes#0;class#AvailableFragment#0" expanded="false" />
+            <element signature="method#getAvailable#0;class#AvailableFragment#0" expanded="false" />
+            <element signature="method#getCurrentTime#0;class#AvailableFragment#0" expanded="false" />
+            <element signature="class#OnFragmentInteractionListener#0;class#AvailableFragment#0" expanded="false" />
+            <element signature="class#getHttp#0;class#AvailableFragment#0" expanded="false" />
+            <element signature="method#run#0;class#getHttp#0;class#AvailableFragment#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/icechycoco/parkherevip/SecNotificationService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1462">
+          <caret line="107" column="0" selection-start-line="107" selection-start-column="0" selection-end-line="107" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_blank.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1020">
+          <caret line="60" column="45" selection-start-line="60" selection-start-column="45" selection-end-line="60" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/icechycoco/parkherevip/BlankFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="6">
+          <caret line="1100" column="0" selection-start-line="1100" selection-start-column="0" selection-end-line="1100" selection-end-column="0" />
+          <folding>
+            <element signature="docComment;class#BlankFragment#0" expanded="false" />
+            <element signature="method#BlankFragment#0;class#BlankFragment#0" expanded="false" />
+            <element signature="method#newInstance#0;class#BlankFragment#0" expanded="false" />
+            <element signature="method#newInstance#1;class#BlankFragment#0" expanded="false" />
+            <element signature="method#onConnected#0;class#BlankFragment#0" expanded="false" />
+            <element signature="method#onConnectionSuspended#0;class#BlankFragment#0" expanded="false" />
+            <element signature="method#checkLocationPermission#0;class#BlankFragment#0" expanded="false" />
+            <element signature="e#43754#43820#0" expanded="false" />
+            <element signature="method#onRequestPermissionsResult#0;class#BlankFragment#0" expanded="false" />
+            <element signature="e#45083#45116#0" expanded="false" />
+            <element signature="e#45905#45981#0" expanded="false" />
+            <element signature="method#createMarkerIcon#0;class#BlankFragment#0" expanded="false" />
+            <element signature="method#getLocation#0;class#BlankFragment#0" expanded="false" />
+            <element signature="class#getHttp#0;class#BlankFragment#0" expanded="false" />
+            <element signature="method#run#0;class#getHttp#0;class#BlankFragment#0" expanded="false" />
+            <element signature="method#showDialogReminder#0;class#BlankFragment#0" expanded="false" />
+            <element signature="method#getElevationFromGoogleMaps#0;class#BlankFragment#0" expanded="false" />
+            <element signature="e#49698#49769#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/icechycoco/parkherevip/HomeSecActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="283" column="48" selection-start-line="283" selection-start-column="48" selection-end-line="283" selection-end-column="48" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/icechycoco/parkherevip/ScanActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="92" column="27" selection-start-line="92" selection-start-column="27" selection-end-line="92" selection-end-column="27" />
           <folding />
         </state>
       </provider>

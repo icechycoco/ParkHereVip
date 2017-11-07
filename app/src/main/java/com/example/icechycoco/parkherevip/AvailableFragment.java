@@ -1,6 +1,5 @@
 package com.example.icechycoco.parkherevip;
 
-import android.app.Dialog;
 import android.content.Context;
 import android.location.Criteria;
 import android.location.Location;
@@ -11,13 +10,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
 import android.widget.AdapterView;
-import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.akexorcist.googledirection.DirectionCallback;
 import com.akexorcist.googledirection.GoogleDirection;
@@ -108,39 +102,93 @@ public class AvailableFragment extends Fragment implements LocationListener{
             po = bundle.getString(KEY_PO);
         }
         sentDistance = getDistance();
-        Thread t = new Thread() {
+//        Thread t = new Thread() {
+//
+//            @Override
+//            public void run() {
+//                try {
+//                    while (!isInterrupted()) {
+//                        Thread.sleep(1000);
+//                        runOnUiThread(new Runnable() {
+//                            @Override
+//                            public void run() {
+//                                showActivity();
+//                                showStatus2();
+//                            }
+//                        });
+//                    }
+//                } catch (InterruptedException e) {
+//                }
+//            }
+//        };
 
+//        runOnUiThread(new Runnable() {
+//            @Override
+//            public void run() {
+//                sentDistance = getDistance();
+//                Log.wtf("ok1",""+getDistance().get(0));
+//                Log.wtf("ok2",""+getDistance().get(1));
+//                Log.wtf("ok3",""+getDistance().get(2));
+//                CustomAdapterParkArea adapter = new CustomAdapterParkArea(getContext(), getParkArea(), sentDistance);
+//                if(getView()!=null) {
+//
+//                    Log.wtf("ok10",""+getDistance().get(0));
+//                    Log.wtf("ok20",""+getDistance().get(1));
+//                    Log.wtf("ok30",""+getDistance().get(2));
+//                    ListView listView = (ListView) getView().findViewById(R.id.listView1);
+//                    listView.setAdapter(adapter);
+//                    listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//                        public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+//
+//                        }
+//                    });
+//
+//                    Log.wtf("ok10",""+getDistance().get(0));
+//                    Log.wtf("ok20",""+getDistance().get(1));
+//                    Log.wtf("ok30",""+getDistance().get(2));
+//                }
+//            }
+//        });
+
+
+        Thread thread = new Thread(){
             @Override
             public void run() {
                 try {
-                    while (!isInterrupted()) {
-                        Thread.sleep(1000);
+                    synchronized (this) {
+                        wait(2000);
+
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-//                                showActivity();
-//                                showStatus2();
+                                sentDistance = getDistance();
+                                CustomAdapterParkArea adapter = new CustomAdapterParkArea(getContext(), getParkArea(), sentDistance);
+                                if(getView()!=null) {
+                                    ListView listView = (ListView) getView().findViewById(R.id.listView1);
+                                    listView.setAdapter(adapter);
+                                    listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                                        public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+
+                                        }
+                                    });
+                                }
                             }
                         });
+
                     }
                 } catch (InterruptedException e) {
+                    e.printStackTrace();
                 }
             }
         };
+        thread.start();
 
-        t.start();
+//        t.start();
+
     }
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final View v = inflater.inflate(R.layout.fragment_available, container, false);
-        CustomAdapterParkArea adapter = new CustomAdapterParkArea(getContext(), getParkArea(), sentDistance);
-        ListView listView = (ListView) v.findViewById(R.id.listView1);
-        listView.setAdapter(adapter);
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-
-            }
-        });
 
         return v;
     }
@@ -178,7 +226,7 @@ public class AvailableFragment extends Fragment implements LocationListener{
         String[] getInfo;
         double lat,lon;
 
-        for(int i=1;i<4;i++){
+        for(int i=1;i<7;i++){
             String location = getLocation(i);
             getInfo = location.split(",");
             lat = Double.parseDouble(getInfo[0]);
@@ -216,7 +264,7 @@ public class AvailableFragment extends Fragment implements LocationListener{
                             if (direction.isOK()) {
                                 Route route = direction.getRouteList().get(0);
                                 Leg leg = route.getLegList().get(0);
-//                                Log.wtf("Direction Status",leg.getDistance().getText());
+                                Log.wtf("Direction Status",leg.getDistance().getText());
                                 setDistance(leg.getDistance().getText());
                                 Log.wtf("dis in",getDis());
                                 //parkarea.put("d",dis);
@@ -229,7 +277,7 @@ public class AvailableFragment extends Fragment implements LocationListener{
                         }
                     });
             Log.wtf("dis out1",getDis());
-            parkarea.put("d",getDis());
+            parkarea.put("d","1 km");
             //parkarea.put("d","1");
             Log.wtf("dis out2",getDis());
             distance.add(parkarea);
@@ -323,6 +371,21 @@ public class AvailableFragment extends Fragment implements LocationListener{
     @Override
     public void onLocationChanged(Location location) {
         cLocation = location;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        sentDistance = getDistance();
+        Log.wtf("ok",""+getDistance().get(1));
+        CustomAdapterParkArea adapter = new CustomAdapterParkArea(getContext(), getParkArea(), sentDistance);
+        ListView listView = (ListView) getView().findViewById(R.id.listView1);
+        listView.setAdapter(adapter);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+
+            }
+        });
     }
 
     public interface OnFragmentInteractionListener {

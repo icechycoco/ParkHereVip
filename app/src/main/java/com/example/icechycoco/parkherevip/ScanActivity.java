@@ -5,12 +5,11 @@ package com.example.icechycoco.parkherevip;
  */
 
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.net.Uri;
+import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -105,7 +104,7 @@ public class ScanActivity extends AppCompatActivity implements ZXingScannerView.
 
         final AlertDialog.Builder builder =
                 new AlertDialog.Builder(this);
-        builder.setMessage("\nKhun: " + gName + "\n\nPark Area:" + parkN + "\n\nLicense:" + licen + "\n\nDate:" + date + "\n\nTime:" + timeSeq);
+        builder.setMessage("\nKhun " + gName + "\n\nPark Area: " + parkN + "\n\nLicense: " + licen + "\n\nDate: " + date + "\n\nTime: " + timeSeq);
 
         builder.setPositiveButton("CONFIRM", new DialogInterface.OnClickListener() {
 
@@ -127,7 +126,6 @@ public class ScanActivity extends AppCompatActivity implements ZXingScannerView.
                 FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
                 transaction.replace(R.id.fragment_container, requestFragmentt);
                 transaction.commit();
-                onBackPressed();
             }
         });
 

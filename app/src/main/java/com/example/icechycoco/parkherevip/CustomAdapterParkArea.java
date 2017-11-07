@@ -3,7 +3,6 @@ package com.example.icechycoco.parkherevip;
 import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Color;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
@@ -16,7 +15,6 @@ import android.view.Window;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -81,8 +79,10 @@ public class CustomAdapterParkArea extends BaseAdapter implements AvailableFragm
         available = Integer.parseInt(strHis.get(position).get("available").toString());
         TextView textView6 = (TextView)view.findViewById(R.id.textView6);
         textView6.setText(available+"");
-//        TextView textView20 = (TextView)view.findViewById(R.id.textView20);
-//        textView20.setText(strDistance.get(position).get("d").toString());
+        TextView textView20 = (TextView)view.findViewById(R.id.textView20);
+        if(strDistance.get(position).get("d")!=null) {
+            textView20.setText(strDistance.get(position).get("d").toString());
+        }
         ImageView img = (ImageView) view.findViewById(R.id.imageView3);
         if(available < 15) {
             textView6.setTextColor(Color.parseColor("#DB0000"));

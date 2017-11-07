@@ -45,10 +45,9 @@
                 android:id="@+id/textView20"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.70"
-                android:text="Text"
                 android:layout_gravity="center_vertical"
-                android:layout_marginStart="5dp"/>
+                android:layout_marginStart="5dp"
+                android:layout_weight="0.70" />
 
         </LinearLayout>
 

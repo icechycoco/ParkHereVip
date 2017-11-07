@@ -21,7 +21,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.io.IOException;
 
@@ -269,6 +268,8 @@ public class HomeSecActivity extends AppCompatActivity
             editor.putString("Username", "");
             editor.putString("Password", "");
             editor.commit();
+
+            finish();
             Intent intent = new Intent(this, LoginActivity.class);
             startActivity(intent);
             setActionBarTitle("ParkHere");

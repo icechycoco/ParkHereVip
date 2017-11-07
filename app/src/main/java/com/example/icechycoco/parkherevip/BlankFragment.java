@@ -332,27 +332,27 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
 
         fragment.getMapAsync(this);
 
-        txt = (TextView) v.findViewById(R.id.textView);
-        txt2 = (TextView) v.findViewById(R.id.textView2);
-        txt3 = (TextView) v.findViewById(R.id.textView3);
-        txt4 = (TextView) v.findViewById(R.id.textView4);
-        txt5 = (TextView) v.findViewById(R.id.textView5);
+//        txt = (TextView) v.findViewById(R.id.textView);
+//        txt2 = (TextView) v.findViewById(R.id.textView2);
+//        txt3 = (TextView) v.findViewById(R.id.textView3);
+//        txt4 = (TextView) v.findViewById(R.id.textView4);
+//        txt5 = (TextView) v.findViewById(R.id.textView5);
 
 //        sensorManager = (SensorManager) getContext().getSystemService(Context.SENSOR_SERVICE);
         sensorManager = (SensorManager) getContext().getSystemService(SENSOR_SERVICE);
         accel = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
         simpleStepDetector = new StepDetector();
         simpleStepDetector.registerListener(this);
-
-        txt.setOnClickListener((new View.OnClickListener() {
-
-            @Override
-            public void onClick(View view) {
-                showResult(text);
-                showActivity();
-                showStatus2();
-            }
-        }));
+//
+//        txt.setOnClickListener((new View.OnClickListener() {
+//
+//            @Override
+//            public void onClick(View view) {
+//                showResult(text);
+//                showActivity();
+//                showStatus2();
+//            }
+//        }));
 //
 
         return v;
@@ -424,7 +424,7 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
     @Override
     public void step(long timeNs) {
         numSteps++;
-        txt5.setText(TEXT_NUM_STEPS + numSteps);
+        //txt5.setText(TEXT_NUM_STEPS + numSteps);
     }
 
     /**
@@ -475,13 +475,13 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
 //                Log.wtf("level is : ",getLev(uId));
 //                Log.wtf("status is : ",sta+"");
                 Log.wtf("Not Park","1");
-                txt3.setText(showsta);
+                //txt3.setText(showsta);
                 String str2 = getLev(uId);
                 String[] getInfo2;
                 getInfo2 = str2.split(",");
                 level = Integer.parseInt(getInfo2[0]);
                 sta = Integer.parseInt(getInfo2[1]);
-                txt4.setText("Level = " +level);
+                //txt4.setText("Level = " +level);
 
             }
             if (level == 10 && !checkActivity() && !inside) {
@@ -500,14 +500,14 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
 //                Log.wtf("level is : ",getLev(uId));
 //                Log.wtf("status is : ",sta+"");
                 Log.wtf("Not Park","2");
-                txt3.setText(showsta);
+                //txt3.setText(showsta);
 
                 String str2 = getLev(uId);
                 String[] getInfo2;
                 getInfo2 = str2.split(",");
                 level = Integer.parseInt(getInfo2[0]);
                 sta = Integer.parseInt(getInfo2[1]);
-                txt4.setText("Level = " +level);
+                //txt4.setText("Level = " +level);
 
             }
 
@@ -524,13 +524,13 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
 //                Log.wtf("level is : ",getLev(uId));
 //                Log.wtf("status is : ",sta+"");
                 Log.wtf("Park","1");
-                txt3.setText(showsta);
+                //txt3.setText(showsta);
                 String str2 = getLev(uId);
                 String[] getInfo2;
                 getInfo2 = str2.split(",");
                 level = Integer.parseInt(getInfo2[0]);
                 sta = Integer.parseInt(getInfo2[1]);
-                txt4.setText("Level = " +level);
+                //txt4.setText("Level = " +level);
 
             }
             if(level==10 && checkActivity() && !inside){
@@ -560,13 +560,13 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
 //                Log.wtf("level is : ",getLev(uId));
 //                Log.wtf("status is : ",sta+"");
                 Log.wtf("Park","2");
-                txt3.setText(showsta);
+                //txt3.setText(showsta);
                 String str2 = getLev(uId);
                 String[] getInfo2;
                 getInfo2 = str2.split(",");
                 level = Integer.parseInt(getInfo2[0]);
                 sta = Integer.parseInt(getInfo2[1]);
-                txt4.setText("Level = " +level);
+                //txt4.setText("Level = " +level);
                 Log.wtf("why i = ","wow5");
 
             }
@@ -574,13 +574,13 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
 
 //        Log.wtf("level is : ",getLev(uId)+"");
 //        Log.wtf("status is : ",sta+"");
-        txt3.setText(showsta + sta);
+        //txt3.setText(showsta + sta);
         String str2 = getLev(uId);
         String[] getInfo2;
         getInfo2 = str2.split(",");
         level = Integer.parseInt(getInfo2[0]);
         sta = Integer.parseInt(getInfo2[1]);
-        txt4.setText("Level = " +level);
+        //txt4.setText("Level = " +level);
     }
 
 //    public void showStatus(){
@@ -792,23 +792,23 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
 
     public void showActivity(){
 
-        txt2.setText(activityRecognition.getActivity()+"");
+        //txt2.setText(activityRecognition.getActivity()+"");
         vehicle=activityRecognition.getActivity();
 
         if(vehicle==0){
-//            txt2.setText("In Vehicle"+vehicle);
-            txt2.setText("In Vehicle");
+//            //txt2.setText("In Vehicle"+vehicle);
+            //txt2.setText("In Vehicle");
         }else{
-            txt2.setText("Not in vehicle");
+            //txt2.setText("Not in vehicle");
         }
     }
 
     public void showResult(String t){
-        txt.setText(t);
+//        txt.setText(t);
     }
 
     public void onClick(View v){
-        txt.setText("FUCK555");
+        //txt.setText("FUCK555");
 
     }
 
@@ -1036,7 +1036,7 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
             showResult("Outside");
             inside = false;
             text = "Outside" + distance[0];
-            txt.setText("Outside");
+            //txt.setText("Outside");
 //            txt.setText(getElevationFromGoogleMaps(mLastLocation.getLatitude(),mLastLocation.getLongitude())+"");
 //            Log.wtf("H is : " , getElevationFromGoogleMaps(mLastLocation.getLatitude(),mLastLocation.getLongitude())+"");
 
@@ -1046,7 +1046,7 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
             showResult("Inside");
             inside = true;
             text = "Inside" + distance[0];
-            txt.setText("Inside");
+            //txt.setText("Inside");
         }
 
         showActivity();
