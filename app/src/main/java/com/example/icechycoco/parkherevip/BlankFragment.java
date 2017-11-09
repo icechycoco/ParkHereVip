@@ -1087,14 +1087,14 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
 
 
     // เอาไว้เรียก lat long ของ user ที่ parked อยุ่
-    public ArrayList getParkLocation(){
+    public ArrayList getParkLocation(String uId){
         String[] getInfo;
         String lat,lon;
         ArrayList<HashMap<String, String>> parkLocation = new ArrayList<HashMap<String, String>>();
         HashMap<String, String> latlong;
 
         try {
-            response = http.run("http://parkhere.sit.kmutt.ac.th/getParkLatLong.php");
+            response = http.run("http://parkhere.sit.kmutt.ac.th/getParkLatLong.php?uId="+uId);
         } catch (IOException e) {
             e.printStackTrace();
         }
