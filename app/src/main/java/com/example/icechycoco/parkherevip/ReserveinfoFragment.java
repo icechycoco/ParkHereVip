@@ -244,7 +244,6 @@ public class ReserveinfoFragment extends Fragment {
                                 setEmail = etEmail.getText().toString();
                                 setPhone = etPhone.getText().toString();
 
-
                                 //current time
                                 Calendar cal = Calendar.getInstance();
                                 SimpleDateFormat sdf2 = new SimpleDateFormat("HH:mm:ss");
@@ -355,6 +354,8 @@ public class ReserveinfoFragment extends Fragment {
                 setLicen = etLicen.getText().toString();
                 setEmail = etEmail.getText().toString();
                 setPhone = etPhone.getText().toString();
+                setName = etGuestN.getText().toString();
+                setSur = etGuestS.getText().toString();
 
 
                 //current time
@@ -404,6 +405,7 @@ public class ReserveinfoFragment extends Fragment {
         return v;
     }
 
+    // existing guest
     public void reserve2(){
         setName = etGuestN.getText().toString();
         setSur = etGuestS.getText().toString();
@@ -520,6 +522,8 @@ public class ReserveinfoFragment extends Fragment {
         });
 
     }
+
+    // new guest
     public void reserve1(){
         setName = etGuestN.getText().toString();
         setSur = etGuestS.getText().toString();
@@ -539,7 +543,6 @@ public class ReserveinfoFragment extends Fragment {
         etEmail.setText(gEmail);
         etPhone.setText(gPhone);
         etLicen.setText(gLicen);
-        etPhone.setText(gPhone);
 
         setDate = etDate.getText().toString();
         //current time

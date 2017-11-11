@@ -75,12 +75,10 @@ public class ReserveFragment extends Fragment {
         // Inflate the layout for this fragment
 
         View v = inflater.inflate(R.layout.fragment_reserve_info, container, false);
-//        int[] resId = { R.drawable.aerithgainsborough
-//                , R.drawable.barretwallace, R.drawable.caitsith
-//                , R.drawable.cidhighwind, R.drawable.cloudstrife
-//                , R.drawable.redxiii, R.drawable.sephiroth
-//                , R.drawable.tifalockhart, R.drawable.vincentvalentine
-//                , R.drawable.yuffiekisaragi, R.drawable.zackfair };
+        int[] resId = { R.drawable.p1
+                , R.drawable.p2, R.drawable.p3
+                , R.drawable.p4, R.drawable.p5
+                , R.drawable.p6, R.drawable.p7};
 //
 //        String[] list = { "Aerith Gainsborough", "Barret Wallace", "Cait Sith"
 //                , "Cid Highwind", "Cloud Strife", "RedXIII", "Sephiroth"
@@ -98,7 +96,7 @@ public class ReserveFragment extends Fragment {
             al.add(data);
         }
 
-        final CustomAdapterRes adapter = new CustomAdapterRes(getContext(),al);
+        final CustomAdapterRes adapter = new CustomAdapterRes(getContext(),al,resId);
 
         ListView listView = (ListView) v.findViewById(R.id.listView1);
         listView.setAdapter(adapter);

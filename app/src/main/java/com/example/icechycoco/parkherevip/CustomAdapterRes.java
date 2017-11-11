@@ -14,9 +14,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -36,7 +38,7 @@ public class CustomAdapterRes extends BaseAdapter implements ReserveFragment.OnF
 
     ArrayList strParkArea;
 
-    public CustomAdapterRes(Context context, ArrayList strParkArea) {
+    public CustomAdapterRes(Context context, ArrayList strParkArea, int[] resId) {
         this.mContext= context;
         this.strParkArea = strParkArea;
         this.resId = resId;
@@ -72,6 +74,8 @@ public class CustomAdapterRes extends BaseAdapter implements ReserveFragment.OnF
 
         TextView textView = (TextView)view.findViewById(R.id.textView1);
         textView.setText(strParkArea.get(position).toString());
+        ImageView imageView = (ImageView)view.findViewById(R.id.imageView1);
+        imageView.setBackgroundResource(resId[position]);
 
         LinearLayout linearLayout = (LinearLayout)view.findViewById(R.id.linearLayout);
 
