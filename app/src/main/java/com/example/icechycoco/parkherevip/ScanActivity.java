@@ -36,7 +36,9 @@ public class ScanActivity extends AppCompatActivity implements ZXingScannerView.
     int timeInter;
     String timeSeq = "";
     String uId,getCode;
-
+    String[] getInfo1;
+    String[] month = {"null","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"};
+    String d,m,mm,y,newDate;
 
     @Override
     public void onCreate(Bundle state) {
@@ -104,7 +106,7 @@ public class ScanActivity extends AppCompatActivity implements ZXingScannerView.
 
         final AlertDialog.Builder builder =
                 new AlertDialog.Builder(this);
-        builder.setMessage("\nKhun " + gName + "\n\nPark Area: " + parkN + "\n\nLicense: " + licen + "\n\nDate: " + date + "\n\nTime: " + timeSeq);
+        builder.setMessage("\nKhun " + gName + "\n\nPark Area :  " + parkN + "\n\nLicense :  " + licen + "\n\nDate :     " + changeDateFormat(date) + "\n\nTime :     " + timeSeq);
 
         builder.setPositiveButton("CONFIRM", new DialogInterface.OnClickListener() {
 
@@ -122,10 +124,7 @@ public class ScanActivity extends AppCompatActivity implements ZXingScannerView.
                     e.printStackTrace();
                 }
                 Toast.makeText(getApplicationContext(), "PARKED HERE", Toast.LENGTH_SHORT).show();
-                RequestFragment requestFragmentt = new RequestFragment().newInstance(uId);
-                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-                transaction.replace(R.id.fragment_container, requestFragmentt);
-                transaction.commit();
+                onBackPressed();
             }
         });
 
@@ -154,6 +153,21 @@ public class ScanActivity extends AppCompatActivity implements ZXingScannerView.
     @Override
     public void onFragmentInteraction(Uri uri) {
 
+    }
+
+    public String changeDateFormat(String str){
+        getInfo1 = str.split("-");
+        y = getInfo1[0];
+        m = getInfo1[1];
+        d = getInfo1[2];
+        for(int i=0;i<month.length;i++){
+            if(i==Integer.parseInt(m)){
+                mm = month[i];
+                break;
+            }
+        }
+        newDate = d + " " + mm + " " + y;
+        return newDate;
     }
 
     public class getHttp {

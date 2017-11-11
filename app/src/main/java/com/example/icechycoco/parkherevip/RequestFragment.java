@@ -176,8 +176,13 @@ public class RequestFragment extends Fragment {
 
         parkArea.add("ALL");
         parkArea.add("CB4");
-        parkArea.add("FIBO");
         parkArea.add("14 Floors Building");
+        parkArea.add("FIBO");
+        parkArea.add("Engineer Building");
+        parkArea.add("Science Building");
+        parkArea.add("Library");
+        parkArea.add("The Hub");
+
     }
 
     public String getReq(String str){

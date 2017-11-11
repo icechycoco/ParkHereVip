@@ -4,6 +4,8 @@ import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.StateListDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -17,6 +19,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.view.animation.AlphaAnimation;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -159,7 +162,7 @@ public class ReserveinfoFragment extends Fragment {
                     case "13:00 - 18:00":
                         setInterval = "10";
                         break;
-                    case "6:00 - 18:00":
+                    case "06:00 - 18:00":
                         setInterval = "11";
                         break;
                 }
@@ -239,6 +242,7 @@ public class ReserveinfoFragment extends Fragment {
                                 Log.wtf("dDay",etGuestN.getText().toString());
                                 setLicen = etLicen.getText().toString();
                                 setEmail = etEmail.getText().toString();
+                                setPhone = etPhone.getText().toString();
 
 
                                 //current time
@@ -306,6 +310,7 @@ public class ReserveinfoFragment extends Fragment {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 boolean complete = true;
                 if(etEmail.getText().toString().indexOf("@") == -1 || etEmail.getText().toString().indexOf(".") == -1 ){
                     etEmail.setError("Please enter a valid email.");
@@ -349,6 +354,7 @@ public class ReserveinfoFragment extends Fragment {
                 Log.wtf("dDay",etGuestN.getText().toString());
                 setLicen = etLicen.getText().toString();
                 setEmail = etEmail.getText().toString();
+                setPhone = etPhone.getText().toString();
 
 
                 //current time

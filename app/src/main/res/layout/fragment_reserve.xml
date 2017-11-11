@@ -222,7 +222,6 @@
             android:text="RESERVE"
             android:textColor="#FFFFFF"
             android:textSize="15dp" />
-
     </LinearLayout>
 
 </LinearLayout>
