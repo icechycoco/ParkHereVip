@@ -41,95 +41,9 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/taskArtifacts.lock" afterPath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/taskArtifacts.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.bin" afterPath="$PROJECT_DIR$/.gradle/3.3/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" afterPath="$PROJECT_DIR$/.gradle/3.3/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/tasks/_app_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.bin" afterPath="$PROJECT_DIR$/.gradle/3.3/tasks/_app_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/tasks/_app_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" afterPath="$PROJECT_DIR$/.gradle/3.3/tasks/_app_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/android_maps_utils_0_4_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/android_maps_utils_0_4_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/animated_vector_drawable_25_3_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/animated_vector_drawable_25_3_1.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/appcompat_v7_25_3_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/appcompat_v7_25_3_1.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/constraint_layout_1_0_2.xml" afterPath="$PROJECT_DIR$/.idea/libraries/constraint_layout_1_0_2.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/constraint_layout_solver_1_0_2.xml" afterPath="$PROJECT_DIR$/.idea/libraries/constraint_layout_solver_1_0_2.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/core_1_9_8.xml" afterPath="$PROJECT_DIR$/.idea/libraries/core_1_9_8.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/design_25_3_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/design_25_3_1.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/espresso_core_2_2_2.xml" afterPath="$PROJECT_DIR$/.idea/libraries/espresso_core_2_2_2.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/espresso_idling_resource_2_2_2.xml" afterPath="$PROJECT_DIR$/.idea/libraries/espresso_idling_resource_2_2_2.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/exposed_instrumentation_api_publish_0_5.xml" afterPath="$PROJECT_DIR$/.idea/libraries/exposed_instrumentation_api_publish_0_5.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/firebase_analytics_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/firebase_analytics_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/firebase_analytics_impl_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/firebase_analytics_impl_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/firebase_appindexing_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/firebase_appindexing_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/firebase_auth_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/firebase_auth_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/firebase_common_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/firebase_common_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/firebase_config_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/firebase_config_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/firebase_crash_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/firebase_crash_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/firebase_database_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/firebase_database_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/firebase_database_connection_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/firebase_database_connection_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/firebase_dynamic_links_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/firebase_dynamic_links_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/firebase_iid_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/firebase_iid_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/firebase_messaging_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/firebase_messaging_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/firebase_storage_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/firebase_storage_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/firebase_storage_common_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/firebase_storage_common_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/googledirectionlibrary_1_0_5.xml" afterPath="$PROJECT_DIR$/.idea/libraries/googledirectionlibrary_1_0_5.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/mediarouter_v7_25_2_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/mediarouter_v7_25_2_0.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/multidex_1_0_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/multidex_1_0_1.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/multidex_instrumentation_1_0_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/multidex_instrumentation_1_0_1.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/org_apache_http_legacy_android_25.xml" afterPath="$PROJECT_DIR$/.idea/libraries/org_apache_http_legacy_android_25.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/palette_v7_25_2_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/palette_v7_25_2_0.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_ads_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_ads_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_ads_lite_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_ads_lite_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_analytics_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_analytics_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_analytics_impl_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_analytics_impl_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_appinvite_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_appinvite_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_auth_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_auth_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_auth_api_phone_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_auth_api_phone_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_auth_base_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_auth_base_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_awareness_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_awareness_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_base_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_base_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_basement_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_basement_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_cast_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_cast_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_cast_framework_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_cast_framework_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_clearcut_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_clearcut_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_drive_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_drive_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_fitness_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_fitness_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_games_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_games_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_gass_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_gass_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_gcm_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_gcm_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_identity_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_identity_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_iid_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_iid_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_instantapps_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_instantapps_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_location_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_location_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_maps_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_maps_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_nearby_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_nearby_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_panorama_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_panorama_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_places_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_places_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_plus_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_plus_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_safetynet_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_safetynet_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_tagmanager_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_tagmanager_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_tagmanager_api_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_tagmanager_api_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_tagmanager_v4_impl_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_tagmanager_v4_impl_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_tasks_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_tasks_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_vision_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_vision_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_vision_common_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_vision_common_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_wallet_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_wallet_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_wearable_11_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_wearable_11_0_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/recyclerview_v7_25_3_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/recyclerview_v7_25_3_1.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/rules_0_5.xml" afterPath="$PROJECT_DIR$/.idea/libraries/rules_0_5.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/runner_0_5.xml" afterPath="$PROJECT_DIR$/.idea/libraries/runner_0_5.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/support_annotations_25_3_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/support_annotations_25_3_1.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/support_compat_25_3_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/support_compat_25_3_1.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/support_core_ui_25_3_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/support_core_ui_25_3_1.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/support_core_utils_25_3_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/support_core_utils_25_3_1.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/support_fragment_25_3_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/support_fragment_25_3_1.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/support_media_compat_25_3_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/support_media_compat_25_3_1.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/support_v4_25_3_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/support_v4_25_3_1.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/support_vector_drawable_25_3_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/support_vector_drawable_25_3_1.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/transition_25_3_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/transition_25_3_1.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/zxing_1_9_8.xml" afterPath="$PROJECT_DIR$/.idea/libraries/zxing_1_9_8.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/app.iml" afterPath="$PROJECT_DIR$/app/app.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/icechycoco/parkherevip/BlankFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/icechycoco/parkherevip/BlankFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/icechycoco/parkherevip/HomeStuActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/icechycoco/parkherevip/HomeStuActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/local.properties" afterPath="$PROJECT_DIR$/local.properties" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/icechycoco/parkherevip/ReserveinfoFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/icechycoco/parkherevip/ReserveinfoFragment.java" />
     </list>
     <ignored path="ParkHereVip.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -161,18 +75,18 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="BlankFragment.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="BlankFragment.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/icechycoco/parkherevip/BlankFragment.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="50">
-              <caret line="423" column="18" selection-start-line="423" selection-start-column="18" selection-end-line="423" selection-end-column="18" />
+              <caret line="413" column="32" selection-start-line="413" selection-start-column="32" selection-end-line="413" selection-end-column="32" />
               <folding>
                 <element signature="docComment;class#BlankFragment#0" expanded="false" />
                 <element signature="method#BlankFragment#0;class#BlankFragment#0" expanded="false" />
                 <element signature="method#newInstance#0;class#BlankFragment#0" expanded="false" />
                 <element signature="method#onCreateView#0;class#BlankFragment#0" expanded="false" />
-                <element signature="e#12298#12515#0" expanded="true" />
-                <element signature="e#12514#12515#0" expanded="true" />
+                <element signature="e#11904#12121#0" expanded="true" />
+                <element signature="e#12120#12121#0" expanded="true" />
                 <element signature="method#onButtonPressed#0;class#BlankFragment#0" expanded="false" />
                 <element signature="method#onResume#0;class#BlankFragment#0" expanded="false" />
                 <element signature="method#onPause#0;class#BlankFragment#0" expanded="false" />
@@ -183,30 +97,40 @@
                 <element signature="method#step#0;class#BlankFragment#0" expanded="false" />
                 <element signature="docComment;class#OnFragmentInteractionListener#0;class#BlankFragment#0" expanded="false" />
                 <element signature="class#OnFragmentInteractionListener#0;class#BlankFragment#0" expanded="false" />
-                <element signature="e#21092#21123#0" expanded="false" />
+                <element signature="e#20698#20729#0" expanded="false" />
                 <element signature="method#getCurrentTime#0;class#BlankFragment#0" expanded="false" />
                 <element signature="method#getLev#0;class#BlankFragment#0" expanded="false" />
                 <element signature="method#updateLev#0;class#BlankFragment#0" expanded="false" />
                 <element signature="method#getParkId#0;class#BlankFragment#0" expanded="false" />
-                <element signature="e#29757#29758#0" expanded="true" />
-                <element signature="e#29787#29788#0" expanded="true" />
+                <element signature="e#29363#29364#0" expanded="true" />
+                <element signature="e#29393#29394#0" expanded="true" />
                 <element signature="method#onClick#0;class#BlankFragment#0" expanded="false" />
                 <element signature="method#buildGoogleApiClient#0;class#BlankFragment#0" expanded="false" />
-                <element signature="e#30651#30667#0" expanded="false" />
-                <element signature="e#34449#34542#0" expanded="false" />
+                <element signature="e#30257#30273#0" expanded="false" />
+                <element signature="e#34055#34148#0" expanded="false" />
                 <element signature="docComment;method#onMapReady#0;class#BlankFragment#0" expanded="false" />
                 <element signature="method#onConnected#0;class#BlankFragment#0" expanded="false" />
                 <element signature="method#onConnectionSuspended#0;class#BlankFragment#0" expanded="false" />
                 <element signature="method#onConnectionFailed#0;class#BlankFragment#0" expanded="false" />
                 <element signature="method#checkLocationPermission#0;class#BlankFragment#0" expanded="false" />
-                <element signature="e#40117#40183#0" expanded="false" />
+                <element signature="e#39723#39789#0" expanded="false" />
                 <element signature="method#onRequestPermissionsResult#0;class#BlankFragment#0" expanded="false" />
-                <element signature="e#41446#41479#0" expanded="false" />
-                <element signature="e#42268#42344#0" expanded="false" />
+                <element signature="e#41052#41085#0" expanded="false" />
+                <element signature="e#41874#41950#0" expanded="false" />
                 <element signature="method#createMarkerIcon#0;class#BlankFragment#0" expanded="false" />
-                <element signature="e#45992#46334#0" expanded="true" />
-                <element signature="e#46333#46334#0" expanded="true" />
+                <element signature="e#45598#45940#0" expanded="true" />
+                <element signature="e#45939#45940#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CustomAdapterHisSca.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/icechycoco/parkherevip/CustomAdapterHisSca.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="68">
+              <caret line="25" column="0" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -230,8 +154,10 @@
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/icechycoco/parkherevip/HomeStuActivity.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="68">
-              <caret line="34" column="27" selection-start-line="34" selection-start-column="27" selection-end-line="34" selection-end-column="27" />
-              <folding />
+              <caret line="33" column="27" selection-start-line="33" selection-start-column="27" selection-end-line="33" selection-end-column="27" />
+              <folding>
+                <element signature="imports" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -246,26 +172,26 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ReserveinfoFragment.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ReserveinfoFragment.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/icechycoco/parkherevip/ReserveinfoFragment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="37">
-              <caret line="6" column="23" selection-start-line="6" selection-start-column="23" selection-end-line="6" selection-end-column="23" />
+            <state relative-caret-position="97">
+              <caret line="223" column="53" selection-start-line="223" selection-start-column="35" selection-end-line="223" selection-end-column="53" />
               <folding>
                 <element signature="docComment;class#ReserveinfoFragment#0" expanded="false" />
                 <element signature="method#ReserveinfoFragment#0;class#ReserveinfoFragment#0" expanded="false" />
                 <element signature="method#newInstance#0;class#ReserveinfoFragment#0" expanded="false" />
                 <element signature="method#onCreate#0;class#ReserveinfoFragment#0" expanded="false" />
                 <element signature="e#3927#3976#0" expanded="false" />
-                <element signature="e#10031#10116#0" expanded="false" />
-                <element signature="e#10344#10408#0" expanded="false" />
-                <element signature="e#10898#10998#0" expanded="false" />
-                <element signature="e#11283#11360#0" expanded="false" />
-                <element signature="e#15076#15161#0" expanded="false" />
-                <element signature="e#15341#15405#0" expanded="false" />
-                <element signature="e#15815#15915#0" expanded="false" />
-                <element signature="e#16120#16197#0" expanded="false" />
-                <element signature="e#22602#22666#0" expanded="false" />
+                <element signature="e#10608#10693#0" expanded="false" />
+                <element signature="e#10921#10985#0" expanded="false" />
+                <element signature="e#11475#11575#0" expanded="false" />
+                <element signature="e#11860#11937#0" expanded="false" />
+                <element signature="e#16118#16203#0" expanded="false" />
+                <element signature="e#16383#16447#0" expanded="false" />
+                <element signature="e#16857#16957#0" expanded="false" />
+                <element signature="e#17162#17239#0" expanded="false" />
+                <element signature="e#24175#24239#0" expanded="false" />
                 <element signature="method#onButtonPressed#0;class#ReserveinfoFragment#0" expanded="false" />
                 <element signature="method#updateDisplay#0;class#ReserveinfoFragment#0" expanded="false" />
                 <element signature="method#onAttach#0;class#ReserveinfoFragment#0" expanded="false" />
@@ -275,14 +201,14 @@
                 <element signature="class#getHttp#0;class#ReserveinfoFragment#0" expanded="false" />
                 <element signature="method#run#0;class#getHttp#0;class#ReserveinfoFragment#0" expanded="false" />
                 <element signature="method#getNewGid#0;class#ReserveinfoFragment#0" expanded="false" />
-                <element signature="e#26779#26794#0" expanded="false" />
+                <element signature="e#28352#28367#0" expanded="false" />
                 <element signature="method#reserve#0;class#ReserveinfoFragment#0" expanded="false" />
-                <element signature="e#27822#27922#0" expanded="false" />
+                <element signature="e#29395#29495#0" expanded="false" />
                 <element signature="method#getParkName#0;class#ReserveinfoFragment#0" expanded="false" />
                 <element signature="method#randCode#0;class#ReserveinfoFragment#0" expanded="false" />
                 <element signature="method#TextToImageEncode#0;class#ReserveinfoFragment#0" expanded="false" />
                 <element signature="method#saveImage#0;class#ReserveinfoFragment#0" expanded="false" />
-                <element signature="e#30340#30392#0" expanded="false" />
+                <element signature="e#31913#31965#0" expanded="false" />
                 <element signature="method#delImage#0;class#ReserveinfoFragment#0" expanded="false" />
                 <element signature="method#changeDateFormat#0;class#ReserveinfoFragment#0" expanded="false" />
                 <element signature="method#sendEmail#0;class#ReserveinfoFragment#0" expanded="false" />
@@ -2899,7 +2825,6 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/icechycoco/parkherevip/RequestFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/icechycoco/parkherevip/ReserveFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/dialog_warn.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/icechycoco/parkherevip/ReserveinfoFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/listview_parkarea.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/icechycoco/parkherevip/HomeStaActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/icechycoco/parkherevip/HomeSecActivity.java" />
@@ -2912,6 +2837,7 @@
         <option value="$PROJECT_DIR$/local.properties" />
         <option value="$PROJECT_DIR$/build.gradle" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/icechycoco/parkherevip/BlankFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/icechycoco/parkherevip/ReserveinfoFragment.java" />
       </list>
     </option>
   </component>
@@ -3722,7 +3648,14 @@
       <option name="project" value="LOCAL" />
       <updated>1510035089933</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="please be good to me">
+      <created>1510326790914</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1510326790914</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TodoView">
@@ -3736,7 +3669,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32692307" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32189542" sideWeight="0.49167928" order="12" side_tool="false" content_ui="tabs" />
@@ -3744,7 +3677,7 @@
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26797387" sideWeight="0.52420574" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.64379084" sideWeight="0.47579426" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Android Monitor" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.38562092" sideWeight="0.47579426" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3267974" sideWeight="0.49394855" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2009804" sideWeight="0.48789713" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32843137" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
@@ -3853,7 +3786,8 @@
     <MESSAGE value="fix error reserve" />
     <MESSAGE value="fix error reserve2" />
     <MESSAGE value="after ed" />
-    <option name="LAST_COMMIT_MESSAGE" value="after ed" />
+    <MESSAGE value="please be good to me" />
+    <option name="LAST_COMMIT_MESSAGE" value="please be good to me" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -3902,13 +3836,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="585">
           <caret line="53" column="9" selection-start-line="53" selection-start-column="9" selection-end-line="53" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/icechycoco/parkherevip/CustomAdapterHisSca.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-588">
-          <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
         </state>
       </provider>
     </entry>
@@ -4218,6 +4145,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
           <caret line="6" column="51" selection-start-line="6" selection-start-column="51" selection-end-line="6" selection-end-column="51" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -4269,8 +4197,10 @@
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/icechycoco/parkherevip/HomeStuActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
-          <caret line="34" column="27" selection-start-line="34" selection-start-column="27" selection-end-line="34" selection-end-column="27" />
-          <folding />
+          <caret line="33" column="27" selection-start-line="33" selection-start-column="27" selection-end-line="33" selection-end-column="27" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -4280,49 +4210,6 @@
           <caret line="318" column="0" selection-start-line="318" selection-start-column="0" selection-end-line="318" selection-end-column="0" />
           <folding>
             <element signature="e#8694#8695#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/icechycoco/parkherevip/ReserveinfoFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="37">
-          <caret line="6" column="23" selection-start-line="6" selection-start-column="23" selection-end-line="6" selection-end-column="23" />
-          <folding>
-            <element signature="docComment;class#ReserveinfoFragment#0" expanded="false" />
-            <element signature="method#ReserveinfoFragment#0;class#ReserveinfoFragment#0" expanded="false" />
-            <element signature="method#newInstance#0;class#ReserveinfoFragment#0" expanded="false" />
-            <element signature="method#onCreate#0;class#ReserveinfoFragment#0" expanded="false" />
-            <element signature="e#3927#3976#0" expanded="false" />
-            <element signature="e#10031#10116#0" expanded="false" />
-            <element signature="e#10344#10408#0" expanded="false" />
-            <element signature="e#10898#10998#0" expanded="false" />
-            <element signature="e#11283#11360#0" expanded="false" />
-            <element signature="e#15076#15161#0" expanded="false" />
-            <element signature="e#15341#15405#0" expanded="false" />
-            <element signature="e#15815#15915#0" expanded="false" />
-            <element signature="e#16120#16197#0" expanded="false" />
-            <element signature="e#22602#22666#0" expanded="false" />
-            <element signature="method#onButtonPressed#0;class#ReserveinfoFragment#0" expanded="false" />
-            <element signature="method#updateDisplay#0;class#ReserveinfoFragment#0" expanded="false" />
-            <element signature="method#onAttach#0;class#ReserveinfoFragment#0" expanded="false" />
-            <element signature="method#onDetach#0;class#ReserveinfoFragment#0" expanded="false" />
-            <element signature="docComment;class#OnFragmentInteractionListener#0;class#ReserveinfoFragment#0" expanded="false" />
-            <element signature="class#OnFragmentInteractionListener#0;class#ReserveinfoFragment#0" expanded="false" />
-            <element signature="class#getHttp#0;class#ReserveinfoFragment#0" expanded="false" />
-            <element signature="method#run#0;class#getHttp#0;class#ReserveinfoFragment#0" expanded="false" />
-            <element signature="method#getNewGid#0;class#ReserveinfoFragment#0" expanded="false" />
-            <element signature="e#26779#26794#0" expanded="false" />
-            <element signature="method#reserve#0;class#ReserveinfoFragment#0" expanded="false" />
-            <element signature="e#27822#27922#0" expanded="false" />
-            <element signature="method#getParkName#0;class#ReserveinfoFragment#0" expanded="false" />
-            <element signature="method#randCode#0;class#ReserveinfoFragment#0" expanded="false" />
-            <element signature="method#TextToImageEncode#0;class#ReserveinfoFragment#0" expanded="false" />
-            <element signature="method#saveImage#0;class#ReserveinfoFragment#0" expanded="false" />
-            <element signature="e#30340#30392#0" expanded="false" />
-            <element signature="method#delImage#0;class#ReserveinfoFragment#0" expanded="false" />
-            <element signature="method#changeDateFormat#0;class#ReserveinfoFragment#0" expanded="false" />
-            <element signature="method#sendEmail#0;class#ReserveinfoFragment#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -4343,14 +4230,14 @@
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/icechycoco/parkherevip/BlankFragment.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="50">
-          <caret line="423" column="18" selection-start-line="423" selection-start-column="18" selection-end-line="423" selection-end-column="18" />
+          <caret line="413" column="32" selection-start-line="413" selection-start-column="32" selection-end-line="413" selection-end-column="32" />
           <folding>
             <element signature="docComment;class#BlankFragment#0" expanded="false" />
             <element signature="method#BlankFragment#0;class#BlankFragment#0" expanded="false" />
             <element signature="method#newInstance#0;class#BlankFragment#0" expanded="false" />
             <element signature="method#onCreateView#0;class#BlankFragment#0" expanded="false" />
-            <element signature="e#12298#12515#0" expanded="true" />
-            <element signature="e#12514#12515#0" expanded="true" />
+            <element signature="e#11904#12121#0" expanded="true" />
+            <element signature="e#12120#12121#0" expanded="true" />
             <element signature="method#onButtonPressed#0;class#BlankFragment#0" expanded="false" />
             <element signature="method#onResume#0;class#BlankFragment#0" expanded="false" />
             <element signature="method#onPause#0;class#BlankFragment#0" expanded="false" />
@@ -4361,29 +4248,80 @@
             <element signature="method#step#0;class#BlankFragment#0" expanded="false" />
             <element signature="docComment;class#OnFragmentInteractionListener#0;class#BlankFragment#0" expanded="false" />
             <element signature="class#OnFragmentInteractionListener#0;class#BlankFragment#0" expanded="false" />
-            <element signature="e#21092#21123#0" expanded="false" />
+            <element signature="e#20698#20729#0" expanded="false" />
             <element signature="method#getCurrentTime#0;class#BlankFragment#0" expanded="false" />
             <element signature="method#getLev#0;class#BlankFragment#0" expanded="false" />
             <element signature="method#updateLev#0;class#BlankFragment#0" expanded="false" />
             <element signature="method#getParkId#0;class#BlankFragment#0" expanded="false" />
-            <element signature="e#29757#29758#0" expanded="true" />
-            <element signature="e#29787#29788#0" expanded="true" />
+            <element signature="e#29363#29364#0" expanded="true" />
+            <element signature="e#29393#29394#0" expanded="true" />
             <element signature="method#onClick#0;class#BlankFragment#0" expanded="false" />
             <element signature="method#buildGoogleApiClient#0;class#BlankFragment#0" expanded="false" />
-            <element signature="e#30651#30667#0" expanded="false" />
-            <element signature="e#34449#34542#0" expanded="false" />
+            <element signature="e#30257#30273#0" expanded="false" />
+            <element signature="e#34055#34148#0" expanded="false" />
             <element signature="docComment;method#onMapReady#0;class#BlankFragment#0" expanded="false" />
             <element signature="method#onConnected#0;class#BlankFragment#0" expanded="false" />
             <element signature="method#onConnectionSuspended#0;class#BlankFragment#0" expanded="false" />
             <element signature="method#onConnectionFailed#0;class#BlankFragment#0" expanded="false" />
             <element signature="method#checkLocationPermission#0;class#BlankFragment#0" expanded="false" />
-            <element signature="e#40117#40183#0" expanded="false" />
+            <element signature="e#39723#39789#0" expanded="false" />
             <element signature="method#onRequestPermissionsResult#0;class#BlankFragment#0" expanded="false" />
-            <element signature="e#41446#41479#0" expanded="false" />
-            <element signature="e#42268#42344#0" expanded="false" />
+            <element signature="e#41052#41085#0" expanded="false" />
+            <element signature="e#41874#41950#0" expanded="false" />
             <element signature="method#createMarkerIcon#0;class#BlankFragment#0" expanded="false" />
-            <element signature="e#45992#46334#0" expanded="true" />
-            <element signature="e#46333#46334#0" expanded="true" />
+            <element signature="e#45598#45940#0" expanded="true" />
+            <element signature="e#45939#45940#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/icechycoco/parkherevip/CustomAdapterHisSca.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="25" column="0" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/icechycoco/parkherevip/ReserveinfoFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="97">
+          <caret line="223" column="53" selection-start-line="223" selection-start-column="35" selection-end-line="223" selection-end-column="53" />
+          <folding>
+            <element signature="docComment;class#ReserveinfoFragment#0" expanded="false" />
+            <element signature="method#ReserveinfoFragment#0;class#ReserveinfoFragment#0" expanded="false" />
+            <element signature="method#newInstance#0;class#ReserveinfoFragment#0" expanded="false" />
+            <element signature="method#onCreate#0;class#ReserveinfoFragment#0" expanded="false" />
+            <element signature="e#3927#3976#0" expanded="false" />
+            <element signature="e#10608#10693#0" expanded="false" />
+            <element signature="e#10921#10985#0" expanded="false" />
+            <element signature="e#11475#11575#0" expanded="false" />
+            <element signature="e#11860#11937#0" expanded="false" />
+            <element signature="e#16118#16203#0" expanded="false" />
+            <element signature="e#16383#16447#0" expanded="false" />
+            <element signature="e#16857#16957#0" expanded="false" />
+            <element signature="e#17162#17239#0" expanded="false" />
+            <element signature="e#24175#24239#0" expanded="false" />
+            <element signature="method#onButtonPressed#0;class#ReserveinfoFragment#0" expanded="false" />
+            <element signature="method#updateDisplay#0;class#ReserveinfoFragment#0" expanded="false" />
+            <element signature="method#onAttach#0;class#ReserveinfoFragment#0" expanded="false" />
+            <element signature="method#onDetach#0;class#ReserveinfoFragment#0" expanded="false" />
+            <element signature="docComment;class#OnFragmentInteractionListener#0;class#ReserveinfoFragment#0" expanded="false" />
+            <element signature="class#OnFragmentInteractionListener#0;class#ReserveinfoFragment#0" expanded="false" />
+            <element signature="class#getHttp#0;class#ReserveinfoFragment#0" expanded="false" />
+            <element signature="method#run#0;class#getHttp#0;class#ReserveinfoFragment#0" expanded="false" />
+            <element signature="method#getNewGid#0;class#ReserveinfoFragment#0" expanded="false" />
+            <element signature="e#28352#28367#0" expanded="false" />
+            <element signature="method#reserve#0;class#ReserveinfoFragment#0" expanded="false" />
+            <element signature="e#29395#29495#0" expanded="false" />
+            <element signature="method#getParkName#0;class#ReserveinfoFragment#0" expanded="false" />
+            <element signature="method#randCode#0;class#ReserveinfoFragment#0" expanded="false" />
+            <element signature="method#TextToImageEncode#0;class#ReserveinfoFragment#0" expanded="false" />
+            <element signature="method#saveImage#0;class#ReserveinfoFragment#0" expanded="false" />
+            <element signature="e#31913#31965#0" expanded="false" />
+            <element signature="method#delImage#0;class#ReserveinfoFragment#0" expanded="false" />
+            <element signature="method#changeDateFormat#0;class#ReserveinfoFragment#0" expanded="false" />
+            <element signature="method#sendEmail#0;class#ReserveinfoFragment#0" expanded="false" />
           </folding>
         </state>
       </provider>

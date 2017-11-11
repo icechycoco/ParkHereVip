@@ -222,7 +222,15 @@ public class ReserveinfoFragment extends Fragment {
                                     complete = false;
                                 }
                                 if(setInterval == null){
-                                    etDate.setError("Please choose time interval.");
+                                    final Dialog dialog = new Dialog(getContext());
+                                    dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                                    dialog.setContentView(R.layout.dialog_warn);
+
+                                    final TextView txt = (TextView) dialog.findViewById(R.id.textView11);
+                                    final TextView txt2 = (TextView) dialog.findViewById(R.id.textView20);
+                                    txt2.setText("Warning");
+                                    txt.setText("Please choose time interval.");
+                                    dialog.show();
                                     complete = false;
                                 }
                                 if(complete == false){
@@ -324,7 +332,15 @@ public class ReserveinfoFragment extends Fragment {
                     complete = false;
                 }
                 if(setInterval == null){
-                    etDate.setError("Please choose time interval.");
+                    final Dialog dialog = new Dialog(getContext());
+                    dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                    dialog.setContentView(R.layout.dialog_warn);
+
+                    final TextView txt = (TextView) dialog.findViewById(R.id.textView11);
+                    final TextView txt2 = (TextView) dialog.findViewById(R.id.textView20);
+                    txt2.setText("Warning");
+                    txt.setText("Please choose time interval.");
+                    dialog.show();
                     complete = false;
                 }
                 if(complete == false){
@@ -398,6 +414,7 @@ public class ReserveinfoFragment extends Fragment {
         gPhone = getGInfo[3];
 
         etEmail.setText(gEmail);
+        etPhone.setText(gPhone);
         etLicen.setText(gLicen);
         etPhone.setText(gPhone);
 
@@ -430,7 +447,15 @@ public class ReserveinfoFragment extends Fragment {
                     complete = false;
                 }
                 if(setInterval == null){
-                    etDate.setError("Please choose time interval.");
+                    final Dialog dialog = new Dialog(getContext());
+                    dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                    dialog.setContentView(R.layout.dialog_warn);
+
+                    final TextView txt = (TextView) dialog.findViewById(R.id.textView11);
+                    final TextView txt2 = (TextView) dialog.findViewById(R.id.textView20);
+                    txt2.setText("Warning");
+                    txt.setText("Please choose time interval.");
+                    dialog.show();
                     complete = false;
                 }
                 if(complete == false){
@@ -506,6 +531,7 @@ public class ReserveinfoFragment extends Fragment {
         gPhone = getGInfo[3];
 
         etEmail.setText(gEmail);
+        etPhone.setText(gPhone);
         etLicen.setText(gLicen);
         etPhone.setText(gPhone);
 
