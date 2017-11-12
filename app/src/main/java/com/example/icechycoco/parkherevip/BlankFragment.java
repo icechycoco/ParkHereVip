@@ -159,6 +159,9 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
     long realFee;
     long diffHours = 0;
 
+    String idPark;
+    double laa,loo;
+
 
     private OnFragmentInteractionListener mListener;
 
@@ -485,17 +488,17 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
                 i++;
 
 
-                ArrayList<HashMap<String,String>> arrayList= checkLocation();
-                for(int i =0; i<arrayList.size(); i++){
-                    float[] distance = new float[2];
-                    float minDis = 100;
-                    Location.distanceBetween(mLastLocation.getLatitude(), mLastLocation.getLongitude(),
-                            Double.parseDouble(arrayList.get(i).get("la")), Double.parseDouble(arrayList.get(i).get("lo")), distance);
-                    if(distance[0]<minDis){
-                        minDis = distance[0];
-                        pid = arrayList.get(i).get("pl");
-                    }
-                }
+//                ArrayList<HashMap<String,String>> arrayList= checkLocation();
+//                for(int i =0; i<arrayList.size(); i++){
+//                    float[] distance = new float[2];
+//                    float minDis = 100;
+//                    Location.distanceBetween(mLastLocation.getLatitude(), mLastLocation.getLongitude(),
+//                            Double.parseDouble(arrayList.get(i).get("la")), Double.parseDouble(arrayList.get(i).get("lo")), distance);
+//                    if(distance[0]<minDis){
+//                        minDis = distance[0];
+//                        pid = arrayList.get(i).get("pl");
+//                    }
+//                }
 
 
                 //current time
@@ -504,15 +507,16 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
                 currentTime = sdf2.format(cal.getTime());
 
 
-                Log.wtf("showStatus2: ",uId+" "+ pid+" "+ timeIn+" "+ currentTime.toString()+" "+mLastLocation.getLatitude()+" "+mLastLocation.getLongitude()+"");
+//                Log.wtf("showStatus2: ",uId+" "+ pid+" "+ timeIn+" "+ currentTime.toString()+" "+mLastLocation.getLatitude()+" "+mLastLocation.getLongitude()+"");
                 // ไม่รู้ถูกป่าว แบบกูเพิ่มให้มันจำ lat long ที่ปาร์คไปเลย ตอนสร้างตารางใหม่อะ
 
-                updateStatusPark(uId, pid, timeIn, currentTime,mLastLocation.getLatitude()+"",mLastLocation.getLongitude()+"");
+                updateStatusPark(uId, idPark, timeIn, currentTime,laa+"",loo+"");
+//             updateStatusPark(uId, pid, timeIn, currentTime,mLastLocation.getLatitude()+"",mLastLocation.getLongitude()+"");
 //                updateStatusPark("10003", "1", "10:10:10", "2017-11-11","13.65","13.65");
 //                Log.wtf("showStatus2: ",""+updateStatusPark(uId, pid, timeIn, "2017-11-10",
 //                        mLastLocation.getLatitude()+"",mLastLocation.getLongitude()+""));
 
-                showDialogReminder();
+//                showDialogReminder();
 
                 Log.wtf("Not Park","2");
 
@@ -524,6 +528,10 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
                 txt4.setText("Level = " +level);
 
 
+
+                Intent intent = new Intent(getActivity(), LoginActivity.class);
+                getActivity().finish();
+                startActivity(intent);
 
 
             }
@@ -587,8 +595,9 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
                 Log.wtf("why i = ","wow5");
 
 
-                getActivity().finish();
+
                 Intent intent = new Intent(getActivity(), LoginActivity.class);
+//                getActivity().finish();
                 startActivity(intent);
 
             }
@@ -880,7 +889,7 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
     public void onLocationChanged(Location location) {
 
         if(parkLoc==null) {
-            if(focus) {
+            if (focus) {
                 CameraPosition cameraPosition = new CameraPosition.Builder()
                         .target(new LatLng(location.getLatitude(), location.getLongitude()))      // Sets the center of the map to location user
                         .zoom(17)                   // Sets the zoom
@@ -903,42 +912,46 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
 
             Log.wtf("onLocationChanged: ", "1");
 
-            GoogleDirection.withServerKey(serverKey)
-                    .from(origin)
-                    .to(destination)
-                    .transportMode(TransportMode.DRIVING)
-                    .unit(Unit.METRIC)
-                    .execute(new DirectionCallback() {
-                        @Override
-                        public void onDirectionSuccess(Direction direction, String rawBody) {
-                            Log.wtf("onLocationChanged: ", "555");
-                            if (direction.isOK()) {
-                                Log.wtf("onLocationChanged: ", "2");
+            if (park == false) {
 
-                                Route route = direction.getRouteList().get(0);
-                                Leg leg = route.getLegList().get(0);
-                                ArrayList<LatLng> directionPositionList = leg.getDirectionPoint();
-                                if(isAdded()) {
-                                    mMap.clear();
-                                    PolylineOptions polylineOptions = DirectionConverter.createPolyline
-                                            (getActivity().getApplicationContext(), directionPositionList, 5, Color.BLUE);
-                                    mMap.addPolyline(polylineOptions);
-                                    Log.wtf("onLocationChanged: ", "3");
+                GoogleDirection.withServerKey(serverKey)
+                        .from(origin)
+                        .to(destination)
+                        .transportMode(TransportMode.DRIVING)
+                        .unit(Unit.METRIC)
+                        .execute(new DirectionCallback() {
+                            @Override
+                            public void onDirectionSuccess(Direction direction, String rawBody) {
+                                Log.wtf("onLocationChanged: ", "555");
+                                if (direction.isOK()) {
+                                    Log.wtf("onLocationChanged: ", "2");
+
+                                    Route route = direction.getRouteList().get(0);
+                                    Leg leg = route.getLegList().get(0);
+                                    ArrayList<LatLng> directionPositionList = leg.getDirectionPoint();
+                                    if (isAdded()) {
+                                        mMap.clear();
+                                        PolylineOptions polylineOptions = DirectionConverter.createPolyline
+                                                (getActivity().getApplicationContext(), directionPositionList, 5, Color.BLUE);
+                                        mMap.addPolyline(polylineOptions);
+                                        Log.wtf("onLocationChanged: ", "3");
+
+                                    }
+                                    Log.wtf("onLocationChanged: ", "4");
+
+                                    mMap.addMarker(markerOptions);
 
                                 }
-                                Log.wtf("onLocationChanged: ", "4");
-
-                                mMap.addMarker(markerOptions);
                             }
-                        }
 
-                        @Override
-                        public void onDirectionFailure(Throwable t) {
-                            Log.wtf("onDirectiom.0nFailure", t);
-                        }
+                            @Override
+                            public void onDirectionFailure(Throwable t) {
+                                Log.wtf("onDirectiom.0nFailure", t);
+                            }
 
-                    });
+                        });
 
+            }
         }
 
         Log.wtf("onLocationChanged: ", "5");
@@ -960,7 +973,9 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
                     Double.parseDouble(arrayList.get(i).get("la")), Double.parseDouble(arrayList.get(i).get("lo")), distance);
             if(distance[0]<minDis) {
                 minDis = distance[0];
-                pid = arrayList.get(i).get("pl");
+                idPark = arrayList.get(i).get("pl");
+                laa = Double.parseDouble(arrayList.get(i).get("la"));
+                loo = Double.parseDouble(arrayList.get(i).get("lo"));
             }
         }
 
