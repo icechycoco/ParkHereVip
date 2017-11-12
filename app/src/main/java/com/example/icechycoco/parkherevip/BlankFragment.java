@@ -900,8 +900,12 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
                 mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
                 focus = false;
             }
-//            String serverKey = "AIzaSyCrvg_MLcS21bt3a11mN9MFKg8FTqBNkkc";//อันเก่า
-            String serverKey = "AIzaSyAZy3rcHIrNHB7XRUyGIbyq0LnC5MYzY5E";
+            String serverKey = "AIzaSyCrvg_MLcS21bt3a11mN9MFKg8FTqBNkkc";//1
+//            String serverKey = "AIzaSyAZy3rcHIrNHB7XRUyGIbyq0LnC5MYzY5E";//2
+//            String serverKey = "AIzaSyBRovRPBp6pmNVLqll8qBAf_LmpbRSQBnA";//3
+//            String serverKey = "AIzaSyDIDu0r1fB9ZvqbrU6XfVv_REYjMT3MXBQ";//4
+//            String serverKey = "AIzaSyCEb0jU6MdM7QO3mqFbqeuVEnfb3VRhNvI";//5
+//            String serverKey = "AIzaSyDeCdqQCSVYrTRvpXewF2KV_sZR06m6ggI";//6
             LatLng origin = new LatLng(location.getLatitude(), location.getLongitude());
 //            LatLng origin = new LatLng(10,10);
             String[] des = loc.split(",");
