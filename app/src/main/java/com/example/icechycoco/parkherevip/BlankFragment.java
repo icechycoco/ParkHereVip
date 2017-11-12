@@ -223,7 +223,7 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
                 getTime = getInfo[0];
                 getCost = Integer.parseInt(getInfo[1]);
                 getMCost = Integer.parseInt(getInfo[2]);
-                getFloor = getInfo[3];
+//                getFloor = getInfo[3];
 
                 // convert string time in database to time
                 SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
@@ -268,11 +268,11 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
                 final TextView tin = (TextView) dialog.findViewById(R.id.textView13);
                 final TextView tout = (TextView) dialog.findViewById(R.id.textView15);
                 final TextView estfee = (TextView) dialog.findViewById(R.id.textView17);
-                final TextView floor = (TextView) dialog.findViewById(R.id.textView19);
+//                final TextView floor = (TextView) dialog.findViewById(R.id.textView19);
                 tin.setText(timeIn);
                 tout.setText(currentTime);
                 estfee.setText(realFee +" BAHT");
-                floor.setText(getFloor);
+//                floor.setText(getFloor);
 
                 dialog.show();
 
@@ -325,7 +325,7 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
         txt2 = (TextView) v.findViewById(R.id.textView2);
         txt3 = (TextView) v.findViewById(R.id.textView3);
         txt4 = (TextView) v.findViewById(R.id.textView4);
-        txt5 = (TextView) v.findViewById(R.id.textView5);
+        //txt5 = (TextView) v.findViewById(R.id.textView5);
 
 //        sensorManager = (SensorManager) getContext().getSystemService(Context.SENSOR_SERVICE);
         sensorManager = (SensorManager) getContext().getSystemService(SENSOR_SERVICE);
@@ -890,13 +890,18 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
                 mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
                 focus = false;
             }
-            String serverKey = "AIzaSyCrvg_MLcS21bt3a11mN9MFKg8FTqBNkkc";
+//            String serverKey = "AIzaSyCrvg_MLcS21bt3a11mN9MFKg8FTqBNkkc";//อันเก่า
+            String serverKey = "AIzaSyAZy3rcHIrNHB7XRUyGIbyq0LnC5MYzY5E";
             LatLng origin = new LatLng(location.getLatitude(), location.getLongitude());
+//            LatLng origin = new LatLng(10,10);
             String[] des = loc.split(",");
             LatLng destination = new LatLng(Double.parseDouble(des[0]), Double.parseDouble(des[1]));
+//            LatLng destination = new LatLng(10, 10);
             final MarkerOptions markerOptions = new MarkerOptions();
             markerOptions.position(destination);
             markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
+
+            Log.wtf("onLocationChanged: ", "1");
 
             GoogleDirection.withServerKey(serverKey)
                     .from(origin)
@@ -906,7 +911,10 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
                     .execute(new DirectionCallback() {
                         @Override
                         public void onDirectionSuccess(Direction direction, String rawBody) {
+                            Log.wtf("onLocationChanged: ", "555");
                             if (direction.isOK()) {
+                                Log.wtf("onLocationChanged: ", "2");
+
                                 Route route = direction.getRouteList().get(0);
                                 Leg leg = route.getLegList().get(0);
                                 ArrayList<LatLng> directionPositionList = leg.getDirectionPoint();
@@ -915,7 +923,11 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
                                     PolylineOptions polylineOptions = DirectionConverter.createPolyline
                                             (getActivity().getApplicationContext(), directionPositionList, 5, Color.BLUE);
                                     mMap.addPolyline(polylineOptions);
+                                    Log.wtf("onLocationChanged: ", "3");
+
                                 }
+                                Log.wtf("onLocationChanged: ", "4");
+
                                 mMap.addMarker(markerOptions);
                             }
                         }
@@ -924,8 +936,12 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
                         public void onDirectionFailure(Throwable t) {
                             Log.wtf("onDirectiom.0nFailure", t);
                         }
+
                     });
+
         }
+
+        Log.wtf("onLocationChanged: ", "5");
 
         float[] distance = new float[2];
 
