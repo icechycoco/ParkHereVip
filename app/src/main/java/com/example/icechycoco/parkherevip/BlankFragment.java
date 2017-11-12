@@ -34,7 +34,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -506,8 +505,8 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
                 SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd");
                 currentTime = sdf2.format(cal.getTime());
 
-
-//                Log.wtf("showStatus2: ",uId+" "+ pid+" "+ timeIn+" "+ currentTime.toString()+" "+mLastLocation.getLatitude()+" "+mLastLocation.getLongitude()+"");
+                Log.wtf("why i = ","e");
+                Log.wtf("showStatus2: ",uId+" "+ idPark+" "+ timeIn+" "+ currentTime.toString()+" "+laa+" "+loo+"");
                 // ไม่รู้ถูกป่าว แบบกูเพิ่มให้มันจำ lat long ที่ปาร์คไปเลย ตอนสร้างตารางใหม่อะ
 
                 updateStatusPark(uId, idPark, timeIn, currentTime,laa+"",loo+"");
@@ -527,9 +526,11 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
                 sta = Integer.parseInt(getInfo2[1]);
                 txt4.setText("Level = " +level);
 
+                Log.wtf("why i = ","ei");
 
 
-                Intent intent = new Intent(getActivity(), LoginActivity.class);
+                Intent intent = new Intent(getContext(), LoginActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 getActivity().finish();
                 startActivity(intent);
 
@@ -559,6 +560,7 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
 
             }
             if(level==10 && checkActivity() && !inside){
+//                if(level==10  && !inside){
                 level=20;
                 park=false;
 
@@ -594,10 +596,9 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
                 txt4.setText("Level = " +level);
                 Log.wtf("why i = ","wow5");
 
-
-
-                Intent intent = new Intent(getActivity(), LoginActivity.class);
-//                getActivity().finish();
+                Intent intent = new Intent(getContext(), LoginActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                getActivity().finish();
                 startActivity(intent);
 
             }
@@ -966,7 +967,7 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
         mLastLocation = location;
 
         ArrayList<HashMap<String,String>> arrayList= checkLocation();
-        float minDis = 1000;
+        float minDis = 999999999;
         for(int i =0; i<arrayList.size(); i++){
             float[] distance2 = new float[2];
             Location.distanceBetween(mLastLocation.getLatitude(), mLastLocation.getLongitude(),
@@ -1241,48 +1242,48 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback, View.
 
     }
 
-    public void showDialogReminder(){
-
-
-        if(isAdded()) {
-            final Dialog dialog = new Dialog(getActivity());
-            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-            dialog.setContentView(R.layout.dialog_floor);
-
-            final EditText number = (EditText) dialog.findViewById(R.id.editText);
-            final Button cncl = (Button) dialog.findViewById(R.id.button_cancel);
-            final Button ok = (Button) dialog.findViewById(R.id.button_login);
-
-            ok.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    try {
-                        // สร้าง php ใหม่เปลี่ยนจำนวน available
-                        response = http.run("http://parkhere.sit.kmutt.ac.th/setFloor.php?uId=" + uId + "&floor=" + number.getText());
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                    dialog.dismiss();
-
-                    getActivity().finish();
-                    Intent intent = new Intent(getActivity(), LoginActivity.class);
-                    startActivity(intent);
-                }
-            });
-
-            cncl.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    dialog.dismiss();
-
-                    getActivity().finish();
-                    Intent intent = new Intent(getActivity(), LoginActivity.class);
-                    startActivity(intent);
-                }
-            });
-
-            dialog.show();
-        }
-    }
+//    public void showDialogReminder(){
+//
+//
+//        if(isAdded()) {
+//            final Dialog dialog = new Dialog(getActivity());
+//            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+//            dialog.setContentView(R.layout.dialog_floor);
+//
+//            final EditText number = (EditText) dialog.findViewById(R.id.editText);
+//            final Button cncl = (Button) dialog.findViewById(R.id.button_cancel);
+//            final Button ok = (Button) dialog.findViewById(R.id.button_login);
+//
+//            ok.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    try {
+//                        // สร้าง php ใหม่เปลี่ยนจำนวน available
+//                        response = http.run("http://parkhere.sit.kmutt.ac.th/setFloor.php?uId=" + uId + "&floor=" + number.getText());
+//                    } catch (IOException e) {
+//                        e.printStackTrace();
+//                    }
+//                    dialog.dismiss();
+//
+//                    getActivity().finish();
+//                    Intent intent = new Intent(getActivity(), LoginActivity.class);
+//                    startActivity(intent);
+//                }
+//            });
+//
+//            cncl.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    dialog.dismiss();
+//
+//                    getActivity().finish();
+//                    Intent intent = new Intent(getActivity(), LoginActivity.class);
+//                    startActivity(intent);
+//                }
+//            });
+//
+//            dialog.show();
+//        }
+//    }
 
 }

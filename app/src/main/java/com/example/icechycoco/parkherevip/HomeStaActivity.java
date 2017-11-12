@@ -266,4 +266,9 @@ public class HomeStaActivity extends AppCompatActivity
         getSupportActionBar().setTitle(title);
     }
 
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(newBase);
+    }
 }
